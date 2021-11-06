@@ -35,8 +35,20 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
+  # Do not specify version if you want to fetch the last one
+  get:
+  http:
+  sqflite:
+  google_fonts:
+  shared_preferences:
+  infinite_scroll_pagination:
+  package_info:
+  provider:
+
 dev_dependencies:
   flutter_test:
+    sdk: flutter
+  flutter_localizations:
     sdk: flutter
 
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -58,9 +70,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - locale/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
