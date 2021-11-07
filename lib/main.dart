@@ -1,4 +1,6 @@
 import 'package:dimexa_vendors/localizations/app_translations_delegate.dart';
+import 'package:dimexa_vendors/ui/pages/clients/client_details/client_details.dart';
+import 'package:dimexa_vendors/ui/pages/clients/client_details/client_map/client_map.dart';
 import 'package:dimexa_vendors/ui/pages/clients/clients.dart';
 import 'package:dimexa_vendors/utils/app_colors/app_colors.dart';
 import 'package:dimexa_vendors/utils/custom_material_color/custom_material_color.dart';
@@ -20,17 +22,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Centrix',
       theme: ThemeData(
-        scaffoldBackgroundColor: AppColors.orange, //For each backgroundColor page
-        primarySwatch: customMaterialColor(AppColors.red), //For appBar
+        scaffoldBackgroundColor: AppColors.blue, //For each backgroundColor page
+        primarySwatch: customMaterialColor(AppColors.blue), //For appBar
         visualDensity: VisualDensity.adaptivePlatformDensity,
-
         textTheme: GoogleFonts.montserratTextTheme(
           Theme.of(context).textTheme.apply(
               bodyColor: AppColors.gray
           ),
         ),
       ),
-      home: const Clients(),
+      home: ClientMap(),
       localizationsDelegates: const [
         //app-specific localization delegate[s] here
         AppTranslationsDelegate(newLocale: Locale("es")),

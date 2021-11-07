@@ -38,12 +38,15 @@ dependencies:
   # Do not specify version if you want to fetch the last one
   get:
   http:
-  sqflite:
+  hive:
+  hive_flutter:
   google_fonts:
   shared_preferences:
   infinite_scroll_pagination:
   package_info:
   provider:
+  fl_chart:
+  google_maps_flutter:
 
 dev_dependencies:
   flutter_test:
@@ -57,6 +60,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
+  hive_generator:
+  build_runner:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

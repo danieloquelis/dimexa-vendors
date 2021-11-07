@@ -5,17 +5,20 @@ class SearchBar extends StatefulWidget {
   ValueChanged<String> onChange;
   EdgeInsetsGeometry margin;
   OnClearSearch? onClearSearch;
+  OnChangeFilter? onChangeFilter;
   String placeHolder;
 
   @override
   _SearchBarState createState() => _SearchBarState();
 
-  SearchBar({Key? key,
-    required this.onChange,
-    this.margin = EdgeInsets.zero,
-    this.onClearSearch,
-    this.placeHolder = "Search"
-  }) : super(key: key);
+  SearchBar(
+      {Key? key,
+      required this.onChange,
+      this.margin = EdgeInsets.zero,
+      this.onClearSearch,
+      this.onChangeFilter,
+      this.placeHolder = "Search"})
+      : super(key: key);
 }
 
 class _SearchBarState extends State<SearchBar> {
@@ -38,7 +41,7 @@ class _SearchBarState extends State<SearchBar> {
       elevation: 0,
       margin: widget.margin,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(5.0),
+        borderRadius: BorderRadius.circular(18.0),
       ),
       child: Container(
         decoration: const BoxDecoration(
@@ -77,10 +80,19 @@ class _SearchBarState extends State<SearchBar> {
                     icon: const Icon(Icons.close),
                     onPressed: () {
                       searchTextController.clear();
-                      widget.onClearSearch!();
+                      if (widget.onClearSearch != null) {
+                        widget.onClearSearch!();
+                      }
                     },
                   )
-                : const SizedBox(),
+                : IconButton(
+                    icon: const Icon(Icons.filter_list),
+                    onPressed: () {
+                      if (widget.onChangeFilter != null) {
+                        widget.onChangeFilter!();
+                      }
+                    },
+                  ),
           ],
         ),
       ),
@@ -105,3 +117,4 @@ class _SearchBarState extends State<SearchBar> {
 }
 
 typedef OnClearSearch = void Function();
+typedef OnChangeFilter = void Function();
