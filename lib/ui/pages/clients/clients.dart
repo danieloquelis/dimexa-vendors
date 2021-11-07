@@ -30,6 +30,13 @@ class _ClientsState extends State<Clients> {
           ),
           title: Text(AppTranslations.of(context)!.text('clients')),
           elevation: 0,
+          actions: [
+            Switch(
+              value: false,
+              onChanged: (value){},
+              activeColor: AppColors.green,
+            )
+          ],
         ),
         body: Container(
           decoration: const BoxDecoration(

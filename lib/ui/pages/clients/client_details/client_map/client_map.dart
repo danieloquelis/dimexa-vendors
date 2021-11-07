@@ -10,7 +10,7 @@ class ClientMap extends StatefulWidget {
 }
 
 class _ClientMapState extends State<ClientMap> {
-  Completer<GoogleMapController> _controller = Completer();
+  final Completer<GoogleMapController> _controller = Completer();
 
   static final CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
@@ -33,24 +33,77 @@ class _ClientMapState extends State<ClientMap> {
           ),
           title: Text('Mapa'),
           elevation: 0,
+          actions: [
+            Switch(
+              value: false,
+              onChanged: (value){},
+              activeColor: AppColors.green,
+            )
+          ],
         ),
         body: ClipRRect(
           borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
-          child: Container(
-            color: AppColors.basePage,
-            child: GoogleMap(
-              //mapType: MapType.hybrid,
-              initialCameraPosition: _kGooglePlex,
-              onMapCreated: (GoogleMapController controller) {
-                _controller.complete(controller);
-              },
-            ),
-          ),
-        ));
-  }
-
-  Future<void> _goToTheLake() async {
-    final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
+          child: Stack(
+            children: [
+              GoogleMap(
+                //mapType: MapType.hybrid,
+                initialCameraPosition: _kGooglePlex,
+                onMapCreated: (GoogleMapController controller) {
+                  _controller.complete(controller);
+                },
+              ),
+              Center(
+                child: Icon(
+                  Icons.location_on,
+                  size: 48,
+                  color: AppColors.blue,
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.all(16),
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(18)),
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 11,
+                      color: AppColors.gray.withOpacity(0.5),
+                      offset: Offset(0, 12)
+                    )
+                  ],
+                  color: Colors.white
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16, left: 12, bottom: 6),
+                      child: Row(
+                        children: [
+                          Icon(Icons.location_on, color: Colors.green,),
+                          SizedBox(width: 8,),
+                          Text('Direccion principal')
+                        ],
+                      ),
+                    ),
+                    Divider(color: AppColors.gray,),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 6, left: 12, bottom: 16),
+                      child: Row(
+                        children: [
+                          Icon(Icons.flag, color: Colors.green,),
+                          SizedBox(width: 8,),
+                          Text('Referencia')
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          )
+        )
+    );
   }
 }
