@@ -1,7 +1,7 @@
 import 'package:dimexa_vendors/localizations/app_translations.dart';
 import 'package:dimexa_vendors/requests/search.dart';
 import 'package:dimexa_vendors/ui/pages/clients/clients_controller.dart';
-import 'package:dimexa_vendors/ui/widgets/client_list_item/client_list_item.dart';
+import 'package:dimexa_vendors/ui/pages/clients/widgets/client_list_item/client_list_item.dart';
 import 'package:dimexa_vendors/ui/widgets/cupertino_sheet_item/cupertino_sheet_item.dart';
 import 'package:dimexa_vendors/ui/widgets/search_bar/search_bar.dart';
 import 'package:dimexa_vendors/utils/app_colors/app_colors.dart';
@@ -55,7 +55,7 @@ class _ClientsState extends State<Clients> {
                   },
                 ),
                 const SizedBox(height: 24,),
-                ClientListItem()
+                ClientListItem(),
               ],
             ),
           ),
@@ -77,7 +77,12 @@ class _ClientsState extends State<Clients> {
             );
           }).toList(),
           cancelButton: CupertinoActionSheetAction(
-            child: Text(AppTranslations.of(context)!.text("cancel")),
+            child: Text(
+              AppTranslations.of(context)!.text("cancel"),
+              style: const TextStyle(
+                  fontSize: 16
+              ),
+            ),
             onPressed: () {
               Navigator.pop(context);
             },

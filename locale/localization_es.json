@@ -8,5 +8,9 @@
   "filter_of_searching": "Filtros de búsqueda",
   "cancel": "Cancelar",
   "information": "Información",
-  "operations": "Operaciones"
+  "operations": "Operaciones",
+  "forgot_password": "Olvidaste tu contraseña?",
+  "login": "Ingresar",
+  "user": "Usuario",
+  "password": "Contraseña"
 }
