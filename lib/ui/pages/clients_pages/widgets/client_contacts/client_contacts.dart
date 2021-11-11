@@ -1,4 +1,5 @@
 
+import 'package:dimexa_vendors/localizations/app_translations.dart';
 import 'package:dimexa_vendors/ui/widgets/custom_expandable_field/custom_expandable_field.dart';
 import 'package:dimexa_vendors/ui/widgets/custom_info_field/custom_info_field.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,7 @@ class ClientContacts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomExpandableField(
-      title: "Contactos",
+      title: AppTranslations.of(context)!.text("contacts"),
       child: Column(
         children: [
           contactItem(
@@ -20,7 +21,7 @@ class ClientContacts extends StatelessWidget {
             phoneNumber: "+51960943368",
             email: "daniel.oquelis@gmail.com"
           ),
-          SizedBox(height: 8,),
+          const SizedBox(height: 8,),
           contactItem(
               context: context,
               position: "Gerente general",
@@ -47,7 +48,7 @@ class ClientContacts extends StatelessWidget {
       String? email
   }) {
     return ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(16)),
+      borderRadius: const BorderRadius.all(Radius.circular(16)),
       child: Container(
           padding: const EdgeInsets.all(16),
           width: MediaQuery.of(context!).size.width,
@@ -56,14 +57,14 @@ class ClientContacts extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomInfoField(
-                label: "Cargo",
+                label: AppTranslations.of(context)!.text("position"),
                 value: position!,
               ),
               const Divider(
                 thickness: 1,
               ),
               CustomInfoField(
-                label: "Nombre completo",
+                label: AppTranslations.of(context)!.text("full_name"),
                 value: fullName!,
               ),
               const Divider(
@@ -73,13 +74,13 @@ class ClientContacts extends StatelessWidget {
                 children: [
                   Flexible(
                     child: CustomInfoField(
-                      label: "Genero",
+                      label: AppTranslations.of(context)!.text("gender"),
                       value: gender!,
                     ),
                   ),
                   Flexible(
                     child: CustomInfoField(
-                      label: "Estado civil",
+                      label: AppTranslations.of(context)!.text("civil_status"),
                       value: civilStatus!,
                     ),
                   )
@@ -92,13 +93,13 @@ class ClientContacts extends StatelessWidget {
                 children: [
                   Flexible(
                     child: CustomInfoField(
-                      label: "Fecha de nacimiento",
+                      label: AppTranslations.of(context)!.text("birthday"),
                       value: birthday!,
                     ),
                   ),
                   Flexible(
                     child: CustomInfoField(
-                      label: "Teléfono",
+                      label: AppTranslations.of(context)!.text("phone_number"),
                       value: phoneNumber!,
                     ),
                   )
@@ -108,7 +109,7 @@ class ClientContacts extends StatelessWidget {
                 thickness: 1,
               ),
               CustomInfoField(
-                label: "Correo",
+                label: AppTranslations.of(context)!.text("email"),
                 value: email!,
               ),
             ],

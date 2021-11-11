@@ -1,22 +1,18 @@
+import 'package:dimexa_vendors/localizations/app_translations.dart';
 import 'package:dimexa_vendors/utils/app_colors/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
+class ProductsPage extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _ProductsPageState createState() => _ProductsPageState();
 }
 
-class _HomeState extends State<Home> {
+class _ProductsPageState extends State<ProductsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Column(
-          children: [
-            Text('Bienvenido Daniel'),
-            Text('Código de usuario: 200159', style: TextStyle(fontSize: 13),)
-          ],
-        ),
+        title: Text(AppTranslations.of(context)!.text("products")),
         leading: IconButton(
           onPressed: () {},
           icon: const Icon(Icons.menu),
@@ -33,7 +29,7 @@ class _HomeState extends State<Home> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              Text('Comming soon')
+              Text('Coming soon')
             ],
           ),
         ),

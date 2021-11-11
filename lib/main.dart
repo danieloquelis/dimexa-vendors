@@ -1,7 +1,4 @@
 import 'package:dimexa_vendors/localizations/app_translations_delegate.dart';
-import 'package:dimexa_vendors/ui/pages/clients/clients.dart';
-import 'package:dimexa_vendors/ui/pages/clients/widgets/client_details/client_details.dart';
-import 'package:dimexa_vendors/ui/pages/login/login.dart';
 import 'package:dimexa_vendors/ui/tab_manager/tab_manager.dart';
 import 'package:dimexa_vendors/utils/app_colors/app_colors.dart';
 import 'package:dimexa_vendors/utils/custom_material_color/custom_material_color.dart';
@@ -21,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Centrix',
+      title: 'Dimexa',
       theme: ThemeData(
         scaffoldBackgroundColor: AppColors.blue, //For each backgroundColor page
         primarySwatch: customMaterialColor(AppColors.blue), //For appBar
@@ -32,7 +29,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: ClientDetails(),
+      home: TabManager(),
       localizationsDelegates: const [
         //app-specific localization delegate[s] here
         AppTranslationsDelegate(newLocale: Locale("es")),

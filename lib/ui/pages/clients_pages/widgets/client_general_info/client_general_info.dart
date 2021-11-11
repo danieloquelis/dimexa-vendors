@@ -1,3 +1,4 @@
+import 'package:dimexa_vendors/localizations/app_translations.dart';
 import 'package:dimexa_vendors/ui/widgets/custom_expandable_field/custom_expandable_field.dart';
 import 'package:dimexa_vendors/ui/widgets/custom_info_field/custom_info_field.dart';
 import 'package:flutter/material.dart';
@@ -6,9 +7,9 @@ class ClientGeneralInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomExpandableField(
-      title: "Datos generales",
+      title: AppTranslations.of(context)!.text("general_data"),
       child: ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(16)),
+        borderRadius: const BorderRadius.all(Radius.circular(16)),
         child: Container(
           padding: const EdgeInsets.all(16),
           width: MediaQuery.of(context).size.width,
@@ -20,13 +21,13 @@ class ClientGeneralInfo extends StatelessWidget {
                 children: [
                   Flexible(
                     child: CustomInfoField(
-                      label: "RUC",
+                      label: AppTranslations.of(context)!.text("ruc"),
                       value: "10026103636",
                     ),
                   ),
                   Flexible(
                     child: CustomInfoField(
-                      label: "Cod",
+                      label: AppTranslations.of(context)!.text("code"),
                       value: "10026103636",
                     ),
                   )
@@ -36,14 +37,14 @@ class ClientGeneralInfo extends StatelessWidget {
                 thickness: 1,
               ),
               CustomInfoField(
-                label: "Razón social",
+                label: AppTranslations.of(context)!.text("social_reason"),
                 value: "Axeso SAC",
               ),
               const Divider(
                 thickness: 1,
               ),
               CustomInfoField(
-                label: "Nombre comercial",
+                label:AppTranslations.of(context)!.text("commercial_name"),
                 value: "Farmacia mi luchito",
               ),
               const Divider(
@@ -53,13 +54,13 @@ class ClientGeneralInfo extends StatelessWidget {
                 children: [
                   Flexible(
                     child: CustomInfoField(
-                      label: "Estado cliente",
+                      label: AppTranslations.of(context)!.text("client_status"),
                       value: "Normal",
                     ),
                   ),
                   Flexible(
                     child: CustomInfoField(
-                      label: "Estado diremid",
+                      label: AppTranslations.of(context)!.text("diremid_status"),
                       value: "Activo",
                     ),
                   )

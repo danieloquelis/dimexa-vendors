@@ -1,7 +1,7 @@
 import 'package:dimexa_vendors/localizations/app_translations.dart';
 import 'package:dimexa_vendors/requests/search.dart';
-import 'package:dimexa_vendors/ui/pages/clients/clients_controller.dart';
-import 'package:dimexa_vendors/ui/pages/clients/widgets/client_list_item/client_list_item.dart';
+import 'package:dimexa_vendors/ui/pages/clients_pages/clients_page_controller.dart';
+import 'package:dimexa_vendors/ui/pages/clients_pages/widgets/client_list_item/client_list_item.dart';
 import 'package:dimexa_vendors/ui/widgets/cupertino_sheet_item/cupertino_sheet_item.dart';
 import 'package:dimexa_vendors/ui/widgets/search_bar/search_bar.dart';
 import 'package:dimexa_vendors/utils/app_colors/app_colors.dart';
@@ -9,19 +9,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 
-class Clients extends StatefulWidget {
-  const Clients({Key? key}) : super(key: key);
+class ClientsPage extends StatefulWidget {
+  const ClientsPage({Key? key}) : super(key: key);
 
   @override
-  _ClientsState createState() => _ClientsState();
+  _ClientsPageState createState() => _ClientsPageState();
 }
 
-class _ClientsState extends State<Clients> {
+class _ClientsPageState extends State<ClientsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ClientsController>(
-      init: ClientsController(),
+    return GetBuilder<ClientsPageController>(
+      init: ClientsPageController(),
       builder: (_) => Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -30,13 +30,6 @@ class _ClientsState extends State<Clients> {
           ),
           title: Text(AppTranslations.of(context)!.text('clients')),
           elevation: 0,
-          actions: [
-            Switch(
-              value: false,
-              onChanged: (value){},
-              activeColor: AppColors.green,
-            )
-          ],
         ),
         body: Container(
           decoration: const BoxDecoration(

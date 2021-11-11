@@ -1,3 +1,4 @@
+import 'package:dimexa_vendors/localizations/app_translations.dart';
 import 'package:dimexa_vendors/ui/widgets/custom_expandable_field/custom_expandable_field.dart';
 import 'package:dimexa_vendors/ui/widgets/custom_info_field/custom_info_field.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,7 @@ class ClientComercialInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomExpandableField(
-      title: "Datos comerciales",
+      title: AppTranslations.of(context)!.text("commercial_data"),
       child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(16)),
         child: Container(
@@ -17,7 +18,7 @@ class ClientComercialInfo extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomInfoField(
-                  label: "Subcanal",
+                  label:AppTranslations.of(context)!.text("sub_channel"),
                   value: "Clientes A",
                 ),
                 const Divider(
@@ -27,13 +28,13 @@ class ClientComercialInfo extends StatelessWidget {
                   children: [
                     Flexible(
                       child: CustomInfoField(
-                        label: "Tipo de descuento",
+                        label: AppTranslations.of(context)!.text("discount_type"),
                         value: "Normal",
                       ),
                     ),
                     Flexible(
                       child: CustomInfoField(
-                        label: "Condición",
+                        label: AppTranslations.of(context)!.text("condition"),
                         value: "F6-Letra",
                       ),
                     )
@@ -46,13 +47,13 @@ class ClientComercialInfo extends StatelessWidget {
                   children: [
                     Flexible(
                       child: CustomInfoField(
-                        label: "Día de visita 1",
+                        label: AppTranslations.of(context)!.text("visit_day") + "1",
                         value: "Lunes",
                       ),
                     ),
                     Flexible(
                       child: CustomInfoField(
-                        label: "Día de visita 2",
+                        label: AppTranslations.of(context)!.text("visit_day") + "2",
                         value: "Martes",
                       ),
                     )
@@ -65,13 +66,13 @@ class ClientComercialInfo extends StatelessWidget {
                   children: [
                     Flexible(
                       child: CustomInfoField(
-                        label: "Representante legal",
+                        label: AppTranslations.of(context)!.text("legal_represent"),
                         value: "Luis Leon",
                       ),
                     ),
                     Flexible(
                       child: CustomInfoField(
-                        label: "DNI",
+                        label: AppTranslations.of(context)!.text("dni"),
                         value: "72402491",
                       ),
                     )
@@ -84,13 +85,13 @@ class ClientComercialInfo extends StatelessWidget {
                   children: [
                     Flexible(
                       child: CustomInfoField(
-                        label: "Aniversario",
+                        label: AppTranslations.of(context)!.text("anniversary"),
                         value: "21 de enero",
                       ),
                     ),
                     Flexible(
                       child: CustomInfoField(
-                        label: "Teléfono",
+                        label:AppTranslations.of(context)!.text("phone_number"),
                         value: "+51960943368",
                       ),
                     )

@@ -1,6 +1,8 @@
 import 'package:dimexa_vendors/localizations/app_translations.dart';
-import 'package:dimexa_vendors/ui/pages/clients/clients.dart';
+import 'package:dimexa_vendors/ui/pages/clients_pages/clients_pages.dart';
+import 'package:dimexa_vendors/ui/pages/collects_page/collects.dart';
 import 'package:dimexa_vendors/ui/pages/home/home.dart';
+import 'package:dimexa_vendors/ui/pages/products_page/products_page.dart';
 import 'package:dimexa_vendors/utils/app_colors/app_colors.dart';
 import 'package:dimexa_vendors/utils/dimexa_icons/dimexa_icons.dart';
 import 'package:flutter/material.dart';
@@ -16,9 +18,9 @@ class _TabManagerState extends State<TabManager> with TickerProviderStateMixin {
 
   List<Widget> _widgetOptions = <Widget>[
     Home(),
-    Clients(),
-    Clients(),
-    Clients(),
+    ClientsPage(),
+    ProductsPage(),
+    CollectsPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -31,32 +33,31 @@ class _TabManagerState extends State<TabManager> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _key,
-      //backgroundColor: AppColors.base_page,
       body: _widgetOptions.elementAt(_selectedIndex),
 
       //drawer: CustomDrawer(),
 
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: true,
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined, size: 26),
-            label: 'Inicio',
+            icon: const Icon(Icons.home_outlined, size: 26),
+            label: AppTranslations.of(context)!.text("home"),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline, size: 26),
-            label: 'Clientes',
+            icon: const Icon(Icons.person_outline, size: 26),
+            label: AppTranslations.of(context)!.text("clients"),
           ),
           BottomNavigationBarItem(
-            icon: Icon(DimexaIcons.products, size: 24),
-            label: 'Products',
+            icon: const Icon(DimexaIcons.products, size: 24),
+            label: AppTranslations.of(context)!.text("products"),
           ),
           BottomNavigationBarItem(
-            icon: Padding(
+            icon: const Padding(
               padding: EdgeInsets.only(bottom: 4),
               child: Icon(DimexaIcons.collect, size: 20),
             ),
-            label: 'Cobranza',
+            label: AppTranslations.of(context)!.text("collect"),
           ),
         ],
         currentIndex: _selectedIndex,
