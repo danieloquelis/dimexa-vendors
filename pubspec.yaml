@@ -39,6 +39,9 @@ dependencies:
   get:
   http:
   sqflite:
+  objectbox:
+  objectbox_flutter_libs: any
+  path_provider:
   expandable:
   google_fonts:
   shared_preferences:
@@ -61,6 +64,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
+  build_runner:
+  objectbox_generator: any
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
