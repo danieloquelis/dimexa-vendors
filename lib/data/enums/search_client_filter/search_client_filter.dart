@@ -12,6 +12,6 @@ extension CatExtension on SearchClientFilter {
       "Buscar por razón social",
       "Buscar por RUC",
       "Buscar por código"
-    ][this.index];
+    ][index];
   }
 }
