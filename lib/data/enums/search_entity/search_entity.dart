@@ -1,0 +1,4 @@
+enum SearchEntity {
+  Client,
+  Product
+}

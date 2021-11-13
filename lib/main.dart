@@ -1,8 +1,8 @@
-import 'package:dimexa_vendors/localizations/app_translations_delegate.dart';
-import 'package:dimexa_vendors/services/objectbox/objectbox.dart';
-import 'package:dimexa_vendors/ui/tab_manager/tab_manager.dart';
-import 'package:dimexa_vendors/utils/app_colors/app_colors.dart';
-import 'package:dimexa_vendors/utils/custom_material_color/custom_material_color.dart';
+import 'package:dimexa_vendors/data/provider/localizations/app_translations_delegate.dart';
+import 'package:dimexa_vendors/data/provider/objectbox/objectbox.dart';
+import 'package:dimexa_vendors/modules/tab_manager/tab_manager.dart';
+import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
+import 'package:dimexa_vendors/core/utils/custom_material_color/custom_material_color.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
