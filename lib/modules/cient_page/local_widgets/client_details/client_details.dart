@@ -1,9 +1,11 @@
 import 'package:dimexa_vendors/core/theme/dimexa_icons/dimexa_icons.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
+import 'package:dimexa_vendors/data/provider/objectbox/objectbox.g.dart';
 import 'package:dimexa_vendors/modules/cient_page/clients_controller.dart';
 import 'package:dimexa_vendors/modules/cient_page/local_widgets/client_addresses/client_addresses.dart';
 import 'package:dimexa_vendors/modules/cient_page/local_widgets/client_comercial_info/client_comercial_info.dart';
 import 'package:dimexa_vendors/modules/cient_page/local_widgets/client_contacts/client_contacts.dart';
+import 'package:dimexa_vendors/modules/cient_page/local_widgets/client_details/client_details_controller.dart';
 import 'package:dimexa_vendors/modules/cient_page/local_widgets/client_general_info/client_general_info.dart';
 import 'package:dimexa_vendors/modules/cient_page/local_widgets/client_statistics/client_statistics.dart';
 import 'package:dimexa_vendors/global_widgets/card_title/card_title.dart';
@@ -22,13 +24,15 @@ class ClientDetails extends StatefulWidget {
 class _ClientDetailsState extends State<ClientDetails> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ClientsController>(
-      init: ClientsController(),
+    return GetBuilder<ClientDetailsController>(
+      init: ClientDetailsController(),
       builder: (_) => Scaffold(
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios),
-            onPressed: (){},
+            onPressed: (){
+              Navigator.of(context).pop();
+            },
           ),
           title: Text(AppTranslations.of(context)!.text("client_details")),
           actions: [
@@ -71,16 +75,16 @@ class _ClientDetailsState extends State<ClientDetails> {
                     ),
                   ),
                   CardTitle(
-                    title: AppTranslations.of(context)!.text("statistics"),
+                    title: "Indicadores",
                   ),
-                  ClientStatistics(),
+                  ClientStatistics(_.client),
                   const SizedBox(height: 16,),
                   CardTitle(
                     title: AppTranslations.of(context)!.text("information"),
                     actionIcon: Icons.edit,
                   ),
-                  ClientGeneralInfo(),
-                  ClientComercialInfo(),
+                  ClientGeneralInfo(_.client),
+                  ClientComercialInfo(_.client),
                   ClientContacts(),
                   ClientAddresses(),
                 ],

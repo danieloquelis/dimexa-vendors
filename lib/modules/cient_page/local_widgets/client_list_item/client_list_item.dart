@@ -6,47 +6,54 @@ import 'package:dimexa_vendors/data/models/client/client.dart';
 class ClientListItem extends StatelessWidget {
 
   Client? client;
-
-  ClientListItem({Key? key, this.client}) : super(key: key);
+  Function? onClick;
+  ClientListItem({Key? key, this.client, this.onClick}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-                "Nombre comercial",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18, color: AppColors.blue
-                )
-            ),
-            Text("Razon social"),
-            const SizedBox(height: 8,),
-            Row(
+    return InkWell(
+      onTap: () {
+        onClick!(client);
+      },
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Tag(
-                  label: "RUC: 10026103636",
+                Text(
+                    client!.nombrecomercial.isNotEmpty ? client!.nombrecomercial : client!.razonsocial,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18, color: AppColors.blue
+                    )
                 ),
-                const SizedBox(width: 8,),
-                Tag(
-                  label: "Cod: 100",
+                Visibility(
+                  visible: client!.nombrecomercial.isNotEmpty,
+                    child: Text(client!.razonsocial)
+                ),
+                const SizedBox(height: 8,),
+                Row(
+                  children: [
+                    Tag(
+                      label: "RUC: ${client!.ruc}",
+                    ),
+                    const SizedBox(width: 8,),
+                    Tag(
+                      label: "Cod: ${client!.sid}",
+                    )
+                  ],
                 )
               ],
-            )
-          ],
-        ),
-        IconButton(
-            onPressed: (){},
-            icon: const Icon(
-              Icons.arrow_forward_ios,
-              color: AppColors.gray,
-            )
-        )
-      ],
+            ),
+          ),
+          const Icon(
+            Icons.arrow_forward_ios,
+            color: AppColors.gray,
+          )
+        ],
+      ),
     );
   }
 }

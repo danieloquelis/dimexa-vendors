@@ -1,24 +1,26 @@
 import 'package:dimexa_vendors/data/enums/env/env.dart';
-import 'package:dimexa_vendors/data/enums/http_method/http_method.dart';
+import 'package:dimexa_vendors/data/provider/http/http_method.dart';
 import 'package:dimexa_vendors/data/provider/http/http_result.dart';
 import 'package:dimexa_vendors/data/provider/http/parse_response_body.dart';
 import 'package:dimexa_vendors/data/provider/http/send_request.dart';
+import 'package:flutter/foundation.dart';
 
 typedef Parser<T> = T Function(dynamic data);
 
 class Http {
-  final String baseUrl = Env.dev.url;
+  final String baseUrl = !kDebugMode ? Env.prod.url : Env.dev.url;
 
   Http();
 
   Future<HttpResult<T>> request<T>(
     String path, {
-        HttpMethod method = HttpMethod.get,
-        Map<String, String> headers = const {},
-        Map<String, String> queryParameters = const {},
-        dynamic body,
-        Parser<T>? parser,
-        Duration timeOut = const Duration(seconds: 10)
+      HttpMethod method = HttpMethod.get,
+      Map<String, String> headers = const {},
+      Map<String, String> queryParameters = const {},
+      dynamic body,
+      Parser<T>? parser,
+      Duration timeOut = const Duration(seconds: 10),
+      String? token
   }) async {
 
     int? statusCode;
@@ -34,54 +36,56 @@ class Http {
 
       if (queryParameters.isNotEmpty) {
         url = url.replace(
-            queryParameters: {
-              ...url.queryParameters,
-              ...queryParameters
-            }
+          queryParameters: {
+            ...url.queryParameters,
+            ...queryParameters
+          }
         );
       }
 
       final response = await sendRequest(
-          url: url,
-          method: method,
-          headers: headers,
-          body: body,
-          timeOut: timeOut
+        url: url,
+        method: method,
+        headers: headers,
+        body: body,
+        timeOut: timeOut,
+        token: token
       );
 
       data = parseResponseBody(response.body);
       statusCode = response.statusCode;
 
+      //throw errors from backend, meaning the request was sent
       if (statusCode >= 400) {
         throw HttpError(
-            exception: null,
-            stackTrace: StackTrace.current,
-            data: data
+          exception: null,
+          stackTrace: StackTrace.current,
+          data: data
         );
       }
 
       return HttpResult<T>(
-          data: parser != null ? parser(data) : data,
-          statusCode: statusCode,
-          error: null
+        data: parser != null ? parser(data) : data,
+        statusCode: statusCode,
+        error: null
       );
     } catch(e, s) {
       if (e is HttpError) {
         return HttpResult<T>(
-            data: null,
-            statusCode: statusCode!,
-            error: e
+          data: null,
+          statusCode: statusCode!,
+          error: e
         );
       }
 
       return HttpResult<T>(
-          data: null,
-          statusCode: statusCode ?? -1,
-          error: HttpError(
-            data: data,
-            exception: e,
-            stackTrace: s
-          )
+        data: null,
+        statusCode: statusCode ?? -1,
+        error: HttpError(
+          data: data,
+          exception: e,
+          stackTrace: s
+        )
       );
     }
   }

@@ -4,49 +4,206 @@
   "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
   "entities": [
     {
-      "id": "1:6699724331230603426",
-      "lastPropertyId": "6:4491421967749622635",
+      "id": "1:8451326358372512795",
+      "lastPropertyId": "31:853859760880490785",
       "name": "Client",
       "properties": [
         {
-          "id": "1:7067592233169603036",
+          "id": "1:5370579470967932413",
           "name": "id",
           "type": 6,
           "flags": 1
         },
         {
-          "id": "2:4038054247999633661",
+          "id": "2:543753130221913047",
           "name": "sid",
-          "type": 6,
-          "flags": 40,
-          "indexId": "1:610463959740638818"
-        },
-        {
-          "id": "3:4486288578737980769",
-          "name": "commercialName",
           "type": 9
         },
         {
-          "id": "4:6693488587444681462",
-          "name": "socialName",
+          "id": "3:4555648619462888894",
+          "name": "clienteid",
           "type": 9
         },
         {
-          "id": "5:9077106740683649481",
-          "name": "address",
+          "id": "4:8912439162808650761",
+          "name": "unidadnegocioid",
           "type": 9
         },
         {
-          "id": "6:4491421967749622635",
+          "id": "5:1614959971246544139",
           "name": "ruc",
+          "type": 9
+        },
+        {
+          "id": "6:2251637732229316721",
+          "name": "razonsocial",
+          "type": 9
+        },
+        {
+          "id": "7:571686085493543907",
+          "name": "nombrecomercial",
+          "type": 9
+        },
+        {
+          "id": "8:5043848838743244149",
+          "name": "zonaid",
+          "type": 9
+        },
+        {
+          "id": "9:1861232986970636979",
+          "name": "ubigeoid",
+          "type": 9
+        },
+        {
+          "id": "10:3877283719175014821",
+          "name": "ubiego",
+          "type": 9
+        },
+        {
+          "id": "11:1748339938719870819",
+          "name": "direccion",
+          "type": 9
+        },
+        {
+          "id": "12:8189533106552249287",
+          "name": "estadoclienteid",
+          "type": 9
+        },
+        {
+          "id": "13:7197723835752718023",
+          "name": "estadocliente",
+          "type": 9
+        },
+        {
+          "id": "14:668135183012753135",
+          "name": "estadodiremidid",
+          "type": 9
+        },
+        {
+          "id": "15:8513046178782686779",
+          "name": "estadodiremid",
+          "type": 9
+        },
+        {
+          "id": "16:4062641252965005705",
+          "name": "condicionventaid",
+          "type": 9
+        },
+        {
+          "id": "17:2927152007579667332",
+          "name": "condicionventa",
+          "type": 9
+        },
+        {
+          "id": "18:7251365764058856677",
+          "name": "tipodescuentoid",
+          "type": 9
+        },
+        {
+          "id": "19:7147761689338325892",
+          "name": "tipodescuento",
+          "type": 9
+        },
+        {
+          "id": "20:1347321135238261513",
+          "name": "subcanalid",
+          "type": 9
+        },
+        {
+          "id": "21:5566527552707902626",
+          "name": "subcanal",
+          "type": 9
+        },
+        {
+          "id": "22:3441842572872286430",
+          "name": "diavisita1",
+          "type": 9
+        },
+        {
+          "id": "23:1068850700649547233",
+          "name": "diavisita2",
+          "type": 9
+        },
+        {
+          "id": "24:1045729228967459905",
+          "name": "representantelegal",
+          "type": 9
+        },
+        {
+          "id": "25:8260865337049515433",
+          "name": "dni",
+          "type": 9
+        },
+        {
+          "id": "26:1036728431792935071",
+          "name": "aniversario",
+          "type": 9
+        },
+        {
+          "id": "27:4719581644827579405",
+          "name": "telefono",
+          "type": 9
+        },
+        {
+          "id": "28:8777049637128002301",
+          "name": "movil",
+          "type": 9
+        },
+        {
+          "id": "29:1467858914206166381",
+          "name": "lineacredito",
+          "type": 9
+        },
+        {
+          "id": "30:3468984075225884188",
+          "name": "deuda",
+          "type": 9
+        },
+        {
+          "id": "31:853859760880490785",
+          "name": "lineadisponible",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:977939182893081520",
+      "lastPropertyId": "5:7863425499026272200",
+      "name": "Vendor",
+      "properties": [
+        {
+          "id": "1:8533907383166647241",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1795807241614746312",
+          "name": "username",
+          "type": 9
+        },
+        {
+          "id": "3:3183782017449183441",
+          "name": "password",
+          "type": 9
+        },
+        {
+          "id": "4:4745844167298325435",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "5:7863425499026272200",
+          "name": "zone",
           "type": 9
         }
       ],
       "relations": []
     }
   ],
-  "lastEntityId": "1:6699724331230603426",
-  "lastIndexId": "1:610463959740638818",
+  "lastEntityId": "2:977939182893081520",
+  "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,

@@ -2,8 +2,14 @@ import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart
 import 'package:dimexa_vendors/global_widgets/custom_expandable_field/custom_expandable_field.dart';
 import 'package:dimexa_vendors/global_widgets/custom_info_field/custom_info_field.dart';
 import 'package:flutter/material.dart';
+import 'package:dimexa_vendors/data/models/client/client.dart';
 
 class ClientGeneralInfo extends StatelessWidget {
+  late Client client;
+
+
+  ClientGeneralInfo(this.client);
+
   @override
   Widget build(BuildContext context) {
     return CustomExpandableField(
@@ -22,13 +28,13 @@ class ClientGeneralInfo extends StatelessWidget {
                   Flexible(
                     child: CustomInfoField(
                       label: AppTranslations.of(context)!.text("ruc"),
-                      value: "10026103636",
+                      value: client.ruc,
                     ),
                   ),
                   Flexible(
                     child: CustomInfoField(
                       label: AppTranslations.of(context)!.text("code"),
-                      value: "10026103636",
+                      value: client.sid,
                     ),
                   )
                 ],
@@ -38,14 +44,14 @@ class ClientGeneralInfo extends StatelessWidget {
               ),
               CustomInfoField(
                 label: AppTranslations.of(context)!.text("social_reason"),
-                value: "Axeso SAC",
+                value: client.razonsocial,
               ),
               const Divider(
                 thickness: 1,
               ),
               CustomInfoField(
                 label:AppTranslations.of(context)!.text("commercial_name"),
-                value: "Farmacia mi luchito",
+                value: client.nombrecomercial,
               ),
               const Divider(
                 thickness: 1,
@@ -55,13 +61,13 @@ class ClientGeneralInfo extends StatelessWidget {
                   Flexible(
                     child: CustomInfoField(
                       label: AppTranslations.of(context)!.text("client_status"),
-                      value: "Normal",
+                      value: client.estadocliente,
                     ),
                   ),
                   Flexible(
                     child: CustomInfoField(
                       label: AppTranslations.of(context)!.text("diremid_status"),
-                      value: "Activo",
+                      value: client.estadodiremid,
                     ),
                   )
                 ],

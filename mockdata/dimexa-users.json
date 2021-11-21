@@ -1,0 +1,26 @@
+[
+    {
+        "username" : "fh207@test.com",
+        "password" : "test",
+        "name": "Test Zona FH207",
+        "zone" : "FH207"
+    },
+    {
+        "username" : "of200@test.com",
+        "password" : "test",
+        "name": "Test Zona OF200",
+        "zone" : "OF200"
+    },
+    {
+        "username" : "fv262@test.com",
+        "password" : "test",
+        "name": "Test Zona FV262",
+        "zone" : "FV262"
+    },
+    {
+        "username" : "fv261@test.com",
+        "password" : "test",
+        "name": "Test Zona FV261",
+        "zone" : "FV261"
+    }
+]

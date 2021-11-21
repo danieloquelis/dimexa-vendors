@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:dimexa_vendors/data/enums/http_method/http_method.dart';
+import 'package:dimexa_vendors/data/provider/http/http_method.dart';
 import 'package:http/http.dart';
 
 dynamic _parseBody(dynamic body) {
@@ -16,7 +16,8 @@ Future<Response> sendRequest({
   required HttpMethod method,
   required Map<String, String> headers,
   required dynamic body,
-  required Duration timeOut
+  required Duration timeOut,
+  String? token
 }) {
 
   var finalHeaders = {...headers};
@@ -28,6 +29,10 @@ Future<Response> sendRequest({
       finalHeaders['Content-Type'] = "application/json; charset=UTF-8";
       body = _parseBody(body);
     }
+  }
+
+  if (token!.isNotEmpty) {
+    finalHeaders['Authorization'] = "Token $token";
   }
 
   final client = Client();

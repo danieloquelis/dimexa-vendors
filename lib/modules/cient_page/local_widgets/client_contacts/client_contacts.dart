@@ -2,8 +2,10 @@ import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart
 import 'package:dimexa_vendors/global_widgets/custom_expandable_field/custom_expandable_field.dart';
 import 'package:dimexa_vendors/global_widgets/custom_info_field/custom_info_field.dart';
 import 'package:flutter/material.dart';
-
+import 'package:dimexa_vendors/data/models/client/client.dart';
 class ClientContacts extends StatelessWidget {
+
+
   @override
   Widget build(BuildContext context) {
     return CustomExpandableField(

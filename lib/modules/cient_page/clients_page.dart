@@ -7,6 +7,7 @@ import 'package:dimexa_vendors/global_widgets/search_bar/search_bar.dart';
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/state_manager.dart';
 
 class ClientsPage extends StatefulWidget {
@@ -42,13 +43,56 @@ class _ClientsPageState extends State<ClientsPage> {
               children: [
                 SearchBar(
                   placeHolder: "Buscar por nombre comercial",
-                  onChange: (String value) {},
+                  onChange: (String value) {
+                    _.setSearchText(value);
+                  },
                   onChangeFilter: () {
-                    showFilterOptions();
+                    showFilterOptions(_);
+                  },
+                  onClearSearch: () {
+                    _.setSearchText("");
                   },
                 ),
                 const SizedBox(height: 24,),
-                ClientListItem(),
+                _.loading ? const SpinKitChasingDots(
+                  color: AppColors.green,
+                ):
+                    _.clients.isEmpty?
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.search, size: 128, color: AppColors.gray,),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 32),
+                                child: Text('Escribe en la barra de búsqueda para encontrar a tus clientes.', textAlign: TextAlign.center,),
+                              )
+                            ],
+                          ),
+                        )
+                        :
+                        Expanded(
+                          child: ListView(
+                              shrinkWrap: true,
+                            children: _.clients.map((client) {
+                              return Column(
+                                children: [
+                                  ClientListItem(
+                                    client: client,
+                                    onClick: (client) {
+                                      _.seeClientDetails(client);
+                                    },
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(vertical: 16),
+                                    child: Divider(thickness: 2,),
+                                  )
+                                ],
+                              );
+                            }).toList()
+                          ),
+                        )
               ],
             ),
           ),
@@ -57,7 +101,7 @@ class _ClientsPageState extends State<ClientsPage> {
     );
   }
 
-  Future<dynamic>? showFilterOptions() {
+  Future<dynamic>? showFilterOptions(ClientsController _) {
     return showCupertinoModalPopup(
         context: context,
         builder: (BuildContext context) => CupertinoActionSheet(
@@ -65,7 +109,10 @@ class _ClientsPageState extends State<ClientsPage> {
           actions: SearchClientFilter.values.map((filterType) {
             return CupertinoSheetItem(
               label: filterType.displayName,
-              onClick: () {},
+              onClick: () {
+                _.setQueryType(filterType);
+                Navigator.pop(context);
+              },
               isSelected: false,
             );
           }).toList(),

@@ -1,4 +1,4 @@
-import 'package:dimexa_vendors/data/enums/http_method/http_method.dart';
+import 'package:dimexa_vendors/data/provider/http/http_method.dart';
 import 'package:dimexa_vendors/data/provider/http/http.dart';
 import 'package:dimexa_vendors/data/provider/http/http_result.dart';
 import 'package:get/get.dart';

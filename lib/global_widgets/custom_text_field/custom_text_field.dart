@@ -6,12 +6,14 @@ class CustomTextField extends StatelessWidget {
   IconData? suffixIcon;
   String placeHolder;
   bool isPassword;
+  Function? onChange;
 
   CustomTextField({Key? key,
     this.prefixIcon,
     this.suffixIcon,
     this.placeHolder = "",
-    this.isPassword = false
+    this.isPassword = false,
+    this.onChange
   }) : super(key: key);
 
   @override
@@ -27,7 +29,9 @@ class CustomTextField extends StatelessWidget {
           Expanded(
             child: TextField(
               //controller: searchTextController,
-              //onChanged: widget.onChange,
+              onChanged: (value) {
+                onChange!(value);
+              },
               obscureText: isPassword,
               enableSuggestions: !isPassword,
               autocorrect: !isPassword,

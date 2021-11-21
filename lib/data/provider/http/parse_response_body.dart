@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-parseResponseBody(String responeBody) {
+parseResponseBody(String responseBody) {
   try {
-    return jsonDecode(responeBody);
+    return jsonDecode(responseBody);
   } catch(_) {
-    return responeBody;
+    return responseBody;
   }
 }

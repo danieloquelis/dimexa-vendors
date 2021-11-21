@@ -23,7 +23,7 @@ class CupertinoSheetItem extends StatelessWidget {
         ],
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
       ),
-      onPressed: () => onClick
+      onPressed: () {onClick!();}
     );
   }
 }
