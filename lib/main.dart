@@ -5,6 +5,7 @@ import 'package:dimexa_vendors/data/provider/localizations/app_translations_dele
 import 'package:dimexa_vendors/data/provider/objectbox/objectbox.dart';
 import 'package:dimexa_vendors/data/provider/objectbox/objectbox.g.dart';
 import 'package:dimexa_vendors/global_controllers/global_controller.dart';
+import 'package:dimexa_vendors/modules/splash_page/splash_binding.dart';
 import 'package:dimexa_vendors/modules/splash_page/splash_page.dart';
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
 import 'package:dimexa_vendors/core/utils/custom_material_color/custom_material_color.dart';
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: SplashPage(),
+      initialBinding: SplashBinding(),
       getPages: AppPages.pages,
       localizationsDelegates: const [
         //app-specific localization delegate[s] here

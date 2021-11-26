@@ -1,11 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
-import 'package:dimexa_vendors/modules/splash_page/local_widgets/permission_item.dart';
+import 'package:dimexa_vendors/modules/splash_page/local_widgets/permissions/permission_item.dart';
 import 'package:dimexa_vendors/modules/splash_page/splash_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PermissionDialog extends StatelessWidget {
+class PermissionBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SplashController>(

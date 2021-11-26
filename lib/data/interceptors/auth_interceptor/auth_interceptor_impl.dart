@@ -2,10 +2,10 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:dimexa_vendors/data/api/auth_api/auth_api.dart';
-import 'package:dimexa_vendors/data/services/auth_service/auth_service.dart';
+import 'package:dimexa_vendors/data/interceptors/auth_interceptor/auth_interceptor.dart';
 import 'package:get/get.dart';
 
-class AuthServiceImpl implements AuthService {
+class AuthInterceptorImpl implements AuthInterceptor {
   final AuthAPI _api = Get.find<AuthAPI>();
 
   @override

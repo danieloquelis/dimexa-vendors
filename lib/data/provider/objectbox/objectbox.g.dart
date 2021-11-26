@@ -10,169 +10,170 @@ import 'package:objectbox/objectbox.dart';
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
 import '../../models/client/client.dart';
+import '../../models/session/session.dart';
 import '../../models/vendor/vendor.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
 final _entities = <ModelEntity>[
   ModelEntity(
-      id: const IdUid(1, 8451326358372512795),
+      id: const IdUid(1, 1186969085652572694),
       name: 'Client',
-      lastPropertyId: const IdUid(31, 853859760880490785),
+      lastPropertyId: const IdUid(31, 7845670651859550401),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 5370579470967932413),
+            id: const IdUid(1, 2752913537654853992),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 543753130221913047),
+            id: const IdUid(2, 200326232859399107),
             name: 'sid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(3, 4555648619462888894),
+            id: const IdUid(3, 6385672584261980898),
             name: 'clienteid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 8912439162808650761),
+            id: const IdUid(4, 2707392385305933940),
             name: 'unidadnegocioid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 1614959971246544139),
+            id: const IdUid(5, 4034093998242548916),
             name: 'ruc',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 2251637732229316721),
+            id: const IdUid(6, 6082013487618512293),
             name: 'razonsocial',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(7, 571686085493543907),
+            id: const IdUid(7, 8070039401938528275),
             name: 'nombrecomercial',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(8, 5043848838743244149),
+            id: const IdUid(8, 8227397453953124428),
             name: 'zonaid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(9, 1861232986970636979),
+            id: const IdUid(9, 5819752408497469615),
             name: 'ubigeoid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(10, 3877283719175014821),
+            id: const IdUid(10, 5484400948106855844),
             name: 'ubiego',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(11, 1748339938719870819),
+            id: const IdUid(11, 6572753979916115790),
             name: 'direccion',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(12, 8189533106552249287),
+            id: const IdUid(12, 589501321502050216),
             name: 'estadoclienteid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(13, 7197723835752718023),
+            id: const IdUid(13, 1722132485020143079),
             name: 'estadocliente',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(14, 668135183012753135),
+            id: const IdUid(14, 5175863983881072471),
             name: 'estadodiremidid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(15, 8513046178782686779),
+            id: const IdUid(15, 770367901403845585),
             name: 'estadodiremid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(16, 4062641252965005705),
+            id: const IdUid(16, 3895167592664043219),
             name: 'condicionventaid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(17, 2927152007579667332),
+            id: const IdUid(17, 5304409522636038487),
             name: 'condicionventa',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(18, 7251365764058856677),
+            id: const IdUid(18, 219249034127302608),
             name: 'tipodescuentoid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(19, 7147761689338325892),
+            id: const IdUid(19, 4043315871888601065),
             name: 'tipodescuento',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(20, 1347321135238261513),
+            id: const IdUid(20, 2233706675503876351),
             name: 'subcanalid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(21, 5566527552707902626),
+            id: const IdUid(21, 8477004355420432391),
             name: 'subcanal',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(22, 3441842572872286430),
+            id: const IdUid(22, 4373682363211663461),
             name: 'diavisita1',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(23, 1068850700649547233),
+            id: const IdUid(23, 247811138591907542),
             name: 'diavisita2',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(24, 1045729228967459905),
+            id: const IdUid(24, 8508867133919042058),
             name: 'representantelegal',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(25, 8260865337049515433),
+            id: const IdUid(25, 8572232285100305081),
             name: 'dni',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(26, 1036728431792935071),
+            id: const IdUid(26, 1688685151104026937),
             name: 'aniversario',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(27, 4719581644827579405),
+            id: const IdUid(27, 2412217813521707244),
             name: 'telefono',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(28, 8777049637128002301),
+            id: const IdUid(28, 3139682229351906939),
             name: 'movil',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(29, 1467858914206166381),
+            id: const IdUid(29, 4273884757756279363),
             name: 'lineacredito',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(30, 3468984075225884188),
+            id: const IdUid(30, 6935928409907912457),
             name: 'deuda',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(31, 853859760880490785),
+            id: const IdUid(31, 7845670651859550401),
             name: 'lineadisponible',
             type: 9,
             flags: 0)
@@ -180,33 +181,57 @@ final _entities = <ModelEntity>[
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(2, 977939182893081520),
-      name: 'Vendor',
-      lastPropertyId: const IdUid(5, 7863425499026272200),
+      id: const IdUid(2, 4458492286975251735),
+      name: 'Session',
+      lastPropertyId: const IdUid(3, 3095206935715746063),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 8533907383166647241),
+            id: const IdUid(1, 3755558494269146512),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 1795807241614746312),
+            id: const IdUid(2, 6880542120733924962),
+            name: 'token',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(3, 3095206935715746063),
+            name: 'deviceToken',
+            type: 9,
+            flags: 0)
+      ],
+      relations: <ModelRelation>[],
+      backlinks: <ModelBacklink>[]),
+  ModelEntity(
+      id: const IdUid(3, 8894135940020771742),
+      name: 'Vendor',
+      lastPropertyId: const IdUid(5, 2300751828273134850),
+      flags: 0,
+      properties: <ModelProperty>[
+        ModelProperty(
+            id: const IdUid(1, 5120434145580956150),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        ModelProperty(
+            id: const IdUid(2, 643716818535234482),
             name: 'username',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(3, 3183782017449183441),
+            id: const IdUid(3, 997591001879590795),
             name: 'password',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 4745844167298325435),
+            id: const IdUid(4, 7958180214913400975),
             name: 'name',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 7863425499026272200),
+            id: const IdUid(5, 2300751828273134850),
             name: 'zone',
             type: 9,
             flags: 0)
@@ -235,7 +260,7 @@ Future<Store> openStore(
 ModelDefinition getObjectBoxModel() {
   final model = ModelInfo(
       entities: _entities,
-      lastEntityId: const IdUid(2, 977939182893081520),
+      lastEntityId: const IdUid(3, 8894135940020771742),
       lastIndexId: const IdUid(0, 0),
       lastRelationId: const IdUid(0, 0),
       lastSequenceId: const IdUid(0, 0),
@@ -380,8 +405,39 @@ ModelDefinition getObjectBoxModel() {
 
           return object;
         }),
-    Vendor: EntityDefinition<Vendor>(
+    Session: EntityDefinition<Session>(
         model: _entities[1],
+        toOneRelations: (Session object) => [],
+        toManyRelations: (Session object) => {},
+        getId: (Session object) => object.id,
+        setId: (Session object, int id) {
+          object.id = id;
+        },
+        objectToFB: (Session object, fb.Builder fbb) {
+          final tokenOffset = fbb.writeString(object.token);
+          final deviceTokenOffset = fbb.writeString(object.deviceToken);
+          fbb.startTable(4);
+          fbb.addInt64(0, object.id);
+          fbb.addOffset(1, tokenOffset);
+          fbb.addOffset(2, deviceTokenOffset);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+
+          final object = Session(
+              token:
+                  const fb.StringReader().vTableGet(buffer, rootOffset, 6, ''),
+              deviceToken:
+                  const fb.StringReader().vTableGet(buffer, rootOffset, 8, ''))
+            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+
+          return object;
+        }),
+    Vendor: EntityDefinition<Vendor>(
+        model: _entities[2],
         toOneRelations: (Vendor object) => [],
         toManyRelations: (Vendor object) => {},
         getId: (Vendor object) => object.id,
@@ -543,22 +599,35 @@ class Client_ {
       QueryStringProperty<Client>(_entities[0].properties[30]);
 }
 
+/// [Session] entity fields to define ObjectBox queries.
+class Session_ {
+  /// see [Session.id]
+  static final id = QueryIntegerProperty<Session>(_entities[1].properties[0]);
+
+  /// see [Session.token]
+  static final token = QueryStringProperty<Session>(_entities[1].properties[1]);
+
+  /// see [Session.deviceToken]
+  static final deviceToken =
+      QueryStringProperty<Session>(_entities[1].properties[2]);
+}
+
 /// [Vendor] entity fields to define ObjectBox queries.
 class Vendor_ {
   /// see [Vendor.id]
-  static final id = QueryIntegerProperty<Vendor>(_entities[1].properties[0]);
+  static final id = QueryIntegerProperty<Vendor>(_entities[2].properties[0]);
 
   /// see [Vendor.username]
   static final username =
-      QueryStringProperty<Vendor>(_entities[1].properties[1]);
+      QueryStringProperty<Vendor>(_entities[2].properties[1]);
 
   /// see [Vendor.password]
   static final password =
-      QueryStringProperty<Vendor>(_entities[1].properties[2]);
+      QueryStringProperty<Vendor>(_entities[2].properties[2]);
 
   /// see [Vendor.name]
-  static final name = QueryStringProperty<Vendor>(_entities[1].properties[3]);
+  static final name = QueryStringProperty<Vendor>(_entities[2].properties[3]);
 
   /// see [Vendor.zone]
-  static final zone = QueryStringProperty<Vendor>(_entities[1].properties[4]);
+  static final zone = QueryStringProperty<Vendor>(_entities[2].properties[4]);
 }

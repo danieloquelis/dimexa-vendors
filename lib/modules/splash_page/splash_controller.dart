@@ -1,31 +1,39 @@
 import 'dart:convert';
-
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:dimexa_vendors/data/models/app_permission/app_permission.dart';
+import 'package:dimexa_vendors/data/models/session/session.dart';
 import 'package:dimexa_vendors/data/models/vendor/vendor.dart';
+import 'package:dimexa_vendors/data/repositories/session_repository/session_repository.dart';
 import 'package:dimexa_vendors/global_controllers/global_controller.dart';
 import 'package:dimexa_vendors/modules/login_page/login_page.dart';
-import 'package:dimexa_vendors/modules/splash_page/local_widgets/permission_dialog.dart';
+import 'package:dimexa_vendors/modules/splash_page/local_widgets/permissions/permission_bottom_sheet.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_device_identifier/flutter_device_identifier.dart';
 import 'package:get/get.dart';
 import 'package:dimexa_vendors/data/models/client/client.dart';
+import 'package:password_dart/password_dart.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class SplashController extends GetxController {
   final globalController = Get.find<GlobalController>();
+  //final sessionRepository = Get.find<SessionRepository>();
+
   final CarouselController _carouselController = CarouselController();
   late List<AppPermission> _appPermissions = [];
   int _permissionSlidePos = 0;
-  bool _loading = false;
+  bool _loading = true;
+  late String _message = "";
+  Function? _onTakeAction;
 
   //------------------Getters-------------------->
   List<AppPermission> get appPermissions => _appPermissions;
   int get permissionSlidePos => _permissionSlidePos;
   bool get loading => _loading;
   CarouselController get carouselController => _carouselController;
+  Function? get onTakeAction => _onTakeAction;
+  String? get message => _message;
 
   @override
   void onInit() {
@@ -36,45 +44,71 @@ class SplashController extends GetxController {
   @override
   void onReady() async {
     super.onReady();
+    //give app some seconds
+    await Future.delayed(
+      const Duration(seconds: 1)
+    );
 
     //show permissions dialog if list permissions is not empty
     if (_appPermissions.isNotEmpty) {
       await Get.bottomSheet(
-          PermissionDialog(),
+          PermissionBottomSheet(),
           isScrollControlled: true,
           isDismissible: false
       );
     }
 
-    //check terminal
+    //give app some seconds
+    await Future.delayed(
+        const Duration(seconds: 1)
+    );
+
     //if permission has not been granted
     bool isPhonePermissionGranted = await Permission.phone.isGranted;
     if (!isPhonePermissionGranted) {
-      //show dialog indicating needs to go to config or close the app
-      await Get.defaultDialog(
-        title: "Permiso no autorizado",
-        content: Icon(Icons.accessibility),
-      );
+      //stop loading
+      _loading = false;
+      //show message indicating needs to go to settings and restart app
+      _message = "Los permisos de teléfono son obligatorios para el correcto funcionamiento de la app, otorga permisos desde ajustes del sistema y luego reinicia la aplicación.";
+      _onTakeAction = () async {
+        await openAppSettings();
+      };
+      update();
+      return;
     }
 
-    //get phone serial number
-    String deviceSerialNumber = await FlutterDeviceIdentifier.serialCode;
-    if (deviceSerialNumber.isEmpty) {
-      //show dialog error trying to get serial device
+    //check terminal
+    //get device serial number
+    String currentDeviceToken = await FlutterDeviceIdentifier.serialCode;
+    if (currentDeviceToken.isEmpty) {
+      //show message error trying to get device serial number
+      _loading = false;
+      _message = "Ha ocurrido un error tratando de identificar tu equipo, porfavor intenta otra vez o contacta a tu supervisor.";
+      _onTakeAction = null;
+      update();
+      return;
     }
 
     //check if in session exist the configuration (need to encrypt)
+    Session? session; //sessionRepository.getCurrentSession();
+    if (session == null) {
+      //if doesn't exist -> use API
+      //if is valid -> save in session the current phone serial number (encrypt it) and continue
+      //if is invalid -> show message error, save session prohibited device and close app.
+    } else {
+      bool isDeviceVerified = Password.verify(currentDeviceToken, session.deviceToken);
+      if (!isDeviceVerified) {
+        _loading = false;
+        _message = "Este equipo no está autorizado para utilizar la aplicación.";
+        _onTakeAction = null;
+        update();
+        return;
+      }
+    }
 
-        //if exist -> next step
-        //if doesn't exist -> use API
-          //if is valid -> save in session the current phone serial number (encrypt it) and continue
-          //if is invalid -> show message error, save session prohibited device and close app.
     //check token
       //if token exists and is valid -> go to home
       //if token doesnt exist or is invalid -> go to login
-
-
-
 
     //permission();
     //sync();
@@ -175,11 +209,13 @@ class SplashController extends GetxController {
 
   void showLoading() {
     _loading = true;
-    update(['spinner']);
+    update();
   }
 
   void hideLoading() {
     _loading = false;
-    update(['spinner']);
+    update();
   }
+
+
 }

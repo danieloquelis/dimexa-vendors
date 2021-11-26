@@ -20,12 +20,17 @@ class GlobalController extends GetxController {
   @override
   void onReady() async {
     super.onReady();
-    //-----this needs to be in global----->
     //check session prohibited access
     //if its yes -> close the app
 
     //filter list of permissions based on current status
     await filterPermissions();
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+    _store!.close();
   }
 
   Future<void> filterPermissions() async {

@@ -56,6 +56,7 @@ dependencies:
   flutter_svg:
   permission_handler:
   carousel_slider:
+  password_dart:
 
 dev_dependencies:
   flutter_test:
