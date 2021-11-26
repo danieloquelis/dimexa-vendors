@@ -13,18 +13,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:path_provider/path_provider.dart';
 
 late Store store;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   DependencyInjection.init();
-  //objectbox = await ObjectBox.create();
-  Directory appDocDirectory = await getApplicationDocumentsDirectory();
-  store = await openStore(
-    directory: appDocDirectory.path,
-  );
+  ObjectBox objectBox = await ObjectBox.create();
+  store = objectBox.store;
   runApp(const MyApp());
 }
 
