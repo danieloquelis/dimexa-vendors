@@ -1,3 +1,4 @@
+import 'package:dimexa_vendors/core/utils/interceptor_error_handler/interceptor_error_handler.dart';
 import 'package:dimexa_vendors/data/models/session/session.dart';
 import 'package:dimexa_vendors/data/provider/objectbox/objectbox.dart';
 import 'package:dimexa_vendors/data/repositories/session_repository/session_repository.dart';
@@ -8,10 +9,6 @@ class SessionRepositoryImpl implements SessionRepository {
   final _boxSession = Get.find<ObjectBox>().sessionBox;
 
   SessionRepositoryImpl();
-
-  onCatchError() {
-    throw "Ocurrió un error con el sistema de base de datos local, porfavor contacta a un supervisor";
-  }
 
   @override
   Session? getCurrentSession() {
@@ -39,7 +36,7 @@ class SessionRepositoryImpl implements SessionRepository {
       session.id = currentSession.id;
     }
 
-    await _boxSession.putAsync(session).catchError(onCatchError());
+    await _boxSession.putAsync(session).catchError(onDBCatchError());
   }
 
   @override
@@ -55,6 +52,6 @@ class SessionRepositoryImpl implements SessionRepository {
       //if a session already exist then just update
       currentSession.deviceToken = encryptedDeviceToken;
     }
-    await _boxSession.putAsync(currentSession);
+    await _boxSession.putAsync(currentSession).catchError(onDBCatchError());
   }
 }

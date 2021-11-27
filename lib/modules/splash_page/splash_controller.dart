@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:dimexa_vendors/core/utils/app_exception/app_exception.dart';
+import 'package:dimexa_vendors/core/values/strings.dart';
 import 'package:dimexa_vendors/data/interceptors/device_interceptor/device_interceptor_impl.dart';
 import 'package:dimexa_vendors/data/models/app_permission/app_permission.dart';
 import 'package:dimexa_vendors/data/models/session/session.dart';
@@ -72,7 +73,7 @@ class SplashController extends GetxController {
     bool isPhonePermissionGranted = await Permission.phone.isGranted;
     if (!isPhonePermissionGranted) {
       showMessage(
-          message: "Los permisos de teléfono son obligatorios para el correcto funcionamiento de la app, otorga permisos desde ajustes del sistema y luego reinicia la aplicación.",
+          message: Strings.phonePermissionError,
           action: () async {
             await openAppSettings();
           }
@@ -86,7 +87,7 @@ class SplashController extends GetxController {
     if (currentDeviceToken.isEmpty) {
       //show message error trying to get device serial number
       showMessage(
-          message: "Ha ocurrido un error tratando de identificar tu equipo, porfavor intenta otra vez o contacta a tu supervisor."
+          message: Strings.validateDeviceError
       );
       return;
     }
@@ -99,7 +100,7 @@ class SplashController extends GetxController {
         if (e is AppException) {
           showMessage(message: e.uiMessage);
         } else {
-          showMessage(message: "Un error en el sistema ha ocurrido, porfavor contacta a un supervisor");
+          showMessage(message: Strings.systemError);
         }
         return null;
       });
@@ -110,7 +111,7 @@ class SplashController extends GetxController {
 
       if (!validationResult) {
         showMessage(
-            message: "Este equipo no está autorizado para utilizar la aplicación."
+            message: Strings.deviceNotValidatedError
         );
         return;
       }
@@ -121,7 +122,7 @@ class SplashController extends GetxController {
       bool isDeviceVerified = Password.verify(currentDeviceToken, session.deviceToken!);
       if (!isDeviceVerified) {
         showMessage(
-            message: "Este equipo no está autorizado para utilizar la aplicación."
+            message: Strings.deviceNotValidatedError
         );
         return;
       }
