@@ -414,8 +414,8 @@ ModelDefinition getObjectBoxModel() {
           object.id = id;
         },
         objectToFB: (Session object, fb.Builder fbb) {
-          final tokenOffset = fbb.writeString(object.token);
-          final deviceTokenOffset = fbb.writeString(object.deviceToken);
+          final tokenOffset = fbb.writeString(object.token!);
+          final deviceTokenOffset = fbb.writeString(object.deviceToken!);
           fbb.startTable(4);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, tokenOffset);

@@ -31,8 +31,8 @@ Future<Response> sendRequest({
     }
   }
 
-  if (token!.isNotEmpty) {
-    finalHeaders['Authorization'] = "Token $token";
+  if (token != null && token.isNotEmpty) {
+    finalHeaders['x-access-token'] = token;
   }
 
   final client = Client();

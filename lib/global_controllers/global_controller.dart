@@ -1,19 +1,18 @@
 
+import 'dart:convert';
+
 import 'package:dimexa_vendors/data/models/app_permission/app_permission.dart';
 import 'package:dimexa_vendors/data/models/vendor/vendor.dart';
-import 'package:dimexa_vendors/data/provider/objectbox/objectbox.g.dart';
+import 'package:dimexa_vendors/modules/login_page/login_page.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:dimexa_vendors/data/models/client/client.dart';
 
 class GlobalController extends GetxController {
-
-  GlobalController(this._store);
-
   final List<AppPermission> _filteredPermissions = [];
-  final Store? _store;
   late Vendor _currentVendor;
 
-  Store get store => _store!;
   Vendor get currentVendor => _currentVendor;
   List<AppPermission> get filteredPermissions => _filteredPermissions;
 
@@ -30,7 +29,7 @@ class GlobalController extends GetxController {
   @override
   void onClose() {
     super.onClose();
-    _store!.close();
+    //_store!.close();
   }
 
   Future<void> filterPermissions() async {
@@ -47,5 +46,60 @@ class GlobalController extends GetxController {
 
   void setVendor(Vendor vendor) {
     _currentVendor = vendor;
+  }
+
+  void sync() async {
+    try {
+      const store = null; //globalController.store;
+
+      //vendors
+      final vendorBox = store.box<Vendor>();
+      List<Vendor> currentVendors = vendorBox.getAll();
+      if (currentVendors.isEmpty) {
+        final String vendorPayload = await rootBundle.loadString('mockdata/dimexa-users.json');
+        final jsonVendors = await json.decode(vendorPayload);
+        List<Vendor> vendors = [];
+        if (jsonVendors != null) {
+          jsonVendors.forEach((vendorJson) {
+            if (vendorJson != null && vendorJson.toString().isNotEmpty) {
+              Vendor vendor = Vendor.fromJson(vendorJson);
+              vendors.add(vendor);
+            }
+          });
+        }
+
+        vendorBox.putMany(vendors);
+
+      }
+
+      //clients
+      final clientBox = store.box<Client>();
+      List<Client> currentClients = clientBox.getAll();
+      if (currentClients.isEmpty) {
+        final String payload = await rootBundle.loadString('mockdata/dimexa-clientes-lima.json');
+        final jsonData = await json.decode(payload);
+        List<Client> clients = [];
+        if (jsonData != null) {
+          jsonData.forEach((clientJson) {
+            if (clientJson != null && clientJson.toString().isNotEmpty) {
+              Client client = Client.fromJson(clientJson);
+              clients.add(client);
+            }
+          });
+        }
+
+        clientBox.putMany(clients);
+
+      }
+
+
+      Get.to(() => Login(), transition: Transition.rightToLeft);
+    } catch(e) {
+      print(e.toString());
+      Get.defaultDialog(
+          title: "Error in splash",
+          middleText: e.toString()
+      );
+    }
   }
 }

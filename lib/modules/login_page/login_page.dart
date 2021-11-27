@@ -15,7 +15,6 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<LoginController>(
-      init: LoginController(),
       builder: (_) => Scaffold(
         backgroundColor: AppColors.basePage,
         body: Center(

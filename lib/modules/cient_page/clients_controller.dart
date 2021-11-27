@@ -30,7 +30,7 @@ class ClientsController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _store = globalController.store;
+    //_store = globalController.store;
     _currentVendor = globalController.currentVendor;
     interval(_searchText, (_) {
       _onSearchClient(_searchText.value);

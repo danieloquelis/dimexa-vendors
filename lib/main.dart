@@ -15,13 +15,13 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-late Store store;
+//late Store store;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   DependencyInjection.init();
-  ObjectBox objectBox = await ObjectBox.create();
-  store = objectBox.store;
+  // ObjectBox objectBox = await ObjectBox.create();
+  // store = objectBox.store;
   runApp(const MyApp());
 }
 
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Get.put(GlobalController(store));
+    Get.put(GlobalController());
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Dimexa',

@@ -7,7 +7,7 @@ enum Env {
 extension CatExtension on Env {
   String get url {
     return [
-      'https://dev.blaze.me',
+      'http://190.117.166.223:3000',
       'https://stage.blaze.me',
       'https://prod.blaze.me'
     ][index];

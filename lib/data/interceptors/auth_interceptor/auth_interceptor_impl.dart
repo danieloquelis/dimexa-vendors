@@ -6,7 +6,7 @@ import 'package:dimexa_vendors/data/interceptors/auth_interceptor/auth_intercept
 import 'package:get/get.dart';
 
 class AuthInterceptorImpl implements AuthInterceptor {
-  final AuthAPI _api = Get.find<AuthAPI>();
+  final _api = Get.find<AuthAPI>();
 
   @override
   Future<String?> get accessToken async {

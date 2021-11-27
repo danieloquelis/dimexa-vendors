@@ -7,15 +7,13 @@ class DeviceAPI {
   final Http _http = Get.find<Http>();
 
   Future<HttpResult> validateDevice({
-    required String token,
     required String deviceToken
   }) async {
     final result = _http.request(
         '/equipos/validar',
         method: HttpMethod.post,
-        token: token,
         body: {
-          "serial": deviceToken,
+          "terminalid": deviceToken,
         }
     );
     return result;
