@@ -5,6 +5,7 @@ import 'package:dimexa_vendors/data/provider/localizations/app_translations_dele
 import 'package:dimexa_vendors/data/provider/objectbox/objectbox.dart';
 import 'package:dimexa_vendors/data/provider/objectbox/objectbox.g.dart';
 import 'package:dimexa_vendors/global_controllers/global_controller.dart';
+import 'package:dimexa_vendors/modules/splash_page/splash_binding.dart';
 import 'package:dimexa_vendors/modules/splash_page/splash_page.dart';
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
 import 'package:dimexa_vendors/core/utils/custom_material_color/custom_material_color.dart';
@@ -13,18 +14,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:path_provider/path_provider.dart';
 
-late Store store;
+//late Store store;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   DependencyInjection.init();
-  //objectbox = await ObjectBox.create();
-  Directory appDocDirectory = await getApplicationDocumentsDirectory();
-  store = await openStore(
-    directory: appDocDirectory.path,
-  );
+  // ObjectBox objectBox = await ObjectBox.create();
+  // store = objectBox.store;
   runApp(const MyApp());
 }
 
@@ -34,7 +31,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Get.put(GlobalController(store));
+    Get.put(GlobalController());
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Dimexa',
@@ -49,6 +46,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: SplashPage(),
+      initialBinding: SplashBinding(),
       getPages: AppPages.pages,
       localizationsDelegates: const [
         //app-specific localization delegate[s] here

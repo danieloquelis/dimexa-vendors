@@ -1,13 +1,8 @@
 
 import 'dart:convert';
-
 import 'package:objectbox/objectbox.dart';
 
-const String tableClients = 'clients';
-
-
 Client clientFromJson(String str) => Client.fromJson(json.decode(str));
-
 String clientToJson(Client data) => json.encode(data.toJson());
 
 @Entity()
@@ -145,22 +140,6 @@ class Client {
   };
 
 }
-
-//All must be strings
-class ClientFields {
-//  static const String id = 'id';
-//  static const String commercialName = 'commercialName';
-//  static const String socialName = 'socialName';
-//  static const String address = 'address';
-//  static const String ruc = 'ruc';
-}
-
-
-
-
-// To parse this JSON data, do
-//
-//     final client = clientFromJson(jsonString);
 
 
 

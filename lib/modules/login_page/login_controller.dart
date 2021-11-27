@@ -18,7 +18,7 @@ class LoginController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    _store = globalController.store;
+    //_store = globalController.store;
   }
 
 

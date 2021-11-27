@@ -52,6 +52,11 @@ dependencies:
   charts_flutter:
   google_maps_flutter:
   flutter_spinkit:
+  flutter_device_identifier:
+  flutter_svg:
+  permission_handler:
+  carousel_slider:
+  password_dart:
 
 dev_dependencies:
   flutter_test:

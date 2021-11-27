@@ -1,7 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dimexa.dimexa_vendors">
-   <application
-        android:label="dimexa_vendors"
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <application
+        android:label="Dimexa Vendors"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

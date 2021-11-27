@@ -1,8 +1,8 @@
 import 'package:dimexa_vendors/data/enums/search_client_filter/search_client_filter.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
+import 'package:dimexa_vendors/global_widgets/cupertino_bsheet_item/cupertino_bsheet_item.dart';
 import 'package:dimexa_vendors/modules/cient_page/clients_controller.dart';
 import 'package:dimexa_vendors/modules/cient_page/local_widgets/client_list_item/client_list_item.dart';
-import 'package:dimexa_vendors/global_widgets/cupertino_shee_item/cupertino_sheet_item.dart';
 import 'package:dimexa_vendors/global_widgets/search_bar/search_bar.dart';
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
 import 'package:flutter/cupertino.dart';
@@ -107,7 +107,7 @@ class _ClientsPageState extends State<ClientsPage> {
         builder: (BuildContext context) => CupertinoActionSheet(
           title: Text(AppTranslations.of(context)!.text("filter_of_searching")),
           actions: SearchClientFilter.values.map((filterType) {
-            return CupertinoSheetItem(
+            return CupertinoBSheetItem(
               label: filterType.displayName,
               onClick: () {
                 _.setQueryType(filterType);
