@@ -6,14 +6,25 @@ import 'package:get/get.dart';
 class AuthAPI {
   final Http _http = Get.find<Http>();
 
-  Future<HttpResult> login(String email, String password) async {
+  Future<HttpResult> login({required String user, required String password}) async {
     final result = _http.request(
-      '/api/login',
+      '/usuarios/loginUsuario',
       method: HttpMethod.post,
       body: {
-        "email": email,
+        "usuario": user,
         "password": password
       }
+    );
+    return result;
+  }
+
+  Future<HttpResult> resetPassword({required String user}) async {
+    final result = _http.request(
+        '/login/resetPassword',
+        method: HttpMethod.post,
+        body: {
+          "usuario": user
+        }
     );
     return result;
   }
