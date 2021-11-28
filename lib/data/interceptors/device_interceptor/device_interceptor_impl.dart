@@ -16,7 +16,7 @@ class DeviceInterceptorImpl implements DeviceInterceptor {
     );
 
     if (result.error == null) {
-      return result.data == "True";
+      return result.data == "Verdadero";
     }
 
     return Future.error(

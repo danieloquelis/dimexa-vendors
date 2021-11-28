@@ -24,6 +24,7 @@ class Session {
   final _zone = ToMany<Zone>();
 
   int? tokenExpiracion;
+  String? tokenFechaExpiracion;
 
   Session({
     this.id = 0,
@@ -32,6 +33,7 @@ class Session {
     this.zona,
     this.tokenExpiracion,
     this.token,
+    this.tokenFechaExpiracion,
     this.deviceToken
   });
 
@@ -52,6 +54,7 @@ class Session {
     menu: List<Menu>.from(json["menu"].map((x) => Menu.fromJson(x))),
     zona: List<Zone>.from(json["zona"].map((x) => Zone.fromJson(x))),
     tokenExpiracion: json["token_expiracion"],
+    tokenFechaExpiracion: json["fecha_expiracion"]
   );
 
   Map<String, dynamic> toJson() => {
@@ -59,6 +62,7 @@ class Session {
     "menu": List<dynamic>.from(menu!.map((x) => x.toJson())),
     "zona": List<dynamic>.from(zona!.map((x) => x.toJson())),
     "token_expiracion": tokenExpiracion,
+    "fecha_expiracion": tokenFechaExpiracion
   };
 
 }

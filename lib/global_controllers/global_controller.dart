@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:dimexa_vendors/data/models/app_permission/app_permission.dart';
 import 'package:dimexa_vendors/data/models/vendor/vendor.dart';
 import 'package:dimexa_vendors/data/provider/objectbox/objectbox.dart';
+import 'package:dimexa_vendors/data/provider/objectbox/objectbox.g.dart';
 import 'package:dimexa_vendors/modules/login_page/login_page.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -11,7 +12,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:dimexa_vendors/data/models/client/client.dart';
 
 class GlobalController extends GetxController {
-  final _store = Get.find<ObjectBox>().store;
+  //late Store _store;
 
   final List<AppPermission> _filteredPermissions = [];
   late Vendor _currentVendor;
@@ -22,6 +23,7 @@ class GlobalController extends GetxController {
   @override
   void onReady() async {
     super.onReady();
+    //_store = Get.find<ObjectBox>().store;
     //check session prohibited access
     //if its yes -> close the app
 
@@ -32,7 +34,7 @@ class GlobalController extends GetxController {
   @override
   void onClose() {
     super.onClose();
-    _store.close();
+    //_store.close();
   }
 
   Future<void> filterPermissions() async {

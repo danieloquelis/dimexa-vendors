@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:dimexa_vendors/core/utils/app_exception/app_exception.dart';
+import 'package:dimexa_vendors/core/utils/security_util/security_util.dart';
 import 'package:dimexa_vendors/core/values/strings.dart';
 import 'package:dimexa_vendors/data/interceptors/device_interceptor/device_interceptor_impl.dart';
 import 'package:dimexa_vendors/data/models/app_permission/app_permission.dart';
@@ -12,7 +13,6 @@ import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_device_identifier/flutter_device_identifier.dart';
 import 'package:get/get.dart';
-import 'package:password_dart/password_dart.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class SplashController extends GetxController {
@@ -117,9 +117,9 @@ class SplashController extends GetxController {
       }
 
       //save encrypted device token
-      await sessionRepository.saveDeviceToken(currentDeviceToken);
+      await sessionRepository.saveDeviceToken(session, currentDeviceToken);
     } else {
-      bool isDeviceVerified = Password.verify(currentDeviceToken, session.deviceToken!);
+      bool isDeviceVerified = await sessionRepository.verifyDeviceToken(currentDeviceToken, session.deviceToken!);
       if (!isDeviceVerified) {
         showMessage(
             message: Strings.deviceNotValidatedError
@@ -129,11 +129,11 @@ class SplashController extends GetxController {
     }
 
     //check token
-    String? token = sessionRepository.getToken();
-    if (token != null && token.isNotEmpty) {
-      Get.off(AppRoutes.login);
+    String? token = sessionRepository.getToken(session);
+    if (token == null || token.isEmpty) {
+      Get.offNamed(AppRoutes.login);
     } else {
-      Get.off(AppRoutes.tabManager);
+      Get.offNamed(AppRoutes.tabManager);
     }
   }
 
