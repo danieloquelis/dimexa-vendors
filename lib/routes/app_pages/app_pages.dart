@@ -1,3 +1,4 @@
+import 'package:dimexa_vendors/modules/cient_page/local_widgets/client_details/client_details.dart';
 import 'package:dimexa_vendors/modules/login_page/login_binding.dart';
 import 'package:dimexa_vendors/modules/login_page/login_page.dart';
 import 'package:dimexa_vendors/modules/tab_manager/tab_manager.dart';
@@ -17,5 +18,9 @@ class AppPages {
       page: () => TabManager(),
       binding: TabManagerBinding(),
     ),
+    GetPage(
+      name: AppRoutes.clientDetails,
+      page: () => ClientDetails()
+    )
   ];
 }

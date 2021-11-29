@@ -28,4 +28,15 @@ class AuthAPI {
     );
     return result;
   }
+
+  Future<HttpResult> refreshToken({required String token, required String user}) async {
+    final result = _http.request(
+        '/usuarios/refreshToken',
+        method: HttpMethod.get,
+        body: {
+          "usuario": user
+        }
+    );
+    return result;
+  }
 }

@@ -23,15 +23,15 @@ class ClientListItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                    client!.nombrecomercial.isNotEmpty ? client!.nombrecomercial : client!.razonsocial,
+                    client!.nombrecomercial!.isNotEmpty ? client!.nombrecomercial! : client!.razonsocial!,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18, color: AppColors.blue
                     )
                 ),
                 Visibility(
-                  visible: client!.nombrecomercial.isNotEmpty,
-                    child: Text(client!.razonsocial)
+                  visible: client!.nombrecomercial!.isNotEmpty,
+                    child: Text(client!.razonsocial!)
                 ),
                 const SizedBox(height: 8,),
                 Row(
@@ -41,7 +41,7 @@ class ClientListItem extends StatelessWidget {
                     ),
                     const SizedBox(width: 8,),
                     Tag(
-                      label: "Cod: ${client!.sid}",
+                      label: "Cod: ${client!.clienteid}",
                     )
                   ],
                 )

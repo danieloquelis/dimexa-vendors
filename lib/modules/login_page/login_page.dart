@@ -33,8 +33,6 @@ class _LoginState extends State<Login> {
                   const SpinKitChasingDots(
                     color: AppColors.green,
                   ) : fields(_)
-
-
                 ],
               ),
             ),

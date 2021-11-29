@@ -24,7 +24,7 @@ class ClientComercialInfo extends StatelessWidget {
               children: [
                 CustomInfoField(
                   label:AppTranslations.of(context)!.text("sub_channel"),
-                  value: client.subcanal,
+                  value: "--"//client.subcanal,
                 ),
                 const Divider(
                   thickness: 1,
@@ -34,7 +34,7 @@ class ClientComercialInfo extends StatelessWidget {
                     Flexible(
                       child: CustomInfoField(
                         label: AppTranslations.of(context)!.text("discount_type"),
-                        value: client.tipodescuento,
+                        value: "--"//client.tipodescuento,
                       ),
                     ),
                     Flexible(
@@ -91,7 +91,7 @@ class ClientComercialInfo extends StatelessWidget {
                     Flexible(
                       child: CustomInfoField(
                         label: AppTranslations.of(context)!.text("anniversary"),
-                        value: client.aniversario,
+                        value: ""//client.aniversario,
                       ),
                     ),
                     Flexible(

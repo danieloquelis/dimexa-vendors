@@ -34,7 +34,7 @@ class ClientGeneralInfo extends StatelessWidget {
                   Flexible(
                     child: CustomInfoField(
                       label: AppTranslations.of(context)!.text("code"),
-                      value: client.sid,
+                      value: client.clienteid,
                     ),
                   )
                 ],
@@ -61,13 +61,13 @@ class ClientGeneralInfo extends StatelessWidget {
                   Flexible(
                     child: CustomInfoField(
                       label: AppTranslations.of(context)!.text("client_status"),
-                      value: client.estadocliente,
+                      value: "--"//client.estadocliente!,
                     ),
                   ),
                   Flexible(
                     child: CustomInfoField(
                       label: AppTranslations.of(context)!.text("diremid_status"),
-                      value: client.estadodiremid,
+                      value: "--"//client.estadodiremid,
                     ),
                   )
                 ],

@@ -5,16 +5,13 @@ import 'package:dimexa_vendors/data/provider/objectbox/objectbox.dart';
 import 'package:dimexa_vendors/data/repositories/session_repository/session_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:password_dart/password_dart.dart';
 
 class SessionRepositoryImpl implements SessionRepository {
-  final _boxSession = Get.find<ObjectBox>().sessionBox;
-
-  SessionRepositoryImpl();
+  final _sessionBox = Get.find<ObjectBox>().sessionBox;
 
   @override
   Session? getCurrentSession() {
-    List<Session> sessions = _boxSession.getAll();
+    List<Session> sessions = _sessionBox.getAll();
     if (sessions.isNotEmpty) {
       return sessions.first;
     }
@@ -23,25 +20,24 @@ class SessionRepositoryImpl implements SessionRepository {
   }
 
   @override
-  String? getToken(Session? currentSession) {
+  String? getToken({Session? currentSession}) {
     if (currentSession != null) {
       String? token = currentSession.token;
-      String? tokenExpirationDate = currentSession.tokenFechaExpiracion;
+      DateTime? tokenExpirationDate = currentSession.fechaExpiracion;
       //validate token
       if (token != null && token.isEmpty) {
         return null;
       }
 
       //parsing datetime
-      if (tokenExpirationDate == null || tokenExpirationDate.isEmpty) {
+      if (tokenExpirationDate == null) {
         return null;
       }
 
-      DateTime expirationDate = DateTime.parse(tokenExpirationDate);
       DateTime now = DateTime.now();
 
       //validate expiration time token
-      if (now.isAfter(expirationDate)) {
+      if (now.isAfter(tokenExpirationDate)) {
         return null;
       }
 
@@ -56,9 +52,20 @@ class SessionRepositoryImpl implements SessionRepository {
     Session? currentSession = getCurrentSession();
     if (currentSession != null) {
       session.id = currentSession.id;
+      session.deviceToken = currentSession.deviceToken;
     }
 
-    await _boxSession.putAsync(session).catchError(onDBCatchError());
+    //saving relations
+    if (session.zona != null && session.zona!.isNotEmpty) {
+      session.zones.addAll(session.zona!);
+    }
+
+    try {
+      _sessionBox.put(session);
+    } catch(e) {
+      onDBCatchError();
+    }
+
   }
 
   @override
@@ -74,7 +81,7 @@ class SessionRepositoryImpl implements SessionRepository {
     }
 
     try {
-      await _boxSession.putAsync(currentSession);
+      _sessionBox.put(currentSession);
     } catch(e,s) {
       onDBCatchError();
     }

@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:dimexa_vendors/core/utils/app_exception/app_exception.dart';
-import 'package:dimexa_vendors/core/utils/security_util/security_util.dart';
 import 'package:dimexa_vendors/core/values/strings.dart';
 import 'package:dimexa_vendors/data/interceptors/device_interceptor/device_interceptor_impl.dart';
 import 'package:dimexa_vendors/data/models/app_permission/app_permission.dart';
@@ -119,6 +118,7 @@ class SplashController extends GetxController {
       //save encrypted device token
       await sessionRepository.saveDeviceToken(session, currentDeviceToken);
     } else {
+      //verify if the device is allow to use the app (offline)
       bool isDeviceVerified = await sessionRepository.verifyDeviceToken(currentDeviceToken, session.deviceToken!);
       if (!isDeviceVerified) {
         showMessage(
@@ -126,10 +126,13 @@ class SplashController extends GetxController {
         );
         return;
       }
+
+      //set the session
+      globalController.setSession(session);
     }
 
     //check token
-    String? token = sessionRepository.getToken(session);
+    String? token = sessionRepository.getToken(currentSession: session);
     if (token == null || token.isEmpty) {
       Get.offNamed(AppRoutes.login);
     } else {

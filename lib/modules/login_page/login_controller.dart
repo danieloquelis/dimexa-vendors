@@ -1,32 +1,29 @@
-import 'package:dimexa_vendors/data/models/vendor/vendor.dart';
+import 'package:dimexa_vendors/data/interceptors/auth_interceptor/auth_interceptor_impl.dart';
+import 'package:dimexa_vendors/data/models/session/session.dart';
 import 'package:dimexa_vendors/data/provider/objectbox/objectbox.g.dart';
+import 'package:dimexa_vendors/data/repositories/session_repository/session_repository_impl.dart';
 import 'package:dimexa_vendors/global_controllers/global_controller.dart';
-import 'package:dimexa_vendors/modules/tab_manager/tab_manager.dart';
+import 'package:dimexa_vendors/routes/app_routes/app_routes.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
   final globalController = Get.find<GlobalController>();
+  final authInterceptor = Get.find<AuthInterceptorImpl>();
+  final sessionRepository = Get.find<SessionRepositoryImpl>();
+
   late Store _store;
   String _userName = "";
   String _password = "";
   bool _loading = false;
 
-
   bool get loading => _loading;
-
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-    //_store = globalController.store;
-  }
 
 
   void setUserName(String value) {
     _userName = value;
   }
 
-  void login() {
+  void login() async {
 
 
     if (_userName.isEmpty || _password.isEmpty) {
@@ -35,29 +32,30 @@ class LoginController extends GetxController {
     }
 
     _loading = true;
-    update([]);
+    update();
 
-    bool authorized = false;
-    final vendorBox = _store.box<Vendor>();
-    List<Vendor> vendors = vendorBox.getAll();
-    Vendor? currentVendor;
-    for (Vendor vendor in vendors) {
-      if (vendor.username == _userName && vendor.password == _password) {
-        authorized = true;
-        currentVendor = vendor;
-        break;
-      }
+    Session? session = await authInterceptor.login(_userName, _password)
+    .onError((error, stackTrace) {
+      //stop loading
+      //show error dialog
+      return null;
+    });
+
+    if (session == null) {
+      return;
     }
 
-    _loading = false;
-    update([]);
+    //persist session
+    await sessionRepository.saveSession(session);
 
-    if (authorized) {
-      globalController.setVendor(currentVendor!);
-      Get.to(() => TabManager(), transition: Transition.rightToLeft);
-    } else {
-      print('incorrecto');
-    }
+    //set session in the global controller
+    globalController.setSession(session);
+
+    //stop loading
+    //show success login
+
+    //go to tab manager
+    Get.offNamed(AppRoutes.tabManager);
   }
 
   void setPassword(String value) {

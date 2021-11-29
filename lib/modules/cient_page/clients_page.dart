@@ -81,7 +81,7 @@ class _ClientsPageState extends State<ClientsPage> {
                                   ClientListItem(
                                     client: client,
                                     onClick: (client) {
-                                      _.seeClientDetails(client);
+                                      _.onSelectClient(client);
                                     },
                                   ),
                                   Padding(
@@ -110,7 +110,7 @@ class _ClientsPageState extends State<ClientsPage> {
             return CupertinoBSheetItem(
               label: filterType.displayName,
               onClick: () {
-                _.setQueryType(filterType);
+                _.setFilterType(filterType);
                 Navigator.pop(context);
               },
               isSelected: false,
