@@ -3,7 +3,6 @@ import 'package:dimexa_vendors/data/provider/objectbox/objectbox.dart';
 import 'package:dimexa_vendors/data/models/client/client.dart';
 import 'package:dimexa_vendors/data/repositories/client_repository/client_repository.dart';
 import 'package:dimexa_vendors/global_controllers/global_controller.dart';
-import 'package:dimexa_vendors/modules/cient_page/local_widgets/client_details/client_details.dart';
 import 'package:dimexa_vendors/routes/app_routes/app_routes.dart';
 import 'package:get/get.dart';
 
@@ -24,6 +23,7 @@ class ClientsController extends GetxController {
   List<Client> get clients => _clients;
   bool get loading => _loading;
   Client get selectedClient => _selectedClient;
+  SearchClientFilter get filterType => _filterType;
 
   void setSearchText(String text) {
     _loading = true;
@@ -41,8 +41,13 @@ class ClientsController extends GetxController {
     );
   }
 
+  void onBack() {
+    Get.back();
+  }
+
   void setFilterType(SearchClientFilter filterType) async {
     _filterType = filterType;
+    update();
   }
 
   Future<void> _onSearchClient(String searchText) async {

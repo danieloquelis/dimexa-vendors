@@ -1,4 +1,6 @@
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
+import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
+import 'package:dimexa_vendors/global_widgets/base_appbar/base_appbar.dart';
 import 'package:dimexa_vendors/modules/home_page/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,19 +16,10 @@ class _HomePageState extends State<HomePage> {
     return GetBuilder<HomeController>(
       init: HomeController(),
       builder: (_) => Scaffold(
-        appBar: AppBar(
-          title: Column(
-            children: [
-              Text('Bienvenido Daniel'),
-              Text('Código de usuario: 200159', style: TextStyle(fontSize: 13),)
-            ],
-          ),
-          leading: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.menu),
-          ),
-          elevation: 0,
-        ),
+        appBar: BaseAppBar(
+          title: AppTranslations.of(context)!.text('welcome'),
+          lastUpdate: "hoy a las 9:00pm",
+        ).widget(),
         body: Container(
           width: MediaQuery.of(context).size.width,
           decoration: const BoxDecoration(

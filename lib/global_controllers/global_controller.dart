@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 
+import 'package:dimexa_vendors/core/values/numbers.dart';
 import 'package:dimexa_vendors/data/enums/sync_type/sync_type.dart';
 import 'package:dimexa_vendors/data/interceptors/client_interceptor/client_interceptor.dart';
 import 'package:dimexa_vendors/data/models/app_permission/app_permission.dart';
@@ -125,7 +126,7 @@ class GlobalController extends GetxController {
     List<Client> clients = [];
     if (syncManager == null) {
       //sync clients
-      int limit = 200; //chunk
+      int limit = Numbers.maxLimit; //chunk
       int page = 0;
       int total = limit + 1; //this is initial value -> needs an api
       int count = 0;
@@ -157,9 +158,8 @@ class GlobalController extends GetxController {
 
     //check the last sync down
     DateTime lastSync = syncManager.lastSyncDownDate!;
-    int maxDaysAllow = 1;
     DateTime now = DateTime.now();
-    if (now.difference(lastSync).inDays >= maxDaysAllow) {
+    if (now.difference(lastSync).inDays >= Numbers.maxDaysAllow) {
       //TODO: sent to sync manager page
     }
   }

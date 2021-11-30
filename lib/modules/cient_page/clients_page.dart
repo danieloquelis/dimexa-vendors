@@ -1,5 +1,7 @@
+import 'package:dimexa_vendors/core/values/numbers.dart';
 import 'package:dimexa_vendors/data/enums/search_client_filter/search_client_filter.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
+import 'package:dimexa_vendors/global_widgets/base_appbar/base_appbar.dart';
 import 'package:dimexa_vendors/global_widgets/cupertino_bsheet_item/cupertino_bsheet_item.dart';
 import 'package:dimexa_vendors/modules/cient_page/clients_controller.dart';
 import 'package:dimexa_vendors/modules/cient_page/local_widgets/client_list_item/client_list_item.dart';
@@ -24,14 +26,11 @@ class _ClientsPageState extends State<ClientsPage> {
     return GetBuilder<ClientsController>(
       init: ClientsController(),
       builder: (_) => Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.menu),
-          ),
-          title: Text(AppTranslations.of(context)!.text('clients')),
-          elevation: 0,
-        ),
+        appBar: BaseAppBar(
+          title: AppTranslations.of(context)!.text('clients'),
+          lastUpdate: "hoy a las 9:00pm",
+          syncOnDemand: () {}
+        ).widget(),
         body: Container(
           decoration: const BoxDecoration(
             color: AppColors.basePage,
@@ -42,7 +41,7 @@ class _ClientsPageState extends State<ClientsPage> {
             child: Column(
               children: [
                 SearchBar(
-                  placeHolder: "Buscar por nombre comercial",
+                  placeHolder: _.filterType.displayName,
                   onChange: (String value) {
                     _.setSearchText(value);
                   },
@@ -105,7 +104,13 @@ class _ClientsPageState extends State<ClientsPage> {
     return showCupertinoModalPopup(
         context: context,
         builder: (BuildContext context) => CupertinoActionSheet(
-          title: Text(AppTranslations.of(context)!.text("filter_of_searching")),
+          title: Text(
+              AppTranslations.of(context)!.text("filter_of_searching"),
+            style: const TextStyle(
+              fontSize: 18,
+              color: AppColors.gray
+            ),
+          ),
           actions: SearchClientFilter.values.map((filterType) {
             return CupertinoBSheetItem(
               label: filterType.displayName,
@@ -116,17 +121,6 @@ class _ClientsPageState extends State<ClientsPage> {
               isSelected: false,
             );
           }).toList(),
-          cancelButton: CupertinoActionSheetAction(
-            child: Text(
-              AppTranslations.of(context)!.text("cancel"),
-              style: const TextStyle(
-                  fontSize: 16
-              ),
-            ),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
         )
     );
   }

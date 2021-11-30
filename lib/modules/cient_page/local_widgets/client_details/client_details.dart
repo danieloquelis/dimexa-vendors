@@ -1,5 +1,6 @@
 import 'package:dimexa_vendors/core/theme/dimexa_icons/dimexa_icons.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
+import 'package:dimexa_vendors/global_widgets/base_appbar/base_appbar.dart';
 import 'package:dimexa_vendors/modules/cient_page/clients_controller.dart';
 import 'package:dimexa_vendors/modules/cient_page/local_widgets/client_addresses/client_addresses.dart';
 import 'package:dimexa_vendors/modules/cient_page/local_widgets/client_comercial_info/client_comercial_info.dart';
@@ -23,23 +24,12 @@ class _ClientDetailsState extends State<ClientDetails> {
     return GetBuilder<ClientsController>(
       init: ClientsController(),
       builder: (_) => Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
-            onPressed: (){
-              Navigator.of(context).pop();
-            },
-          ),
-          title: Text(AppTranslations.of(context)!.text("client_details")),
-          actions: [
-            Switch(
-              value: false,
-              onChanged: (value){},
-              activeColor: AppColors.green,
-            )
-          ],
-          elevation: 0,
-        ),
+        appBar: BaseAppBar(
+          title: AppTranslations.of(context)!.text('client_details'),
+          back: _.onBack,
+          syncOnDemand: () {},
+          lastUpdate: "ayer a las 10:00 am"
+        ).widget(),
         body: Container(
           height: MediaQuery.of(context).size.height,
           decoration: const BoxDecoration(
