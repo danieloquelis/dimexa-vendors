@@ -22,7 +22,7 @@ class ClientStatistics extends StatelessWidget {
           children: [
             Column(
               children: [
-                Text(client.lineacredito, style: TextStyle(color: AppColors.blue, fontWeight: FontWeight.bold, fontSize: 18)),
+                Text(client.lineacredito!, style: TextStyle(color: AppColors.blue, fontWeight: FontWeight.bold, fontSize: 18)),
                 Text(
                   AppTranslations.of(context)!.text("credit_line"),
                   style: const TextStyle(fontSize: 12),
@@ -31,7 +31,7 @@ class ClientStatistics extends StatelessWidget {
             ),
             Column(
               children: [
-                Text(client.deuda, style: TextStyle(color: AppColors.red, fontWeight: FontWeight.bold, fontSize: 18)),
+                Text(client.deuda!, style: TextStyle(color: AppColors.red, fontWeight: FontWeight.bold, fontSize: 18)),
                 Text(
                   AppTranslations.of(context)!.text("debt"),
                   style: const TextStyle(fontSize: 12),
@@ -40,7 +40,7 @@ class ClientStatistics extends StatelessWidget {
             ),
             Column(
               children: [
-                Text(client.lineadisponible, style: TextStyle(color: AppColors.green, fontWeight: FontWeight.bold, fontSize: 18)),
+                Text(client.lineadisponible!, style: TextStyle(color: AppColors.green, fontWeight: FontWeight.bold, fontSize: 18)),
                 Text(
                   AppTranslations.of(context)!.text("available"),
                   style: const TextStyle(fontSize: 12),

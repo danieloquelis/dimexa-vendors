@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 class Tag extends StatelessWidget {
   String? label;
   Color? borderColor;
+  Color? fontColor;
+  Color? backgroundColor;
   double? fontSize;
   Function? onClick;
 
@@ -12,7 +14,9 @@ class Tag extends StatelessWidget {
     this.label = "--",
     this.borderColor = AppColors.green,
     this.fontSize = 12,
-    this.onClick
+    this.onClick,
+    this.fontColor = AppColors.gray,
+    this.backgroundColor
   }) : super(key: key);
 
   @override
@@ -25,9 +29,9 @@ class Tag extends StatelessWidget {
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-        child: Text(label!, style: TextStyle(fontSize: fontSize)),
+        child: Text(label!, style: TextStyle(fontSize: fontSize, color: fontColor)),
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: backgroundColor ?? Colors.grey.shade200,
             borderRadius: const BorderRadius.all(Radius.circular(18)),
             border: Border.all(color: borderColor!)
         ),

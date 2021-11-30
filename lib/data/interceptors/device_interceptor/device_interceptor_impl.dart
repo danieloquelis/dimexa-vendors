@@ -7,7 +7,7 @@ import 'package:dimexa_vendors/data/interceptors/device_interceptor/device_inter
 import 'package:get/get.dart';
 
 class DeviceInterceptorImpl implements DeviceInterceptor {
-  final DeviceAPI _api = Get.find<DeviceAPI>();
+  final _api = Get.find<DeviceAPI>();
 
   @override
   Future validateDevice(String deviceToken) async {
@@ -16,7 +16,7 @@ class DeviceInterceptorImpl implements DeviceInterceptor {
     );
 
     if (result.error == null) {
-      return result.data == "True";
+      return result.data == "Verdadero";
     }
 
     return Future.error(

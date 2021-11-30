@@ -1,3 +1,4 @@
+import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -40,8 +41,9 @@ class _SearchBarState extends State<SearchBar> {
     return Card(
       elevation: 0,
       margin: widget.margin,
+      color: Colors.grey.shade200,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(18.0),
+        borderRadius: BorderRadius.circular(24.0),
       ),
       child: Container(
         decoration: const BoxDecoration(

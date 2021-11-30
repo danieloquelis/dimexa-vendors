@@ -1,3 +1,4 @@
+import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:dimexa_vendors/global_widgets/custom_expandable_field/custom_expandable_field.dart';
 import 'package:dimexa_vendors/global_widgets/custom_info_field/custom_info_field.dart';
@@ -19,7 +20,7 @@ class ClientGeneralInfo extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(16),
           width: MediaQuery.of(context).size.width,
-          color: Colors.white,
+          color: AppColors.cardBackground.withOpacity(0.5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -34,7 +35,7 @@ class ClientGeneralInfo extends StatelessWidget {
                   Flexible(
                     child: CustomInfoField(
                       label: AppTranslations.of(context)!.text("code"),
-                      value: client.sid,
+                      value: client.clienteid,
                     ),
                   )
                 ],
@@ -61,13 +62,13 @@ class ClientGeneralInfo extends StatelessWidget {
                   Flexible(
                     child: CustomInfoField(
                       label: AppTranslations.of(context)!.text("client_status"),
-                      value: client.estadocliente,
+                      value: "--"//client.estadocliente!,
                     ),
                   ),
                   Flexible(
                     child: CustomInfoField(
                       label: AppTranslations.of(context)!.text("diremid_status"),
-                      value: client.estadodiremid,
+                      value: "--"//client.estadodiremid,
                     ),
                   )
                 ],

@@ -1,3 +1,4 @@
+import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:dimexa_vendors/global_widgets/tag/tag.dart';
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -5,9 +6,9 @@ import 'package:dimexa_vendors/data/models/client/client.dart';
 
 class ClientListItem extends StatelessWidget {
 
-  Client? client;
+  Client client;
   Function? onClick;
-  ClientListItem({Key? key, this.client, this.onClick}) : super(key: key);
+  ClientListItem({Key? key, required this.client, this.onClick}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,25 +24,27 @@ class ClientListItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                    client!.nombrecomercial.isNotEmpty ? client!.nombrecomercial : client!.razonsocial,
-                    style: TextStyle(
+                    StringUtils.isNotNullNorEmpty(client.nombrecomercial) ?
+                    StringUtils.checkNullOrEmpty(client.nombrecomercial) :
+                    StringUtils.checkNullOrEmpty(client.razonsocial),
+                    style: const TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 18, color: AppColors.blue
+                        fontSize: 16, color: AppColors.blue
                     )
                 ),
                 Visibility(
-                  visible: client!.nombrecomercial.isNotEmpty,
-                    child: Text(client!.razonsocial)
+                  visible: StringUtils.isNotNullNorEmpty(client.nombrecomercial),
+                    child: Text(client.razonsocial!)
                 ),
                 const SizedBox(height: 8,),
                 Row(
                   children: [
                     Tag(
-                      label: "RUC: ${client!.ruc}",
+                      label: "RUC: ${client.ruc ?? '--'}",
                     ),
                     const SizedBox(width: 8,),
                     Tag(
-                      label: "Cod: ${client!.sid}",
+                      label: "Cod: ${client.clienteid ?? '--'}",
                     )
                   ],
                 )

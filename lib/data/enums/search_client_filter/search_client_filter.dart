@@ -8,10 +8,10 @@ enum SearchClientFilter {
 extension CatExtension on SearchClientFilter {
   String get displayName {
     return [
-      "Buscar por nombre comercial",
-      "Buscar por razón social",
-      "Buscar por RUC",
-      "Buscar por código"
+      "Nombre comercial",
+      "Razón social",
+      "RUC",
+      "Código"
     ][index];
   }
 }

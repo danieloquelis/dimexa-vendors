@@ -1,8 +1,17 @@
 
 import 'dart:convert';
 
+import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
+import 'package:dimexa_vendors/core/values/numbers.dart';
+import 'package:dimexa_vendors/data/enums/sync_type/sync_type.dart';
+import 'package:dimexa_vendors/data/interceptors/client_interceptor/client_interceptor.dart';
 import 'package:dimexa_vendors/data/models/app_permission/app_permission.dart';
+import 'package:dimexa_vendors/data/models/backend_response/backend_response.dart';
+import 'package:dimexa_vendors/data/models/session/session.dart';
+import 'package:dimexa_vendors/data/models/sync_manager/sync_manager.dart';
 import 'package:dimexa_vendors/data/models/vendor/vendor.dart';
+import 'package:dimexa_vendors/data/repositories/client_repository/client_repository.dart';
+import 'package:dimexa_vendors/data/repositories/sync_manager_repository/sync_manager_repository.dart';
 import 'package:dimexa_vendors/modules/login_page/login_page.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -10,11 +19,22 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:dimexa_vendors/data/models/client/client.dart';
 
 class GlobalController extends GetxController {
+  ///Injections
+  final clientInterceptor = Get.find<ClientInterceptor>();
+  final syncManagerRepository = Get.find<SyncManagerRepository>();
+  final clientRepository = Get.find<ClientRepository>();
+
+  ///Private variables
   final List<AppPermission> _filteredPermissions = [];
   late Vendor _currentVendor;
+  late Session _session;
+  late String _selectedZoneId = "";
 
+  ///Getters
   Vendor get currentVendor => _currentVendor;
   List<AppPermission> get filteredPermissions => _filteredPermissions;
+  Session get session => _session;
+  String get selectedZoneId => _selectedZoneId;
 
   @override
   void onReady() async {
@@ -26,11 +46,6 @@ class GlobalController extends GetxController {
     await filterPermissions();
   }
 
-  @override
-  void onClose() {
-    super.onClose();
-    //_store!.close();
-  }
 
   Future<void> filterPermissions() async {
     //build list of permissions
@@ -42,6 +57,14 @@ class GlobalController extends GetxController {
         _filteredPermissions.add(permission);
       }
     }
+  }
+
+  void setSession(Session session) {
+    _session = session;
+    if (session.zones.isNotEmpty) {
+      _selectedZoneId = StringUtils.checkNullOrEmpty(session.zones.first.zonaid);
+    }
+    
   }
 
   void setVendor(Vendor vendor) {
@@ -100,6 +123,55 @@ class GlobalController extends GetxController {
           title: "Error in splash",
           middleText: e.toString()
       );
+    }
+  }
+
+  Future syncDownClients() async {
+    //NOTE: USE COMPUTE
+    SyncManager? syncManager = syncManagerRepository.getByType(SyncType.clients);
+
+    List<Client> clients = [];
+    if (syncManager == null) {
+      //sync clients
+      int limit = Numbers.maxLimit; //chunk
+      int page = Numbers.startPage;
+      int total = limit; //this is initial value -> needs an api
+      int count = Numbers.zero;
+
+      //TODO: api to know if the sync was successfully
+      try {
+        while (count < total) {
+          BackendResponse<Client>? response = await clientInterceptor.syncClients(_session.token, limit, page, _selectedZoneId);
+          if (response != null && response.total != null) {
+            List<Client> clientsResponse = response.data;
+            if (clientsResponse.isNotEmpty) {
+              clients.addAll(clientsResponse);
+              total = response.total!;
+              count = count + clientsResponse.length;
+            }
+          }
+
+          page++;
+        }
+      } catch(e) {
+        print(e);
+      }
+
+
+      if (clients.isNotEmpty) {
+        //save clients
+        clientRepository.saveSyncDownClients("FP563", clients);
+        //save new sync manager for this type
+        syncManagerRepository.updateByType(SyncType.clients, syncDown: true);
+      }
+      return;
+    }
+
+    //check the last sync down
+    DateTime lastSync = syncManager.lastSyncDownDate!;
+    DateTime now = DateTime.now();
+    if (now.difference(lastSync).inDays >= Numbers.maxDaysAllow) {
+      //TODO: sent to sync manager page
     }
   }
 }
