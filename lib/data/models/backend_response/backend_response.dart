@@ -19,16 +19,20 @@ class BackendResponse<T> {
         //case when is not a list of the entity
         castedData = fromJsonModel(rawData);
       } catch(e) {
+        print(e);
         //ignore
       }
 
-      try {
-        //case when is a list of entities
-        rawData = rawData.cast<Map<String, dynamic>>();
-        castedData ??= List<T>.from(rawData.map(fromJsonModel));
-      } catch(e) {
-        //ignore
+      if (castedData == null) {
+        try {
+          //case when is a list of entities
+          rawData = rawData.cast<Map<String, dynamic>>();
+          castedData ??= List<T>.from(rawData.map(fromJsonModel));
+        } catch(e) {
+          //ignore
+        }
       }
+
     }
     return BackendResponse<T>(
       data: castedData,

@@ -36,12 +36,15 @@ class LoginController extends GetxController {
 
     Session? session = await authInterceptor.login(_userName, _password)
     .onError((error, stackTrace) {
+      //TODO: show dialogs with errors
       //stop loading
       //show error dialog
       return null;
     });
 
     if (session == null) {
+      _loading = false;
+      update();
       return;
     }
 

@@ -1,6 +1,7 @@
 import 'package:dimexa_vendors/core/theme/dimexa_icons/dimexa_icons.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:dimexa_vendors/global_widgets/base_appbar/base_appbar.dart';
+import 'package:dimexa_vendors/global_widgets/tag/tag.dart';
 import 'package:dimexa_vendors/modules/cient_page/clients_controller.dart';
 import 'package:dimexa_vendors/modules/cient_page/local_widgets/client_addresses/client_addresses.dart';
 import 'package:dimexa_vendors/modules/cient_page/local_widgets/client_comercial_info/client_comercial_info.dart';
@@ -46,17 +47,32 @@ class _ClientDetailsState extends State<ClientDetails> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        ElevatedButton.icon(
-                          onPressed: () {},
-                          icon: const Icon(Icons.bookmark_border),
-                          label: Text(AppTranslations.of(context)!.text("order")),
+                        Tag(
+                          label: AppTranslations.of(context)!.text("order"),
+                          fontSize: 18,
+                          backgroundColor: AppColors.blue,
+                          borderColor:  AppColors.blue,
+                          fontColor: Colors.white,
                         ),
                         const SizedBox(width: 8,),
-                        ElevatedButton.icon(
-                          onPressed: () {},
-                          icon: const Icon(DimexaIcons.collect, size: 20,),
-                          label: Text(AppTranslations.of(context)!.text("collect")),
-                        )
+                        Tag(
+                          label: AppTranslations.of(context)!.text("collect"),
+                          fontSize: 18,
+                          backgroundColor: AppColors.blue,
+                          borderColor:  AppColors.blue,
+                          fontColor: Colors.white,
+                        ),
+                        const SizedBox(width: 8,),
+                        Tag(
+                          label: 'Más...',
+                          fontSize: 18,
+                          backgroundColor: Colors.transparent,
+                          borderColor:  AppColors.blue,
+                          fontColor: AppColors.blue,
+                          onClick: () {
+                            showMoreActions();
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -77,12 +93,6 @@ class _ClientDetailsState extends State<ClientDetails> {
               ),
             ),
           )
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add, size: 28,),
-          onPressed: () {
-            showMoreActions();
-          },
         ),
       ),
     );
@@ -120,17 +130,6 @@ class _ClientDetailsState extends State<ClientDetails> {
               iconSize: 18
             ),
           ],
-          cancelButton: CupertinoActionSheetAction(
-            child: Text(
-              AppTranslations.of(context)!.text("cancel"),
-              style: const TextStyle(
-                  fontSize: 16
-              ),
-            ),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
         )
     );
   }
@@ -146,7 +145,7 @@ class _ClientDetailsState extends State<ClientDetails> {
               padding: const EdgeInsets.only(left: 16),
               child: Icon(
                 icon,
-                color: AppColors.gray,
+                color: AppColors.blue,
                 size: iconSize,
               ),
             ),

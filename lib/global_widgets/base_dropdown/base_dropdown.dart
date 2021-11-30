@@ -1,22 +1,20 @@
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class Tag extends StatelessWidget {
+class BaseDropdown extends StatelessWidget {
   String? label;
   Color? borderColor;
-  Color? fontColor;
-  Color? backgroundColor;
   double? fontSize;
   Function? onClick;
+  Color? backgroundColor;
 
-  Tag({
+  BaseDropdown({
     Key? key,
     this.label = "--",
     this.borderColor = AppColors.green,
+    this.backgroundColor = Colors.white,
     this.fontSize = 12,
-    this.onClick,
-    this.fontColor = AppColors.gray,
-    this.backgroundColor
+    this.onClick
   }) : super(key: key);
 
   @override
@@ -28,11 +26,17 @@ class Tag extends StatelessWidget {
         }
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-        child: Text(label!, style: TextStyle(fontSize: fontSize, color: fontColor)),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(label!, style: TextStyle(fontSize: fontSize)),
+            const Icon(Icons.arrow_drop_down)
+          ],
+        ),
         decoration: BoxDecoration(
-            color: backgroundColor ?? Colors.grey.shade200,
-            borderRadius: const BorderRadius.all(Radius.circular(18)),
+            color: backgroundColor,
+            borderRadius: const BorderRadius.all(Radius.circular(24)),
             border: Border.all(color: borderColor!)
         ),
       ),

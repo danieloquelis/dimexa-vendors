@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dimexa_vendors/data/models/session/session.dart';
 import 'package:objectbox/objectbox.dart';
 
 @Entity()
@@ -15,6 +16,7 @@ class Zone {
     this.activo,
   });
 
+  @Id(assignable: true)
   int? id;
   String? zonaid;
   String? nombre;
@@ -24,8 +26,9 @@ class Zone {
   String? unidadnegocioid;
   bool? activo;
 
-  factory Zone.fromRawJson(String str) => Zone.fromJson(json.decode(str));
+  final session = ToOne<Session>();
 
+  factory Zone.fromRawJson(String str) => Zone.fromJson(json.decode(str));
   String toRawJson() => json.encode(toJson());
 
   factory Zone.fromJson(Map<String, dynamic> json) => Zone(

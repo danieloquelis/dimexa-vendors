@@ -60,8 +60,8 @@ class ClientsController extends GetxController {
     }
 
     //TODO: hardcoded
-    _clients = await clientRepository.searchByZoneIdAndFilterType("FP563", text, _filterType);
-
+    _clients = await clientRepository.searchByZoneIdAndFilterType(globalController.selectedZoneId, text, _filterType);
+    
     _loading = false;
     update();
   }

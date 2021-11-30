@@ -39,6 +39,7 @@ class Session {
   DateTime? fechaExpiracion;
   @Transient()
   List<Zone>? zona;
+  @Backlink('session')
   final zones = ToMany<Zone>();
 
   int? tokenExpiracion;
@@ -72,7 +73,7 @@ class Session {
     this.tokenExpiracion,
   });
 
-  // String? get dbUser => user != null ? user!.toRawJson() : null;
+  // List<String? get dbZones => user != null ? user!.toRawJson() : null;
   // set dbUser(String? value) {
   //   if (value == null) {
   //     user = null;
@@ -107,7 +108,7 @@ class Session {
     menuFav3: Menu.fromJson(json["menu_fav3"]),
     menu: json["menu"] != null ? List<Menu>.from(json["menu"].map((x) => Menu.fromJson(x))) : null,
     fechaExpiracion: json["fecha_expiracion"] != null ? DateTime.parse(json["fecha_expiracion"]) : null,
-    zona: json["zona"] != null ? List<Zone>.from(json["zona"].map((x) => x)) : null,
+    zona: json["zona"] != null ? List<Zone>.from(json["zona"].map((x) => Zone.fromJson(x))) : null,
     tokenExpiracion: json["token_expiracion"],
   );
 

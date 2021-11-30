@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 
+import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:dimexa_vendors/core/values/numbers.dart';
 import 'package:dimexa_vendors/data/enums/sync_type/sync_type.dart';
 import 'package:dimexa_vendors/data/interceptors/client_interceptor/client_interceptor.dart';
@@ -27,11 +28,13 @@ class GlobalController extends GetxController {
   final List<AppPermission> _filteredPermissions = [];
   late Vendor _currentVendor;
   late Session _session;
+  late String _selectedZoneId = "";
 
   ///Getters
   Vendor get currentVendor => _currentVendor;
   List<AppPermission> get filteredPermissions => _filteredPermissions;
   Session get session => _session;
+  String get selectedZoneId => _selectedZoneId;
 
   @override
   void onReady() async {
@@ -58,6 +61,10 @@ class GlobalController extends GetxController {
 
   void setSession(Session session) {
     _session = session;
+    if (session.zones.isNotEmpty) {
+      _selectedZoneId = StringUtils.checkNullOrEmpty(session.zones.first.zonaid);
+    }
+    
   }
 
   void setVendor(Vendor vendor) {
@@ -127,25 +134,29 @@ class GlobalController extends GetxController {
     if (syncManager == null) {
       //sync clients
       int limit = Numbers.maxLimit; //chunk
-      int page = 0;
-      int total = limit + 1; //this is initial value -> needs an api
-      int count = 0;
+      int page = Numbers.startPage;
+      int total = limit; //this is initial value -> needs an api
+      int count = Numbers.zero;
 
       //TODO: api to know if the sync was successfully
-
-      while (count < total) {
-        BackendResponse<Client>? response = await clientInterceptor.syncClients(_session.token, limit, page, "FP563");
-        if (response != null && response.total != null) {
-          List<Client> clientsResponse = response.data;
-          if (clientsResponse.isNotEmpty) {
-            clients.addAll(clientsResponse);
-            total = response.total!;
-            count = count + clientsResponse.length;
+      try {
+        while (count < total) {
+          BackendResponse<Client>? response = await clientInterceptor.syncClients(_session.token, limit, page, _selectedZoneId);
+          if (response != null && response.total != null) {
+            List<Client> clientsResponse = response.data;
+            if (clientsResponse.isNotEmpty) {
+              clients.addAll(clientsResponse);
+              total = response.total!;
+              count = count + clientsResponse.length;
+            }
           }
-        }
 
-        page++;
+          page++;
+        }
+      } catch(e) {
+        print(e);
       }
+
 
       if (clients.isNotEmpty) {
         //save clients
