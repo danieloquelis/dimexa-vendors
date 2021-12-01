@@ -27,7 +27,7 @@ class GlobalController extends GetxController {
   final List<AppPermission> _filteredPermissions = [];
   late Vendor _currentVendor;
   late Session _session;
-  late String _selectedZoneId = "";
+  final RxString _selectedZoneId = "".obs;
   final RxDouble _progressValue = 0.0.obs;
 
   ///Local used variables
@@ -37,7 +37,7 @@ class GlobalController extends GetxController {
   Vendor get currentVendor => _currentVendor;
   List<AppPermission> get filteredPermissions => _filteredPermissions;
   Session get session => _session;
-  String get selectedZoneId => _selectedZoneId;
+  RxString get selectedZoneId => _selectedZoneId;
   RxDouble get progressValue => _progressValue;
 
 
@@ -74,9 +74,14 @@ class GlobalController extends GetxController {
   void setSession(Session session) {
     _session = session;
     if (session.zones.isNotEmpty) {
-      _selectedZoneId = StringUtils.checkNullOrEmpty(session.zones.first.zonaid);
+      _selectedZoneId.value = StringUtils.checkNullOrEmpty(session.zones.first.zonaid);
     }
     
+  }
+
+  void setSelectedZoneId(String zoneId) {
+    _selectedZoneId.value = zoneId;
+    update(["selected_zone_id"]);
   }
 
   void setVendor(Vendor vendor) {

@@ -1,6 +1,7 @@
 import 'package:dimexa_vendors/data/models/session/session.dart';
 import 'package:dimexa_vendors/data/models/zone/zone.dart';
 import 'package:dimexa_vendors/global_controllers/global_controller.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
@@ -10,13 +11,11 @@ class HomeController extends GetxController {
   ///Private variables
   late Session _currentSession;
   late List<Zone> _currentZones = [];
-  late String _selectedZoneId = "";
-
 
   ///Getters
   List<Zone> get currentZones => _currentZones;
   Session get currentSession => _currentSession;
-  String get selectedZoneId => _selectedZoneId;
+  RxString get selectedZoneId => globalController.selectedZoneId;
 
   @override
   void onInit() {
@@ -24,8 +23,15 @@ class HomeController extends GetxController {
     super.onInit();
     _currentSession = globalController.session;
     _currentZones = globalController.session.zones;
-    _selectedZoneId = globalController.selectedZoneId;
   }
 
+  void onChangeZone(String zoneId) async {
+    //hide bottom sheet
+    Get.back();
+    globalController.showLoadingDialog(message: "Cambiando zona, por favor espere...");
+    await Future.delayed(Duration(seconds: 1));
+    globalController.hideLoadingDialog();
+    globalController.setSelectedZoneId(zoneId);
 
+  }
 }
