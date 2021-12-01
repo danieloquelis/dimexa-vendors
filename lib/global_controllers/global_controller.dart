@@ -76,7 +76,6 @@ class GlobalController extends GetxController {
     if (session.zones.isNotEmpty) {
       _selectedZoneId.value = StringUtils.checkNullOrEmpty(session.zones.first.zonaid);
     }
-    
   }
 
   void setSelectedZoneId(String zoneId) {

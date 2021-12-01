@@ -30,6 +30,7 @@ class Client {
     this.lineacredito,
     this.deuda,
     this.lineadisponible,
+    this.lastSync
   });
 
   @Id(assignable: true)
@@ -57,6 +58,7 @@ class Client {
   String? lineacredito;
   String? deuda;
   String? lineadisponible;
+  DateTime? lastSync;
 
   factory Client.fromRawJson(String str) => Client.fromJson(json.decode(str));
   String toRawJson() => json.encode(toJson());
@@ -86,6 +88,7 @@ class Client {
     lineacredito: json["lineacredito"],
     deuda: json["deuda"],
     lineadisponible: json["lineadisponible"],
+    lastSync: DateTime.now()
   );
 
   Map<String, dynamic> toJson() => {

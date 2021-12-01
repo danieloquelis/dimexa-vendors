@@ -1,4 +1,5 @@
 import 'package:dimexa_vendors/core/theme/dimexa_icons/dimexa_icons.dart';
+import 'package:dimexa_vendors/core/utils/date_time_util/date_time_util.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:dimexa_vendors/global_widgets/base_appbar/base_appbar.dart';
 import 'package:dimexa_vendors/global_widgets/tag/tag.dart';
@@ -28,8 +29,10 @@ class _ClientDetailsState extends State<ClientDetails> {
         appBar: BaseAppBar(
           title: AppTranslations.of(context)!.text('client_details'),
           back: _.onBack,
-          syncOnDemand: () {},
-          lastUpdate: "ayer a las 10:00 am"
+          syncOnDemand: () {
+            _.onSyncClient();
+          },
+          lastUpdate: DateTimeUtil.dateTimeToText(_.selectedClient.lastSync)
         ).widget(),
         body: Container(
           height: MediaQuery.of(context).size.height,

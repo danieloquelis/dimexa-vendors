@@ -16,7 +16,7 @@ class ClientStatistics extends StatelessWidget {
       borderRadius: BorderRadius.all(Radius.circular(16)),
       child: Container(
         padding: const EdgeInsets.all(16),
-        color: Colors.white,
+        color: AppColors.cardBackground.withOpacity(0.5),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

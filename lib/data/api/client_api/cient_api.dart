@@ -24,4 +24,19 @@ class ClientAPI {
     );
     return result;
   }
+
+  Future<HttpResult> getById({
+    required String token,
+    required String clientId,
+  }) async {
+    final result = _http.request(
+        '/clientes/getCliente',
+        method: HttpMethod.post,
+        token: token,
+        body: {
+          "clienteid": clientId
+        }
+    );
+    return result;
+  }
 }

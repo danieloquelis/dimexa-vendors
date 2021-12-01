@@ -4,7 +4,6 @@ import 'package:dimexa_vendors/data/api/client_api/cient_api.dart';
 import 'package:dimexa_vendors/data/interceptors/client_interceptor/client_interceptor_abstract.dart';
 import 'package:dimexa_vendors/data/models/backend_response/backend_response.dart';
 import 'package:dimexa_vendors/data/models/client/client.dart';
-import 'package:dimexa_vendors/data/repositories/session_repository/session_repository_impl.dart';
 import 'package:get/get.dart';
 
 class ClientInterceptor implements ClientInterceptorAbstract {
@@ -28,6 +27,27 @@ class ClientInterceptor implements ClientInterceptorAbstract {
         AppException(
             interceptorErrorHandler(
                 result,
+            )
+        )
+    );
+  }
+
+  @override
+  Future<Client?> getClientById(String token, String clientId) async {
+    final result = await _api.getById(
+      token: token ?? "",
+      clientId: clientId
+    );
+
+    if (result.error == null) {
+      BackendResponse<Client> response = BackendResponse.fromJson(result.data, Client.fromJsonModel);
+      return response.data;
+    }
+
+    return Future.error(
+        AppException(
+            interceptorErrorHandler(
+              result,
             )
         )
     );

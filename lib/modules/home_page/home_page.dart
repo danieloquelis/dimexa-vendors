@@ -1,4 +1,5 @@
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
+import 'package:dimexa_vendors/core/utils/date_time_util/date_time_util.dart';
 import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:dimexa_vendors/global_widgets/base_appbar/base_appbar.dart';
@@ -25,7 +26,7 @@ class _HomePageState extends State<HomePage> {
       builder: (_) => Scaffold(
         appBar: BaseAppBar(
           title: AppTranslations.of(context)!.text('welcome'),
-          lastUpdate: "hoy a las 9:00pm",
+          lastUpdate: DateTimeUtil.dateTimeToText(_.lastSyncDate),
           syncOnDemand: () {}
         ).widget(),
         body: Container(

@@ -27,7 +27,7 @@ class CustomExpandableField extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(16)),
           child: Container(
             padding: EdgeInsets.all(10),
-            color: Colors.white,
+            color: AppColors.cardBackground.withOpacity(0.5),
             child: Row(
               children: [
                 ExpandableIcon(
