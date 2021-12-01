@@ -11,11 +11,11 @@ class ClientInterceptor implements ClientInterceptorAbstract {
   final _api = Get.find<ClientAPI>();
 
   @override
-  Future<BackendResponse<Client>?> syncClients(String? token, int limit, int page, String zoneId) async {
+  Future<BackendResponse<Client>?> syncClients(String? token, int limit, int page, List<String> zoneId) async {
     final result = await _api.sync(
       limit: limit,
       page: page,
-      zonedId: zoneId,
+      zoneId: zoneId,
       token: token ?? ""
     );
 

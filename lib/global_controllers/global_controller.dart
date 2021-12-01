@@ -1,6 +1,5 @@
 
-import 'dart:convert';
-
+import 'dart:async';
 import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:dimexa_vendors/core/values/numbers.dart';
 import 'package:dimexa_vendors/data/enums/sync_type/sync_type.dart';
@@ -10,10 +9,10 @@ import 'package:dimexa_vendors/data/models/backend_response/backend_response.dar
 import 'package:dimexa_vendors/data/models/session/session.dart';
 import 'package:dimexa_vendors/data/models/sync_manager/sync_manager.dart';
 import 'package:dimexa_vendors/data/models/vendor/vendor.dart';
+import 'package:dimexa_vendors/data/models/zone/zone.dart';
 import 'package:dimexa_vendors/data/repositories/client_repository/client_repository.dart';
 import 'package:dimexa_vendors/data/repositories/sync_manager_repository/sync_manager_repository.dart';
-import 'package:dimexa_vendors/modules/login_page/login_page.dart';
-import 'package:flutter/services.dart';
+import 'package:dimexa_vendors/global_widgets/loading_dialog/loading_dialog.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:dimexa_vendors/data/models/client/client.dart';
@@ -29,12 +28,25 @@ class GlobalController extends GetxController {
   late Vendor _currentVendor;
   late Session _session;
   late String _selectedZoneId = "";
+  final RxDouble _progressValue = 0.0.obs;
+
+  ///Local used variables
+  bool isLoadingDialogOn = false;
 
   ///Getters
   Vendor get currentVendor => _currentVendor;
   List<AppPermission> get filteredPermissions => _filteredPermissions;
   Session get session => _session;
   String get selectedZoneId => _selectedZoneId;
+  RxDouble get progressValue => _progressValue;
+
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+
+  }
 
   @override
   void onReady() async {
@@ -71,59 +83,44 @@ class GlobalController extends GetxController {
     _currentVendor = vendor;
   }
 
-  void sync() async {
-    try {
-      const store = null; //globalController.store;
-
-      //vendors
-      final vendorBox = store.box<Vendor>();
-      List<Vendor> currentVendors = vendorBox.getAll();
-      if (currentVendors.isEmpty) {
-        final String vendorPayload = await rootBundle.loadString('mockdata/dimexa-users.json');
-        final jsonVendors = await json.decode(vendorPayload);
-        List<Vendor> vendors = [];
-        if (jsonVendors != null) {
-          jsonVendors.forEach((vendorJson) {
-            if (vendorJson != null && vendorJson.toString().isNotEmpty) {
-              Vendor vendor = Vendor.fromJson(vendorJson);
-              vendors.add(vendor);
-            }
-          });
-        }
-
-        vendorBox.putMany(vendors);
-
-      }
-
-      //clients
-      final clientBox = store.box<Client>();
-      List<Client> currentClients = clientBox.getAll();
-      if (currentClients.isEmpty) {
-        final String payload = await rootBundle.loadString('mockdata/dimexa-clientes-lima.json');
-        final jsonData = await json.decode(payload);
-        List<Client> clients = [];
-        if (jsonData != null) {
-          jsonData.forEach((clientJson) {
-            if (clientJson != null && clientJson.toString().isNotEmpty) {
-              Client client = Client.fromJson(clientJson);
-              clients.add(client);
-            }
-          });
-        }
-
-        clientBox.putMany(clients);
-
-      }
-
-
-      Get.to(() => Login(), transition: Transition.rightToLeft);
-    } catch(e) {
-      print(e.toString());
-      Get.defaultDialog(
-          title: "Error in splash",
-          middleText: e.toString()
-      );
+  void showLoadingDialog({String? message}) {
+    if (isLoadingDialogOn) {
+      isLoadingDialogOn = false;
+      Get.back();
     }
+
+    isLoadingDialogOn = true;
+    LoadingDialog.showDialog(context: Get.overlayContext!, message: message);
+  }
+
+  Future hideLoadingDialog({String? errorMessage}) async {
+    if (StringUtils.isNotNullNorEmpty(errorMessage)) {
+      if (isLoadingDialogOn) {
+        //Dismiss the current loading/progress dialog
+        isLoadingDialogOn = false;
+        Get.back();
+      }
+      isLoadingDialogOn = true;
+      LoadingDialog.showError(context: Get.overlayContext!, message: errorMessage);
+      await Future.delayed(const Duration(seconds: 4));
+    }
+
+    isLoadingDialogOn = false;
+    Get.back();
+  }
+
+  Future showSyncDialog({String? prefixMessage, required RxDouble value}) async {
+    if (isLoadingDialogOn) {
+      isLoadingDialogOn = false;
+      Get.back();
+    }
+
+    isLoadingDialogOn = true;
+    LoadingDialog.showProgress(
+      context: Get.overlayContext!,
+      prefixMessage: prefixMessage,
+      progress: value
+    );
   }
 
   Future syncDownClients() async {
@@ -135,28 +132,46 @@ class GlobalController extends GetxController {
       //sync clients
       int limit = Numbers.maxLimit; //chunk
       int page = Numbers.startPage;
-      int total = limit; //this is initial value -> needs an api
       int count = Numbers.zero;
+      int total = count + 1; //this is initial value -> needs an api
+
+      List<String> zoneIds = [];
+      for (Zone zone in _session.zones) {
+        if (StringUtils.isNotNullNorEmpty(zone.zonaid)) {
+          zoneIds.add(zone.zonaid!);
+        }
+      }
+      showSyncDialog(
+        value: _progressValue,
+        prefixMessage: "Sincronizando clientes"
+      );
 
       //TODO: api to know if the sync was successfully
       try {
         while (count < total) {
-          BackendResponse<Client>? response = await clientInterceptor.syncClients(_session.token, limit, page, _selectedZoneId);
+          BackendResponse<Client>? response = await clientInterceptor.syncClients(_session.token, limit, page, zoneIds);
           if (response != null && response.total != null) {
             List<Client> clientsResponse = response.data;
             if (clientsResponse.isNotEmpty) {
               clients.addAll(clientsResponse);
               total = response.total!;
               count = count + clientsResponse.length;
+              if (count > 0 && total > 0) {
+                _progressValue.value = (count * 100) / total;
+              }
             }
           }
 
           page++;
         }
       } catch(e) {
+        hideLoadingDialog(
+          errorMessage: "Ocurrió un error sincronizando clientes, por favor intente otra vez"
+        );
         print(e);
       }
 
+      hideLoadingDialog();
 
       if (clients.isNotEmpty) {
         //save clients
@@ -164,6 +179,8 @@ class GlobalController extends GetxController {
         //save new sync manager for this type
         syncManagerRepository.updateByType(SyncType.clients, syncDown: true);
       }
+
+
       return;
     }
 
@@ -172,6 +189,7 @@ class GlobalController extends GetxController {
     DateTime now = DateTime.now();
     if (now.difference(lastSync).inDays >= Numbers.maxDaysAllow) {
       //TODO: sent to sync manager page
+      print('debe sincronizar');
     }
   }
 }
