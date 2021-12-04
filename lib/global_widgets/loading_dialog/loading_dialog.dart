@@ -1,5 +1,4 @@
 import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
-import 'package:dimexa_vendors/global_controllers/global_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -52,8 +51,8 @@ class LoadingDialog {
               size: 50,
             ),
             decoration: BoxDecoration(
-              borderRadius: new BorderRadius.circular(40.0),
-              border: new Border.all(
+              borderRadius: BorderRadius.circular(40.0),
+              border: Border.all(
                 width: 4.0,
                 color: Colors.grey.shade500,
               ),
@@ -76,7 +75,7 @@ class LoadingDialog {
           child: ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(16)),
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               color: Colors.white,
               height: 200,
               width: 300,
@@ -85,7 +84,7 @@ class LoadingDialog {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   child,
-                  SizedBox(height: 24,),
+                  const SizedBox(height: 24,),
                   dynamicMessage ?? Text(
                     StringUtils.checkNullOrEmpty(message),
                     style: TextStyle(color: Colors.grey.shade500),
@@ -99,17 +98,3 @@ class LoadingDialog {
     );
   }
 }
-
-/*
-Obx(
-              () => TweenAnimationBuilder(
-                tween: Tween<double>(begin: 0.0, end: progress.value),
-                duration: Duration(milliseconds: 3500),
-                builder: (_, double value, __) => value == 0.0 ? SpinKitRing(color: Colors.grey.shade500, size: 80,) : CircularProgressIndicator(
-                  color: Colors.grey.shade500,
-                  value: value,
-                  strokeWidth: 7,
-                ),
-              ),
-          )
- */

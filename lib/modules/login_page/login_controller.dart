@@ -1,3 +1,5 @@
+import 'package:dimexa_vendors/core/utils/app_exception/app_exception.dart';
+import 'package:dimexa_vendors/core/values/strings.dart';
 import 'package:dimexa_vendors/data/enums/sync_type/sync_type.dart';
 import 'package:dimexa_vendors/data/interceptors/auth_interceptor/auth_interceptor_impl.dart';
 import 'package:dimexa_vendors/data/models/session/session.dart';
@@ -40,12 +42,16 @@ class LoginController extends GetxController {
 
     Session? session = await authInterceptor.login(_userName, _password)
     .onError((error, stackTrace) {
-      //TODO: show dialogs with errors
-      //stop loading
-      //show error dialog
-      globalController.hideLoadingDialog(
-        errorMessage: '$error'
-      );
+      if (error is AppException) {
+        globalController.hideLoadingDialog(
+            errorMessage: error.uiMessage
+        );
+      } else {
+        globalController.hideLoadingDialog(
+            errorMessage: Strings.systemError
+        );
+      }
+
       return null;
     });
 

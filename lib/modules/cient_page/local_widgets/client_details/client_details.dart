@@ -2,6 +2,7 @@ import 'package:dimexa_vendors/core/theme/dimexa_icons/dimexa_icons.dart';
 import 'package:dimexa_vendors/core/utils/date_time_util/date_time_util.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:dimexa_vendors/global_widgets/base_appbar/base_appbar.dart';
+import 'package:dimexa_vendors/global_widgets/custom_info_field/custom_info_field.dart';
 import 'package:dimexa_vendors/global_widgets/tag/tag.dart';
 import 'package:dimexa_vendors/modules/cient_page/clients_controller.dart';
 import 'package:dimexa_vendors/modules/cient_page/local_widgets/client_addresses/client_addresses.dart';
@@ -40,61 +41,29 @@ class _ClientDetailsState extends State<ClientDetails> {
             borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
             color: AppColors.basePage
           ),
-          child: SingleChildScrollView(
-            child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-              child: Column(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.symmetric(vertical: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+          child: Column(
+            children: [
+              const SizedBox(height: 16,),
+              buttons(),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                    child: Column(
                       children: [
-                        Tag(
-                          label: AppTranslations.of(context)!.text("order"),
-                          fontSize: 18,
-                          backgroundColor: AppColors.blue,
-                          borderColor:  AppColors.blue,
-                          fontColor: Colors.white,
-                        ),
-                        const SizedBox(width: 8,),
-                        Tag(
-                          label: AppTranslations.of(context)!.text("collect"),
-                          fontSize: 18,
-                          backgroundColor: AppColors.blue,
-                          borderColor:  AppColors.blue,
-                          fontColor: Colors.white,
-                        ),
-                        const SizedBox(width: 8,),
-                        Tag(
-                          label: 'Más...',
-                          fontSize: 18,
-                          backgroundColor: Colors.transparent,
-                          borderColor:  AppColors.blue,
-                          fontColor: AppColors.blue,
-                          onClick: () {
-                            showMoreActions();
-                          },
-                        ),
+                        ClientGeneralInfo(_.selectedClient),
+                        const SizedBox(height: 24,),
+                        ClientComercialInfo(_.selectedClient),
+                        const SizedBox(height: 24,),
+                        ClientContacts(),
+                        const SizedBox(height: 24,),
+                        ClientAddresses()
                       ],
-                    ),
+                    )
                   ),
-                  CardTitle(
-                    title: "Indicadores",
-                  ),
-                  ClientStatistics(_.selectedClient),
-                  const SizedBox(height: 16,),
-                  CardTitle(
-                    title: AppTranslations.of(context)!.text("information"),
-                    actionIcon: Icons.edit,
-                  ),
-                  ClientGeneralInfo(_.selectedClient),
-                  ClientComercialInfo(_.selectedClient),
-                  ClientContacts(),
-                  ClientAddresses(),
-                ],
+                ),
               ),
-            ),
+            ],
           )
         ),
       ),
@@ -172,5 +141,62 @@ class _ClientDetailsState extends State<ClientDetails> {
         Navigator.pop(context);
       },
     );
+  }
+
+  Widget buttons() {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Tag(
+            label: AppTranslations.of(context)!.text("order"),
+            fontSize: 18,
+            backgroundColor: AppColors.blue,
+            borderColor:  AppColors.blue,
+            fontColor: Colors.white,
+          ),
+          const SizedBox(width: 8,),
+          Tag(
+            label: AppTranslations.of(context)!.text("collect"),
+            fontSize: 18,
+            backgroundColor: AppColors.blue,
+            borderColor:  AppColors.blue,
+            fontColor: Colors.white,
+          ),
+          const SizedBox(width: 8,),
+          Tag(
+            label: 'Más...',
+            fontSize: 18,
+            backgroundColor: Colors.transparent,
+            borderColor:  AppColors.blue,
+            fontColor: AppColors.blue,
+            onClick: () {
+              showMoreActions();
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  prevContent(ClientsController _){
+     return Column(
+       children: [
+         CardTitle(
+           title: "Indicadores",
+         ),
+         ClientStatistics(_.selectedClient),
+         const SizedBox(height: 16,),
+         CardTitle(
+           title: AppTranslations.of(context)!.text("information"),
+           actionIcon: Icons.edit,
+         ),
+         ClientGeneralInfo(_.selectedClient),
+         ClientComercialInfo(_.selectedClient),
+         ClientContacts(),
+         ClientAddresses(),
+       ],
+     );
   }
 }

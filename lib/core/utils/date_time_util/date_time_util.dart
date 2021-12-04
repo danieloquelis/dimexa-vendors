@@ -8,8 +8,8 @@ class DateTimeUtil {
 
     final DateTime now = DateTime.now();
     //getting clock format
-    final timeFormat = DateFormat('HH:mm a');
-    final dateFormat = DateFormat('dd/mm');
+    final timeFormat = DateFormat('hh:mm a');
+    final dateFormat = DateFormat('dd/MM');
     final clockString = timeFormat.format(dateTime);
 
     String prefix = "";
