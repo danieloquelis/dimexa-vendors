@@ -10,7 +10,7 @@ class ClientAPI {
     required String token,
     required int limit,
     required int page,
-    required String zonedId
+    required List<String> zoneId
   }) async {
     final result = _http.request(
         '/clientes/getClientesZona',
@@ -19,7 +19,22 @@ class ClientAPI {
         body: {
           "limite": limit,
           "pagina": page,
-          "zonaid": zonedId
+          "zonaid": zoneId
+        }
+    );
+    return result;
+  }
+
+  Future<HttpResult> getById({
+    required String token,
+    required String clientId,
+  }) async {
+    final result = _http.request(
+        '/clientes/getCliente',
+        method: HttpMethod.post,
+        token: token,
+        body: {
+          "clienteid": clientId
         }
     );
     return result;

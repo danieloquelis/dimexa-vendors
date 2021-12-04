@@ -66,5 +66,29 @@ class ClientRepository implements ClientRepositoryAbstract {
     return Future.value(List.empty());
   }
 
+  @override
+  Client updateClientById(String zoneId, String clientId, Client client) {
+    try {
+      Client? currentClient = clientBox.query(Client_.zonaid.equals(zoneId).and(Client_.clienteid.equals(clientId))).build().findFirst();
+      client.id = currentClient!.id;
+      client.lastSync = DateTime.now();
+      clientBox.put(client);
+    } catch(e) {
+      onDBCatchError();
+    }
+    return client;
+  }
+
+  @override
+  Client? getById(String zoneId, String clientId) {
+    try {
+      return clientBox.query(Client_.zonaid.equals(zoneId).and(Client_.clienteid.equals(clientId))).build().findFirst();
+    } catch(e) {
+      onDBCatchError();
+    }
+
+    return null;
+  }
+
 
 }

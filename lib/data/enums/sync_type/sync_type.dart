@@ -1,4 +1,5 @@
 enum SyncType {
   clients,
-  products
+  products,
+  session
 }

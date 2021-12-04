@@ -1,11 +1,14 @@
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
+import 'package:dimexa_vendors/core/utils/date_time_util/date_time_util.dart';
 import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:dimexa_vendors/global_widgets/base_appbar/base_appbar.dart';
 import 'package:dimexa_vendors/global_widgets/base_dropdown/base_dropdown.dart';
+import 'package:dimexa_vendors/global_widgets/cupertino_bsheet_item/cupertino_bsheet_item.dart';
 import 'package:dimexa_vendors/modules/home_page/home_controller.dart';
 import 'package:dimexa_vendors/modules/home_page/local_widgets/custom_bar_chart/custom_bar_chart.dart';
 import 'package:dimexa_vendors/modules/home_page/local_widgets/indicator/indicator.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -23,7 +26,7 @@ class _HomePageState extends State<HomePage> {
       builder: (_) => Scaffold(
         appBar: BaseAppBar(
           title: AppTranslations.of(context)!.text('welcome'),
-          lastUpdate: "hoy a las 9:00pm",
+          lastUpdate: DateTimeUtil.dateTimeToText(_.lastSyncDate),
           syncOnDemand: () {}
         ).widget(),
         body: Container(
@@ -46,14 +49,19 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 SizedBox(height: 6,),
-                _.currentZones.length > 1 ?
-                BaseDropdown(
-                  fontSize: 14,
-                  borderColor: Colors.transparent,
-                  backgroundColor: Colors.grey.shade200,
-                  label: StringUtils.checkNullOrEmpty(_.selectedZoneId),
-                  onClick: () {},
-                ): Text(StringUtils.checkNullOrEmpty(_.selectedZoneId)),
+                Obx(
+                    () => _.currentZones.length > 1 ?
+                    BaseDropdown(
+                      fontSize: 14,
+                      borderColor: Colors.transparent,
+                      backgroundColor: Colors.grey.shade200,
+                      label: StringUtils.checkNullOrEmpty(_.selectedZoneId.value),
+                      onClick: () {
+                        showZones(_);
+                      },
+                    ): Text(StringUtils.checkNullOrEmpty(_.selectedZoneId.value)),
+                ),
+
                 SizedBox(height: 36,),
                 Text(
                   'Avance',
@@ -123,6 +131,30 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
+    );
+  }
+
+  Future<dynamic>? showZones(HomeController _) {
+    return showCupertinoModalPopup(
+        context: context,
+        builder: (BuildContext context) => CupertinoActionSheet(
+          title: Text(
+            "Seleccione una zona",
+            style: const TextStyle(
+                fontSize: 18,
+                color: AppColors.gray
+            ),
+          ),
+          actions: _.currentZones.map((zone) {
+            return CupertinoBSheetItem(
+              label: '${zone.zonaid}',
+              onClick: () {
+                _.onChangeZone(zone.zonaid!);
+              },
+              isSelected: false,
+            );
+          }).toList(),
+        )
     );
   }
 }

@@ -14,7 +14,7 @@ class _ProductsPageState extends State<ProductsPage> {
     return Scaffold(
       appBar: BaseAppBar(
         title: AppTranslations.of(context)!.text('products'),
-        lastUpdate: "hoy a las 9:00pm",
+        //lastUpdate: "hoy a las 9:00pm",
       ).widget(),
       body: Container(
         width: MediaQuery.of(context).size.width,

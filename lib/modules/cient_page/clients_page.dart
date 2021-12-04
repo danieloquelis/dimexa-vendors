@@ -1,3 +1,4 @@
+import 'package:dimexa_vendors/core/utils/date_time_util/date_time_util.dart';
 import 'package:dimexa_vendors/core/values/numbers.dart';
 import 'package:dimexa_vendors/data/enums/search_client_filter/search_client_filter.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
@@ -28,7 +29,7 @@ class _ClientsPageState extends State<ClientsPage> {
       builder: (_) => Scaffold(
         appBar: BaseAppBar(
           title: AppTranslations.of(context)!.text('clients'),
-          lastUpdate: "hoy a las 9:00pm",
+          lastUpdate: DateTimeUtil.dateTimeToText(_.lastSyncDate),//"hoy a las 9:00pm",
           syncOnDemand: () {}
         ).widget(),
         body: Container(

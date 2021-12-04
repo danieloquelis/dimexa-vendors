@@ -5,4 +5,8 @@ abstract class ClientRepositoryAbstract {
   void saveSyncDownClients(String zoneId, List<Client> clients);
 
   Future<List<Client>> searchByZoneIdAndFilterType(String zoneId, String searchText, SearchClientFilter filterType);
+
+  Client updateClientById(String zoneId, String clientId, Client client);
+
+  Client? getById(String zoneId, String clientId);
 }
