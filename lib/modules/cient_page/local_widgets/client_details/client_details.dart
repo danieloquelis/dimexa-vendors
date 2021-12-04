@@ -23,17 +23,19 @@ class _ClientDetailsState extends State<ClientDetails> {
       init: ClientsController(),
       builder: (_) => Scaffold(
         appBar: BaseAppBar(
-          title: AppTranslations.of(context)!.text('client_details'),
+
           back: _.onBack,
           syncOnDemand: () {
             _.onSyncClient();
           },
-          lastUpdate: DateTimeUtil.dateTimeToText(_.selectedClient.lastSync)
         ).widget(),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClientStatistics(_.selectedClient),
+            ClientStatistics(
+              client: _.selectedClient,
+              lastUpdate: DateTimeUtil.dateTimeToText(_.selectedClient.lastSync),
+            ),
             Expanded(
               child: Container(
                 decoration: const BoxDecoration(

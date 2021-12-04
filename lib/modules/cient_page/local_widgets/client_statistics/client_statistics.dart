@@ -1,14 +1,18 @@
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
+import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:flutter/material.dart';
 import 'package:dimexa_vendors/data/models/client/client.dart';
 
 class ClientStatistics extends StatelessWidget {
 
-  late Client client;
+  Client? client;
+  String? lastUpdate;
 
-
-  ClientStatistics(this.client);
+  ClientStatistics({
+    required this.client,
+    this.lastUpdate
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +26,7 @@ class ClientStatistics extends StatelessWidget {
             style: TextStyle(
               color: Colors.white,
               fontSize: 20,
+              fontWeight: FontWeight.w700
             ),
           ),
           SizedBox(height: 8,),
@@ -47,6 +52,17 @@ class ClientStatistics extends StatelessWidget {
                 ],
               )
             ],
+          ),
+         SizedBox(height: 16,),
+          Visibility(
+            visible: StringUtils.isNotNullNorEmpty(lastUpdate),
+            child: Text(
+                'Última sincronización ${lastUpdate!}',
+              style: const TextStyle(
+                  fontSize: 12,
+                color: Colors.white
+              ),
+            ),
           )
         ],
       ),
