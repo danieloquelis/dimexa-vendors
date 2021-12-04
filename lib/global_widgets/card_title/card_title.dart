@@ -5,14 +5,18 @@ class CardTitle extends StatelessWidget {
   String? title;
   IconData? actionIcon;
   Function? onClick;
-  Color? color;
+  Color? iconColor;
+  Color? fontColor;
 
 
   CardTitle(
       {this.title = "--",
       this.actionIcon,
       this.onClick,
-      this.color = AppColors.gray});
+      this.iconColor = AppColors.gray,
+        this.fontColor = AppColors.gray,
+
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +27,11 @@ class CardTitle extends StatelessWidget {
         children: [
           Text(
             title!,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              color: fontColor
+            ),
           ),
           Visibility(
             visible: actionIcon != null,
@@ -35,7 +43,7 @@ class CardTitle extends StatelessWidget {
               },
               child: Icon(
                 actionIcon,
-                color: color,
+                color: iconColor,
               ),
             )
           )

@@ -8,7 +8,9 @@ import 'package:dimexa_vendors/data/models/client/client.dart';
 import 'package:dimexa_vendors/data/repositories/client_repository/client_repository.dart';
 import 'package:dimexa_vendors/data/repositories/sync_manager_repository/sync_manager_repository.dart';
 import 'package:dimexa_vendors/global_controllers/global_controller.dart';
+import 'package:dimexa_vendors/modules/cient_page/local_widgets/details_bottom_sheet/details_bottom_sheet.dart';
 import 'package:dimexa_vendors/routes/app_routes/app_routes.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ClientsController extends GetxController {
@@ -119,6 +121,50 @@ class ClientsController extends GetxController {
     _selectedClient = clientRepository.updateClientById(globalController.selectedZoneId.value, _selectedClient.clienteid!, client);
 
     update();
+  }
+
+  void showGeneralInfoBottomSheet() {
+    Get.bottomSheet(
+      DetailsBottomSheet.generalInfo(
+        context: Get.overlayContext!,
+        client: _selectedClient,
+        height: 390
+      ).show(),
+      isScrollControlled: true
+    );
+  }
+
+  void showCommercialInfoBottomSheet() {
+    Get.bottomSheet(
+        DetailsBottomSheet.commercialInfo(
+            context: Get.overlayContext!,
+            client: _selectedClient,
+            height: 316
+        ).show(),
+        isScrollControlled: true
+    );
+  }
+
+  void showContactsBottomSheet() {
+    Get.bottomSheet(
+        DetailsBottomSheet.contacts(
+            context: Get.overlayContext!,
+            client: _selectedClient,
+            height: 360
+        ).showOnlyWidget(),
+        isScrollControlled: true
+    );
+  }
+
+  void showAddressesBottomSheet() {
+    Get.bottomSheet(
+        DetailsBottomSheet.adresses(
+            context: Get.overlayContext!,
+            client: _selectedClient,
+            height: 150
+        ).showOnlyWidget(),
+        isScrollControlled: true
+    );
   }
 
 }

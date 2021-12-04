@@ -1,54 +1,70 @@
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
+import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:flutter/material.dart';
 import 'package:dimexa_vendors/data/models/client/client.dart';
 
 class ClientStatistics extends StatelessWidget {
 
-  late Client client;
+  Client? client;
+  String? lastUpdate;
 
-
-  ClientStatistics(this.client);
+  ClientStatistics({
+    required this.client,
+    this.lastUpdate
+  });
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(16)),
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        color: AppColors.cardBackground.withOpacity(0.5),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              children: [
-                Text(client.lineacredito!, style: TextStyle(color: AppColors.blue, fontWeight: FontWeight.bold, fontSize: 18)),
-                Text(
-                  AppTranslations.of(context)!.text("credit_line"),
-                  style: const TextStyle(fontSize: 12),
-                )
-              ],
+    return Container(
+      margin: const EdgeInsets.only(left: 24, right: 24, bottom: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Inversiones maticorena',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.w700
             ),
-            Column(
-              children: [
-                Text(client.deuda!, style: TextStyle(color: AppColors.red, fontWeight: FontWeight.bold, fontSize: 18)),
-                Text(
-                  AppTranslations.of(context)!.text("debt"),
-                  style: const TextStyle(fontSize: 12),
-                )
-              ],
+          ),
+          SizedBox(height: 8,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                children: [
+                  Text('Crédito', style: TextStyle(color: Colors.white),),
+                  Text('S/. 0.00', style: TextStyle(color: Colors.white))
+                ],
+              ),
+              Column(
+                children: [
+                  Text('Deuda', style: TextStyle(color: Colors.white)),
+                  Text('S/. 0.00', style: TextStyle(color: Colors.white))
+                ],
+              ),
+              Column(
+                children: [
+                  Text('Disponible', style: TextStyle(color: Colors.white)),
+                  Text('S/. 0.00', style: TextStyle(color: Colors.white))
+                ],
+              )
+            ],
+          ),
+         SizedBox(height: 16,),
+          Visibility(
+            visible: StringUtils.isNotNullNorEmpty(lastUpdate),
+            child: Text(
+                'Última sincronización ${lastUpdate!}',
+              style: const TextStyle(
+                  fontSize: 12,
+                color: Colors.white
+              ),
             ),
-            Column(
-              children: [
-                Text(client.lineadisponible!, style: TextStyle(color: AppColors.green, fontWeight: FontWeight.bold, fontSize: 18)),
-                Text(
-                  AppTranslations.of(context)!.text("available"),
-                  style: const TextStyle(fontSize: 12),
-                )
-              ],
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

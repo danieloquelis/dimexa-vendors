@@ -1,8 +1,9 @@
+import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:dimexa_vendors/core/values/numbers.dart';
 import 'package:flutter/material.dart';
 
 class BaseAppBar {
-  String title;
+  String? title;
   String? lastUpdate;
   Function? syncOnDemand;
   Function? openDrawer;
@@ -10,7 +11,7 @@ class BaseAppBar {
 
 
   BaseAppBar({
-    required this.title,
+    this.title,
     this.lastUpdate,
     this.syncOnDemand,
     this.openDrawer,
@@ -49,7 +50,7 @@ class BaseAppBar {
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title),
+          Text(StringUtils.checkNullOrEmpty(title)),
           Visibility(
             visible: lastUpdate != null && lastUpdate!.isNotEmpty,
             child: Text(

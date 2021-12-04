@@ -3,17 +3,19 @@ import 'package:flutter/material.dart';
 
 class CustomInfoField extends StatelessWidget {
 
-  String? label;
+  String label;
   String? value;
+  Widget? widgetValue;
   IconData? iconAction;
   Function? onClickAction;
 
 
   CustomInfoField({
-    this.label = "--",
+    required this.label,
     this.value,
     this.iconAction,
-    this.onClickAction
+    this.onClickAction,
+    this.widgetValue
   });
 
   @override
@@ -25,9 +27,14 @@ class CustomInfoField extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(label!, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: AppColors.green),),
+              Text(label, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: AppColors.green),),
               const SizedBox(height: 2,),
-              Text(value ?? "-- Completar --", style: TextStyle(fontSize: 16, color: value == null ? AppColors.orange : AppColors.gray),),
+              widgetValue != null ?
+              Padding(
+                padding: const EdgeInsets.only(top: 4),
+                child: widgetValue!,
+              ) :
+              Text(value ?? "--", style: TextStyle(fontSize: 16, color: value == null ? AppColors.orange : AppColors.gray),),
             ],
           ),
         ),
