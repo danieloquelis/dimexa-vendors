@@ -12,43 +12,43 @@ class ClientStatistics extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(16)),
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        color: AppColors.cardBackground.withOpacity(0.5),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              children: [
-                Text(client.lineacredito!, style: TextStyle(color: AppColors.blue, fontWeight: FontWeight.bold, fontSize: 18)),
-                Text(
-                  AppTranslations.of(context)!.text("credit_line"),
-                  style: const TextStyle(fontSize: 12),
-                )
-              ],
+    return Container(
+      margin: const EdgeInsets.only(left: 24, right: 24, bottom: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Inversiones maticorena',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
             ),
-            Column(
-              children: [
-                Text(client.deuda!, style: TextStyle(color: AppColors.red, fontWeight: FontWeight.bold, fontSize: 18)),
-                Text(
-                  AppTranslations.of(context)!.text("debt"),
-                  style: const TextStyle(fontSize: 12),
-                )
-              ],
-            ),
-            Column(
-              children: [
-                Text(client.lineadisponible!, style: TextStyle(color: AppColors.green, fontWeight: FontWeight.bold, fontSize: 18)),
-                Text(
-                  AppTranslations.of(context)!.text("available"),
-                  style: const TextStyle(fontSize: 12),
-                )
-              ],
-            )
-          ],
-        ),
+          ),
+          SizedBox(height: 8,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                children: [
+                  Text('Crédito', style: TextStyle(color: Colors.white),),
+                  Text('S/. 0.00', style: TextStyle(color: Colors.white))
+                ],
+              ),
+              Column(
+                children: [
+                  Text('Deuda', style: TextStyle(color: Colors.white)),
+                  Text('S/. 0.00', style: TextStyle(color: Colors.white))
+                ],
+              ),
+              Column(
+                children: [
+                  Text('Disponible', style: TextStyle(color: Colors.white)),
+                  Text('S/. 0.00', style: TextStyle(color: Colors.white))
+                ],
+              )
+            ],
+          )
+        ],
       ),
     );
   }

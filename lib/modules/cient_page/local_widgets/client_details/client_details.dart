@@ -2,16 +2,11 @@ import 'package:dimexa_vendors/core/theme/dimexa_icons/dimexa_icons.dart';
 import 'package:dimexa_vendors/core/utils/date_time_util/date_time_util.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:dimexa_vendors/global_widgets/base_appbar/base_appbar.dart';
-import 'package:dimexa_vendors/global_widgets/custom_info_field/custom_info_field.dart';
 import 'package:dimexa_vendors/global_widgets/tag/tag.dart';
 import 'package:dimexa_vendors/modules/cient_page/clients_controller.dart';
-import 'package:dimexa_vendors/modules/cient_page/local_widgets/client_addresses/client_addresses.dart';
-import 'package:dimexa_vendors/modules/cient_page/local_widgets/client_comercial_info/client_comercial_info.dart';
-import 'package:dimexa_vendors/modules/cient_page/local_widgets/client_contacts/client_contacts.dart';
-import 'package:dimexa_vendors/modules/cient_page/local_widgets/client_general_info/client_general_info.dart';
-import 'package:dimexa_vendors/modules/cient_page/local_widgets/client_statistics/client_statistics.dart';
-import 'package:dimexa_vendors/global_widgets/card_title/card_title.dart';
+import 'package:dimexa_vendors/modules/cient_page/local_widgets/client_card_info/client_card_info.dart';
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
+import 'package:dimexa_vendors/modules/cient_page/local_widgets/client_statistics/client_statistics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
@@ -35,36 +30,62 @@ class _ClientDetailsState extends State<ClientDetails> {
           },
           lastUpdate: DateTimeUtil.dateTimeToText(_.selectedClient.lastSync)
         ).widget(),
-        body: Container(
-          height: MediaQuery.of(context).size.height,
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
-            color: AppColors.basePage
-          ),
-          child: Column(
-            children: [
-              const SizedBox(height: 16,),
-              buttons(),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-                    child: Column(
-                      children: [
-                        ClientGeneralInfo(_.selectedClient),
-                        const SizedBox(height: 24,),
-                        ClientComercialInfo(_.selectedClient),
-                        const SizedBox(height: 24,),
-                        ClientContacts(),
-                        const SizedBox(height: 24,),
-                        ClientAddresses()
-                      ],
-                    )
-                  ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClientStatistics(_.selectedClient),
+            Expanded(
+              child: Container(
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
+                  color: AppColors.basePage
                 ),
+                child: Column(
+                  children: [
+                    actionButtons(),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                          child: Column(
+                            children: [
+                              ClientCardInfo.generalInfo(
+                                context: context,
+                                title: AppTranslations.of(context)!.text("general_data"),
+                                client: _.selectedClient,
+                                onClickSeeMore: () => _.showGeneralInfoBottomSheet(),
+                              ),
+                              const SizedBox(height: 24,),
+                              ClientCardInfo.commercialData(
+                                context: context,
+                                title: AppTranslations.of(context)!.text("commercial_data"),
+                                client: _.selectedClient,
+                                onClickSeeMore: () => _.showCommercialInfoBottomSheet(),
+                              ),
+                              const SizedBox(height: 24,),
+                              ClientCardInfo.contacts(
+                                context: context,
+                                title: AppTranslations.of(context)!.text("contacts"),
+                                client: _.selectedClient,
+                                onClickSeeMore: () => _.showContactsBottomSheet(),
+                              ),
+                              const SizedBox(height: 24,),
+                              ClientCardInfo.addresses(
+                                context: context,
+                                title: AppTranslations.of(context)!.text("addresses"),
+                                client: _.selectedClient,
+                                onClickSeeMore: () => _.showAddressesBottomSheet(),
+                              )
+                            ],
+                          )
+                        ),
+                      ),
+                    ),
+                  ],
+                )
               ),
-            ],
-          )
+            ),
+          ],
         ),
       ),
     );
@@ -143,11 +164,11 @@ class _ClientDetailsState extends State<ClientDetails> {
     );
   }
 
-  Widget buttons() {
+  Widget actionButtons() {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8),
+      margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Tag(
             label: AppTranslations.of(context)!.text("order"),
@@ -178,25 +199,5 @@ class _ClientDetailsState extends State<ClientDetails> {
         ],
       ),
     );
-  }
-
-  prevContent(ClientsController _){
-     return Column(
-       children: [
-         CardTitle(
-           title: "Indicadores",
-         ),
-         ClientStatistics(_.selectedClient),
-         const SizedBox(height: 16,),
-         CardTitle(
-           title: AppTranslations.of(context)!.text("information"),
-           actionIcon: Icons.edit,
-         ),
-         ClientGeneralInfo(_.selectedClient),
-         ClientComercialInfo(_.selectedClient),
-         ClientContacts(),
-         ClientAddresses(),
-       ],
-     );
   }
 }
