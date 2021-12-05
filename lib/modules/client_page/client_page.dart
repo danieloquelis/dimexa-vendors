@@ -23,13 +23,13 @@ class _ClientsPageState extends State<ClientsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ClientsController>(
-      init: ClientsController(),
+    return GetBuilder<ClientController>(
+      init: ClientController(),
       builder: (_) => Scaffold(
         appBar: BaseAppBar(
           title: AppTranslations.of(context)!.text('clients'),
-          lastUpdate: DateTimeUtil.dateTimeToText(_.lastSyncDate),//"hoy a las 9:00pm",
-          syncOnDemand: () {}
+          lastUpdate: DateTimeUtil.dateTimeToText(_.lastSyncDate),
+          syncOnDemand: _.syncOnDemand
         ).widget(),
         body: Container(
           decoration: const BoxDecoration(
@@ -56,42 +56,42 @@ class _ClientsPageState extends State<ClientsPage> {
                 _.loading ? const SpinKitChasingDots(
                   color: AppColors.green,
                 ):
-                    _.clients.isEmpty?
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.search, size: 128, color: AppColors.gray,),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 32),
-                                child: Text('Escribe en la barra de búsqueda para encontrar a tus clientes.', textAlign: TextAlign.center,),
-                              )
-                            ],
+                _.clients.isEmpty?
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.search, size: 128, color: AppColors.gray,),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 32),
+                        child: Text('Escribe en la barra de búsqueda para encontrar a tus clientes.', textAlign: TextAlign.center,),
+                      )
+                    ],
+                  ),
+                )
+                :
+                Expanded(
+                  child: ListView(
+                    shrinkWrap: true,
+                    children: _.clients.map((client) {
+                      return Column(
+                        children: [
+                          ClientListItem(
+                            client: client,
+                            onClick: (client) {
+                              _.onSelectClient(client);
+                            },
                           ),
-                        )
-                        :
-                        Expanded(
-                          child: ListView(
-                              shrinkWrap: true,
-                            children: _.clients.map((client) {
-                              return Column(
-                                children: [
-                                  ClientListItem(
-                                    client: client,
-                                    onClick: (client) {
-                                      _.onSelectClient(client);
-                                    },
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(vertical: 16),
-                                    child: Divider(thickness: 2,),
-                                  )
-                                ],
-                              );
-                            }).toList()
-                          ),
-                        )
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            child: Divider(thickness: 2,),
+                          )
+                        ],
+                      );
+                    }).toList()
+                  ),
+                )
               ],
             ),
           ),
@@ -100,7 +100,7 @@ class _ClientsPageState extends State<ClientsPage> {
     );
   }
 
-  Future<dynamic>? showFilterOptions(ClientsController _) {
+  Future<dynamic>? showFilterOptions(ClientController _) {
     return showCupertinoModalPopup(
         context: context,
         builder: (BuildContext context) => CupertinoActionSheet(

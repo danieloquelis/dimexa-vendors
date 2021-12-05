@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 class ClientsBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => ClientsController());
+    Get.lazyPut(() => ClientController());
   }
 
 }

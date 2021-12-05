@@ -71,16 +71,11 @@ class Session {
     this.fechaExpiracion,
     this.zona,
     this.tokenExpiracion,
-  });
-
-  // List<String? get dbZones => user != null ? user!.toRawJson() : null;
-  // set dbUser(String? value) {
-  //   if (value == null) {
-  //     user = null;
-  //   } else {
-  //     user = User.fromRawJson(value);
-  //   }
-  // }
+  }) {
+    if (zona != null) {
+      zones.addAll(zona!);
+    }
+  }
 
   factory Session.fromRawJson(String str) => Session.fromJson(json.decode(str));
   String toRawJson() => json.encode(toJson());

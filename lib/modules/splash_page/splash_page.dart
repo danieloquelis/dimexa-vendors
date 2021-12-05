@@ -3,6 +3,7 @@ import 'package:dimexa_vendors/modules/splash_page/local_widgets/message/message
 import 'package:dimexa_vendors/modules/splash_page/splash_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/state_manager.dart';
 
 
@@ -22,9 +23,10 @@ class _SplashPageState extends State<SplashPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Image.asset(
-                "assets/images/dimexa_login.png",
+              SvgPicture.asset(
+                "assets/images/dimex_logo_opt.svg",
               ),
+              const SizedBox(height: 64,),
               Visibility(
                 visible: _.message!.isNotEmpty,
                 child: Message(

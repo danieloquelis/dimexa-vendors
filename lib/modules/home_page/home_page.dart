@@ -26,8 +26,8 @@ class _HomePageState extends State<HomePage> {
       builder: (_) => Scaffold(
         appBar: BaseAppBar(
           title: AppTranslations.of(context)!.text('welcome'),
-          lastUpdate: DateTimeUtil.dateTimeToText(_.lastSyncDate),
-          syncOnDemand: () {}
+          //lastUpdate: DateTimeUtil.dateTimeToText(_.lastSyncDate),
+          //syncOnDemand: () {}
         ).widget(),
         body: Container(
           width: MediaQuery.of(context).size.width,

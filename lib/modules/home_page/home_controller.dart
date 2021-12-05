@@ -29,7 +29,7 @@ class HomeController extends GetxController {
     super.onInit();
     _currentSession = globalController.session;
     _currentZones = globalController.session.zones;
-    SyncManager? syncManager = syncManagerRepository.getByType(SyncType.session);
+    SyncManager? syncManager = syncManagerRepository.getByType(globalController.selectedZoneId.value, SyncType.session);
     if (syncManager != null && syncManager.lastSyncDownDate != null) {
       _lastSyncDate = syncManager.lastSyncDownDate!;
     }
@@ -39,7 +39,7 @@ class HomeController extends GetxController {
     //hide bottom sheet
     Get.back();
     globalController.showLoadingDialog(message: "Cambiando zona, por favor espere...");
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     globalController.hideLoadingDialog();
     globalController.setSelectedZoneId(zoneId);
 

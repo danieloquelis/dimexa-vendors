@@ -37,7 +37,7 @@
   "discount_type": "Tipo de descuento",
   "condition": "Condición",
   "visit_day": "Día de visita",
-  "legal_represent": "Representante legla",
+  "legal_represent": "Representante legal",
   "dni": "DNI",
   "anniversary": "Aniversario",
   "general_data": "Datos generales",
@@ -60,5 +60,9 @@
   "home": "Inicio",
   "map": "Mapa",
   "restore_password": "Restablecer contraseña",
-  "back": "Regresar"
+  "back": "Regresar",
+  "see_more": "Ver más",
+  "address": "Dirección",
+  "ubigeo": "Ubigeo",
+  "credit": "Crédito"
 }

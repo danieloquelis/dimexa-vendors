@@ -10,11 +10,10 @@ import 'package:dimexa_vendors/data/models/client/client.dart';
 import 'package:dimexa_vendors/data/repositories/client_repository/client_repository.dart';
 import 'package:dimexa_vendors/data/repositories/sync_manager_repository/sync_manager_repository.dart';
 import 'package:dimexa_vendors/global_controllers/global_controller.dart';
-import 'package:dimexa_vendors/modules/client_page/local_widgets/details_bottom_sheet/details_bottom_sheet.dart';
 import 'package:dimexa_vendors/routes/app_routes/app_routes.dart';
 import 'package:get/get.dart';
 
-class ClientsController extends GetxController {
+class ClientController extends GetxController {
   ///Injections
   final globalController = Get.find<GlobalController>();
   final clientBox = Get.find<ObjectBox>().clientBox;
@@ -46,7 +45,7 @@ class ClientsController extends GetxController {
       time: const Duration(milliseconds: 500)
     );
 
-    SyncManager? syncManager = syncManagerRepository.getByType(SyncType.clients);
+    SyncManager? syncManager = syncManagerRepository.getByType(globalController.selectedZoneId.value, SyncType.clients);
     if (syncManager != null && syncManager.lastSyncDownDate != null) {
       _lastSyncDate = syncManager.lastSyncDownDate!;
 
@@ -102,6 +101,16 @@ class ClientsController extends GetxController {
     });
   }
 
-
+  void syncOnDemand() async {
+    await globalController.syncDownClients(
+      onDemand: true,
+      zoneId: globalController.selectedZoneId.value
+    );
+    SyncManager? syncManager = syncManagerRepository.getByType(globalController.selectedZoneId.value, SyncType.clients);
+    if (syncManager != null && syncManager.lastSyncDownDate != null) {
+      _lastSyncDate = syncManager.lastSyncDownDate!;
+    }
+    update();
+  }
 
 }

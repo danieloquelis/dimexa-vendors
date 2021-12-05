@@ -1,13 +1,13 @@
 import 'package:dimexa_vendors/modules/client_details_page/client_details_controller.dart';
+import 'package:dimexa_vendors/modules/client_details_page/local_widgets/client_card_info/client_card_info.dart';
+import 'package:dimexa_vendors/modules/client_details_page/local_widgets/client_statistics/client_statistics.dart';
 import 'package:flutter/material.dart';
 import 'package:dimexa_vendors/core/theme/dimexa_icons/dimexa_icons.dart';
 import 'package:dimexa_vendors/core/utils/date_time_util/date_time_util.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:dimexa_vendors/global_widgets/base_appbar/base_appbar.dart';
 import 'package:dimexa_vendors/global_widgets/tag/tag.dart';
-import 'package:dimexa_vendors/modules/client_page/local_widgets/client_card_info/client_card_info.dart';
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
-import 'package:dimexa_vendors/modules/client_page/local_widgets/client_statistics/client_statistics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/state_manager.dart';
 

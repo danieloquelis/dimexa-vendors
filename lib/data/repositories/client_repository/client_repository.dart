@@ -10,9 +10,9 @@ class ClientRepository implements ClientRepositoryAbstract {
   final clientBox = Get.find<ObjectBox>().clientBox;
 
   @override
-  void saveSyncDownClients(String zoneId, List<Client> clients) {
+  void saveSyncDownClients(List<String> zoneIds, List<Client> clients) {
     try {
-      clientBox.query(Client_.zonaid.equals(zoneId)).build().remove();
+      clientBox.query(Client_.zonaid.oneOf(zoneIds)).build().remove();
       clientBox.putMany(clients);
     } catch(e) {
       onDBCatchError();
