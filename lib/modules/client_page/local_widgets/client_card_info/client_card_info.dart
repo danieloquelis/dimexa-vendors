@@ -172,7 +172,8 @@ class ClientCardInfo extends StatelessWidget {
     required this.context,
     required this.client,
     required this.title,
-    required this.onClickSeeMore
+    required this.onClickSeeMore,
+    required Function seeMap
   }) {
     child = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -191,7 +192,9 @@ class ClientCardInfo extends StatelessWidget {
             ),
             Flexible(
               child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  seeMap();
+                },
                 icon: Icon(Icons.location_on, color: AppColors.blue,),
               ),
             )

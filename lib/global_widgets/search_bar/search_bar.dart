@@ -48,11 +48,6 @@ class _SearchBarState extends State<SearchBar> {
       child: Container(
         decoration: const BoxDecoration(
           color: Colors.transparent,
-          /*border: Border.all(
-              width: 1.0,
-              color: Colors.grey.shade400
-          ),
-          borderRadius: BorderRadius.circular(10),*/
         ),
         child: Row(
           mainAxisSize: MainAxisSize.max,
