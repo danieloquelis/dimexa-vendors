@@ -1,11 +1,10 @@
 import 'package:dimexa_vendors/core/utils/date_time_util/date_time_util.dart';
-import 'package:dimexa_vendors/core/values/numbers.dart';
 import 'package:dimexa_vendors/data/enums/search_client_filter/search_client_filter.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:dimexa_vendors/global_widgets/base_appbar/base_appbar.dart';
 import 'package:dimexa_vendors/global_widgets/cupertino_bsheet_item/cupertino_bsheet_item.dart';
-import 'package:dimexa_vendors/modules/cient_page/clients_controller.dart';
-import 'package:dimexa_vendors/modules/cient_page/local_widgets/client_list_item/client_list_item.dart';
+import 'package:dimexa_vendors/modules/client_page/client_controller.dart';
+import 'package:dimexa_vendors/modules/client_page/local_widgets/client_list_item/client_list_item.dart';
 import 'package:dimexa_vendors/global_widgets/search_bar/search_bar.dart';
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
 import 'package:flutter/cupertino.dart';

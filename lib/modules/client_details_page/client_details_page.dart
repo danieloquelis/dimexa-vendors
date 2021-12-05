@@ -1,25 +1,25 @@
+import 'package:dimexa_vendors/modules/client_details_page/client_details_controller.dart';
+import 'package:flutter/material.dart';
 import 'package:dimexa_vendors/core/theme/dimexa_icons/dimexa_icons.dart';
 import 'package:dimexa_vendors/core/utils/date_time_util/date_time_util.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:dimexa_vendors/global_widgets/base_appbar/base_appbar.dart';
 import 'package:dimexa_vendors/global_widgets/tag/tag.dart';
-import 'package:dimexa_vendors/modules/cient_page/clients_controller.dart';
-import 'package:dimexa_vendors/modules/cient_page/local_widgets/client_card_info/client_card_info.dart';
+import 'package:dimexa_vendors/modules/client_page/local_widgets/client_card_info/client_card_info.dart';
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
-import 'package:dimexa_vendors/modules/cient_page/local_widgets/client_statistics/client_statistics.dart';
+import 'package:dimexa_vendors/modules/client_page/local_widgets/client_statistics/client_statistics.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 
-class ClientDetails extends StatefulWidget {
+class ClientDetailsPage extends StatefulWidget {
   @override
-  _ClientDetailsState createState() => _ClientDetailsState();
+  _ClientDetailsPageState createState() => _ClientDetailsPageState();
 }
 
-class _ClientDetailsState extends State<ClientDetails> {
+class _ClientDetailsPageState extends State<ClientDetailsPage> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ClientsController>(
+    return GetBuilder<ClientDetailsController>(
       builder: (_) => Scaffold(
         appBar: BaseAppBar(
           back: _.onBack,
@@ -36,11 +36,11 @@ class _ClientDetailsState extends State<ClientDetails> {
             ),
             Expanded(
               child: Container(
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
-                  color: AppColors.basePage
-                ),
-                child: content(_)
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
+                      color: AppColors.basePage
+                  ),
+                  child: content(_)
               ),
             ),
           ],
@@ -49,46 +49,46 @@ class _ClientDetailsState extends State<ClientDetails> {
     );
   }
 
-  Widget content(ClientsController _) {
+  Widget content(ClientDetailsController _) {
     return Column(
       children: [
         actionButtons(),
         Expanded(
           child: SingleChildScrollView(
             child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-              child: Column(
-                children: [
-                  ClientCardInfo.generalInfo(
-                    context: context,
-                    title: AppTranslations.of(context)!.text("general_data"),
-                    client: _.selectedClient,
-                    onClickSeeMore: () => _.showGeneralInfoBottomSheet(),
-                  ),
-                  const SizedBox(height: 24,),
-                  ClientCardInfo.commercialData(
-                    context: context,
-                    title: AppTranslations.of(context)!.text("commercial_data"),
-                    client: _.selectedClient,
-                    onClickSeeMore: () => _.showCommercialInfoBottomSheet(),
-                  ),
-                  const SizedBox(height: 24,),
-                  ClientCardInfo.contacts(
-                    context: context,
-                    title: AppTranslations.of(context)!.text("contacts"),
-                    client: _.selectedClient,
-                    onClickSeeMore: () => _.showContactsBottomSheet(),
-                  ),
-                  const SizedBox(height: 24,),
-                  ClientCardInfo.addresses(
-                    context: context,
-                    title: AppTranslations.of(context)!.text("addresses"),
-                    client: _.selectedClient,
-                    onClickSeeMore: () => _.showAddressesBottomSheet(),
-                    seeMap: () => _.goToMapView(),
-                  )
-                ],
-              )
+                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                child: Column(
+                  children: [
+                    ClientCardInfo.generalInfo(
+                      context: context,
+                      title: AppTranslations.of(context)!.text("general_data"),
+                      client: _.selectedClient,
+                      onClickSeeMore: () => _.showGeneralInfoBottomSheet(),
+                    ),
+                    const SizedBox(height: 24,),
+                    ClientCardInfo.commercialData(
+                      context: context,
+                      title: AppTranslations.of(context)!.text("commercial_data"),
+                      client: _.selectedClient,
+                      onClickSeeMore: () => _.showCommercialInfoBottomSheet(),
+                    ),
+                    const SizedBox(height: 24,),
+                    ClientCardInfo.contacts(
+                      context: context,
+                      title: AppTranslations.of(context)!.text("contacts"),
+                      client: _.selectedClient,
+                      onClickSeeMore: () => _.showContactsBottomSheet(),
+                    ),
+                    const SizedBox(height: 24,),
+                    ClientCardInfo.addresses(
+                      context: context,
+                      title: AppTranslations.of(context)!.text("addresses"),
+                      client: _.selectedClient,
+                      onClickSeeMore: () => _.showAddressesBottomSheet(),
+                      seeMap: () => _.goToMapView(),
+                    )
+                  ],
+                )
             ),
           ),
         ),
@@ -102,30 +102,30 @@ class _ClientDetailsState extends State<ClientDetails> {
         builder: (BuildContext context) => CupertinoActionSheet(
           actions: [
             modalActionItem(
-              icon: DimexaIcons.documents,
-              name: AppTranslations.of(context)!.text("documents"),
-              iconSize: 22
+                icon: DimexaIcons.documents,
+                name: AppTranslations.of(context)!.text("documents"),
+                iconSize: 22
             ),
             modalActionItem(
-              icon: DimexaIcons.letters,
-              name: AppTranslations.of(context)!.text("protested_letters")
+                icon: DimexaIcons.letters,
+                name: AppTranslations.of(context)!.text("protested_letters")
             ),
             modalActionItem(
-              icon: DimexaIcons.historical,
-              name: AppTranslations.of(context)!.text("historical")
+                icon: DimexaIcons.historical,
+                name: AppTranslations.of(context)!.text("historical")
             ),
             modalActionItem(
-              icon: DimexaIcons.competence,
-              name: AppTranslations.of(context)!.text("competence")
+                icon: DimexaIcons.competence,
+                name: AppTranslations.of(context)!.text("competence")
             ),
             modalActionItem(
-              icon: DimexaIcons.complains,
-              name: AppTranslations.of(context)!.text("complains_redeems")
+                icon: DimexaIcons.complains,
+                name: AppTranslations.of(context)!.text("complains_redeems")
             ),
             modalActionItem(
-              icon: DimexaIcons.delivery,
-              name: AppTranslations.of(context)!.text("deliveries"),
-              iconSize: 18
+                icon: DimexaIcons.delivery,
+                name: AppTranslations.of(context)!.text("deliveries"),
+                iconSize: 18
             ),
           ],
         )

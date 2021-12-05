@@ -1,6 +1,6 @@
 import 'package:dimexa_vendors/data/models/session/session.dart';
 import 'package:dimexa_vendors/global_controllers/global_controller.dart';
-import 'package:dimexa_vendors/modules/cient_page/clients_page.dart';
+import 'package:dimexa_vendors/modules/client_page/client_page.dart';
 import 'package:dimexa_vendors/modules/collects_page/collects_page.dart';
 import 'package:dimexa_vendors/modules/home_page/home_page.dart';
 import 'package:dimexa_vendors/modules/products_page/products_page.dart';

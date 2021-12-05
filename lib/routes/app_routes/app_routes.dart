@@ -4,5 +4,5 @@ class AppRoutes {
   static const login = "/login";
   static const tabManager = "/tabManager";
   static const clientDetails = "/client/details";
-  static const clientAdressMap = "/client/details/map";
+  static const clientAddressMap = "/client/details/map";
 }

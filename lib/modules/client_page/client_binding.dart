@@ -1,4 +1,4 @@
-import 'package:dimexa_vendors/modules/cient_page/clients_controller.dart';
+import 'package:dimexa_vendors/modules/client_page/client_controller.dart';
 import 'package:get/get.dart';
 
 class ClientsBinding extends Bindings {

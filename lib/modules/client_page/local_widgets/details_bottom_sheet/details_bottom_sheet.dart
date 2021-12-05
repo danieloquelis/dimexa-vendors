@@ -2,8 +2,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:dimexa_vendors/global_widgets/custom_info_field/custom_info_field.dart';
-import 'package:dimexa_vendors/modules/cient_page/local_widgets/address_item/address_item.dart';
-import 'package:dimexa_vendors/modules/cient_page/local_widgets/contact_item/contact_item.dart';
+import 'package:dimexa_vendors/modules/client_page/local_widgets/address_item/address_item.dart';
+import 'package:dimexa_vendors/modules/client_page/local_widgets/contact_item/contact_item.dart';
 import 'package:flutter/material.dart';
 import 'package:dimexa_vendors/data/models/client/client.dart';
 
