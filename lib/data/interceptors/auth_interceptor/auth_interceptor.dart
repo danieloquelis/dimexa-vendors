@@ -3,4 +3,8 @@ import 'package:dimexa_vendors/data/models/session/session.dart';
 
 abstract class AuthInterceptor {
   Future<Session?> login(String user, String password);
+
+  Future<bool?> resetPassword(String user);
+
+  Future<String?> resetPasswordAndValidateCode(String user, String code);
 }

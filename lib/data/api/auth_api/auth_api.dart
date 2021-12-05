@@ -20,10 +20,22 @@ class AuthAPI {
 
   Future<HttpResult> resetPassword({required String user}) async {
     final result = _http.request(
-        '/login/resetPassword',
+        '/usuarios/resetPassword',
         method: HttpMethod.post,
         body: {
           "usuario": user
+        }
+    );
+    return result;
+  }
+
+  Future<HttpResult> resetPasswordAndValidateCode({required String user, required String code}) async {
+    final result = _http.request(
+        '/usuarios/resetPasswordCodigo',
+        method: HttpMethod.post,
+        body: {
+          "usuario": user,
+          "codigo": code
         }
     );
     return result;

@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
-class Login extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<LoginController>(
@@ -70,11 +70,15 @@ class _LoginState extends State<Login> {
           ),
         ),
         const SizedBox(height: 8,),
-        Text(
-          AppTranslations.of(context)!.text("forgot_password"),
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            decoration: TextDecoration.underline,
+        GestureDetector(
+          onTap: _.goToResetPassword,
+          child: Text(
+            AppTranslations.of(context)!.text("forgot_password"),
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              decoration: TextDecoration.underline,
+              color: AppColors.blue
+            ),
           ),
         ),
       ],

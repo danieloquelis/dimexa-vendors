@@ -12,7 +12,7 @@ class LoadingDialog {
   }) {
     baseDialog(
         context: context,
-        child: SpinKitRing(color: Colors.grey.shade500, size: 80,),
+        child: SpinKitRing(color: Colors.grey.shade500, size: 80, lineWidth: 5,),
         message: StringUtils.isNotNullNorEmpty(message) ? message! : 'Cargando, porfavor espere...'
     );
   }
@@ -24,7 +24,7 @@ class LoadingDialog {
   }) {
     baseDialog(
         context: context,
-        child: SpinKitRing(color: Colors.grey.shade500, size: 80,),
+        child: SpinKitRing(color: Colors.grey.shade500, size: 80,lineWidth: 5,),
         dynamicMessage: Obx(
           () => TweenAnimationBuilder(
             tween: Tween<double>(begin: 0.0, end: progress.value),
