@@ -1,5 +1,6 @@
 
 import 'dart:async';
+import 'package:dimexa_vendors/core/utils/collection_utils/collection_utils.dart';
 import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:dimexa_vendors/core/values/numbers.dart';
 import 'package:dimexa_vendors/data/enums/sync_type/sync_type.dart';
@@ -127,24 +128,32 @@ class GlobalController extends GetxController {
     );
   }
 
-  Future syncDownClients() async {
-    //NOTE: USE COMPUTE
-    SyncManager? syncManager = syncManagerRepository.getByType(SyncType.clients);
+  Future syncDownClients({bool onDemand = false, String? zoneId}) async {
+    List<String> zoneIds = [];
+    if (StringUtils.isNullOrEmpty(zoneId)) {
+      for (Zone zone in _session.zones) {
+        if (StringUtils.isNotNullNorEmpty(zone.zonaid)) {
+          zoneIds.add(zone.zonaid!);
+        }
+      }
+    } else {
+      //specific zone
+      zoneIds.add(zoneId!);
+    }
+
+    List<SyncManager>? syncs = syncManagerRepository.getByTypeAndZoneIds(zoneIds, SyncType.clients);
+
+    //check if there is one zone or all
+    bool hasSyncBefore = CollectionUtils.isNotNullNorEmpty(syncs) && syncs!.length == zoneIds.length;
 
     List<Client> clients = [];
-    if (syncManager == null) {
+    if (!hasSyncBefore || onDemand) {
       //sync clients
       int limit = Numbers.maxLimit; //chunk
       int page = Numbers.startPage;
       int count = Numbers.zero;
       int total = count + 1; //this is initial value -> needs an api
 
-      List<String> zoneIds = [];
-      for (Zone zone in _session.zones) {
-        if (StringUtils.isNotNullNorEmpty(zone.zonaid)) {
-          zoneIds.add(zone.zonaid!);
-        }
-      }
       showSyncDialog(
         value: _progressValue,
         prefixMessage: "Sincronizando clientes"
@@ -179,21 +188,22 @@ class GlobalController extends GetxController {
 
       if (clients.isNotEmpty) {
         //save clients
-        clientRepository.saveSyncDownClients("FP563", clients);
+        clientRepository.saveSyncDownClients(zoneIds, clients);
         //save new sync manager for this type
-        syncManagerRepository.updateByType(SyncType.clients, syncDown: true);
+        syncManagerRepository.updateByTypeAndZoneIds(zoneIds,SyncType.clients, syncDown: true);
       }
 
-
+      //reset value
+      _progressValue.value = 0.0;
       return;
     }
 
     //check the last sync down
-    DateTime lastSync = syncManager.lastSyncDownDate!;
-    DateTime now = DateTime.now();
-    if (now.difference(lastSync).inDays >= Numbers.maxDaysAllow) {
-      //TODO: sent to sync manager page
-      print('debe sincronizar');
-    }
+    // DateTime lastSync = syncManager.lastSyncDownDate!;
+    // DateTime now = DateTime.now();
+    // if (now.difference(lastSync).inDays >= Numbers.maxDaysAllow) {
+    //   //TODO: sent to sync manager page
+    //   print('debe sincronizar');
+    // }
   }
 }

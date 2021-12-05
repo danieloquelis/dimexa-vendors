@@ -1,4 +1,6 @@
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
+import 'package:dimexa_vendors/core/utils/collection_utils/collection_utils.dart';
+import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:dimexa_vendors/global_widgets/card_title/card_title.dart';
 import 'package:dimexa_vendors/global_widgets/custom_card/custom_card.dart';
@@ -45,13 +47,13 @@ class ClientCardInfo extends StatelessWidget {
             Flexible(
               child: CustomInfoField(
                 label: AppTranslations.of(context)!.text("code"),
-                value: '10025',
+                value: StringUtils.checkNullOrEmpty(client!.clienteid),
               ),
             ),
             Flexible(
               child: CustomInfoField(
                 label: AppTranslations.of(context)!.text("ruc"),
-                value: '10026103666',
+                value: StringUtils.checkNullOrEmpty(client!.ruc),
               ),
             )
 
@@ -62,16 +64,19 @@ class ClientCardInfo extends StatelessWidget {
         ),
         CustomInfoField(
           label: AppTranslations.of(context)!.text("social_reason"),
-          value: 'client.razonsocial',
+          value: StringUtils.checkNullOrEmpty(client!.razonsocial),
         ),
-        SizedBox(height: 18,),
+        const SizedBox(height: 18,),
         InkWell(
-            onTap: () {
-              if (onClickSeeMore != null) {
-                onClickSeeMore!();
-              }
-            },
-            child: Text('Ver más', style: TextStyle(color: AppColors.orange),)
+          onTap: () {
+            if (onClickSeeMore != null) {
+              onClickSeeMore!();
+            }
+          },
+          child: Text(
+            AppTranslations.of(context)!.text("see_more"),
+            style: const TextStyle(color: AppColors.orange),
+          )
         )
       ],
     );
@@ -88,7 +93,8 @@ class ClientCardInfo extends StatelessWidget {
       children: [
         CustomInfoField(
             label:AppTranslations.of(context)!.text("sub_channel"),
-            value: "--"//client.subcanal,
+            value: CollectionUtils.isNotNullNorEmpty(client!.subChannel) ?
+              StringUtils.checkNullOrEmpty(client!.subChannel.first.nombre) : "",
         ),
         const Divider(
           thickness: 1,
@@ -98,25 +104,29 @@ class ClientCardInfo extends StatelessWidget {
             Flexible(
               child: CustomInfoField(
                   label: AppTranslations.of(context)!.text("discount_type"),
-                  value: "--"//client.tipodescuento,
+                  value: CollectionUtils.isNotNullNorEmpty(client!.discountType) ?
+                  StringUtils.checkNullOrEmpty(client!.discountType.first.nombre) : ""
               ),
             ),
             Flexible(
               child: CustomInfoField(
                 label: AppTranslations.of(context)!.text("condition"),
-                value: "--",
+                value: "",
               ),
             )
           ],
         ),
         SizedBox(height: 18,),
         InkWell(
-            onTap: () {
-              if (onClickSeeMore != null) {
-                onClickSeeMore!();
-              }
-            },
-            child: Text('Ver más', style: TextStyle(color: AppColors.orange),)
+          onTap: () {
+            if (onClickSeeMore != null) {
+              onClickSeeMore!();
+            }
+          },
+          child: Text(
+            AppTranslations.of(context)!.text("see_more"),
+            style: const TextStyle(color: AppColors.orange),
+          )
         )
       ],
     );

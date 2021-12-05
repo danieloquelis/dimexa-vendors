@@ -27,4 +27,21 @@ class DateTimeUtil {
     }
     return '$prefix a las $clockString';
   }
+
+  static String dateTimeToString(DateTime? dateTime) {
+    if (dateTime == null) {
+      return "";
+    }
+
+    final dateFormat = DateFormat('dd/MM/yyyy');
+
+    String date = "";
+    try {
+      date = dateFormat.format(dateTime);
+    }catch (e) {
+      //ignore
+    }
+
+    return date;
+  }
 }

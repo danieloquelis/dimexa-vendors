@@ -10,12 +10,17 @@ import 'package:objectbox/objectbox.dart';
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
 import '../../models/client/client.dart';
+import '../../models/client_status/client_status.dart';
+import '../../models/diremid_status/diremid_status.dart';
+import '../../models/discount_type/discount_type.dart';
 import '../../models/menu/menu.dart';
 import '../../models/menu_fav/menu_fav.dart';
 import '../../models/role/role.dart';
 import '../../models/role_menu/role_menu.dart';
 import '../../models/session/session.dart';
+import '../../models/sub_channel/sub_channel.dart';
 import '../../models/sync_manager/sync_manager.dart';
+import '../../models/ubigeo/ubigeo.dart';
 import '../../models/user/user.dart';
 import '../../models/vendor/vendor.dart';
 import '../../models/zone/zone.dart';
@@ -24,172 +29,290 @@ export 'package:objectbox/objectbox.dart'; // so that callers only have to impor
 
 final _entities = <ModelEntity>[
   ModelEntity(
-      id: const IdUid(1, 6405003038241215531),
+      id: const IdUid(1, 8349394920476561184),
       name: 'Client',
-      lastPropertyId: const IdUid(25, 4453194021249486584),
+      lastPropertyId: const IdUid(25, 4255338752842179106),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 6136122469005502449),
+            id: const IdUid(1, 7282793414619174128),
             name: 'id',
             type: 6,
             flags: 129),
         ModelProperty(
-            id: const IdUid(2, 6992079884463091355),
+            id: const IdUid(2, 8552624331511982159),
             name: 'clienteid',
             type: 9,
-            flags: 0),
+            flags: 2048,
+            indexId: const IdUid(1, 175107266328771733)),
         ModelProperty(
-            id: const IdUid(3, 4357222339793072887),
+            id: const IdUid(3, 2904832437545013556),
             name: 'unidadnegocioid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 3737541063415872727),
+            id: const IdUid(4, 5419960126395396584),
             name: 'ruc',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 6920652594351311099),
+            id: const IdUid(5, 375503136900700868),
             name: 'razonsocial',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 4566258360797317874),
+            id: const IdUid(6, 1333599756556370106),
             name: 'nombrecomercial',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(7, 1855520032972420673),
+            id: const IdUid(7, 2463060789658667296),
             name: 'zonaid',
             type: 9,
-            flags: 0),
+            flags: 2048,
+            indexId: const IdUid(2, 462479870951058550)),
         ModelProperty(
-            id: const IdUid(8, 6656702231265499099),
+            id: const IdUid(8, 7621929787752285010),
             name: 'ubigeoid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(9, 826364370061984479),
+            id: const IdUid(9, 5589367474611542257),
             name: 'direccion',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(10, 7148816657688739166),
+            id: const IdUid(10, 3919441809410460436),
             name: 'estadoclienteid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(11, 8170908848814782725),
+            id: const IdUid(11, 2888027664648771120),
             name: 'estadodiremidid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(12, 7388487202666073042),
+            id: const IdUid(12, 4537203302573928061),
             name: 'condicionventaid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(13, 4898977957583259288),
+            id: const IdUid(13, 5990575552315426467),
             name: 'tipodescuentoid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(14, 4742251249386832574),
+            id: const IdUid(14, 715658675792670610),
             name: 'subcanalid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(15, 2731283850396837881),
+            id: const IdUid(15, 316109225921134229),
             name: 'diavisita1',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(16, 8467219295226182094),
+            id: const IdUid(16, 2599155723177540680),
             name: 'diavisita2',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(17, 2977757558516257293),
+            id: const IdUid(17, 779806480579322819),
             name: 'representantelegal',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(18, 8162171888884302553),
+            id: const IdUid(18, 8259060521622919087),
             name: 'dni',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(19, 697725997021299737),
+            id: const IdUid(19, 2089201516188919083),
             name: 'aniversario',
             type: 10,
             flags: 0),
         ModelProperty(
-            id: const IdUid(20, 1824973616425588614),
+            id: const IdUid(20, 6749597781563352715),
             name: 'telefono',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(21, 2164127948509326868),
+            id: const IdUid(21, 7438464583268814413),
             name: 'movil',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(22, 7042286168424276530),
+            id: const IdUid(22, 2983303935393024236),
             name: 'lineacredito',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(23, 6148438167475285683),
+            id: const IdUid(23, 7179186324762054),
             name: 'deuda',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(24, 2371008845991232525),
+            id: const IdUid(24, 8961769762402305330),
             name: 'lineadisponible',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(25, 4453194021249486584),
+            id: const IdUid(25, 4255338752842179106),
             name: 'lastSync',
             type: 10,
             flags: 0)
       ],
-      relations: <ModelRelation>[],
-      backlinks: <ModelBacklink>[]),
+      relations: <ModelRelation>[
+        ModelRelation(
+            id: const IdUid(1, 4006900782610999559),
+            name: 'ubigee',
+            targetId: const IdUid(12, 938348534075148338))
+      ],
+      backlinks: <ModelBacklink>[
+        ModelBacklink(
+            name: 'clientStatus',
+            srcEntity: 'ClientStatus',
+            srcField: 'client'),
+        ModelBacklink(
+            name: 'diremidStatus',
+            srcEntity: 'DiremidStatus',
+            srcField: 'client'),
+        ModelBacklink(
+            name: 'discountType',
+            srcEntity: 'DiscountType',
+            srcField: 'client'),
+        ModelBacklink(
+            name: 'subChannel', srcEntity: 'SubChannel', srcField: 'client')
+      ]),
   ModelEntity(
-      id: const IdUid(2, 6910102649050735869),
-      name: 'Menu',
-      lastPropertyId: const IdUid(6, 5825227592083207674),
+      id: const IdUid(2, 6926644628290695969),
+      name: 'ClientStatus',
+      lastPropertyId: const IdUid(4, 6007852656575729828),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 6995139443390431375),
+            id: const IdUid(1, 2378732667953053334),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 5323684385639437215),
+            id: const IdUid(2, 4668234266544493588),
+            name: 'estadoclienteid',
+            type: 9,
+            flags: 2048,
+            indexId: const IdUid(3, 419571393471854884)),
+        ModelProperty(
+            id: const IdUid(3, 8651682195744712820),
+            name: 'nombre',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(4, 6007852656575729828),
+            name: 'clientId',
+            type: 11,
+            flags: 520,
+            indexId: const IdUid(4, 3413799566883164511),
+            relationTarget: 'Client')
+      ],
+      relations: <ModelRelation>[],
+      backlinks: <ModelBacklink>[]),
+  ModelEntity(
+      id: const IdUid(3, 5795270096438674767),
+      name: 'DiremidStatus',
+      lastPropertyId: const IdUid(4, 5678319610938397712),
+      flags: 0,
+      properties: <ModelProperty>[
+        ModelProperty(
+            id: const IdUid(1, 2081835591624824098),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        ModelProperty(
+            id: const IdUid(2, 6649377993477699864),
+            name: 'estadodiremidid',
+            type: 9,
+            flags: 2048,
+            indexId: const IdUid(5, 8987888861316937276)),
+        ModelProperty(
+            id: const IdUid(3, 1670034280512988188),
+            name: 'nombre',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(4, 5678319610938397712),
+            name: 'clientId',
+            type: 11,
+            flags: 520,
+            indexId: const IdUid(6, 3573919421713680407),
+            relationTarget: 'Client')
+      ],
+      relations: <ModelRelation>[],
+      backlinks: <ModelBacklink>[]),
+  ModelEntity(
+      id: const IdUid(4, 5071457263933779099),
+      name: 'DiscountType',
+      lastPropertyId: const IdUid(4, 7644953297648465713),
+      flags: 0,
+      properties: <ModelProperty>[
+        ModelProperty(
+            id: const IdUid(1, 5561983446488606413),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        ModelProperty(
+            id: const IdUid(2, 347040401396093378),
+            name: 'tipodescuentoid',
+            type: 9,
+            flags: 2048,
+            indexId: const IdUid(7, 9125552918778240590)),
+        ModelProperty(
+            id: const IdUid(3, 5497590351929849878),
+            name: 'nombre',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(4, 7644953297648465713),
+            name: 'clientId',
+            type: 11,
+            flags: 520,
+            indexId: const IdUid(8, 220651842151372698),
+            relationTarget: 'Client')
+      ],
+      relations: <ModelRelation>[],
+      backlinks: <ModelBacklink>[]),
+  ModelEntity(
+      id: const IdUid(5, 7079933155203997927),
+      name: 'Menu',
+      lastPropertyId: const IdUid(6, 2294637730715121970),
+      flags: 0,
+      properties: <ModelProperty>[
+        ModelProperty(
+            id: const IdUid(1, 5565230315954885230),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        ModelProperty(
+            id: const IdUid(2, 1381904658404045502),
             name: 'menuid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(3, 3290351682168097796),
+            id: const IdUid(3, 5282280223471266329),
             name: 'titulo',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 5945209519476849638),
+            id: const IdUid(4, 8589133928297686482),
             name: 'ruta',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 4513045578519447188),
+            id: const IdUid(5, 1011618083347955267),
             name: 'orden',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 5825227592083207674),
+            id: const IdUid(6, 2294637730715121970),
             name: 'acceso',
             type: 1,
             flags: 0)
@@ -197,33 +320,33 @@ final _entities = <ModelEntity>[
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(3, 3199343147393064161),
+      id: const IdUid(6, 1864744129970585283),
       name: 'MenuFav',
-      lastPropertyId: const IdUid(5, 8099774250326108886),
+      lastPropertyId: const IdUid(5, 3455404707002551135),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 2055089211816141640),
+            id: const IdUid(1, 6781449938316917735),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 6825468287730358348),
+            id: const IdUid(2, 6310410422752373815),
             name: 'menuid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(3, 5701453095639113580),
+            id: const IdUid(3, 7650322908976813897),
             name: 'titulo',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 3017610498572493681),
+            id: const IdUid(4, 3202587094516415993),
             name: 'ruta',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 8099774250326108886),
+            id: const IdUid(5, 3455404707002551135),
             name: 'orden',
             type: 6,
             flags: 0)
@@ -231,54 +354,54 @@ final _entities = <ModelEntity>[
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(4, 2303648714207805790),
+      id: const IdUid(7, 2952776552768229586),
       name: 'Role',
-      lastPropertyId: const IdUid(3, 2117532305658146823),
+      lastPropertyId: const IdUid(3, 2581536561199004696),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 1890724299710219928),
+            id: const IdUid(1, 7976128576096247721),
             name: 'rolid',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 5735389585098224855),
+            id: const IdUid(2, 40770849521540365),
             name: 'nombre',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(3, 2117532305658146823),
+            id: const IdUid(3, 2581536561199004696),
             name: 'roleMenuId',
             type: 11,
             flags: 520,
-            indexId: const IdUid(1, 6120305970691800559),
+            indexId: const IdUid(9, 4507289523734089005),
             relationTarget: 'RoleMenu')
       ],
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(5, 3242671228350732084),
+      id: const IdUid(8, 910093411148893077),
       name: 'RoleMenu',
-      lastPropertyId: const IdUid(4, 7176526379307248683),
+      lastPropertyId: const IdUid(4, 1893707966995126102),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 3468885142193703961),
+            id: const IdUid(1, 6455295952298591812),
             name: 'rolmenuid',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 960665514282762676),
+            id: const IdUid(2, 3887247312534801908),
             name: 'rolid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(3, 8132890816508660265),
+            id: const IdUid(3, 6222044382709647747),
             name: 'menuid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 7176526379307248683),
+            id: const IdUid(4, 1893707966995126102),
             name: 'registrado',
             type: 9,
             flags: 0)
@@ -286,108 +409,108 @@ final _entities = <ModelEntity>[
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(6, 3399956375045772611),
+      id: const IdUid(9, 5973651672997608098),
       name: 'Session',
-      lastPropertyId: const IdUid(20, 3694063039512997830),
+      lastPropertyId: const IdUid(20, 3083825453608143937),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 5039126229803921073),
+            id: const IdUid(1, 7573241261190041008),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 5120007304921410596),
+            id: const IdUid(2, 2178124113433019434),
             name: 'deviceToken',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(3, 6158683407074255365),
+            id: const IdUid(3, 5609892284651605965),
             name: 'usuarioid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 412204947459496973),
+            id: const IdUid(4, 3748960929509450036),
             name: 'usuario',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 8295578751574875788),
+            id: const IdUid(5, 4764415282563492261),
             name: 'descripcion',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 2467485567289018597),
+            id: const IdUid(6, 2349199405378169112),
             name: 'correo',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(7, 2189998072476785050),
+            id: const IdUid(7, 1085106228752101546),
             name: 'activo',
             type: 1,
             flags: 0),
         ModelProperty(
-            id: const IdUid(8, 3379298042967088851),
+            id: const IdUid(8, 4968856408711453709),
             name: 'bloqueado',
             type: 1,
             flags: 0),
         ModelProperty(
-            id: const IdUid(9, 8292734298065456747),
+            id: const IdUid(9, 946551564295280149),
             name: 'motivobloqueoid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(10, 6716250682666733639),
+            id: const IdUid(10, 9131657034952462688),
             name: 'rolid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(11, 7569935056088213181),
+            id: const IdUid(11, 524255893976901513),
             name: 'token',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(12, 3400101321680687138),
+            id: const IdUid(12, 6463114498650960471),
             name: 'telefono',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(13, 1653613467410082790),
+            id: const IdUid(13, 7073124539473727593),
             name: 'creado',
             type: 10,
             flags: 0),
         ModelProperty(
-            id: const IdUid(14, 2247852578571036260),
+            id: const IdUid(14, 6263518512123030858),
             name: 'actualizado',
             type: 10,
             flags: 0),
         ModelProperty(
-            id: const IdUid(15, 3221874054463408245),
+            id: const IdUid(15, 2413637143209395811),
             name: 'menuidFav1',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(16, 7015291975739336874),
+            id: const IdUid(16, 5280667093979767257),
             name: 'menuidFav2',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(17, 1982416063131044978),
+            id: const IdUid(17, 6909421311917663984),
             name: 'menuidFav3',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(18, 244365200740298265),
+            id: const IdUid(18, 7039656489576023354),
             name: 'motivobloqueo',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(19, 8005960980300889793),
+            id: const IdUid(19, 2493859058296701268),
             name: 'fechaExpiracion',
             type: 10,
             flags: 0),
         ModelProperty(
-            id: const IdUid(20, 3694063039512997830),
+            id: const IdUid(20, 3083825453608143937),
             name: 'tokenExpiracion',
             type: 6,
             flags: 0)
@@ -397,28 +520,66 @@ final _entities = <ModelEntity>[
         ModelBacklink(name: 'zones', srcEntity: 'Zone', srcField: 'session')
       ]),
   ModelEntity(
-      id: const IdUid(7, 9066654320823586908),
-      name: 'SyncManager',
-      lastPropertyId: const IdUid(4, 5549603667614343618),
+      id: const IdUid(10, 6122599085261449907),
+      name: 'SubChannel',
+      lastPropertyId: const IdUid(4, 1412674568589178400),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 2183787241037730052),
+            id: const IdUid(1, 4375393597861627476),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 1870062132611417478),
+            id: const IdUid(2, 6192189686579443166),
+            name: 'subcanalid',
+            type: 9,
+            flags: 2048,
+            indexId: const IdUid(10, 1819072556307829328)),
+        ModelProperty(
+            id: const IdUid(3, 3778790976118896995),
+            name: 'nombre',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(4, 1412674568589178400),
+            name: 'clientId',
+            type: 11,
+            flags: 520,
+            indexId: const IdUid(11, 8041634256396516008),
+            relationTarget: 'Client')
+      ],
+      relations: <ModelRelation>[],
+      backlinks: <ModelBacklink>[]),
+  ModelEntity(
+      id: const IdUid(11, 2360975559591949240),
+      name: 'SyncManager',
+      lastPropertyId: const IdUid(5, 4500205345141526680),
+      flags: 0,
+      properties: <ModelProperty>[
+        ModelProperty(
+            id: const IdUid(1, 2229756113147992929),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        ModelProperty(
+            id: const IdUid(2, 6730420037676249223),
+            name: 'zoneId',
+            type: 9,
+            flags: 2048,
+            indexId: const IdUid(12, 8268799265784169701)),
+        ModelProperty(
+            id: const IdUid(3, 5448389696012076129),
             name: 'syncType',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(3, 5359323508085854991),
+            id: const IdUid(4, 7324479021395933943),
             name: 'lastSyncDownDate',
             type: 10,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 5549603667614343618),
+            id: const IdUid(5, 4500205345141526680),
             name: 'lastSyncUpDate',
             type: 10,
             flags: 0)
@@ -426,73 +587,105 @@ final _entities = <ModelEntity>[
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(8, 1871379704220637790),
-      name: 'User',
-      lastPropertyId: const IdUid(13, 5044629437909943379),
+      id: const IdUid(12, 938348534075148338),
+      name: 'Ubigeo',
+      lastPropertyId: const IdUid(4, 6216827338401023525),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 1925266461633603294),
+            id: const IdUid(1, 5689136418399556990),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        ModelProperty(
+            id: const IdUid(2, 3047597260741415172),
+            name: 'ubigeoid',
+            type: 9,
+            flags: 2048,
+            indexId: const IdUid(13, 8516050573300847682)),
+        ModelProperty(
+            id: const IdUid(3, 3737654058133339295),
+            name: 'nombre',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(4, 6216827338401023525),
+            name: 'clientId',
+            type: 11,
+            flags: 520,
+            indexId: const IdUid(14, 3558959623738751717),
+            relationTarget: 'Client')
+      ],
+      relations: <ModelRelation>[],
+      backlinks: <ModelBacklink>[]),
+  ModelEntity(
+      id: const IdUid(13, 5480467339342880569),
+      name: 'User',
+      lastPropertyId: const IdUid(13, 3186308517812136443),
+      flags: 0,
+      properties: <ModelProperty>[
+        ModelProperty(
+            id: const IdUid(1, 6684413725060401583),
             name: 'usuarioid',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 5343649916891605877),
+            id: const IdUid(2, 6223770375871247000),
             name: 'usuario',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(3, 8277910467727815459),
+            id: const IdUid(3, 8402625622624800262),
             name: 'descripcion',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 105983029770248437),
+            id: const IdUid(4, 1098123255544243960),
             name: 'correo',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 7303963623401967280),
+            id: const IdUid(5, 5109788961753602528),
             name: 'activo',
             type: 1,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 5641300765323220290),
+            id: const IdUid(6, 2787954920504340615),
             name: 'bloqueado',
             type: 1,
             flags: 0),
         ModelProperty(
-            id: const IdUid(7, 9083289789067083681),
+            id: const IdUid(7, 3163575820263645660),
             name: 'rolid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(8, 7643852114721637638),
+            id: const IdUid(8, 6333652786491336948),
             name: 'token',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(9, 5522175752182620175),
+            id: const IdUid(9, 8755272223597664185),
             name: 'telefono',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(10, 2597566433538656378),
+            id: const IdUid(10, 5562378371601265569),
             name: 'creado',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(11, 7954048295197118160),
+            id: const IdUid(11, 3173834683488255476),
             name: 'menuidFav1',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(12, 857851025557293796),
+            id: const IdUid(12, 4949162849451185489),
             name: 'menuidFav2',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(13, 5044629437909943379),
+            id: const IdUid(13, 3186308517812136443),
             name: 'menuidFav3',
             type: 9,
             flags: 0)
@@ -500,33 +693,33 @@ final _entities = <ModelEntity>[
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(9, 7017835550395435011),
+      id: const IdUid(14, 6211050864577172975),
       name: 'Vendor',
-      lastPropertyId: const IdUid(5, 7909784377583410562),
+      lastPropertyId: const IdUid(5, 5096006569920981431),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 5766544328317486074),
+            id: const IdUid(1, 3044928206912999855),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 2493181986416878783),
+            id: const IdUid(2, 246501137813848990),
             name: 'username',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(3, 2199875099760275046),
+            id: const IdUid(3, 4733544490306448937),
             name: 'password',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 6762629118192062723),
+            id: const IdUid(4, 936955042637226380),
             name: 'name',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 7909784377583410562),
+            id: const IdUid(5, 5096006569920981431),
             name: 'zone',
             type: 9,
             flags: 0)
@@ -534,57 +727,57 @@ final _entities = <ModelEntity>[
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(10, 858104386194730590),
+      id: const IdUid(15, 3675242266151890721),
       name: 'Zone',
-      lastPropertyId: const IdUid(9, 7992194096798181971),
+      lastPropertyId: const IdUid(9, 681034144575952146),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 6785176775442233350),
+            id: const IdUid(1, 6622617375365630484),
             name: 'id',
             type: 6,
             flags: 129),
         ModelProperty(
-            id: const IdUid(2, 2752354566858083198),
+            id: const IdUid(2, 9136891826720557244),
             name: 'zonaid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(3, 390111883622515648),
+            id: const IdUid(3, 3046744994255331781),
             name: 'nombre',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 2930468656720581612),
+            id: const IdUid(4, 4437115041229764465),
             name: 'vendedorid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 8681147052500643218),
+            id: const IdUid(5, 6305498861586077657),
             name: 'canalid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 2455891143413100961),
+            id: const IdUid(6, 864285292855264490),
             name: 'subcanalid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(7, 2755630438510831717),
+            id: const IdUid(7, 3008579174236717928),
             name: 'unidadnegocioid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(8, 3425111322850531392),
+            id: const IdUid(8, 4802712385491256775),
             name: 'activo',
             type: 1,
             flags: 0),
         ModelProperty(
-            id: const IdUid(9, 7992194096798181971),
+            id: const IdUid(9, 681034144575952146),
             name: 'sessionId',
             type: 11,
             flags: 520,
-            indexId: const IdUid(2, 6991858934025488596),
+            indexId: const IdUid(15, 5655807599451241886),
             relationTarget: 'Session')
       ],
       relations: <ModelRelation>[],
@@ -611,9 +804,9 @@ Future<Store> openStore(
 ModelDefinition getObjectBoxModel() {
   final model = ModelInfo(
       entities: _entities,
-      lastEntityId: const IdUid(10, 858104386194730590),
-      lastIndexId: const IdUid(2, 6991858934025488596),
-      lastRelationId: const IdUid(0, 0),
+      lastEntityId: const IdUid(15, 3675242266151890721),
+      lastIndexId: const IdUid(15, 5655807599451241886),
+      lastRelationId: const IdUid(1, 4006900782610999559),
       lastSequenceId: const IdUid(0, 0),
       retiredEntityUids: const [],
       retiredIndexUids: const [],
@@ -627,7 +820,21 @@ ModelDefinition getObjectBoxModel() {
     Client: EntityDefinition<Client>(
         model: _entities[0],
         toOneRelations: (Client object) => [],
-        toManyRelations: (Client object) => {},
+        toManyRelations: (Client object) => {
+              RelInfo<Client>.toMany(1, object.id): object.ubigee,
+              RelInfo<ClientStatus>.toOneBacklink(4, object.id,
+                      (ClientStatus srcObject) => srcObject.client):
+                  object.clientStatus,
+              RelInfo<DiremidStatus>.toOneBacklink(4, object.id,
+                      (DiremidStatus srcObject) => srcObject.client):
+                  object.diremidStatus,
+              RelInfo<DiscountType>.toOneBacklink(4, object.id,
+                      (DiscountType srcObject) => srcObject.client):
+                  object.discountType,
+              RelInfo<SubChannel>.toOneBacklink(
+                      4, object.id, (SubChannel srcObject) => srcObject.client):
+                  object.subChannel
+            },
         getId: (Client object) => object.id,
         setId: (Client object, int id) {
           object.id = id;
@@ -767,11 +974,150 @@ ModelDefinition getObjectBoxModel() {
               deuda: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 48),
               lineadisponible: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 50),
               lastSync: lastSyncValue == null ? null : DateTime.fromMillisecondsSinceEpoch(lastSyncValue));
+          InternalToManyAccess.setRelInfo(object.ubigee, store,
+              RelInfo<Client>.toMany(1, object.id), store.box<Client>());
+          InternalToManyAccess.setRelInfo(
+              object.clientStatus,
+              store,
+              RelInfo<ClientStatus>.toOneBacklink(
+                  4, object.id, (ClientStatus srcObject) => srcObject.client),
+              store.box<Client>());
+          InternalToManyAccess.setRelInfo(
+              object.diremidStatus,
+              store,
+              RelInfo<DiremidStatus>.toOneBacklink(
+                  4, object.id, (DiremidStatus srcObject) => srcObject.client),
+              store.box<Client>());
+          InternalToManyAccess.setRelInfo(
+              object.discountType,
+              store,
+              RelInfo<DiscountType>.toOneBacklink(
+                  4, object.id, (DiscountType srcObject) => srcObject.client),
+              store.box<Client>());
+          InternalToManyAccess.setRelInfo(
+              object.subChannel,
+              store,
+              RelInfo<SubChannel>.toOneBacklink(
+                  4, object.id, (SubChannel srcObject) => srcObject.client),
+              store.box<Client>());
+          return object;
+        }),
+    ClientStatus: EntityDefinition<ClientStatus>(
+        model: _entities[1],
+        toOneRelations: (ClientStatus object) => [object.client],
+        toManyRelations: (ClientStatus object) => {},
+        getId: (ClientStatus object) => object.id,
+        setId: (ClientStatus object, int id) {
+          object.id = id;
+        },
+        objectToFB: (ClientStatus object, fb.Builder fbb) {
+          final estadoclienteidOffset = object.estadoclienteid == null
+              ? null
+              : fbb.writeString(object.estadoclienteid!);
+          final nombreOffset =
+              object.nombre == null ? null : fbb.writeString(object.nombre!);
+          fbb.startTable(5);
+          fbb.addInt64(0, object.id ?? 0);
+          fbb.addOffset(1, estadoclienteidOffset);
+          fbb.addOffset(2, nombreOffset);
+          fbb.addInt64(3, object.client.targetId);
+          fbb.finish(fbb.endTable());
+          return object.id ?? 0;
+        },
+        objectFromFB: (Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
 
+          final object = ClientStatus(
+              id: const fb.Int64Reader()
+                  .vTableGetNullable(buffer, rootOffset, 4),
+              estadoclienteid: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 6),
+              nombre: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 8));
+          object.client.targetId =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0);
+          object.client.attach(store);
+          return object;
+        }),
+    DiremidStatus: EntityDefinition<DiremidStatus>(
+        model: _entities[2],
+        toOneRelations: (DiremidStatus object) => [object.client],
+        toManyRelations: (DiremidStatus object) => {},
+        getId: (DiremidStatus object) => object.id,
+        setId: (DiremidStatus object, int id) {
+          object.id = id;
+        },
+        objectToFB: (DiremidStatus object, fb.Builder fbb) {
+          final estadodiremididOffset = object.estadodiremidid == null
+              ? null
+              : fbb.writeString(object.estadodiremidid!);
+          final nombreOffset =
+              object.nombre == null ? null : fbb.writeString(object.nombre!);
+          fbb.startTable(5);
+          fbb.addInt64(0, object.id ?? 0);
+          fbb.addOffset(1, estadodiremididOffset);
+          fbb.addOffset(2, nombreOffset);
+          fbb.addInt64(3, object.client.targetId);
+          fbb.finish(fbb.endTable());
+          return object.id ?? 0;
+        },
+        objectFromFB: (Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+
+          final object = DiremidStatus(
+              id: const fb.Int64Reader()
+                  .vTableGetNullable(buffer, rootOffset, 4),
+              estadodiremidid: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 6),
+              nombre: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 8));
+          object.client.targetId =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0);
+          object.client.attach(store);
+          return object;
+        }),
+    DiscountType: EntityDefinition<DiscountType>(
+        model: _entities[3],
+        toOneRelations: (DiscountType object) => [object.client],
+        toManyRelations: (DiscountType object) => {},
+        getId: (DiscountType object) => object.id,
+        setId: (DiscountType object, int id) {
+          object.id = id;
+        },
+        objectToFB: (DiscountType object, fb.Builder fbb) {
+          final tipodescuentoidOffset = object.tipodescuentoid == null
+              ? null
+              : fbb.writeString(object.tipodescuentoid!);
+          final nombreOffset =
+              object.nombre == null ? null : fbb.writeString(object.nombre!);
+          fbb.startTable(5);
+          fbb.addInt64(0, object.id ?? 0);
+          fbb.addOffset(1, tipodescuentoidOffset);
+          fbb.addOffset(2, nombreOffset);
+          fbb.addInt64(3, object.client.targetId);
+          fbb.finish(fbb.endTable());
+          return object.id ?? 0;
+        },
+        objectFromFB: (Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+
+          final object = DiscountType(
+              id: const fb.Int64Reader()
+                  .vTableGetNullable(buffer, rootOffset, 4),
+              tipodescuentoid: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 6),
+              nombre: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 8));
+          object.client.targetId =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0);
+          object.client.attach(store);
           return object;
         }),
     Menu: EntityDefinition<Menu>(
-        model: _entities[1],
+        model: _entities[4],
         toOneRelations: (Menu object) => [],
         toManyRelations: (Menu object) => {},
         getId: (Menu object) => object.id,
@@ -816,7 +1162,7 @@ ModelDefinition getObjectBoxModel() {
           return object;
         }),
     MenuFav: EntityDefinition<MenuFav>(
-        model: _entities[2],
+        model: _entities[5],
         toOneRelations: (MenuFav object) => [],
         toManyRelations: (MenuFav object) => {},
         getId: (MenuFav object) => object.id,
@@ -858,7 +1204,7 @@ ModelDefinition getObjectBoxModel() {
           return object;
         }),
     Role: EntityDefinition<Role>(
-        model: _entities[3],
+        model: _entities[6],
         toOneRelations: (Role object) => [object.roleMenu],
         toManyRelations: (Role object) => {},
         getId: (Role object) => object.rolid,
@@ -890,7 +1236,7 @@ ModelDefinition getObjectBoxModel() {
           return object;
         }),
     RoleMenu: EntityDefinition<RoleMenu>(
-        model: _entities[4],
+        model: _entities[7],
         toOneRelations: (RoleMenu object) => [],
         toManyRelations: (RoleMenu object) => {},
         getId: (RoleMenu object) => object.rolmenuid,
@@ -928,7 +1274,7 @@ ModelDefinition getObjectBoxModel() {
           return object;
         }),
     Session: EntityDefinition<Session>(
-        model: _entities[5],
+        model: _entities[8],
         toOneRelations: (Session object) => [],
         toManyRelations: (Session object) => {
               RelInfo<Zone>.toOneBacklink(
@@ -1040,8 +1386,46 @@ ModelDefinition getObjectBoxModel() {
               store.box<Session>());
           return object;
         }),
+    SubChannel: EntityDefinition<SubChannel>(
+        model: _entities[9],
+        toOneRelations: (SubChannel object) => [object.client],
+        toManyRelations: (SubChannel object) => {},
+        getId: (SubChannel object) => object.id,
+        setId: (SubChannel object, int id) {
+          object.id = id;
+        },
+        objectToFB: (SubChannel object, fb.Builder fbb) {
+          final subcanalidOffset = object.subcanalid == null
+              ? null
+              : fbb.writeString(object.subcanalid!);
+          final nombreOffset =
+              object.nombre == null ? null : fbb.writeString(object.nombre!);
+          fbb.startTable(5);
+          fbb.addInt64(0, object.id ?? 0);
+          fbb.addOffset(1, subcanalidOffset);
+          fbb.addOffset(2, nombreOffset);
+          fbb.addInt64(3, object.client.targetId);
+          fbb.finish(fbb.endTable());
+          return object.id ?? 0;
+        },
+        objectFromFB: (Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+
+          final object = SubChannel(
+              id: const fb.Int64Reader()
+                  .vTableGetNullable(buffer, rootOffset, 4),
+              subcanalid: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 6),
+              nombre: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 8));
+          object.client.targetId =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0);
+          object.client.attach(store);
+          return object;
+        }),
     SyncManager: EntityDefinition<SyncManager>(
-        model: _entities[6],
+        model: _entities[10],
         toOneRelations: (SyncManager object) => [],
         toManyRelations: (SyncManager object) => {},
         getId: (SyncManager object) => object.id,
@@ -1049,14 +1433,17 @@ ModelDefinition getObjectBoxModel() {
           object.id = id;
         },
         objectToFB: (SyncManager object, fb.Builder fbb) {
+          final zoneIdOffset =
+              object.zoneId == null ? null : fbb.writeString(object.zoneId!);
           final syncTypeOffset = object.syncType == null
               ? null
               : fbb.writeString(object.syncType!);
-          fbb.startTable(5);
+          fbb.startTable(6);
           fbb.addInt64(0, object.id);
-          fbb.addOffset(1, syncTypeOffset);
-          fbb.addInt64(2, object.lastSyncDownDate?.millisecondsSinceEpoch);
-          fbb.addInt64(3, object.lastSyncUpDate?.millisecondsSinceEpoch);
+          fbb.addOffset(1, zoneIdOffset);
+          fbb.addOffset(2, syncTypeOffset);
+          fbb.addInt64(3, object.lastSyncDownDate?.millisecondsSinceEpoch);
+          fbb.addInt64(4, object.lastSyncUpDate?.millisecondsSinceEpoch);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -1064,13 +1451,15 @@ ModelDefinition getObjectBoxModel() {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
           final lastSyncDownDateValue =
-              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 8);
-          final lastSyncUpDateValue =
               const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 10);
+          final lastSyncUpDateValue =
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 12);
           final object = SyncManager(
               id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0),
-              syncType: const fb.StringReader()
+              zoneId: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 6),
+              syncType: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 8),
               lastSyncDownDate: lastSyncDownDateValue == null
                   ? null
                   : DateTime.fromMillisecondsSinceEpoch(lastSyncDownDateValue),
@@ -1080,8 +1469,45 @@ ModelDefinition getObjectBoxModel() {
 
           return object;
         }),
+    Ubigeo: EntityDefinition<Ubigeo>(
+        model: _entities[11],
+        toOneRelations: (Ubigeo object) => [object.client],
+        toManyRelations: (Ubigeo object) => {},
+        getId: (Ubigeo object) => object.id,
+        setId: (Ubigeo object, int id) {
+          object.id = id;
+        },
+        objectToFB: (Ubigeo object, fb.Builder fbb) {
+          final ubigeoidOffset = object.ubigeoid == null
+              ? null
+              : fbb.writeString(object.ubigeoid!);
+          final nombreOffset =
+              object.nombre == null ? null : fbb.writeString(object.nombre!);
+          fbb.startTable(5);
+          fbb.addInt64(0, object.id);
+          fbb.addOffset(1, ubigeoidOffset);
+          fbb.addOffset(2, nombreOffset);
+          fbb.addInt64(3, object.client.targetId);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+
+          final object = Ubigeo(
+              id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0),
+              ubigeoid: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 6),
+              nombre: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 8));
+          object.client.targetId =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0);
+          object.client.attach(store);
+          return object;
+        }),
     User: EntityDefinition<User>(
-        model: _entities[7],
+        model: _entities[12],
         toOneRelations: (User object) => [],
         toManyRelations: (User object) => {},
         getId: (User object) => object.usuarioid,
@@ -1163,7 +1589,7 @@ ModelDefinition getObjectBoxModel() {
           return object;
         }),
     Vendor: EntityDefinition<Vendor>(
-        model: _entities[8],
+        model: _entities[13],
         toOneRelations: (Vendor object) => [],
         toManyRelations: (Vendor object) => {},
         getId: (Vendor object) => object.id,
@@ -1202,7 +1628,7 @@ ModelDefinition getObjectBoxModel() {
           return object;
         }),
     Zone: EntityDefinition<Zone>(
-        model: _entities[9],
+        model: _entities[14],
         toOneRelations: (Zone object) => [object.session],
         toManyRelations: (Zone object) => {},
         getId: (Zone object) => object.id,
@@ -1364,281 +1790,384 @@ class Client_ {
   /// see [Client.lastSync]
   static final lastSync =
       QueryIntegerProperty<Client>(_entities[0].properties[24]);
+
+  /// see [Client.ubigee]
+  static final ubigee =
+      QueryRelationToMany<Client, Ubigeo>(_entities[0].relations[0]);
+}
+
+/// [ClientStatus] entity fields to define ObjectBox queries.
+class ClientStatus_ {
+  /// see [ClientStatus.id]
+  static final id =
+      QueryIntegerProperty<ClientStatus>(_entities[1].properties[0]);
+
+  /// see [ClientStatus.estadoclienteid]
+  static final estadoclienteid =
+      QueryStringProperty<ClientStatus>(_entities[1].properties[1]);
+
+  /// see [ClientStatus.nombre]
+  static final nombre =
+      QueryStringProperty<ClientStatus>(_entities[1].properties[2]);
+
+  /// see [ClientStatus.client]
+  static final client =
+      QueryRelationToOne<ClientStatus, Client>(_entities[1].properties[3]);
+}
+
+/// [DiremidStatus] entity fields to define ObjectBox queries.
+class DiremidStatus_ {
+  /// see [DiremidStatus.id]
+  static final id =
+      QueryIntegerProperty<DiremidStatus>(_entities[2].properties[0]);
+
+  /// see [DiremidStatus.estadodiremidid]
+  static final estadodiremidid =
+      QueryStringProperty<DiremidStatus>(_entities[2].properties[1]);
+
+  /// see [DiremidStatus.nombre]
+  static final nombre =
+      QueryStringProperty<DiremidStatus>(_entities[2].properties[2]);
+
+  /// see [DiremidStatus.client]
+  static final client =
+      QueryRelationToOne<DiremidStatus, Client>(_entities[2].properties[3]);
+}
+
+/// [DiscountType] entity fields to define ObjectBox queries.
+class DiscountType_ {
+  /// see [DiscountType.id]
+  static final id =
+      QueryIntegerProperty<DiscountType>(_entities[3].properties[0]);
+
+  /// see [DiscountType.tipodescuentoid]
+  static final tipodescuentoid =
+      QueryStringProperty<DiscountType>(_entities[3].properties[1]);
+
+  /// see [DiscountType.nombre]
+  static final nombre =
+      QueryStringProperty<DiscountType>(_entities[3].properties[2]);
+
+  /// see [DiscountType.client]
+  static final client =
+      QueryRelationToOne<DiscountType, Client>(_entities[3].properties[3]);
 }
 
 /// [Menu] entity fields to define ObjectBox queries.
 class Menu_ {
   /// see [Menu.id]
-  static final id = QueryIntegerProperty<Menu>(_entities[1].properties[0]);
+  static final id = QueryIntegerProperty<Menu>(_entities[4].properties[0]);
 
   /// see [Menu.menuid]
-  static final menuid = QueryStringProperty<Menu>(_entities[1].properties[1]);
+  static final menuid = QueryStringProperty<Menu>(_entities[4].properties[1]);
 
   /// see [Menu.titulo]
-  static final titulo = QueryStringProperty<Menu>(_entities[1].properties[2]);
+  static final titulo = QueryStringProperty<Menu>(_entities[4].properties[2]);
 
   /// see [Menu.ruta]
-  static final ruta = QueryStringProperty<Menu>(_entities[1].properties[3]);
+  static final ruta = QueryStringProperty<Menu>(_entities[4].properties[3]);
 
   /// see [Menu.orden]
-  static final orden = QueryIntegerProperty<Menu>(_entities[1].properties[4]);
+  static final orden = QueryIntegerProperty<Menu>(_entities[4].properties[4]);
 
   /// see [Menu.acceso]
-  static final acceso = QueryBooleanProperty<Menu>(_entities[1].properties[5]);
+  static final acceso = QueryBooleanProperty<Menu>(_entities[4].properties[5]);
 }
 
 /// [MenuFav] entity fields to define ObjectBox queries.
 class MenuFav_ {
   /// see [MenuFav.id]
-  static final id = QueryIntegerProperty<MenuFav>(_entities[2].properties[0]);
+  static final id = QueryIntegerProperty<MenuFav>(_entities[5].properties[0]);
 
   /// see [MenuFav.menuid]
   static final menuid =
-      QueryStringProperty<MenuFav>(_entities[2].properties[1]);
+      QueryStringProperty<MenuFav>(_entities[5].properties[1]);
 
   /// see [MenuFav.titulo]
   static final titulo =
-      QueryStringProperty<MenuFav>(_entities[2].properties[2]);
+      QueryStringProperty<MenuFav>(_entities[5].properties[2]);
 
   /// see [MenuFav.ruta]
-  static final ruta = QueryStringProperty<MenuFav>(_entities[2].properties[3]);
+  static final ruta = QueryStringProperty<MenuFav>(_entities[5].properties[3]);
 
   /// see [MenuFav.orden]
   static final orden =
-      QueryIntegerProperty<MenuFav>(_entities[2].properties[4]);
+      QueryIntegerProperty<MenuFav>(_entities[5].properties[4]);
 }
 
 /// [Role] entity fields to define ObjectBox queries.
 class Role_ {
   /// see [Role.rolid]
-  static final rolid = QueryIntegerProperty<Role>(_entities[3].properties[0]);
+  static final rolid = QueryIntegerProperty<Role>(_entities[6].properties[0]);
 
   /// see [Role.nombre]
-  static final nombre = QueryStringProperty<Role>(_entities[3].properties[1]);
+  static final nombre = QueryStringProperty<Role>(_entities[6].properties[1]);
 
   /// see [Role.roleMenu]
   static final roleMenu =
-      QueryRelationToOne<Role, RoleMenu>(_entities[3].properties[2]);
+      QueryRelationToOne<Role, RoleMenu>(_entities[6].properties[2]);
 }
 
 /// [RoleMenu] entity fields to define ObjectBox queries.
 class RoleMenu_ {
   /// see [RoleMenu.rolmenuid]
   static final rolmenuid =
-      QueryIntegerProperty<RoleMenu>(_entities[4].properties[0]);
+      QueryIntegerProperty<RoleMenu>(_entities[7].properties[0]);
 
   /// see [RoleMenu.rolid]
   static final rolid =
-      QueryIntegerProperty<RoleMenu>(_entities[4].properties[1]);
+      QueryIntegerProperty<RoleMenu>(_entities[7].properties[1]);
 
   /// see [RoleMenu.menuid]
   static final menuid =
-      QueryStringProperty<RoleMenu>(_entities[4].properties[2]);
+      QueryStringProperty<RoleMenu>(_entities[7].properties[2]);
 
   /// see [RoleMenu.registrado]
   static final registrado =
-      QueryStringProperty<RoleMenu>(_entities[4].properties[3]);
+      QueryStringProperty<RoleMenu>(_entities[7].properties[3]);
 }
 
 /// [Session] entity fields to define ObjectBox queries.
 class Session_ {
   /// see [Session.id]
-  static final id = QueryIntegerProperty<Session>(_entities[5].properties[0]);
+  static final id = QueryIntegerProperty<Session>(_entities[8].properties[0]);
 
   /// see [Session.deviceToken]
   static final deviceToken =
-      QueryStringProperty<Session>(_entities[5].properties[1]);
+      QueryStringProperty<Session>(_entities[8].properties[1]);
 
   /// see [Session.usuarioid]
   static final usuarioid =
-      QueryIntegerProperty<Session>(_entities[5].properties[2]);
+      QueryIntegerProperty<Session>(_entities[8].properties[2]);
 
   /// see [Session.usuario]
   static final usuario =
-      QueryStringProperty<Session>(_entities[5].properties[3]);
+      QueryStringProperty<Session>(_entities[8].properties[3]);
 
   /// see [Session.descripcion]
   static final descripcion =
-      QueryStringProperty<Session>(_entities[5].properties[4]);
+      QueryStringProperty<Session>(_entities[8].properties[4]);
 
   /// see [Session.correo]
   static final correo =
-      QueryStringProperty<Session>(_entities[5].properties[5]);
+      QueryStringProperty<Session>(_entities[8].properties[5]);
 
   /// see [Session.activo]
   static final activo =
-      QueryBooleanProperty<Session>(_entities[5].properties[6]);
+      QueryBooleanProperty<Session>(_entities[8].properties[6]);
 
   /// see [Session.bloqueado]
   static final bloqueado =
-      QueryBooleanProperty<Session>(_entities[5].properties[7]);
+      QueryBooleanProperty<Session>(_entities[8].properties[7]);
 
   /// see [Session.motivobloqueoid]
   static final motivobloqueoid =
-      QueryIntegerProperty<Session>(_entities[5].properties[8]);
+      QueryIntegerProperty<Session>(_entities[8].properties[8]);
 
   /// see [Session.rolid]
   static final rolid =
-      QueryIntegerProperty<Session>(_entities[5].properties[9]);
+      QueryIntegerProperty<Session>(_entities[8].properties[9]);
 
   /// see [Session.token]
   static final token =
-      QueryStringProperty<Session>(_entities[5].properties[10]);
+      QueryStringProperty<Session>(_entities[8].properties[10]);
 
   /// see [Session.telefono]
   static final telefono =
-      QueryStringProperty<Session>(_entities[5].properties[11]);
+      QueryStringProperty<Session>(_entities[8].properties[11]);
 
   /// see [Session.creado]
   static final creado =
-      QueryIntegerProperty<Session>(_entities[5].properties[12]);
+      QueryIntegerProperty<Session>(_entities[8].properties[12]);
 
   /// see [Session.actualizado]
   static final actualizado =
-      QueryIntegerProperty<Session>(_entities[5].properties[13]);
+      QueryIntegerProperty<Session>(_entities[8].properties[13]);
 
   /// see [Session.menuidFav1]
   static final menuidFav1 =
-      QueryStringProperty<Session>(_entities[5].properties[14]);
+      QueryStringProperty<Session>(_entities[8].properties[14]);
 
   /// see [Session.menuidFav2]
   static final menuidFav2 =
-      QueryStringProperty<Session>(_entities[5].properties[15]);
+      QueryStringProperty<Session>(_entities[8].properties[15]);
 
   /// see [Session.menuidFav3]
   static final menuidFav3 =
-      QueryStringProperty<Session>(_entities[5].properties[16]);
+      QueryStringProperty<Session>(_entities[8].properties[16]);
 
   /// see [Session.motivobloqueo]
   static final motivobloqueo =
-      QueryStringProperty<Session>(_entities[5].properties[17]);
+      QueryStringProperty<Session>(_entities[8].properties[17]);
 
   /// see [Session.fechaExpiracion]
   static final fechaExpiracion =
-      QueryIntegerProperty<Session>(_entities[5].properties[18]);
+      QueryIntegerProperty<Session>(_entities[8].properties[18]);
 
   /// see [Session.tokenExpiracion]
   static final tokenExpiracion =
-      QueryIntegerProperty<Session>(_entities[5].properties[19]);
+      QueryIntegerProperty<Session>(_entities[8].properties[19]);
+}
+
+/// [SubChannel] entity fields to define ObjectBox queries.
+class SubChannel_ {
+  /// see [SubChannel.id]
+  static final id =
+      QueryIntegerProperty<SubChannel>(_entities[9].properties[0]);
+
+  /// see [SubChannel.subcanalid]
+  static final subcanalid =
+      QueryStringProperty<SubChannel>(_entities[9].properties[1]);
+
+  /// see [SubChannel.nombre]
+  static final nombre =
+      QueryStringProperty<SubChannel>(_entities[9].properties[2]);
+
+  /// see [SubChannel.client]
+  static final client =
+      QueryRelationToOne<SubChannel, Client>(_entities[9].properties[3]);
 }
 
 /// [SyncManager] entity fields to define ObjectBox queries.
 class SyncManager_ {
   /// see [SyncManager.id]
   static final id =
-      QueryIntegerProperty<SyncManager>(_entities[6].properties[0]);
+      QueryIntegerProperty<SyncManager>(_entities[10].properties[0]);
+
+  /// see [SyncManager.zoneId]
+  static final zoneId =
+      QueryStringProperty<SyncManager>(_entities[10].properties[1]);
 
   /// see [SyncManager.syncType]
   static final syncType =
-      QueryStringProperty<SyncManager>(_entities[6].properties[1]);
+      QueryStringProperty<SyncManager>(_entities[10].properties[2]);
 
   /// see [SyncManager.lastSyncDownDate]
   static final lastSyncDownDate =
-      QueryIntegerProperty<SyncManager>(_entities[6].properties[2]);
+      QueryIntegerProperty<SyncManager>(_entities[10].properties[3]);
 
   /// see [SyncManager.lastSyncUpDate]
   static final lastSyncUpDate =
-      QueryIntegerProperty<SyncManager>(_entities[6].properties[3]);
+      QueryIntegerProperty<SyncManager>(_entities[10].properties[4]);
+}
+
+/// [Ubigeo] entity fields to define ObjectBox queries.
+class Ubigeo_ {
+  /// see [Ubigeo.id]
+  static final id = QueryIntegerProperty<Ubigeo>(_entities[11].properties[0]);
+
+  /// see [Ubigeo.ubigeoid]
+  static final ubigeoid =
+      QueryStringProperty<Ubigeo>(_entities[11].properties[1]);
+
+  /// see [Ubigeo.nombre]
+  static final nombre =
+      QueryStringProperty<Ubigeo>(_entities[11].properties[2]);
+
+  /// see [Ubigeo.client]
+  static final client =
+      QueryRelationToOne<Ubigeo, Client>(_entities[11].properties[3]);
 }
 
 /// [User] entity fields to define ObjectBox queries.
 class User_ {
   /// see [User.usuarioid]
   static final usuarioid =
-      QueryIntegerProperty<User>(_entities[7].properties[0]);
+      QueryIntegerProperty<User>(_entities[12].properties[0]);
 
   /// see [User.usuario]
-  static final usuario = QueryStringProperty<User>(_entities[7].properties[1]);
+  static final usuario = QueryStringProperty<User>(_entities[12].properties[1]);
 
   /// see [User.descripcion]
   static final descripcion =
-      QueryStringProperty<User>(_entities[7].properties[2]);
+      QueryStringProperty<User>(_entities[12].properties[2]);
 
   /// see [User.correo]
-  static final correo = QueryStringProperty<User>(_entities[7].properties[3]);
+  static final correo = QueryStringProperty<User>(_entities[12].properties[3]);
 
   /// see [User.activo]
-  static final activo = QueryBooleanProperty<User>(_entities[7].properties[4]);
+  static final activo = QueryBooleanProperty<User>(_entities[12].properties[4]);
 
   /// see [User.bloqueado]
   static final bloqueado =
-      QueryBooleanProperty<User>(_entities[7].properties[5]);
+      QueryBooleanProperty<User>(_entities[12].properties[5]);
 
   /// see [User.rolid]
-  static final rolid = QueryIntegerProperty<User>(_entities[7].properties[6]);
+  static final rolid = QueryIntegerProperty<User>(_entities[12].properties[6]);
 
   /// see [User.token]
-  static final token = QueryStringProperty<User>(_entities[7].properties[7]);
+  static final token = QueryStringProperty<User>(_entities[12].properties[7]);
 
   /// see [User.telefono]
-  static final telefono = QueryStringProperty<User>(_entities[7].properties[8]);
+  static final telefono =
+      QueryStringProperty<User>(_entities[12].properties[8]);
 
   /// see [User.creado]
-  static final creado = QueryStringProperty<User>(_entities[7].properties[9]);
+  static final creado = QueryStringProperty<User>(_entities[12].properties[9]);
 
   /// see [User.menuidFav1]
   static final menuidFav1 =
-      QueryStringProperty<User>(_entities[7].properties[10]);
+      QueryStringProperty<User>(_entities[12].properties[10]);
 
   /// see [User.menuidFav2]
   static final menuidFav2 =
-      QueryStringProperty<User>(_entities[7].properties[11]);
+      QueryStringProperty<User>(_entities[12].properties[11]);
 
   /// see [User.menuidFav3]
   static final menuidFav3 =
-      QueryStringProperty<User>(_entities[7].properties[12]);
+      QueryStringProperty<User>(_entities[12].properties[12]);
 }
 
 /// [Vendor] entity fields to define ObjectBox queries.
 class Vendor_ {
   /// see [Vendor.id]
-  static final id = QueryIntegerProperty<Vendor>(_entities[8].properties[0]);
+  static final id = QueryIntegerProperty<Vendor>(_entities[13].properties[0]);
 
   /// see [Vendor.username]
   static final username =
-      QueryStringProperty<Vendor>(_entities[8].properties[1]);
+      QueryStringProperty<Vendor>(_entities[13].properties[1]);
 
   /// see [Vendor.password]
   static final password =
-      QueryStringProperty<Vendor>(_entities[8].properties[2]);
+      QueryStringProperty<Vendor>(_entities[13].properties[2]);
 
   /// see [Vendor.name]
-  static final name = QueryStringProperty<Vendor>(_entities[8].properties[3]);
+  static final name = QueryStringProperty<Vendor>(_entities[13].properties[3]);
 
   /// see [Vendor.zone]
-  static final zone = QueryStringProperty<Vendor>(_entities[8].properties[4]);
+  static final zone = QueryStringProperty<Vendor>(_entities[13].properties[4]);
 }
 
 /// [Zone] entity fields to define ObjectBox queries.
 class Zone_ {
   /// see [Zone.id]
-  static final id = QueryIntegerProperty<Zone>(_entities[9].properties[0]);
+  static final id = QueryIntegerProperty<Zone>(_entities[14].properties[0]);
 
   /// see [Zone.zonaid]
-  static final zonaid = QueryStringProperty<Zone>(_entities[9].properties[1]);
+  static final zonaid = QueryStringProperty<Zone>(_entities[14].properties[1]);
 
   /// see [Zone.nombre]
-  static final nombre = QueryStringProperty<Zone>(_entities[9].properties[2]);
+  static final nombre = QueryStringProperty<Zone>(_entities[14].properties[2]);
 
   /// see [Zone.vendedorid]
   static final vendedorid =
-      QueryStringProperty<Zone>(_entities[9].properties[3]);
+      QueryStringProperty<Zone>(_entities[14].properties[3]);
 
   /// see [Zone.canalid]
-  static final canalid = QueryStringProperty<Zone>(_entities[9].properties[4]);
+  static final canalid = QueryStringProperty<Zone>(_entities[14].properties[4]);
 
   /// see [Zone.subcanalid]
   static final subcanalid =
-      QueryStringProperty<Zone>(_entities[9].properties[5]);
+      QueryStringProperty<Zone>(_entities[14].properties[5]);
 
   /// see [Zone.unidadnegocioid]
   static final unidadnegocioid =
-      QueryStringProperty<Zone>(_entities[9].properties[6]);
+      QueryStringProperty<Zone>(_entities[14].properties[6]);
 
   /// see [Zone.activo]
-  static final activo = QueryBooleanProperty<Zone>(_entities[9].properties[7]);
+  static final activo = QueryBooleanProperty<Zone>(_entities[14].properties[7]);
 
   /// see [Zone.session]
   static final session =
-      QueryRelationToOne<Zone, Session>(_entities[9].properties[8]);
+      QueryRelationToOne<Zone, Session>(_entities[14].properties[8]);
 }

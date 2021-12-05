@@ -12,7 +12,7 @@ class Tag extends StatelessWidget {
   Tag({
     Key? key,
     this.label = "--",
-    this.borderColor = AppColors.green,
+    this.borderColor = Colors.transparent,
     this.fontSize = 12,
     this.onClick,
     this.fontColor = AppColors.gray,

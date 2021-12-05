@@ -1,9 +1,12 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dimexa_vendors/core/utils/collection_utils/collection_utils.dart';
+import 'package:dimexa_vendors/core/utils/date_time_util/date_time_util.dart';
+import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:dimexa_vendors/global_widgets/custom_info_field/custom_info_field.dart';
-import 'package:dimexa_vendors/modules/client_page/local_widgets/address_item/address_item.dart';
-import 'package:dimexa_vendors/modules/client_page/local_widgets/contact_item/contact_item.dart';
+import 'package:dimexa_vendors/modules/client_details_page/local_widgets/address_item/address_item.dart';
+import 'package:dimexa_vendors/modules/client_details_page/local_widgets/contact_item/contact_item.dart';
 import 'package:flutter/material.dart';
 import 'package:dimexa_vendors/data/models/client/client.dart';
 
@@ -18,14 +21,16 @@ class DetailsBottomSheet {
   Widget show() {
     return child != null? Container(
         margin: const EdgeInsets.symmetric(horizontal: 8),
-        height: height,
+        //height: height,
         decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(16))
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisSize: MainAxisSize.min,
           children: [
+            const SizedBox(height: 2,),
             ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(4)),
               child: Container(
@@ -58,13 +63,13 @@ class DetailsBottomSheet {
                 Flexible(
                   child: CustomInfoField(
                     label: AppTranslations.of(context)!.text("code"),
-                    value: client.clienteid,
+                    value: StringUtils.checkNullOrEmpty(client.clienteid),
                   ),
                 ),
                 Flexible(
                   child: CustomInfoField(
                     label: AppTranslations.of(context)!.text("ruc"),
-                    value: client.ruc,
+                    value: StringUtils.checkNullOrEmpty(client.ruc),
                   ),
                 )
               ],
@@ -74,14 +79,14 @@ class DetailsBottomSheet {
             ),
             CustomInfoField(
               label: AppTranslations.of(context)!.text("social_reason"),
-              value: client.razonsocial,
+              value: StringUtils.checkNullOrEmpty(client.razonsocial),
             ),
             const Divider(
               thickness: 1,
             ),
             CustomInfoField(
               label:AppTranslations.of(context)!.text("commercial_name"),
-              value: client.nombrecomercial,
+              value: StringUtils.checkNullOrEmpty(client.nombrecomercial),
             ),
             const Divider(
               thickness: 1,
@@ -91,13 +96,15 @@ class DetailsBottomSheet {
                 Flexible(
                   child: CustomInfoField(
                       label: AppTranslations.of(context)!.text("client_status"),
-                      value: "--"//client.estadocliente!,
+                      value: CollectionUtils.isNotNullNorEmpty(client.clientStatus) ?
+                        StringUtils.checkNullOrEmpty(client.clientStatus.first.nombre) : "",
                   ),
                 ),
                 Flexible(
                   child: CustomInfoField(
                       label: AppTranslations.of(context)!.text("diremid_status"),
-                      value: "--"//client.estadodiremid,
+                      value: CollectionUtils.isNotNullNorEmpty(client.diremidStatus) ?
+                      StringUtils.checkNullOrEmpty(client.diremidStatus.first.nombre) : ""
                   ),
                 )
               ],
@@ -114,7 +121,8 @@ class DetailsBottomSheet {
             ),
             CustomInfoField(
               label:AppTranslations.of(context)!.text("ubigeo"),
-              value: client.nombrecomercial,
+              value: CollectionUtils.isNotNullNorEmpty(client.ubigee) ?
+              StringUtils.checkNullOrEmpty(client.ubigee.first.nombre) : "",
             ),
           ],
         )
@@ -134,7 +142,8 @@ class DetailsBottomSheet {
           children: [
             CustomInfoField(
                 label:AppTranslations.of(context)!.text("sub_channel"),
-                value: "--"//client.subcanal,
+                value: CollectionUtils.isNotNullNorEmpty(client.subChannel) ?
+                StringUtils.checkNullOrEmpty(client.subChannel.first.nombre) : ""
             ),
             const Divider(
               thickness: 1,
@@ -144,13 +153,14 @@ class DetailsBottomSheet {
                 Flexible(
                   child: CustomInfoField(
                       label: AppTranslations.of(context)!.text("discount_type"),
-                      value: "--"//client.tipodescuento,
+                      value: CollectionUtils.isNotNullNorEmpty(client.discountType) ?
+                      StringUtils.checkNullOrEmpty(client.discountType.first.nombre) : ""
                   ),
                 ),
                 Flexible(
                   child: CustomInfoField(
                     label: AppTranslations.of(context)!.text("condition"),
-                    value: "--",
+                    value: "",
                   ),
                 )
               ],
@@ -163,13 +173,13 @@ class DetailsBottomSheet {
                 Flexible(
                   child: CustomInfoField(
                     label: AppTranslations.of(context)!.text("visit_day") + "1",
-                    value: client.diavisita1,
+                    value: StringUtils.checkNullOrEmpty(client.diavisita1),
                   ),
                 ),
                 Flexible(
                   child: CustomInfoField(
                     label: AppTranslations.of(context)!.text("visit_day") + "2",
-                    value: client.diavisita2,
+                    value: StringUtils.checkNullOrEmpty(client.diavisita2),
                   ),
                 )
               ],
@@ -182,13 +192,13 @@ class DetailsBottomSheet {
                 Flexible(
                   child: CustomInfoField(
                     label: AppTranslations.of(context)!.text("legal_represent"),
-                    value: client.representantelegal,
+                    value: StringUtils.checkNullOrEmpty(client.representantelegal),
                   ),
                 ),
                 Flexible(
                   child: CustomInfoField(
                     label: AppTranslations.of(context)!.text("dni"),
-                    value: client.dni,
+                    value: StringUtils.checkNullOrEmpty(client.dni),
                   ),
                 )
               ],
@@ -201,13 +211,13 @@ class DetailsBottomSheet {
                 Flexible(
                   child: CustomInfoField(
                       label: AppTranslations.of(context)!.text("anniversary"),
-                      value: ""//client.aniversario,
+                      value: DateTimeUtil.dateTimeToString(client.aniversario),
                   ),
                 ),
                 Flexible(
                   child: CustomInfoField(
                     label:AppTranslations.of(context)!.text("phone_number"),
-                    value: client.telefono,
+                    value: StringUtils.checkNullOrEmpty(client.telefono),
                   ),
                 )
               ],

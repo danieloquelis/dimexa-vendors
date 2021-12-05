@@ -51,7 +51,7 @@ class SplashController extends GetxController {
   void runValidations() async {
     //give app some seconds
     await Future.delayed(
-        const Duration(milliseconds: 100)
+        const Duration(milliseconds: 1000)
     );
 
     //show permissions dialog if list permissions is not empty
@@ -80,52 +80,55 @@ class SplashController extends GetxController {
       return;
     }
 
+    //TODO: Hardcoded
     //check terminal
     //get device serial number
-    String currentDeviceToken = await FlutterDeviceIdentifier.serialCode;
-    if (currentDeviceToken.isEmpty) {
-      //show message error trying to get device serial number
-      showMessage(
-          message: Strings.validateDeviceError
-      );
-      return;
-    }
+    // String currentDeviceToken = await FlutterDeviceIdentifier.serialCode;
+    // if (currentDeviceToken.isEmpty) {
+    //   //show message error trying to get device serial number
+    //   showMessage(
+    //       message: Strings.validateDeviceError
+    //   );
+    //   return;
+    // }
 
     //check if in session exist the configuration (need to encrypt)
     Session? session = sessionRepository.getCurrentSession();
     if (session == null) {
-      final validationResult = await deviceInterceptor.validateDevice(currentDeviceToken)
-          .onError((e, s) {
-        if (e is AppException) {
-          showMessage(message: e.uiMessage);
-        } else {
-          showMessage(message: Strings.systemError);
-        }
-        return null;
-      });
-
-      if (validationResult == null) {
-        return;
-      }
-
-      if (!validationResult) {
-        showMessage(
-            message: Strings.deviceNotValidatedError
-        );
-        return;
-      }
-
-      //save encrypted device token
-      await sessionRepository.saveDeviceToken(session, currentDeviceToken);
+      //TODO: Hardcoded
+      // final validationResult = await deviceInterceptor.validateDevice(currentDeviceToken)
+      //     .onError((e, s) {
+      //   if (e is AppException) {
+      //     showMessage(message: e.uiMessage);
+      //   } else {
+      //     showMessage(message: Strings.systemError);
+      //   }
+      //   return null;
+      // });
+      //
+      // if (validationResult == null) {
+      //   return;
+      // }
+      //
+      // if (!validationResult) {
+      //   showMessage(
+      //       message: Strings.deviceNotValidatedError
+      //   );
+      //   return;
+      // }
+      //
+      // //save encrypted device token
+      // await sessionRepository.saveDeviceToken(session, currentDeviceToken);
     } else {
+      //TODO: Hardcoded
       //verify if the device is allow to use the app (offline)
-      bool isDeviceVerified = await sessionRepository.verifyDeviceToken(currentDeviceToken, session.deviceToken!);
-      if (!isDeviceVerified) {
-        showMessage(
-            message: Strings.deviceNotValidatedError
-        );
-        return;
-      }
+      // bool isDeviceVerified = await sessionRepository.verifyDeviceToken(currentDeviceToken, session.deviceToken!);
+      // if (!isDeviceVerified) {
+      //   showMessage(
+      //       message: Strings.deviceNotValidatedError
+      //   );
+      //   return;
+      // }
 
       //set the session
       globalController.setSession(session);

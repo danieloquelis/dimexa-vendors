@@ -55,11 +55,6 @@ class SessionRepositoryImpl implements SessionRepository {
       session.deviceToken = currentSession.deviceToken;
     }
 
-    //saving relations
-    if (session.zona != null && session.zona!.isNotEmpty) {
-      session.zones.addAll(session.zona!);
-    }
-
     try {
       _sessionBox.put(session);
     } catch(e) {

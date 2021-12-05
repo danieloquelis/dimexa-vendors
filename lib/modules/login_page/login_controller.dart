@@ -62,7 +62,7 @@ class LoginController extends GetxController {
     }
 
     //persist session
-    syncManagerRepository.updateByType(SyncType.session, syncDown: true);
+    //syncManagerRepository.updateByType(SyncType.session, syncDown: true);
     await sessionRepository.saveSession(session);
 
     //set session in the global controller

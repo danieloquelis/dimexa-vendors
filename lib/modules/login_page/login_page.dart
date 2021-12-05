@@ -4,6 +4,7 @@ import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
 import 'package:dimexa_vendors/modules/login_page/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class LoginPage extends StatefulWidget {
@@ -25,9 +26,10 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Image.asset(
-                    "assets/images/dimexa_login.png",
+                  SvgPicture.asset(
+                    "assets/images/dimex_logo_opt.svg",
                   ),
+                  SizedBox(height: 56,),
                   _.loading ?
 
                   const SpinKitChasingDots(

@@ -4,7 +4,7 @@ import 'package:dimexa_vendors/data/provider/objectbox/objectbox.dart';
 import 'package:dimexa_vendors/data/repositories/client_repository/client_repository.dart';
 import 'package:dimexa_vendors/data/repositories/sync_manager_repository/sync_manager_repository.dart';
 import 'package:dimexa_vendors/global_controllers/global_controller.dart';
-import 'package:dimexa_vendors/modules/client_page/local_widgets/details_bottom_sheet/details_bottom_sheet.dart';
+import 'package:dimexa_vendors/modules/client_details_page/local_widgets/details_bottom_sheet/details_bottom_sheet.dart';
 import 'package:dimexa_vendors/routes/app_routes/app_routes.dart';
 import 'package:get/get.dart';
 import 'package:dimexa_vendors/data/models/client/client.dart';
@@ -61,9 +61,9 @@ class ClientDetailsController extends GetxController {
         DetailsBottomSheet.generalInfo(
             context: Get.overlayContext!,
             client: _selectedClient,
-            height: 390
+            height: 408
         ).show(),
-        isScrollControlled: true
+        isScrollControlled: true,
     );
   }
 
