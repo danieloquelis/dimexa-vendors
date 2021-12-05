@@ -78,4 +78,8 @@ class LoginController extends GetxController {
   void setPassword(String value) {
     _password = value;
   }
+
+  void goToResetPassword() {
+    Get.toNamed(AppRoutes.restorePassword);
+  }
 }

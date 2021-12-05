@@ -31,5 +31,45 @@ class AuthInterceptorImpl implements AuthInterceptor {
     );
   }
 
+  @override
+  Future<bool?> resetPassword(String user) async {
+    final result = await _api.resetPassword(
+        user: user,
+    );
+
+    if (result.error != null) {
+      return true;
+    }
+
+    return Future.error(
+        AppException(
+            interceptorErrorHandler(
+              result,
+            )
+        )
+    );
+  }
+
+  @override
+  Future<String?> resetPasswordAndValidateCode(String user, String code) async {
+    final result = await _api.resetPasswordAndValidateCode(
+      user: user,
+      code: code
+    );
+
+    if (result.error != null) {
+      BackendResponse<String> response = BackendResponse<String>.fromJson(result.data, String);
+      return response.data;
+    }
+
+    return Future.error(
+        AppException(
+            interceptorErrorHandler(
+              result,
+            )
+        )
+    );
+  }
+
 
 }

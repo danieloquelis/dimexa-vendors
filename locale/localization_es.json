@@ -58,5 +58,7 @@
   "user_code": "Código de usuario",
   "products": "Productos",
   "home": "Inicio",
-  "map": "Mapa"
+  "map": "Mapa",
+  "restore_password": "Restablecer contraseña",
+  "back": "Regresar"
 }
