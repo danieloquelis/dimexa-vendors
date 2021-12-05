@@ -20,10 +20,8 @@ class _ClientDetailsState extends State<ClientDetails> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ClientsController>(
-      init: ClientsController(),
       builder: (_) => Scaffold(
         appBar: BaseAppBar(
-
           back: _.onBack,
           syncOnDemand: () {
             _.onSyncClient();
@@ -42,54 +40,59 @@ class _ClientDetailsState extends State<ClientDetails> {
                   borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
                   color: AppColors.basePage
                 ),
-                child: Column(
-                  children: [
-                    actionButtons(),
-                    Expanded(
-                      child: SingleChildScrollView(
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-                          child: Column(
-                            children: [
-                              ClientCardInfo.generalInfo(
-                                context: context,
-                                title: AppTranslations.of(context)!.text("general_data"),
-                                client: _.selectedClient,
-                                onClickSeeMore: () => _.showGeneralInfoBottomSheet(),
-                              ),
-                              const SizedBox(height: 24,),
-                              ClientCardInfo.commercialData(
-                                context: context,
-                                title: AppTranslations.of(context)!.text("commercial_data"),
-                                client: _.selectedClient,
-                                onClickSeeMore: () => _.showCommercialInfoBottomSheet(),
-                              ),
-                              const SizedBox(height: 24,),
-                              ClientCardInfo.contacts(
-                                context: context,
-                                title: AppTranslations.of(context)!.text("contacts"),
-                                client: _.selectedClient,
-                                onClickSeeMore: () => _.showContactsBottomSheet(),
-                              ),
-                              const SizedBox(height: 24,),
-                              ClientCardInfo.addresses(
-                                context: context,
-                                title: AppTranslations.of(context)!.text("addresses"),
-                                client: _.selectedClient,
-                                onClickSeeMore: () => _.showAddressesBottomSheet(),
-                              )
-                            ],
-                          )
-                        ),
-                      ),
-                    ),
-                  ],
-                )
+                child: content(_)
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget content(ClientsController _) {
+    return Column(
+      children: [
+        actionButtons(),
+        Expanded(
+          child: SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+              child: Column(
+                children: [
+                  ClientCardInfo.generalInfo(
+                    context: context,
+                    title: AppTranslations.of(context)!.text("general_data"),
+                    client: _.selectedClient,
+                    onClickSeeMore: () => _.showGeneralInfoBottomSheet(),
+                  ),
+                  const SizedBox(height: 24,),
+                  ClientCardInfo.commercialData(
+                    context: context,
+                    title: AppTranslations.of(context)!.text("commercial_data"),
+                    client: _.selectedClient,
+                    onClickSeeMore: () => _.showCommercialInfoBottomSheet(),
+                  ),
+                  const SizedBox(height: 24,),
+                  ClientCardInfo.contacts(
+                    context: context,
+                    title: AppTranslations.of(context)!.text("contacts"),
+                    client: _.selectedClient,
+                    onClickSeeMore: () => _.showContactsBottomSheet(),
+                  ),
+                  const SizedBox(height: 24,),
+                  ClientCardInfo.addresses(
+                    context: context,
+                    title: AppTranslations.of(context)!.text("addresses"),
+                    client: _.selectedClient,
+                    onClickSeeMore: () => _.showAddressesBottomSheet(),
+                    seeMap: () => _.goToMapView(),
+                  )
+                ],
+              )
+            ),
+          ),
+        ),
+      ],
     );
   }
 

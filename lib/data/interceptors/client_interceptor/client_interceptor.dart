@@ -35,7 +35,7 @@ class ClientInterceptor implements ClientInterceptorAbstract {
   @override
   Future<Client?> getClientById(String token, String clientId) async {
     final result = await _api.getById(
-      token: token ?? "",
+      token: token,
       clientId: clientId
     );
 

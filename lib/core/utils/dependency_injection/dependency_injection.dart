@@ -1,9 +1,11 @@
 import 'package:dimexa_vendors/data/api/auth_api/auth_api.dart';
 import 'package:dimexa_vendors/data/api/client_api/cient_api.dart';
 import 'package:dimexa_vendors/data/api/device_api/device_api.dart';
+import 'package:dimexa_vendors/data/api/google_api/google_api.dart';
 import 'package:dimexa_vendors/data/interceptors/auth_interceptor/auth_interceptor_impl.dart';
 import 'package:dimexa_vendors/data/interceptors/client_interceptor/client_interceptor.dart';
 import 'package:dimexa_vendors/data/interceptors/device_interceptor/device_interceptor_impl.dart';
+import 'package:dimexa_vendors/data/interceptors/google_interceptor/google_interceptor.dart';
 import 'package:dimexa_vendors/data/provider/http/http.dart';
 import 'package:dimexa_vendors/data/provider/objectbox/objectbox.dart';
 import 'package:dimexa_vendors/data/repositories/client_repository/client_repository.dart';
@@ -23,6 +25,7 @@ class DependencyInjection {
     Get.lazyPut(() => AuthAPI());
     Get.lazyPut(() => DeviceAPI());
     Get.lazyPut(() => ClientAPI());
+    Get.lazyPut(() => GoogleAPI());
 
     //repositories
     Get.lazyPut(() => SessionRepositoryImpl());
@@ -33,5 +36,6 @@ class DependencyInjection {
     Get.lazyPut(() => DeviceInterceptorImpl());
     Get.lazyPut(() => AuthInterceptorImpl());
     Get.lazyPut(() => ClientInterceptor());
+    Get.lazyPut(() => GoogleInterceptor());
   }
 }
