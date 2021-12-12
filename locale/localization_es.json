@@ -68,5 +68,7 @@
   "document": "Documento",
   "order_authorization": "O. Comp.",
   "term": "Plazo",
-  "product_detail": "Detalle de producto"
+  "product_detail": "Detalle de producto",
+  "product_info": "Información de producto",
+  "quantity": "Cantidad"
 }
