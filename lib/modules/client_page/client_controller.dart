@@ -96,9 +96,12 @@ class ClientController extends GetxController {
     } else {
       selectedClient = client;
     }
-    Get.toNamed(AppRoutes.clientDetails, arguments: {
-      "selectedClient": selectedClient
-    });
+    Get.toNamed(
+      AppRoutes.toClientDetail(selectedClient.id),
+      arguments: {
+        "selectedClient": selectedClient
+      }
+    );
   }
 
   void syncOnDemand() async {

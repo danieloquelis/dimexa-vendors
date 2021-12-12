@@ -12,14 +12,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/state_manager.dart';
 
-class ClientsPage extends StatefulWidget {
-  const ClientsPage({Key? key}) : super(key: key);
+class ClientPage extends StatefulWidget {
 
   @override
-  _ClientsPageState createState() => _ClientsPageState();
+  _ClientPageState createState() => _ClientPageState();
 }
 
-class _ClientsPageState extends State<ClientsPage> {
+class _ClientPageState extends State<ClientPage> {
 
   @override
   Widget build(BuildContext context) {

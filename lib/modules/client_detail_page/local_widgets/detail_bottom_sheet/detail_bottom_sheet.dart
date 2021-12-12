@@ -5,12 +5,12 @@ import 'package:dimexa_vendors/core/utils/date_time_util/date_time_util.dart';
 import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:dimexa_vendors/global_widgets/custom_info_field/custom_info_field.dart';
-import 'package:dimexa_vendors/modules/client_details_page/local_widgets/address_item/address_item.dart';
-import 'package:dimexa_vendors/modules/client_details_page/local_widgets/contact_item/contact_item.dart';
+import 'package:dimexa_vendors/modules/client_detail_page/local_widgets/address_item/address_item.dart';
+import 'package:dimexa_vendors/modules/client_detail_page/local_widgets/contact_item/contact_item.dart';
 import 'package:flutter/material.dart';
 import 'package:dimexa_vendors/data/models/client/client.dart';
 
-class DetailsBottomSheet {
+class DetailBottomSheet {
   Widget? child;
   double? height;
   Client client;
@@ -21,7 +21,6 @@ class DetailsBottomSheet {
   Widget show() {
     return child != null? Container(
         margin: const EdgeInsets.symmetric(horizontal: 8),
-        //height: height,
         decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(16))
@@ -46,7 +45,7 @@ class DetailsBottomSheet {
     ): Container();
   }
 
-  DetailsBottomSheet.generalInfo({
+  DetailBottomSheet.generalInfo({
     required BuildContext context,
     required this.client,
     required this.height
@@ -129,7 +128,7 @@ class DetailsBottomSheet {
     );
   }
 
-  DetailsBottomSheet.commercialInfo({
+  DetailBottomSheet.commercialInfo({
     required BuildContext context,
     required this.client,
     required this.height
@@ -227,7 +226,7 @@ class DetailsBottomSheet {
     );
   }
 
-  DetailsBottomSheet.contacts({
+  DetailBottomSheet.contacts({
     required BuildContext context,
     required this.client,
     required this.height
@@ -248,7 +247,7 @@ class DetailsBottomSheet {
     );
   }
 
-  DetailsBottomSheet.adresses({
+  DetailBottomSheet.adresses({
     required BuildContext context,
     required this.client,
     required this.height

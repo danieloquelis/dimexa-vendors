@@ -1,6 +1,6 @@
-import 'package:dimexa_vendors/modules/client_details_page/client_details_controller.dart';
-import 'package:dimexa_vendors/modules/client_details_page/local_widgets/client_card_info/client_card_info.dart';
-import 'package:dimexa_vendors/modules/client_details_page/local_widgets/client_statistics/client_statistics.dart';
+import 'package:dimexa_vendors/modules/client_detail_page/client_detail_controller.dart';
+import 'package:dimexa_vendors/modules/client_detail_page/local_widgets/client_card_info/client_card_info.dart';
+import 'package:dimexa_vendors/modules/client_detail_page/local_widgets/client_statistics/client_statistics.dart';
 import 'package:flutter/material.dart';
 import 'package:dimexa_vendors/core/theme/dimexa_icons/dimexa_icons.dart';
 import 'package:dimexa_vendors/core/utils/date_time_util/date_time_util.dart';
@@ -11,15 +11,15 @@ import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/state_manager.dart';
 
-class ClientDetailsPage extends StatefulWidget {
+class ClientDetailPage extends StatefulWidget {
   @override
-  _ClientDetailsPageState createState() => _ClientDetailsPageState();
+  _ClientDetailPageState createState() => _ClientDetailPageState();
 }
 
-class _ClientDetailsPageState extends State<ClientDetailsPage> {
+class _ClientDetailPageState extends State<ClientDetailPage> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ClientDetailsController>(
+    return GetBuilder<ClientDetailController>(
       builder: (_) => Scaffold(
         appBar: BaseAppBar(
           back: _.onBack,
@@ -49,10 +49,10 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
     );
   }
 
-  Widget content(ClientDetailsController _) {
+  Widget content(ClientDetailController _) {
     return Column(
       children: [
-        actionButtons(),
+        actionButtons(_),
         Expanded(
           child: SingleChildScrollView(
             child: Container(
@@ -169,7 +169,7 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
     );
   }
 
-  Widget actionButtons() {
+  Widget actionButtons(ClientDetailController _) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
       child: Row(
@@ -181,6 +181,7 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
             backgroundColor: AppColors.blue,
             borderColor:  AppColors.blue,
             fontColor: Colors.white,
+            onClick: _.showStartOrderBottomSheet,
           ),
           const SizedBox(width: 8,),
           Tag(

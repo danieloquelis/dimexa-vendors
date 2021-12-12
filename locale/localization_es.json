@@ -64,5 +64,9 @@
   "see_more": "Ver más",
   "address": "Dirección",
   "ubigeo": "Ubigeo",
-  "credit": "Crédito"
+  "credit": "Crédito",
+  "document": "Documento",
+  "order_authorization": "O. Comp.",
+  "term": "Plazo",
+  "product_detail": "Detalle de producto"
 }

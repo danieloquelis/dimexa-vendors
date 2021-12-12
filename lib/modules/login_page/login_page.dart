@@ -26,8 +26,11 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  SvgPicture.asset(
-                    "assets/images/dimex_logo_opt.svg",
+                  SizedBox(
+                    height: 90,
+                    child: SvgPicture.asset(
+                      "assets/images/dimex_logo_opt.svg",
+                    ),
                   ),
                   SizedBox(height: 56,),
                   _.loading ?

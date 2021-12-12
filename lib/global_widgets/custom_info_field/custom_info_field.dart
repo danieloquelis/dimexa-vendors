@@ -27,7 +27,7 @@ class CustomInfoField extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(label, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: AppColors.green),),
+              Text(label, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: AppColors.greyLight),),
               const SizedBox(height: 2,),
               widgetValue != null ?
               Padding(

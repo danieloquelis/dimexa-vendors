@@ -1,9 +1,13 @@
-import 'package:dimexa_vendors/modules/client_details_page/client_details_binding.dart';
-import 'package:dimexa_vendors/modules/client_details_page/client_details_page.dart';
+import 'package:dimexa_vendors/modules/client_detail_page/client_detail_binding.dart';
+import 'package:dimexa_vendors/modules/client_detail_page/client_detail_page.dart';
 import 'package:dimexa_vendors/modules/login_page/login_binding.dart';
 import 'package:dimexa_vendors/modules/login_page/login_page.dart';
 import 'package:dimexa_vendors/modules/map_page/map_binding.dart';
 import 'package:dimexa_vendors/modules/map_page/map_page.dart';
+import 'package:dimexa_vendors/modules/product_detail_page/product_detail_binding.dart';
+import 'package:dimexa_vendors/modules/product_detail_page/product_detail_page.dart';
+import 'package:dimexa_vendors/modules/product_page/product_binding.dart';
+import 'package:dimexa_vendors/modules/product_page/product_page.dart';
 import 'package:dimexa_vendors/modules/restore_password_page/restore_password_binding.dart';
 import 'package:dimexa_vendors/modules/restore_password_page/restore_password_page.dart';
 import 'package:dimexa_vendors/modules/tab_manager/tab_manager.dart';
@@ -34,9 +38,9 @@ class AppPages {
       transition: Transition.rightToLeft,
     ),
     GetPage(
-      name: AppRoutes.clientDetails,
-      page: () => ClientDetailsPage(),
-      binding: ClientDetailsBinding(),
+      name: AppRoutes.clientDetail,
+      page: () => ClientDetailPage(),
+      binding: ClientDetailBinding(),
       transition: Transition.rightToLeft,
       preventDuplicates: true
     ),
@@ -46,6 +50,20 @@ class AppPages {
       binding: MapBinding(),
       transition: Transition.rightToLeft,
       preventDuplicates: true,
+    ),
+    GetPage(
+      name: AppRoutes.product,
+      page: () => ProductPage(),
+      binding: ProductBinding(),
+      transition: Transition.rightToLeft,
+      preventDuplicates: true,
+    ),
+    GetPage(
+      name: AppRoutes.productDetail,
+      page: () => ProductDetailPage(),
+      binding: ProductDetailBinding(),
+      transition: Transition.rightToLeft,
+      preventDuplicates: true
     )
   ];
 }
