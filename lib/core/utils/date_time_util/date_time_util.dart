@@ -13,16 +13,17 @@ class DateTimeUtil {
     final clockString = timeFormat.format(dateTime);
 
     String prefix = "";
+    int diff = now.day - dateTime.day;
 
-    if (now.difference(dateTime).inHours <= 24) {
+    if (diff == 0) {
       prefix = "hoy";
     }
 
-    if (now.difference(dateTime).inHours > 24 && now.difference(dateTime).inHours <= 48) {
+    if (diff == 1) {
       prefix = "ayer";
     }
 
-    if (now.difference(dateTime).inHours > 48) {
+    if (diff > 1) {
       prefix = dateFormat.format(dateTime);
     }
     return '$prefix a las $clockString';

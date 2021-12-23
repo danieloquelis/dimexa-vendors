@@ -4,6 +4,7 @@ import 'package:dimexa_vendors/core/utils/collection_utils/collection_utils.dart
 import 'package:dimexa_vendors/core/utils/date_time_util/date_time_util.dart';
 import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
+import 'package:dimexa_vendors/global_widgets/base_bottom_sheet/base_bottom_sheet.dart';
 import 'package:dimexa_vendors/global_widgets/custom_info_field/custom_info_field.dart';
 import 'package:dimexa_vendors/modules/client_detail_page/local_widgets/address_item/address_item.dart';
 import 'package:dimexa_vendors/modules/client_detail_page/local_widgets/contact_item/contact_item.dart';
@@ -19,29 +20,8 @@ class DetailBottomSheet {
     return child ?? Container();
   }
   Widget show() {
-    return child != null? Container(
-        margin: const EdgeInsets.symmetric(horizontal: 8),
-        decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(16))
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const SizedBox(height: 2,),
-            ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(4)),
-              child: Container(
-                color: Colors.grey,
-                width: 80,
-                height: 6,
-              ),
-            ),
-            const SizedBox(height: 24,),
-            child!,
-          ],
-        )
+    return child != null? BaseBottomSheet(
+      child: child!
     ): Container();
   }
 

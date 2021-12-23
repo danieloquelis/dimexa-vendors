@@ -34,4 +34,19 @@ class Strings {
     "Vencimiento",
     "Stock"
   ];
+  static List<String> basePrice = [
+    "Código",
+    "Descripción",
+    "VVF"
+  ];
+  static List<String> discountHeaders = [
+    "Cant",
+    "Finan",
+    "Bon",
+    "Lab",
+    "Adi",
+    "Dime",
+    "C/E",
+    "P.Unit"
+  ];
 }

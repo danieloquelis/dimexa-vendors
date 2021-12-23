@@ -64,11 +64,17 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          ProductCardInfo.priceScale(),
+                          ProductCardInfo.priceScale(
+                            onSeeMore: _.showPriceScaleBottomSheet,
+                          ),
                           const SizedBox(height: 24,),
-                          ProductCardInfo.bonification(),
+                          ProductCardInfo.bonification(
+                            onSeeMore: _.showBonificationBottomSheet,
+                          ),
                           const SizedBox(height: 24,),
-                          ProductCardInfo.productInfo(),
+                          ProductCardInfo.productInfo(
+                            onSeeMore: () {},
+                          ),
                           const SizedBox(height: 16,)
                         ],
                       ),

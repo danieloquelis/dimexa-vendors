@@ -10,8 +10,9 @@ import 'package:flutter/material.dart';
 class ProductCardInfo extends StatelessWidget {
   late String title;
   late Widget child;
+  Function onSeeMore;
 
-  ProductCardInfo.priceScale() {
+  ProductCardInfo.priceScale({required this.onSeeMore}) {
     title = "Precios - escalas";
     child = CustomDataTable(
       columns: Strings.priceScaleHeaders.map((header){
@@ -41,7 +42,7 @@ class ProductCardInfo extends StatelessWidget {
     );
   }
 
-  ProductCardInfo.bonification() {
+  ProductCardInfo.bonification({required this.onSeeMore}) {
     title = "Bonificación";
     child = CustomDataTable(
       columns: Strings.bonificationHeaders.map((header){
@@ -62,7 +63,7 @@ class ProductCardInfo extends StatelessWidget {
     );
   }
 
-  ProductCardInfo.productInfo() {
+  ProductCardInfo.productInfo({required this.onSeeMore}) {
     title = "Información de producto";
     child = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -127,9 +128,7 @@ class ProductCardInfo extends StatelessWidget {
               children: [
                 child,
                 InkWell(
-                    onTap: () {
-
-                    },
+                    onTap: () => onSeeMore(),
                     child: Text(
                       AppTranslations.of(context)!.text("see_more"),
                       style: const TextStyle(color: AppColors.orange),
