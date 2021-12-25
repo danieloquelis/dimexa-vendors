@@ -4,7 +4,6 @@ import 'package:dimexa_vendors/modules/client_page/client_page.dart';
 import 'package:dimexa_vendors/modules/collects_page/collects_page.dart';
 import 'package:dimexa_vendors/modules/home_page/home_page.dart';
 import 'package:dimexa_vendors/modules/order_page/order_page.dart';
-import 'package:dimexa_vendors/modules/product_page/product_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -35,9 +34,11 @@ class TabManagerController extends GetxController {
   }
 
   @override
-  void onReady() {
+  void onReady() async {
     super.onReady();
-    globalController.syncDownClients();
+    List<String> clientIds = await globalController.syncDownClients();
+    await globalController.syncDownContacts(clientIds);
+    await globalController.syncDownAddresses(clientIds);
   }
 
   void onItemTapped(int index) {

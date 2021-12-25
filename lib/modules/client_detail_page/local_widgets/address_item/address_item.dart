@@ -1,4 +1,6 @@
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
+import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
+import 'package:dimexa_vendors/data/models/address/address.dart';
 import 'package:dimexa_vendors/global_widgets/tag/tag.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +12,7 @@ class AddressItem extends StatelessWidget {
   double topPadding;
   double bottomPadding;
   Color backgroundColor;
-
+  Address? address;
 
   AddressItem({
     this.showButton = true,
@@ -19,7 +21,8 @@ class AddressItem extends StatelessWidget {
     this.rightPadding = 16,
     this.topPadding= 16,
     this.bottomPadding = 0,
-    this.backgroundColor = Colors.white
+    this.backgroundColor = Colors.white,
+    this.address
   });
 
   @override
@@ -29,7 +32,7 @@ class AddressItem extends StatelessWidget {
       padding: EdgeInsets.only(left: leftPadding, right: rightPadding, top: topPadding, bottom: bottomPadding),
       decoration: BoxDecoration(
           color: backgroundColor,
-          borderRadius: BorderRadius.vertical(top:Radius.circular(16))
+          borderRadius: const BorderRadius.vertical(top:Radius.circular(16))
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,13 +46,13 @@ class AddressItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Av. Canta Callao Mz Q lt 22 Urb. Libertad largo largo',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                      StringUtils.checkNullOrEmpty(address!.direccion),
+                      //maxLines: 1,
+                      //overflow: TextOverflow.ellipsis,
                     ),
-                    SizedBox(height: 4,),
+                    const SizedBox(height: 4,),
                     Text(
-                      'Los Olivos - Lima - Lima',
+                      StringUtils.checkNullOrEmpty(address!.ubigeoid),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -58,11 +61,9 @@ class AddressItem extends StatelessWidget {
               ),
               Visibility(
                 visible: showButton,
-                child: Flexible(
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.location_on, color: AppColors.blue,),
-                  ),
+                child: IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.location_on, color: AppColors.blue,),
                 ),
               ),
             ],
@@ -74,13 +75,13 @@ class AddressItem extends StatelessWidget {
               Tag(
                 borderColor: Colors.transparent,
                 backgroundColor: AppColors.tagBackground,
-                label: 'Principal',
+                label: StringUtils.checkNullOrEmpty(address!.tipoprioridad),
               ),
               SizedBox(width: 8,),
               Tag(
                 borderColor: Colors.transparent,
                 backgroundColor: AppColors.tagBackground,
-                label: 'Oficina',
+                label: StringUtils.checkNullOrEmpty(address!.tipoestablecimiento),
               ),
             ],
           ),

@@ -97,7 +97,7 @@ class ClientController extends GetxController {
       selectedClient = client;
     }
     Get.toNamed(
-      AppRoutes.toClientDetail(selectedClient.id),
+      AppRoutes.toClientDetail(selectedClient.id!),
       arguments: {
         "selectedClient": selectedClient
       }
@@ -113,6 +113,7 @@ class ClientController extends GetxController {
     if (syncManager != null && syncManager.lastSyncDownDate != null) {
       _lastSyncDate = syncManager.lastSyncDownDate!;
     }
+    //TODO: sync address and contact
     update();
   }
 

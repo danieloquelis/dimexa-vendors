@@ -1,10 +1,14 @@
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
+import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
+import 'package:dimexa_vendors/data/models/contact/contact.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:dimexa_vendors/global_widgets/custom_info_field/custom_info_field.dart';
 import 'package:flutter/material.dart';
 
 class ContactItem extends StatelessWidget {
-  const ContactItem({Key? key}) : super(key: key);
+  Contact contact;
+
+  ContactItem({required this.contact});
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +24,14 @@ class ContactItem extends StatelessWidget {
           children: [
             CustomInfoField(
               label: AppTranslations.of(context)!.text("position"),
-              value: "Dueño",
+              value: StringUtils.checkNullOrEmpty(contact.tipocontacto),
             ),
             const Divider(
               thickness: 1,
             ),
             CustomInfoField(
               label: AppTranslations.of(context)!.text("full_name"),
-              value: "Daniel Oquelis",
+              value: StringUtils.checkNullOrEmpty(contact.nombre),
             ),
             const Divider(
               thickness: 1,
@@ -56,13 +60,13 @@ class ContactItem extends StatelessWidget {
                 Flexible(
                   child: CustomInfoField(
                     label: AppTranslations.of(context)!.text("birthday"),
-                    value: "28/11/1995",
+                    value: StringUtils.checkNullOrEmpty(contact.fechanacimiento),
                   ),
                 ),
                 Flexible(
                   child: CustomInfoField(
                     label: AppTranslations.of(context)!.text("phone_number"),
-                    value: "960943368",
+                    value: StringUtils.checkNullOrEmpty(contact.telefono),
                   ),
                 )
               ],
@@ -72,7 +76,7 @@ class ContactItem extends StatelessWidget {
             ),
             CustomInfoField(
               label: AppTranslations.of(context)!.text("email"),
-              value: "daniel.oquelis@gmail.com",
+              value: StringUtils.checkNullOrEmpty(contact.correo),
             ),
           ],
         )

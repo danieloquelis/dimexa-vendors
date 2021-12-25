@@ -1,6 +1,5 @@
 import 'package:dimexa_vendors/core/utils/app_exception/app_exception.dart';
 import 'package:dimexa_vendors/core/values/strings.dart';
-import 'package:dimexa_vendors/data/enums/sync_type/sync_type.dart';
 import 'package:dimexa_vendors/data/interceptors/auth_interceptor/auth_interceptor_impl.dart';
 import 'package:dimexa_vendors/data/models/session/session.dart';
 import 'package:dimexa_vendors/data/repositories/session_repository/session_repository_impl.dart';

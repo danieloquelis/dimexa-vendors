@@ -13,7 +13,7 @@ class ClientAPI {
     required List<String> zoneId
   }) async {
     final result = _http.request(
-        '/clientes/getClientesZona',
+        '/clientes/getClientesZonaQuery',
         method: HttpMethod.post,
         token: token,
         body: {
@@ -35,6 +35,36 @@ class ClientAPI {
         token: token,
         body: {
           "clienteid": clientId
+        }
+    );
+    return result;
+  }
+
+  Future<HttpResult> getContactsByClientIds({
+    required String token,
+    required List<String> clientIds,
+  }) async {
+    final result = _http.request(
+        '/clientes/getContactoCliente',
+        method: HttpMethod.post,
+        token: token,
+        body: {
+          "clienteid": clientIds
+        }
+    );
+    return result;
+  }
+
+  Future<HttpResult> getAddressesByClientIds({
+    required String token,
+    required List<String> clientIds,
+  }) async {
+    final result = _http.request(
+        '/clientes/getDireccionCliente',
+        method: HttpMethod.post,
+        token: token,
+        body: {
+          "clienteid": clientIds
         }
     );
     return result;

@@ -1,6 +1,7 @@
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
 import 'package:dimexa_vendors/core/utils/collection_utils/collection_utils.dart';
 import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
+import 'package:dimexa_vendors/data/models/contact/contact.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:dimexa_vendors/global_widgets/card_title/card_title.dart';
 import 'package:dimexa_vendors/global_widgets/custom_card/custom_card.dart';
@@ -15,6 +16,7 @@ class ClientCardInfo extends StatelessWidget {
   Widget? child;
   Function? onClickSeeMore;
   String? title;
+  bool isEditable = true;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class ClientCardInfo extends StatelessWidget {
       children: [
         CardTitle(
           title: title!,
-          actionIcon: Icons.edit,
+          actionIcon: isEditable ? Icons.edit : null,
           fontColor: AppColors.blue,
           iconColor: AppColors.blue,
         ),
@@ -37,8 +39,9 @@ class ClientCardInfo extends StatelessWidget {
     required this.context,
     required this.title,
     required this.client,
-    required this.onClickSeeMore
+    required this.onClickSeeMore,
   }) : super(key: key) {
+    isEditable = false;
     child = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -93,8 +96,7 @@ class ClientCardInfo extends StatelessWidget {
       children: [
         CustomInfoField(
             label:AppTranslations.of(context)!.text("sub_channel"),
-            value: CollectionUtils.isNotNullNorEmpty(client!.subChannel) ?
-              StringUtils.checkNullOrEmpty(client!.subChannel.first.nombre) : "",
+            value: StringUtils.checkNullOrEmpty(client!.subcanal),
         ),
         const Divider(
           thickness: 1,
@@ -104,8 +106,7 @@ class ClientCardInfo extends StatelessWidget {
             Flexible(
               child: CustomInfoField(
                   label: AppTranslations.of(context)!.text("discount_type"),
-                  value: CollectionUtils.isNotNullNorEmpty(client!.discountType) ?
-                  StringUtils.checkNullOrEmpty(client!.discountType.first.nombre) : ""
+                  value: StringUtils.checkNullOrEmpty(client!.tipodescuento)
               ),
             ),
             Flexible(
@@ -136,23 +137,24 @@ class ClientCardInfo extends StatelessWidget {
     required this.context,
     required this.client,
     required this.title,
-    required this.onClickSeeMore
+    required this.onClickSeeMore,
+    required List<Contact>? contacts
   }) {
-    child = Column(
+    child = CollectionUtils.isNotNullNorEmpty(contacts) ? Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
             Flexible(
               child: CustomInfoField(
-                label: AppTranslations.of(context)!.text("code"),
-                value: '10025',
+                label: AppTranslations.of(context)!.text("name"),
+                value: StringUtils.checkNullOrEmpty(contacts!.first.nombre),
               ),
             ),
             Flexible(
               child: CustomInfoField(
-                label: AppTranslations.of(context)!.text("ruc"),
-                value: '10026103666',
+                label: AppTranslations.of(context)!.text("phone"),
+                value: StringUtils.checkNullOrEmpty(contacts.first.telefono),
               ),
             )
 
@@ -162,8 +164,8 @@ class ClientCardInfo extends StatelessWidget {
           thickness: 1,
         ),
         CustomInfoField(
-          label: AppTranslations.of(context)!.text("social_reason"),
-          value: 'client.razonsocial',
+          label: AppTranslations.of(context)!.text("role"),
+          value: StringUtils.checkNullOrEmpty(contacts.first.tipocontacto),
         ),
         SizedBox(height: 18,),
         InkWell(
@@ -175,6 +177,11 @@ class ClientCardInfo extends StatelessWidget {
             child: Text('Ver más', style: TextStyle(color: AppColors.orange),)
         )
       ],
+    ): const Center(
+      child: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Text('No se encontraron contactos registrados'),
+      ),
     );
   }
 
@@ -185,6 +192,7 @@ class ClientCardInfo extends StatelessWidget {
     required this.onClickSeeMore,
     required Function seeMap
   }) {
+    isEditable = false;
     child = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -192,22 +200,26 @@ class ClientCardInfo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Av. Canta Callao Mz Q lt 22 Urb. Libertad'),
-                SizedBox(height: 4,),
-                Text('Los Olivos - Lima - Lima'),
-              ],
-            ),
             Flexible(
-              child: IconButton(
-                onPressed: () {
-                  seeMap();
-                },
-                icon: Icon(Icons.location_on, color: AppColors.blue,),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    StringUtils.checkNullOrEmpty(client!.clientedirecciondireccion)
+                  ),
+                  const SizedBox(height: 4,),
+                  Text(
+                    StringUtils.checkNullOrEmpty(client!.clientedireccionubigeoid)
+                  ),
+                ],
               ),
-            )
+            ),
+            IconButton(
+              onPressed: () {
+                seeMap();
+              },
+              icon: const Icon(Icons.location_on, color: AppColors.blue,),
+            ),
           ],
         ),
 
@@ -227,14 +239,14 @@ class ClientCardInfo extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: 18,),
+        const SizedBox(height: 18,),
         InkWell(
             onTap: () {
               if (onClickSeeMore != null) {
                 onClickSeeMore!();
               }
             },
-            child: Text('Ver más', style: TextStyle(color: AppColors.orange),)
+            child: const Text('Ver más', style: TextStyle(color: AppColors.orange),)
         )
       ],
     );

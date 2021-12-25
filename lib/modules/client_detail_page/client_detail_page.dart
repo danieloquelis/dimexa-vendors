@@ -77,6 +77,7 @@ class _ClientDetailPageState extends State<ClientDetailPage> {
                       context: context,
                       title: AppTranslations.of(context)!.text("contacts"),
                       client: _.selectedClient,
+                      contacts: _.contacts,
                       onClickSeeMore: () => _.showContactsBottomSheet(),
                     ),
                     const SizedBox(height: 24,),

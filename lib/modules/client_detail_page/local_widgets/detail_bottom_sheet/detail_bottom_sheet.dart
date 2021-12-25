@@ -3,6 +3,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dimexa_vendors/core/utils/collection_utils/collection_utils.dart';
 import 'package:dimexa_vendors/core/utils/date_time_util/date_time_util.dart';
 import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
+import 'package:dimexa_vendors/data/models/address/address.dart';
+import 'package:dimexa_vendors/data/models/contact/contact.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:dimexa_vendors/global_widgets/base_bottom_sheet/base_bottom_sheet.dart';
 import 'package:dimexa_vendors/global_widgets/custom_info_field/custom_info_field.dart';
@@ -75,15 +77,13 @@ class DetailBottomSheet {
                 Flexible(
                   child: CustomInfoField(
                       label: AppTranslations.of(context)!.text("client_status"),
-                      value: CollectionUtils.isNotNullNorEmpty(client.clientStatus) ?
-                        StringUtils.checkNullOrEmpty(client.clientStatus.first.nombre) : "",
+                      value: StringUtils.checkNullOrEmpty(client.estadocliente)
                   ),
                 ),
                 Flexible(
                   child: CustomInfoField(
                       label: AppTranslations.of(context)!.text("diremid_status"),
-                      value: CollectionUtils.isNotNullNorEmpty(client.diremidStatus) ?
-                      StringUtils.checkNullOrEmpty(client.diremidStatus.first.nombre) : ""
+                      value: StringUtils.checkNullOrEmpty(client.estadodirem)
                   ),
                 )
               ],
@@ -100,8 +100,7 @@ class DetailBottomSheet {
             ),
             CustomInfoField(
               label:AppTranslations.of(context)!.text("ubigeo"),
-              value: CollectionUtils.isNotNullNorEmpty(client.ubigee) ?
-              StringUtils.checkNullOrEmpty(client.ubigee.first.nombre) : "",
+              value: StringUtils.checkNullOrEmpty(client.ubigeo)
             ),
           ],
         )
@@ -121,8 +120,7 @@ class DetailBottomSheet {
           children: [
             CustomInfoField(
                 label:AppTranslations.of(context)!.text("sub_channel"),
-                value: CollectionUtils.isNotNullNorEmpty(client.subChannel) ?
-                StringUtils.checkNullOrEmpty(client.subChannel.first.nombre) : ""
+                value: StringUtils.checkNullOrEmpty(client.subcanal)
             ),
             const Divider(
               thickness: 1,
@@ -132,8 +130,7 @@ class DetailBottomSheet {
                 Flexible(
                   child: CustomInfoField(
                       label: AppTranslations.of(context)!.text("discount_type"),
-                      value: CollectionUtils.isNotNullNorEmpty(client.discountType) ?
-                      StringUtils.checkNullOrEmpty(client.discountType.first.nombre) : ""
+                      value: StringUtils.checkNullOrEmpty(client.tipodescuento)
                   ),
                 ),
                 Flexible(
@@ -190,7 +187,7 @@ class DetailBottomSheet {
                 Flexible(
                   child: CustomInfoField(
                       label: AppTranslations.of(context)!.text("anniversary"),
-                      value: DateTimeUtil.dateTimeToString(client.aniversario),
+                      value: StringUtils.checkNullOrEmpty(client.aniversario),
                   ),
                 ),
                 Flexible(
@@ -209,6 +206,7 @@ class DetailBottomSheet {
   DetailBottomSheet.contacts({
     required BuildContext context,
     required this.client,
+    required List<Contact> contacts,
     required this.height
   }) {
     child = CarouselSlider(
@@ -220,16 +218,18 @@ class DetailBottomSheet {
           enlargeCenterPage: false,
           scrollDirection: Axis.horizontal,
         ),
-        items: [
-          ContactItem(),
-          ContactItem()
-        ]
+        items: contacts.map((contact) {
+          return ContactItem(
+            contact: contact,
+          );
+        }).toList()
     );
   }
 
   DetailBottomSheet.adresses({
     required BuildContext context,
     required this.client,
+    required List<Address> addresses,
     required this.height
   }) {
     child = CarouselSlider(
@@ -241,10 +241,11 @@ class DetailBottomSheet {
           enlargeCenterPage: false,
           scrollDirection: Axis.horizontal,
         ),
-        items: [
-          AddressItem(),
-          AddressItem(),
-        ]
+        items: addresses.map((address) {
+          return AddressItem(
+            address: address,
+          );
+        }).toList()
     );
   }
 }

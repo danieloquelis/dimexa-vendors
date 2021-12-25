@@ -36,7 +36,7 @@ class _TabManagerState extends State<TabManager> with TickerProviderStateMixin {
             ),
             BottomNavigationBarItem(
               icon: const Icon(DimexaIcons.products, size: 24),
-              label: AppTranslations.of(context)!.text("products"),
+              label: AppTranslations.of(context)!.text("orders"),
             ),
             BottomNavigationBarItem(
               icon: const Padding(

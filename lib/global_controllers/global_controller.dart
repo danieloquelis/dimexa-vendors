@@ -1,17 +1,23 @@
 
 import 'dart:async';
+import 'package:dimexa_vendors/core/utils/app_exception/app_exception.dart';
 import 'package:dimexa_vendors/core/utils/collection_utils/collection_utils.dart';
 import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:dimexa_vendors/core/values/numbers.dart';
+import 'package:dimexa_vendors/core/values/strings.dart';
 import 'package:dimexa_vendors/data/enums/sync_type/sync_type.dart';
 import 'package:dimexa_vendors/data/interceptors/client_interceptor/client_interceptor.dart';
+import 'package:dimexa_vendors/data/models/address/address.dart';
 import 'package:dimexa_vendors/data/models/app_permission/app_permission.dart';
 import 'package:dimexa_vendors/data/models/backend_response/backend_response.dart';
+import 'package:dimexa_vendors/data/models/contact/contact.dart';
 import 'package:dimexa_vendors/data/models/session/session.dart';
 import 'package:dimexa_vendors/data/models/sync_manager/sync_manager.dart';
 import 'package:dimexa_vendors/data/models/vendor/vendor.dart';
 import 'package:dimexa_vendors/data/models/zone/zone.dart';
+import 'package:dimexa_vendors/data/repositories/address_repository/address_repository.dart';
 import 'package:dimexa_vendors/data/repositories/client_repository/client_repository.dart';
+import 'package:dimexa_vendors/data/repositories/contact_repository/contact_repository.dart';
 import 'package:dimexa_vendors/data/repositories/sync_manager_repository/sync_manager_repository.dart';
 import 'package:dimexa_vendors/global_widgets/loading_dialog/loading_dialog.dart';
 import 'package:get/get.dart';
@@ -23,6 +29,8 @@ class GlobalController extends GetxController {
   final clientInterceptor = Get.find<ClientInterceptor>();
   final syncManagerRepository = Get.find<SyncManagerRepository>();
   final clientRepository = Get.find<ClientRepository>();
+  final addressRepository = Get.find<AddressRepository>();
+  final contactRepository = Get.find<ContactRepository>();
 
   ///Private variables
   final List<AppPermission> _filteredPermissions = [];
@@ -128,7 +136,7 @@ class GlobalController extends GetxController {
     );
   }
 
-  Future syncDownClients({bool onDemand = false, String? zoneId}) async {
+  Future<List<String>> syncDownClients({bool onDemand = false, String? zoneId}) async {
     List<String> zoneIds = [];
     if (StringUtils.isNullOrEmpty(zoneId)) {
       for (Zone zone in _session.zones) {
@@ -147,6 +155,7 @@ class GlobalController extends GetxController {
     bool hasSyncBefore = CollectionUtils.isNotNullNorEmpty(syncs) && syncs!.length == zoneIds.length;
 
     List<Client> clients = [];
+    List<String> clientIds = [];
     if (!hasSyncBefore || onDemand) {
       //sync clients
       int limit = Numbers.maxLimit; //chunk
@@ -181,7 +190,6 @@ class GlobalController extends GetxController {
         hideLoadingDialog(
           errorMessage: "Ocurrió un error sincronizando clientes, por favor intente otra vez"
         );
-        print(e);
       }
 
       hideLoadingDialog();
@@ -191,19 +199,98 @@ class GlobalController extends GetxController {
         clientRepository.saveSyncDownClients(zoneIds, clients);
         //save new sync manager for this type
         syncManagerRepository.updateByTypeAndZoneIds(zoneIds,SyncType.clients, syncDown: true);
+        //get clientIds
+        for (Client client in clients) {
+          if (!clientIds.contains(StringUtils.checkNullOrEmpty(client.clienteid))) {
+            clientIds.add(StringUtils.checkNullOrEmpty(client.clienteid));
+          }
+        }
       }
 
       //reset value
       _progressValue.value = 0.0;
+    }
+    return clientIds;
+  }
+
+  Future syncDownAddresses(List<String> clientIds) async {
+    if (clientIds.isEmpty) {
       return;
     }
 
-    //check the last sync down
-    // DateTime lastSync = syncManager.lastSyncDownDate!;
-    // DateTime now = DateTime.now();
-    // if (now.difference(lastSync).inDays >= Numbers.maxDaysAllow) {
-    //   //TODO: sent to sync manager page
-    //   print('debe sincronizar');
-    // }
+    showSyncDialog(
+        value: _progressValue,
+        prefixMessage: "Sincronizando direcciones"
+    );
+
+    BackendResponse<Address>? response = await clientInterceptor.syncAddresses(_session.token, clientIds)
+        .onError((error, stackTrace) {
+      if (error is AppException) {
+        hideLoadingDialog(
+            errorMessage: error.uiMessage
+        );
+      } else {
+        hideLoadingDialog(
+            errorMessage: Strings.systemError
+        );
+      }
+
+      return null;
+    });
+
+    if (response == null) {
+      return;
+    }
+
+    hideLoadingDialog();
+    List<Address> addresses = response.data;
+
+    if (CollectionUtils.isNotNullNorEmpty(addresses)) {
+      //save clients
+      addressRepository.saveSyncDownAddresses(clientIds, addresses);
+      //save new sync manager for this type
+      //syncManagerRepository.updateByTypeAndZoneIds(zoneIds,SyncType.clients, syncDown: true);
+    }
+
+
+  }
+
+  Future syncDownContacts(List<String> clientIds) async {
+    if (clientIds.isEmpty) {
+      return;
+    }
+
+    showSyncDialog(
+        value: _progressValue,
+        prefixMessage: "Sincronizando contactos"
+    );
+
+    BackendResponse<Contact>? response = await clientInterceptor.syncContacts(_session.token, clientIds).onError((error, stackTrace) {
+      if (error is AppException) {
+        hideLoadingDialog(
+            errorMessage: error.uiMessage
+        );
+      } else {
+        hideLoadingDialog(
+            errorMessage: Strings.systemError
+        );
+      }
+
+      return null;
+    });
+
+    if (response == null) {
+      return;
+    }
+
+    hideLoadingDialog();
+    List<Contact> contacts = response.data;
+
+    if (CollectionUtils.isNotNullNorEmpty(contacts)) {
+      //save clients
+      contactRepository.saveSyncDownContacts(clientIds, contacts);
+      //save new sync manager for this type
+      //syncManagerRepository.updateByTypeAndZoneIds(zoneIds,SyncType.clients, syncDown: true);
+    }
   }
 }

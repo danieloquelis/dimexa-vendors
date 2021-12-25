@@ -8,7 +8,9 @@ import 'package:dimexa_vendors/data/interceptors/device_interceptor/device_inter
 import 'package:dimexa_vendors/data/interceptors/google_interceptor/google_interceptor.dart';
 import 'package:dimexa_vendors/data/provider/http/http.dart';
 import 'package:dimexa_vendors/data/provider/objectbox/objectbox.dart';
+import 'package:dimexa_vendors/data/repositories/address_repository/address_repository.dart';
 import 'package:dimexa_vendors/data/repositories/client_repository/client_repository.dart';
+import 'package:dimexa_vendors/data/repositories/contact_repository/contact_repository.dart';
 import 'package:dimexa_vendors/data/repositories/session_repository/session_repository_impl.dart';
 import 'package:dimexa_vendors/data/repositories/sync_manager_repository/sync_manager_repository.dart';
 import 'package:get/get.dart';
@@ -31,6 +33,8 @@ class DependencyInjection {
     Get.lazyPut(() => SessionRepositoryImpl());
     Get.lazyPut(() => ClientRepository());
     Get.lazyPut(() => SyncManagerRepository());
+    Get.lazyPut(() => ContactRepository());
+    Get.lazyPut(() => AddressRepository());
 
     //interceptors
     Get.lazyPut(() => DeviceInterceptorImpl());
