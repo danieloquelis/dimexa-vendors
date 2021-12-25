@@ -37,7 +37,8 @@ class GlobalController extends GetxController {
   late Vendor _currentVendor;
   late Session _session;
   final RxString _selectedZoneId = "".obs;
-  final RxDouble _progressValue = 0.0.obs;
+  final RxInt _received = 0.obs;
+  final RxInt _total = 0.obs;
 
   ///Local used variables
   bool isLoadingDialogOn = false;
@@ -47,7 +48,6 @@ class GlobalController extends GetxController {
   List<AppPermission> get filteredPermissions => _filteredPermissions;
   Session get session => _session;
   RxString get selectedZoneId => _selectedZoneId;
-  RxDouble get progressValue => _progressValue;
 
 
   @override
@@ -122,7 +122,7 @@ class GlobalController extends GetxController {
     Get.back();
   }
 
-  Future showSyncDialog({String? prefixMessage, required RxDouble value}) async {
+  Future showSyncDialog({String? prefixMessage, required RxInt received, required RxInt total}) async {
     if (isLoadingDialogOn) {
       isLoadingDialogOn = false;
       Get.back();
@@ -132,7 +132,8 @@ class GlobalController extends GetxController {
     LoadingDialog.showProgress(
       context: Get.overlayContext!,
       prefixMessage: prefixMessage,
-      progress: value
+      received: received,
+      total: _total
     );
   }
 
@@ -164,14 +165,16 @@ class GlobalController extends GetxController {
       int total = count + 1; //this is initial value -> needs an api
 
       showSyncDialog(
-        value: _progressValue,
+        //value: _progressValue,
+        received: _received,
+        total: _total,
         prefixMessage: "Sincronizando clientes"
       );
 
       //TODO: api to know if the sync was successfully
       try {
         while (count < total) {
-          BackendResponse<Client>? response = await clientInterceptor.syncClients(_session.token, limit, page, zoneIds);
+          BackendResponse<Client>? response = await clientInterceptor.syncClients(_session.token, limit, page, zoneIds, _received, _total);
           if (response != null && response.total != null) {
             List<Client> clientsResponse = response.data;
             if (clientsResponse.isNotEmpty) {
@@ -179,7 +182,7 @@ class GlobalController extends GetxController {
               total = response.total!;
               count = count + clientsResponse.length;
               if (count > 0 && total > 0) {
-                _progressValue.value = (count * 100) / total;
+                //_progressValue.value = (count * 100) / total;
               }
             }
           }
@@ -207,8 +210,7 @@ class GlobalController extends GetxController {
         }
       }
 
-      //reset value
-      _progressValue.value = 0.0;
+      resetSyncProgress();
     }
     return clientIds;
   }
@@ -219,11 +221,12 @@ class GlobalController extends GetxController {
     }
 
     showSyncDialog(
-        value: _progressValue,
+        received: _received,
+        total: _total,
         prefixMessage: "Sincronizando direcciones"
     );
 
-    BackendResponse<Address>? response = await clientInterceptor.syncAddresses(_session.token, clientIds)
+    BackendResponse<Address>? response = await clientInterceptor.syncAddresses(_session.token, clientIds, _received, _total)
         .onError((error, stackTrace) {
       if (error is AppException) {
         hideLoadingDialog(
@@ -252,7 +255,7 @@ class GlobalController extends GetxController {
       //syncManagerRepository.updateByTypeAndZoneIds(zoneIds,SyncType.clients, syncDown: true);
     }
 
-
+    resetSyncProgress();
   }
 
   Future syncDownContacts(List<String> clientIds) async {
@@ -261,11 +264,12 @@ class GlobalController extends GetxController {
     }
 
     showSyncDialog(
-        value: _progressValue,
+        received: _received,
+        total: _total,
         prefixMessage: "Sincronizando contactos"
     );
 
-    BackendResponse<Contact>? response = await clientInterceptor.syncContacts(_session.token, clientIds).onError((error, stackTrace) {
+    BackendResponse<Contact>? response = await clientInterceptor.syncContacts(_session.token, clientIds, _received, _total).onError((error, stackTrace) {
       if (error is AppException) {
         hideLoadingDialog(
             errorMessage: error.uiMessage
@@ -292,5 +296,12 @@ class GlobalController extends GetxController {
       //save new sync manager for this type
       //syncManagerRepository.updateByTypeAndZoneIds(zoneIds,SyncType.clients, syncDown: true);
     }
+
+    resetSyncProgress();
+  }
+
+  void resetSyncProgress() {
+    _received.value = 0;
+    _total.value = 0;
   }
 }

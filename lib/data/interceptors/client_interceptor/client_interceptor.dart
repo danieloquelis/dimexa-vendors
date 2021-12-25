@@ -12,12 +12,14 @@ class ClientInterceptor implements ClientInterceptorAbstract {
   final _api = Get.find<ClientAPI>();
 
   @override
-  Future<BackendResponse<Client>?> syncClients(String? token, int limit, int page, List<String> zoneId) async {
+  Future<BackendResponse<Client>?> syncClients(String? token, int limit, int page, List<String> zoneId, RxInt received, RxInt total) async {
     final result = await _api.sync(
       limit: limit,
       page: page,
       zoneId: zoneId,
-      token: token ?? ""
+      token: token ?? "",
+      received: received,
+      total: total
     );
 
     if (result.error == null) {
@@ -56,10 +58,12 @@ class ClientInterceptor implements ClientInterceptorAbstract {
   }
 
   @override
-  Future<BackendResponse<Address>?> syncAddresses(String? token, List<String> clientIds) async {
+  Future<BackendResponse<Address>?> syncAddresses(String? token, List<String> clientIds, RxInt received, RxInt total) async {
     final result = await _api.getAddressesByClientIds(
-        token: token!,
-        clientIds: clientIds
+      token: token!,
+      clientIds: clientIds,
+      received: received,
+      total:total
     );
 
     if (result.error == null) {
@@ -77,10 +81,12 @@ class ClientInterceptor implements ClientInterceptorAbstract {
   }
 
   @override
-  Future<BackendResponse<Contact>?> syncContacts(String? token, List<String> clientIds) async {
+  Future<BackendResponse<Contact>?> syncContacts(String? token, List<String> clientIds, RxInt received, RxInt total) async {
     final result = await _api.getContactsByClientIds(
-        token: token!,
-        clientIds: clientIds
+      token: token!,
+      clientIds: clientIds,
+      received: received,
+      total: total
     );
 
     if (result.error == null) {
@@ -89,11 +95,11 @@ class ClientInterceptor implements ClientInterceptorAbstract {
     }
 
     return Future.error(
-        AppException(
-            interceptorErrorHandler(
-              result,
-            )
-        )
+      AppException(
+          interceptorErrorHandler(
+            result,
+          )
+      )
     );
   }
 }

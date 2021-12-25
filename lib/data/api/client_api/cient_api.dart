@@ -10,17 +10,21 @@ class ClientAPI {
     required String token,
     required int limit,
     required int page,
-    required List<String> zoneId
+    required List<String> zoneId,
+    required RxInt received,
+    required RxInt total
   }) async {
     final result = _http.request(
-        '/clientes/getClientesZonaQuery',
-        method: HttpMethod.post,
-        token: token,
-        body: {
-          "limite": limit,
-          "pagina": page,
-          "zonaid": zoneId
-        }
+      '/clientes/getClientesZonaQuery',
+      method: HttpMethod.post,
+      token: token,
+      body: {
+        "limite": limit,
+        "pagina": page,
+        "zonaid": zoneId
+      },
+      received: received,
+      total: total
     );
     return result;
   }
@@ -43,14 +47,18 @@ class ClientAPI {
   Future<HttpResult> getContactsByClientIds({
     required String token,
     required List<String> clientIds,
+    required RxInt received,
+    required RxInt total
   }) async {
     final result = _http.request(
-        '/clientes/getContactoCliente',
-        method: HttpMethod.post,
-        token: token,
-        body: {
-          "clienteid": clientIds
-        }
+      '/clientes/getContactoCliente',
+      method: HttpMethod.post,
+      token: token,
+      body: {
+        "clienteid": clientIds
+      },
+      received: received,
+      total: total
     );
     return result;
   }
@@ -58,14 +66,18 @@ class ClientAPI {
   Future<HttpResult> getAddressesByClientIds({
     required String token,
     required List<String> clientIds,
+    required RxInt received,
+    required RxInt total
   }) async {
     final result = _http.request(
-        '/clientes/getDireccionCliente',
-        method: HttpMethod.post,
-        token: token,
-        body: {
-          "clienteid": clientIds
-        }
+      '/clientes/getDireccionCliente',
+      method: HttpMethod.post,
+      token: token,
+      body: {
+        "clienteid": clientIds
+      },
+      received: received,
+      total: total
     );
     return result;
   }
