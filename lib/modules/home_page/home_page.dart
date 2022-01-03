@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
         appBar: BaseAppBar(
           title: AppTranslations.of(context)!.text('welcome'),
           lastUpdate: DateTimeUtil.dateTimeToText(_.lastSyncDate),
-          syncOnDemand: () {}
+          syncOnDemand: _.syncOnDemand
         ).widget(),
         body: Container(
           width: MediaQuery.of(context).size.width,

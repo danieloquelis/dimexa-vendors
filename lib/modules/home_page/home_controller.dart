@@ -45,8 +45,27 @@ class HomeController extends GetxController {
     globalController.showLoadingDialog(message: "Cambiando zona, por favor espere...");
     await Future.delayed(const Duration(milliseconds: 300));
     globalController.hideLoadingDialog();
+    SyncManager? syncManager = syncManagerRepository.getByTypeAndZoneId(globalController.selectedZoneId.value, SyncType.dashboard);
+    if (syncManager != null && syncManager.lastSyncDownDate != null) {
+      _lastSyncDate = syncManager.lastSyncDownDate!;
+    }
     _dashboard = dashboardRepository.getByZoneId(zoneId);
     globalController.setSelectedZoneId(zoneId);
+    update();
+  }
+
+  void syncOnDemand() async {
+    String zoneId = globalController.selectedZoneId.value;
+    await globalController.syncDashboard(
+        onDemand: true,
+        zoneIds: [zoneId]
+    );
+    globalController.hideLoadingDialog();
+    SyncManager? syncManager = syncManagerRepository.getByTypeAndZoneId(globalController.selectedZoneId.value, SyncType.dashboard);
+    if (syncManager != null && syncManager.lastSyncDownDate != null) {
+      _lastSyncDate = syncManager.lastSyncDownDate!;
+    }
+    _dashboard = dashboardRepository.getByZoneId(zoneId);
     update();
   }
 }

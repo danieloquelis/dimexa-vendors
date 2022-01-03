@@ -1,9 +1,14 @@
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
+import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
+import 'package:dimexa_vendors/data/models/product/product.dart';
 import 'package:dimexa_vendors/global_widgets/tag/tag.dart';
 import 'package:flutter/material.dart';
 
 class DescriptionCell extends StatelessWidget {
-  const DescriptionCell({Key? key}) : super(key: key);
+  Product product;
+
+
+  DescriptionCell({required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -13,30 +18,44 @@ class DescriptionCell extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Apronax x 100 mg x 10 Tabletas texto largo TEXTO LARGO',
+            StringUtils.checkNullOrEmpty(product.producto),
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
-          SizedBox(height: 6,),
+          const SizedBox(height: 6,),
           FittedBox(
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Tag(
-                  label: "VC",
-                  backgroundColor: AppColors.green,
-                  fontColor: Colors.white,
+                Visibility(
+                  visible: product.vencimientocorto!,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 4.0),
+                    child: Tag(
+                      label: "VC",
+                      backgroundColor: AppColors.green,
+                      fontColor: Colors.white,
+                    ),
+                  ),
                 ),
-                SizedBox(width: 4,),
-                Tag(
-                  label: "2 ES",
-                  backgroundColor: AppColors.blue,
-                  fontColor: Colors.white,
+                Visibility(
+                  visible: product.escalas! > 0,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 4.0),
+                    child: Tag(
+                      label: '${product.escalas!} ES',
+                      backgroundColor: AppColors.blue,
+                      fontColor: Colors.white,
+                    ),
+                  ),
                 ),
-                SizedBox(width: 4,),
-                Tag(
-                  label: "1 BF",
-                  backgroundColor: AppColors.orange,
-                  fontColor: Colors.white,
+                Visibility(
+                  visible: product.bonificaciones! > 0,
+                  child: Tag(
+                    label: '${product.bonificaciones!} BF',
+                    backgroundColor: AppColors.orange,
+                    fontColor: Colors.white,
+                  ),
                 ),
               ],
             ),

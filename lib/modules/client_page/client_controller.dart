@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:dimexa_vendors/data/enums/search_client_filter/search_client_filter.dart';
 import 'package:dimexa_vendors/data/enums/sync_type/sync_type.dart';
 import 'package:dimexa_vendors/data/interceptors/client_interceptor/client_interceptor.dart';
@@ -73,7 +74,9 @@ class ClientController extends GetxController {
   }
 
   void setSearchText(String text) {
-    _loading = true;
+    if (StringUtils.isNotNullNorEmpty(text)) {
+      _loading = true;
+    }
     update();
     _searchText.value = text;
   }
@@ -133,15 +136,25 @@ class ClientController extends GetxController {
 
   void syncOnDemand() async {
     String zoneId = globalController.selectedZoneId.value;
-    await globalController.syncDownClients(
+    List<String> clientIds = await globalController.syncDownClients(
       onDemand: true,
-      zoneIds: [zoneId]
+      zoneIds: [zoneId],
+    );
+
+    await globalController.syncDownContacts(clientIds);
+    await globalController.syncDownContactRoles(clientIds);
+    await globalController.syncDownContactMedias(clientIds);
+    await globalController.syncDownAddresses(clientIds);
+    await globalController.syncDownClientWallet(
+      clientIds: clientIds,
+      zoneIds: [zoneId],
+      onDemand: true
     );
     SyncManager? syncManager = syncManagerRepository.getByTypeAndZoneId(globalController.selectedZoneId.value, SyncType.client);
     if (syncManager != null && syncManager.lastSyncDownDate != null) {
       _lastSyncDate = syncManager.lastSyncDownDate!;
     }
-    //TODO: sync address and contact
+    globalController.hideLoadingDialog();
     update();
   }
 

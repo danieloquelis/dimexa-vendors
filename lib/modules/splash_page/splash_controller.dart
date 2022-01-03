@@ -137,6 +137,7 @@ class SplashController extends GetxController {
     if (token == null || token.isEmpty) {
       Get.offNamed(AppRoutes.login);
     } else {
+      await globalController.firstSyncProcess();
       Get.offNamed(AppRoutes.tabManager);
     }
   }

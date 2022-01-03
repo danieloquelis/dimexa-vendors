@@ -8,6 +8,7 @@ import 'package:dimexa_vendors/core/values/strings.dart';
 import 'package:dimexa_vendors/data/enums/sync_type/sync_type.dart';
 import 'package:dimexa_vendors/data/interceptors/client_interceptor/client_interceptor.dart';
 import 'package:dimexa_vendors/data/interceptors/dashboard_interceptor/dashboard_interceptor.dart';
+import 'package:dimexa_vendors/data/interceptors/product_interceptor/product_interceptor.dart';
 import 'package:dimexa_vendors/data/interceptors/zone_interceptor/zone_interceptor.dart';
 import 'package:dimexa_vendors/data/models/address/address.dart';
 import 'package:dimexa_vendors/data/models/app_permission/app_permission.dart';
@@ -17,6 +18,7 @@ import 'package:dimexa_vendors/data/models/contact/contact.dart';
 import 'package:dimexa_vendors/data/models/contact_media/contact_media.dart';
 import 'package:dimexa_vendors/data/models/contact_role/contact_role.dart';
 import 'package:dimexa_vendors/data/models/dashboard/dashboard.dart';
+import 'package:dimexa_vendors/data/models/product/product.dart';
 import 'package:dimexa_vendors/data/models/session/session.dart';
 import 'package:dimexa_vendors/data/models/sync_manager/sync_manager.dart';
 import 'package:dimexa_vendors/data/models/zone/zone.dart';
@@ -25,6 +27,7 @@ import 'package:dimexa_vendors/data/repositories/client_repository/client_reposi
 import 'package:dimexa_vendors/data/repositories/client_wallet_repository/client_wallet_repository.dart';
 import 'package:dimexa_vendors/data/repositories/contact_repository/contact_repository.dart';
 import 'package:dimexa_vendors/data/repositories/dashboard_repository/dashboard_repository.dart';
+import 'package:dimexa_vendors/data/repositories/product_repository/product_repository.dart';
 import 'package:dimexa_vendors/data/repositories/sync_manager_repository/sync_manager_repository.dart';
 import 'package:dimexa_vendors/data/repositories/zone_repository/zone_repository.dart';
 import 'package:dimexa_vendors/global_widgets/loading_dialog/loading_dialog.dart';
@@ -44,6 +47,8 @@ class GlobalController extends GetxController {
   final zoneRepository = Get.find<ZoneRepository>();
   final dashboardRepository = Get.find<DashboardRepository>();
   final clientWalletRepository = Get.find<ClientWalletRepository>();
+  final productInterceptor = Get.find<ProductInterceptor>();
+  final productRepository = Get.find<ProductRepository>();
 
   ///Private variables
   final List<AppPermission> _filteredPermissions = [];
@@ -553,6 +558,82 @@ class GlobalController extends GetxController {
       syncManagerRepository.updateByTypeAndZoneIds(zoneIds, SyncType.dashboard, syncDown: true);
     }
     resetSyncProgress();
+  }
+
+  Future syncProducts({bool onDemand = false, List<String>? zoneIds}) async {
+    if (!onDemand || CollectionUtils.isNullOrEmpty(zoneIds)) {
+      zoneIds = [..._sessionZoneIds];
+    }
+
+    List<SyncManager>? syncs = syncManagerRepository.getByTypeAndZoneIds(zoneIds!, SyncType.product);
+    //check which zone needs to be updated based on last sync and if its not on demand
+    //if its on demand then it doesn't matter when it was the last sync
+    if (!onDemand && CollectionUtils.isNotNullNorEmpty(syncs)) {
+      for (SyncManager sync in syncs!) {
+        if (zoneIds.contains(StringUtils.checkNullOrEmpty(sync.zoneId))) {
+          //check last update
+          //if its upper than max hours allowed then sync
+          if (sync.lastSyncDownDate != null && sync.lastSyncDownDate!.difference(DateTime.now()).inHours > Numbers.maxSyncDiffHoursAllowed) {
+            continue;
+          }
+
+          zoneIds.remove(sync.zoneId);
+        }
+      }
+    }
+
+    if (CollectionUtils.isNullOrEmpty(zoneIds)) {
+      return;
+    }
+
+    showSyncDialog(
+        received: _received,
+        total: _total,
+        prefixMessage: "Sincronizando productos"
+    );
+
+    BackendResponse<Product>? response = await productInterceptor.sync(_session.token, zoneIds, _received, _total)
+        .onError((error, stackTrace) {
+      if (error is AppException) {
+        hideLoadingDialog(
+            errorMessage: error.uiMessage
+        );
+      } else {
+        hideLoadingDialog(
+            errorMessage: Strings.systemError
+        );
+      }
+
+      return null;
+    });
+
+    if (response == null) {
+      return;
+    }
+
+    //by zones
+    List<Product> products = response.data;
+
+    if (CollectionUtils.isNotNullNorEmpty(products)) {
+      //save products by zones
+      productRepository.save(zoneIds, products);
+      //save new sync manager for this type
+      syncManagerRepository.updateByTypeAndZoneIds(zoneIds, SyncType.product, syncDown: true);
+    }
+    resetSyncProgress();
+  }
+
+  Future firstSyncProcess() async {
+    await syncZones();
+    List<String> clientIds = await syncDownClients();
+    await syncDownContacts(clientIds);
+    await syncDownContactRoles(clientIds);
+    await syncDownContactMedias(clientIds);
+    await syncDownAddresses(clientIds);
+    await syncDownClientWallet(clientIds: clientIds);
+    await syncDashboard();
+    await syncProducts();
+    hideLoadingDialog();
   }
 
   void resetSyncProgress() {

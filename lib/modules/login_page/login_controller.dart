@@ -70,7 +70,8 @@ class LoginController extends GetxController {
     //stop loading
     //show success login
 
-    //go to tab manager
+    //first sync and go to tab manager
+    await globalController.firstSyncProcess();
     Get.offNamed(AppRoutes.tabManager);
   }
 

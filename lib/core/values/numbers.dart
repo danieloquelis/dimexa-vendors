@@ -3,6 +3,7 @@ class Numbers {
   static int maxLimit = 4000;
   static int startPage = 1;
   static int zero = 0;
+  static int maxLimitPagination = 50;
 
   ///Max days allow after request for sync
   static int maxDaysAllow = 1;

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
 class LineCell extends StatelessWidget {
-  const LineCell({Key? key}) : super(key: key);
+  String line;
+
+
+  LineCell({required this.line});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('Bayer Bayer', overflow: TextOverflow.ellipsis, maxLines: 2,),
+      child: Text(line, overflow: TextOverflow.ellipsis, maxLines: 2,),
       width: 42,
     );
   }

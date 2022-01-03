@@ -1,10 +1,8 @@
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
-import 'package:dimexa_vendors/core/values/strings.dart';
+import 'package:dimexa_vendors/core/utils/date_time_util/date_time_util.dart';
+import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:dimexa_vendors/global_widgets/base_appbar/base_appbar.dart';
-import 'package:dimexa_vendors/global_widgets/card_title/card_title.dart';
-import 'package:dimexa_vendors/global_widgets/custom_card/custom_card.dart';
-import 'package:dimexa_vendors/global_widgets/table_header/table_header.dart';
 import 'package:dimexa_vendors/modules/product_detail_page/local_widgets/general_info/general_info.dart';
 import 'package:dimexa_vendors/modules/product_detail_page/local_widgets/product_card_info/product_card_info.dart';
 import 'package:dimexa_vendors/modules/product_detail_page/local_widgets/quantity_text_field/quantity_text_field.dart';
@@ -24,7 +22,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       builder: (_) => Scaffold(
           appBar: BaseAppBar(
               title: AppTranslations.of(context)!.text('product_detail'),
-              lastUpdate: "hoy a las 23",
+              lastUpdate: DateTimeUtil.dateTimeToText(_.product.lastSync),
               syncOnDemand: () {},
               back: Get.back
           ).widget(),
@@ -39,7 +37,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Text(
-                      'APRONAX x 100 mg x 10 tabletas',
+                      StringUtils.checkNullOrEmpty(_.product.producto),
                     style: TextStyle(
                       fontSize: 18
                     ),
@@ -51,7 +49,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      GeneralInfo(),
+                      GeneralInfo(
+                        code: StringUtils.checkNullOrEmpty(_.product.productoid),
+                        stock: StringUtils.checkNullOrEmpty('${_.product.stock}'),
+                      ),
                       QuantityTextField()
                     ],
                   ),

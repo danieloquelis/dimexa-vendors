@@ -46,13 +46,13 @@ class AddressItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      StringUtils.checkNullOrEmpty(address!.direccion),
+                      StringUtils.checkNullOrEmpty(address.direccion),
                       //maxLines: 1,
                       //overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 4,),
                     Text(
-                      '${StringUtils.checkNullOrEmpty(address!.distrito)}, ${StringUtils.checkNullOrEmpty(address!.departamento)}',
+                      '${StringUtils.checkNullOrEmpty(address.distrito)}, ${StringUtils.checkNullOrEmpty(address.departamento)}',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -75,13 +75,13 @@ class AddressItem extends StatelessWidget {
               Tag(
                 borderColor: Colors.transparent,
                 backgroundColor: AppColors.tagBackground,
-                label: StringUtils.checkNullOrEmpty(address!.tipoprioridad),
+                label: StringUtils.checkNullOrEmpty(address.tipoprioridad),
               ),
               const SizedBox(width: 8,),
               Tag(
                 borderColor: Colors.transparent,
                 backgroundColor: AppColors.tagBackground,
-                label: StringUtils.checkNullOrEmpty(address!.tipoestablecimiento),
+                label: StringUtils.checkNullOrEmpty(address.tipoestablecimiento),
               ),
             ],
           ),

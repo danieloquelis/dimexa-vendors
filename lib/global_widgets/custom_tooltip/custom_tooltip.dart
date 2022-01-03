@@ -18,7 +18,7 @@ class CustomTooltip extends StatelessWidget {
       height: 56,
       verticalOffset: 6,
       margin: EdgeInsets.symmetric(horizontal: 16),
-      showDuration: Duration(seconds: 5),
+      showDuration: Duration(seconds: 2),
     ): child!;
   }
 }

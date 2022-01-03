@@ -52,15 +52,19 @@ class _ClientPageState extends State<ClientPage> {
                   },
                 ),
                 const SizedBox(height: 24,),
-                _.loading ? const SpinKitChasingDots(
-                  color: AppColors.green,
+                _.loading ? const Expanded(
+                  child: Center(
+                    child: SpinKitChasingDots(
+                      color: AppColors.green,
+                    ),
+                  ),
                 ):
                 _.clients.isEmpty?
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                    children: const [
                       Icon(Icons.search, size: 128, color: AppColors.gray,),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 32),
