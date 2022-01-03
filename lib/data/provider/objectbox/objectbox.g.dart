@@ -11,313 +11,292 @@ import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
 import '../../models/address/address.dart';
 import '../../models/client/client.dart';
-import '../../models/client_status/client_status.dart';
+import '../../models/client_wallet/cient_wallet.dart';
 import '../../models/contact/contact.dart';
-import '../../models/diremid_status/diremid_status.dart';
-import '../../models/discount_type/discount_type.dart';
-import '../../models/menu/menu.dart';
-import '../../models/menu_fav/menu_fav.dart';
-import '../../models/role/role.dart';
-import '../../models/role_menu/role_menu.dart';
+import '../../models/contact_media/contact_media.dart';
+import '../../models/contact_role/contact_role.dart';
+import '../../models/dashboard/dashboard.dart';
 import '../../models/session/session.dart';
-import '../../models/sub_channel/sub_channel.dart';
 import '../../models/sync_manager/sync_manager.dart';
-import '../../models/ubigeo/ubigeo.dart';
-import '../../models/user/user.dart';
-import '../../models/vendor/vendor.dart';
 import '../../models/zone/zone.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
 final _entities = <ModelEntity>[
   ModelEntity(
-      id: const IdUid(1, 1352357758425342038),
+      id: const IdUid(1, 7283929685862499674),
       name: 'Address',
-      lastPropertyId: const IdUid(16, 3782115233707284849),
+      lastPropertyId: const IdUid(14, 6748449387309038692),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 5028680745171113995),
+            id: const IdUid(1, 3651228420116048094),
             name: 'clientedireccionid',
             type: 6,
             flags: 129),
         ModelProperty(
-            id: const IdUid(2, 5630833728221403929),
+            id: const IdUid(2, 4233283442141409560),
             name: 'clienteid',
             type: 9,
-            flags: 0),
+            flags: 2048,
+            indexId: const IdUid(1, 8297768002440931386)),
         ModelProperty(
-            id: const IdUid(3, 965174023642049277),
-            name: 'ubigeoid',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(4, 2566726742043736699),
+            id: const IdUid(3, 8523589930938394453),
             name: 'direccion',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 4945855947669036134),
+            id: const IdUid(4, 3729734381866236133),
+            name: 'ubigeoid',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(5, 2878087100548432877),
+            name: 'distrito',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(6, 5748971886452841600),
+            name: 'provincia',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(7, 2398546827794856487),
+            name: 'departamento',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(8, 8597599679058496120),
             name: 'referencia',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 3502761965796216246),
-            name: 'tipoprioridadid',
-            type: 6,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(7, 7364641330284363865),
-            name: 'tipoestablecimientoid',
-            type: 6,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(8, 447892296743092120),
+            id: const IdUid(9, 6811600573342352806),
             name: 'latitud',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(9, 3375069050505854810),
+            id: const IdUid(10, 8543470559023366231),
             name: 'longitud',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(10, 118209363876226521),
-            name: 'creado',
-            type: 10,
+            id: const IdUid(11, 1415345069416956586),
+            name: 'tipoprioridadid',
+            type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(11, 8649947519318569376),
-            name: 'actualizado',
-            type: 10,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(12, 6135441051002570740),
-            name: 'descargado',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(13, 5939202991538089418),
-            name: 'sincronizado',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(14, 9222145396493651840),
-            name: 'usuarioid',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(15, 4435636431275493898),
-            name: 'tipoestablecimiento',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(16, 3782115233707284849),
+            id: const IdUid(12, 778185988734023579),
             name: 'tipoprioridad',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(13, 4575232594441210207),
+            name: 'tipoestablecimientoid',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(14, 6748449387309038692),
+            name: 'tipoestablecimiento',
             type: 9,
             flags: 0)
       ],
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(2, 1330410600785952729),
+      id: const IdUid(2, 3602469927712778116),
       name: 'Client',
-      lastPropertyId: const IdUid(39, 6354503210402409484),
+      lastPropertyId: const IdUid(38, 4952034810692333020),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 8423510956819072555),
+            id: const IdUid(1, 507487498688917112),
             name: 'id',
             type: 6,
-            flags: 129),
+            flags: 1),
         ModelProperty(
-            id: const IdUid(2, 4006154138697700313),
+            id: const IdUid(2, 4117706107867504255),
             name: 'clienteid',
             type: 9,
             flags: 2048,
-            indexId: const IdUid(1, 213646851382741109)),
+            indexId: const IdUid(2, 7837955604573391906)),
         ModelProperty(
-            id: const IdUid(3, 7924066711208337494),
-            name: 'unidadnegocioid',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(4, 2300420064888807848),
+            id: const IdUid(3, 4832070501496551374),
             name: 'ruc',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 570881502912033514),
+            id: const IdUid(4, 6243939738848437499),
             name: 'razonsocial',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 2959037954579895486),
+            id: const IdUid(5, 8367151415701763173),
             name: 'nombrecomercial',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(7, 6201080571488234006),
-            name: 'zonaid',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(8, 2682804440776722705),
-            name: 'ubigeoid',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(9, 717748476862473083),
+            id: const IdUid(6, 516016838356187123),
             name: 'direccion',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(10, 4109092389548437040),
+            id: const IdUid(7, 7458992507408911397),
+            name: 'ubigeoid',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(8, 2423966460090594425),
+            name: 'distrito',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(9, 8795259988829663106),
+            name: 'provincia',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(10, 4624350160049118901),
+            name: 'departamento',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(11, 6811169174870225533),
             name: 'estadoclienteid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(11, 1008214070188700711),
-            name: 'estadodiremidid',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(12, 6935810237262644575),
-            name: 'condicionventaid',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(13, 1220501127523686686),
-            name: 'tipodescuentoid',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(14, 2429187474592606836),
-            name: 'subcanalid',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(15, 5200748510404975680),
-            name: 'diavisita1',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(16, 398768803480961625),
-            name: 'diavisita2',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(17, 5196000234790162623),
-            name: 'representantelegal',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(18, 3476474037517350809),
-            name: 'dni',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(19, 8306391147401864674),
-            name: 'aniversario',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(20, 8865447244328917037),
-            name: 'telefono',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(21, 8456149269063275526),
-            name: 'movil',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(22, 7755874175469854525),
-            name: 'lineacredito',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(23, 8459974405524542371),
-            name: 'deuda',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(24, 916017236525445050),
-            name: 'lineadisponible',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(25, 8432143029379641550),
-            name: 'ubigeo',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(26, 6161073750575316724),
+            id: const IdUid(12, 5324527971367452687),
             name: 'estadocliente',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(27, 8412786333578459932),
-            name: 'estadodirem',
+            id: const IdUid(13, 5767447497367901829),
+            name: 'estadodiremidid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(28, 6822026394521123829),
-            name: 'tipodescuento',
+            id: const IdUid(14, 1258773904549090533),
+            name: 'estadodiremid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(29, 4478349098332277856),
+            id: const IdUid(15, 243390967676538395),
+            name: 'sedeid',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(16, 4713513970869598424),
+            name: 'sede',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(17, 4188329968036449749),
+            name: 'zonaid',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(18, 2859613050934676417),
+            name: 'zonaid2',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(19, 6985186722975863973),
+            name: 'zonaid3',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(20, 8438267890329487117),
+            name: 'zonaid4',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(21, 5117541643908629562),
+            name: 'vendedorid',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(22, 5125969286385541529),
+            name: 'vendedor',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(23, 2662057378906131338),
+            name: 'subcanalid',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(24, 1640432850124783695),
             name: 'subcanal',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(30, 1555380318694725147),
-            name: 'clientedireccionubigeoid',
+            id: const IdUid(25, 7267664039377785002),
+            name: 'canalid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(31, 932045495252409665),
-            name: 'clientedirecciondireccion',
+            id: const IdUid(26, 3437826372710715725),
+            name: 'canal',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(32, 8414995906858470630),
-            name: 'clientedireccionreferencia',
+            id: const IdUid(27, 2281342200196956214),
+            name: 'condicionventaid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(33, 487094061860128464),
-            name: 'tipoprioridadid',
-            type: 6,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(34, 1803561351619515887),
-            name: 'tipoprioridad',
+            id: const IdUid(28, 2362959586235739836),
+            name: 'condicionventa',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(35, 1175922522435127604),
-            name: 'tipoestablecimientoid',
-            type: 6,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(36, 5644788363354666852),
-            name: 'tipoestablecimiento',
+            id: const IdUid(29, 7280905701717603394),
+            name: 'tipodescuentoid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(37, 358574144187928246),
-            name: 'latitud',
+            id: const IdUid(30, 6728426757229476293),
+            name: 'tipodescuento',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(38, 3840276692868380203),
-            name: 'longitud',
+            id: const IdUid(31, 5116740120364646819),
+            name: 'dia1',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(39, 6354503210402409484),
+            id: const IdUid(32, 7094754425559025485),
+            name: 'dia2',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(33, 6679956488430153784),
+            name: 'representantelegal',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(34, 3899982482470730288),
+            name: 'dni',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(35, 8795115751960368097),
+            name: 'aniversario',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(36, 3318543033495138690),
+            name: 'telefono',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(37, 7647418168140600604),
+            name: 'movil',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(38, 4952034810692333020),
             name: 'lastSync',
             type: 10,
             flags: 0)
@@ -325,455 +304,564 @@ final _entities = <ModelEntity>[
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(3, 4731673034686240136),
-      name: 'ClientStatus',
-      lastPropertyId: const IdUid(4, 8116559078189485235),
+      id: const IdUid(3, 2705320157806594833),
+      name: 'ClientWallet',
+      lastPropertyId: const IdUid(8, 5615318336429072815),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 4986513469643395555),
+            id: const IdUid(1, 488062656824953440),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 4234360556782479743),
-            name: 'estadoclienteid',
+            id: const IdUid(2, 3544536028681064706),
+            name: 'clienteid',
             type: 9,
             flags: 2048,
-            indexId: const IdUid(2, 3941834913969538015)),
+            indexId: const IdUid(3, 2988134598236095493)),
         ModelProperty(
-            id: const IdUid(3, 3331853514736427216),
-            name: 'nombre',
+            id: const IdUid(3, 1996843637448188284),
+            name: 'zonaid',
+            type: 9,
+            flags: 2048,
+            indexId: const IdUid(4, 7314900627080070174)),
+        ModelProperty(
+            id: const IdUid(4, 2876083261929847019),
+            name: 'lineanormal',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 8116559078189485235),
-            name: 'clientId',
-            type: 11,
-            flags: 520,
-            indexId: const IdUid(3, 6200033699311967371),
-            relationTarget: 'Client')
+            id: const IdUid(5, 7105938704344453936),
+            name: 'lineaespecial',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(6, 7596976690695526548),
+            name: 'lineatotal',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(7, 6232642519286382689),
+            name: 'lineadisponible',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(8, 5615318336429072815),
+            name: 'deuda',
+            type: 9,
+            flags: 0)
       ],
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(4, 7735779941666946743),
+      id: const IdUid(4, 9196129862077651121),
       name: 'Contact',
-      lastPropertyId: const IdUid(9, 7575241085540230462),
+      lastPropertyId: const IdUid(21, 3140320212353357434),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 2459824061475679475),
-            name: 'clientecontactoid',
+            id: const IdUid(1, 2722994461411829733),
+            name: 'contactoid',
             type: 6,
             flags: 129),
         ModelProperty(
-            id: const IdUid(2, 3216230855722337813),
-            name: 'contactoak',
-            type: 6,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(3, 4011042536066964850),
+            id: const IdUid(2, 4900615142115977291),
             name: 'clienteid',
             type: 9,
-            flags: 0),
+            flags: 2048,
+            indexId: const IdUid(5, 2543013555144238225)),
         ModelProperty(
-            id: const IdUid(4, 4345396402195002246),
-            name: 'nombre',
+            id: const IdUid(3, 3285649082828757999),
+            name: 'ruc',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 3032506627578196668),
-            name: 'tipocontactoid',
+            id: const IdUid(4, 3160555192670833450),
+            name: 'dni',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(5, 4313801028911711605),
+            name: 'compaiaid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 7322855329549104758),
+            id: const IdUid(6, 8271860233789938623),
+            name: 'personaid',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(7, 374025655139305170),
+            name: 'apellidopaterno',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(8, 2652127622102654732),
+            name: 'apellidomaterno',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(9, 8812394116593311781),
+            name: 'nombres',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(10, 566602931457708653),
             name: 'fechanacimiento',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(7, 7819505558821785499),
-            name: 'telefono',
+            id: const IdUid(11, 2790112197710185153),
+            name: 'documentoidentidad',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(8, 6700419392091186509),
-            name: 'correo',
+            id: const IdUid(12, 1959015661943670339),
+            name: 'tipodocumentoidentidadid',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(13, 4213862501624191813),
+            name: 'tipodocumentoidentidad',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(9, 7575241085540230462),
-            name: 'tipocontacto',
+            id: const IdUid(14, 321111534793934550),
+            name: 'estadocivilid',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(15, 4269009690199832323),
+            name: 'estadocivil',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(16, 3751039098463440040),
+            name: 'nacionalidadid',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(17, 7204754566519019004),
+            name: 'nacionalidad',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(18, 1770110778406308626),
+            name: 'generoid',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(19, 2251954656820765490),
+            name: 'genero',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(20, 247638579026983192),
+            name: 'origenid',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(21, 3140320212353357434),
+            name: 'origen',
             type: 9,
             flags: 0)
       ],
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(5, 7500406617167670316),
-      name: 'DiremidStatus',
-      lastPropertyId: const IdUid(4, 8002929363481953807),
+      id: const IdUid(5, 927677617236791678),
+      name: 'ContactMedia',
+      lastPropertyId: const IdUid(16, 9180367424028613248),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 3456405945687692950),
-            name: 'id',
+            id: const IdUid(1, 4769497499156793425),
+            name: 'mediocomunicacionid',
             type: 6,
-            flags: 1),
+            flags: 129),
         ModelProperty(
-            id: const IdUid(2, 616009932699348851),
-            name: 'estadodiremidid',
+            id: const IdUid(2, 871395332109743141),
+            name: 'clienteid',
             type: 9,
             flags: 2048,
-            indexId: const IdUid(4, 9207828010739867781)),
+            indexId: const IdUid(6, 6881737109885514434)),
         ModelProperty(
-            id: const IdUid(3, 4589278063905215978),
-            name: 'nombre',
+            id: const IdUid(3, 5492135201913479484),
+            name: 'personaid',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(4, 2849860265404564332),
+            name: 'contactoid',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(5, 3888295076855798686),
+            name: 'tipomediocomunicacionid',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(6, 5912718681461064237),
+            name: 'tipomediocomunicacion',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 8002929363481953807),
-            name: 'clientId',
-            type: 11,
-            flags: 520,
-            indexId: const IdUid(5, 3379108778464691307),
-            relationTarget: 'Client')
+            id: const IdUid(7, 2607918893529602575),
+            name: 'valor',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(8, 603412010886865414),
+            name: 'origenid',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(9, 3994617217054248723),
+            name: 'origen',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(10, 1175463557769749641),
+            name: 'tipoprioridadid',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(11, 452231195099683376),
+            name: 'tipoprioridad',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(12, 8817058622968864366),
+            name: 'ciudadid',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(13, 4311047055407474681),
+            name: 'ciudad',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(14, 8886981966864337777),
+            name: 'codigodiscado',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(15, 2084255324831268755),
+            name: 'estadoid',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(16, 9180367424028613248),
+            name: 'estado',
+            type: 9,
+            flags: 0)
       ],
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(6, 5116421731137523285),
-      name: 'DiscountType',
-      lastPropertyId: const IdUid(4, 6396019472428893961),
+      id: const IdUid(6, 3895838036656475667),
+      name: 'ContactRole',
+      lastPropertyId: const IdUid(8, 7673562539298090366),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 608863421702930962),
-            name: 'id',
+            id: const IdUid(1, 4446272676845739280),
+            name: 'rolid',
             type: 6,
-            flags: 1),
+            flags: 129),
         ModelProperty(
-            id: const IdUid(2, 753030562169244030),
-            name: 'tipodescuentoid',
+            id: const IdUid(2, 5759418180805170002),
+            name: 'clienteid',
             type: 9,
             flags: 2048,
-            indexId: const IdUid(6, 1294578651317995998)),
+            indexId: const IdUid(7, 2698075010753956116)),
         ModelProperty(
-            id: const IdUid(3, 5771874075964711457),
-            name: 'nombre',
+            id: const IdUid(3, 6810981842563993963),
+            name: 'personaid',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(4, 7525191378468305326),
+            name: 'contactoid',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(5, 1899364752766098502),
+            name: 'tiporolid',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(6, 517094207436351295),
+            name: 'tiporol',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 6396019472428893961),
-            name: 'clientId',
-            type: 11,
-            flags: 520,
-            indexId: const IdUid(7, 2945105390110541058),
-            relationTarget: 'Client')
+            id: const IdUid(7, 4592177455142059480),
+            name: 'estadoid',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(8, 7673562539298090366),
+            name: 'estado',
+            type: 9,
+            flags: 0)
       ],
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(7, 8231132262644580675),
-      name: 'Menu',
-      lastPropertyId: const IdUid(6, 619788807766536137),
+      id: const IdUid(7, 6862204407119596050),
+      name: 'Dashboard',
+      lastPropertyId: const IdUid(20, 4272654650435276834),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 6938664420042841706),
+            id: const IdUid(1, 7960638321194078926),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 4834444605499882458),
-            name: 'menuid',
+            id: const IdUid(2, 7192910934889160954),
+            name: 'zonaid',
             type: 9,
-            flags: 0),
+            flags: 2048,
+            indexId: const IdUid(8, 3469778728816137767)),
         ModelProperty(
-            id: const IdUid(3, 2299546172581013620),
-            name: 'titulo',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(4, 417192781556278294),
-            name: 'ruta',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(5, 5779058243072502077),
-            name: 'orden',
+            id: const IdUid(3, 6106525348265943933),
+            name: 'clientes',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 619788807766536137),
-            name: 'acceso',
-            type: 1,
-            flags: 0)
-      ],
-      relations: <ModelRelation>[],
-      backlinks: <ModelBacklink>[]),
-  ModelEntity(
-      id: const IdUid(8, 8132390438539159368),
-      name: 'MenuFav',
-      lastPropertyId: const IdUid(5, 1924730198351686130),
-      flags: 0,
-      properties: <ModelProperty>[
-        ModelProperty(
-            id: const IdUid(1, 9110979621686850838),
-            name: 'id',
-            type: 6,
-            flags: 1),
-        ModelProperty(
-            id: const IdUid(2, 3702623293231024001),
-            name: 'menuid',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(3, 3548714624307253118),
-            name: 'titulo',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(4, 6253326504561556162),
-            name: 'ruta',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(5, 1924730198351686130),
-            name: 'orden',
-            type: 6,
-            flags: 0)
-      ],
-      relations: <ModelRelation>[],
-      backlinks: <ModelBacklink>[]),
-  ModelEntity(
-      id: const IdUid(9, 8962049122969229060),
-      name: 'Role',
-      lastPropertyId: const IdUid(3, 471863785653292005),
-      flags: 0,
-      properties: <ModelProperty>[
-        ModelProperty(
-            id: const IdUid(1, 1309954123082777368),
-            name: 'rolid',
-            type: 6,
-            flags: 1),
-        ModelProperty(
-            id: const IdUid(2, 4421334553249080641),
-            name: 'nombre',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(3, 471863785653292005),
-            name: 'roleMenuId',
-            type: 11,
-            flags: 520,
-            indexId: const IdUid(8, 4000449305036946592),
-            relationTarget: 'RoleMenu')
-      ],
-      relations: <ModelRelation>[],
-      backlinks: <ModelBacklink>[]),
-  ModelEntity(
-      id: const IdUid(10, 447996813049732365),
-      name: 'RoleMenu',
-      lastPropertyId: const IdUid(4, 5643853984706506975),
-      flags: 0,
-      properties: <ModelProperty>[
-        ModelProperty(
-            id: const IdUid(1, 692472206197186311),
-            name: 'rolmenuid',
-            type: 6,
-            flags: 1),
-        ModelProperty(
-            id: const IdUid(2, 239494444511648364),
-            name: 'rolid',
+            id: const IdUid(4, 1438536143039053410),
+            name: 'clientesCobertura',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(3, 5541344390511018503),
-            name: 'menuid',
+            id: const IdUid(5, 5894262039653875370),
+            name: 'morosidad',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 5643853984706506975),
-            name: 'registrado',
+            id: const IdUid(6, 8510021358409465337),
+            name: 'cuotaMes',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(7, 2006820748950038459),
+            name: 'ventaMes',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(8, 2024160044582183296),
+            name: 'avanceMes',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(9, 5054443794352709035),
+            name: 'ventaMesAnt01',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(10, 7972963309693401647),
+            name: 'ventaMesAnt02',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(11, 4880195946532646840),
+            name: 'ventaMesAnt03',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(12, 66635393662533829),
+            name: 'ventaMesAnt04',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(13, 196774918225797327),
+            name: 'ventaMesAnt05',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(14, 5659875552638371144),
+            name: 'ventaMesAnt06',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(15, 7970046938579269504),
+            name: 'ventaMesAnt01Tit',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(16, 48846515932959422),
+            name: 'ventaMesAnt02Tit',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(17, 3597028381923608151),
+            name: 'ventaMesAnt03Tit',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(18, 116548173795856754),
+            name: 'ventaMesAnt04Tit',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(19, 2142627913703186730),
+            name: 'ventaMesAnt05Tit',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(20, 4272654650435276834),
+            name: 'ventaMesAnt06Tit',
             type: 9,
             flags: 0)
       ],
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(11, 670101644476955989),
+      id: const IdUid(8, 8785587553104629060),
       name: 'Session',
-      lastPropertyId: const IdUid(20, 1685656458476349900),
+      lastPropertyId: const IdUid(21, 7652116662092244320),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 743062350062925193),
+            id: const IdUid(1, 4605672130834568071),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 1106572208233953079),
+            id: const IdUid(2, 6794213321326658327),
             name: 'deviceToken',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(3, 340955750979916816),
+            id: const IdUid(3, 6952781692980993491),
             name: 'usuarioid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 5362179075973938665),
+            id: const IdUid(4, 1826097158290187804),
             name: 'usuario',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 8901070543638349813),
+            id: const IdUid(5, 4299577904286819810),
             name: 'descripcion',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 7925086272929983694),
+            id: const IdUid(6, 6606791775299053912),
             name: 'correo',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(7, 7183857109962158370),
+            id: const IdUid(7, 8410525253302690434),
             name: 'activo',
             type: 1,
             flags: 0),
         ModelProperty(
-            id: const IdUid(8, 8705020579367676671),
+            id: const IdUid(8, 2543246179832076984),
             name: 'bloqueado',
             type: 1,
             flags: 0),
         ModelProperty(
-            id: const IdUid(9, 5122054671400035273),
+            id: const IdUid(9, 8882320267558657053),
             name: 'motivobloqueoid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(10, 4315860742425142417),
+            id: const IdUid(10, 1274397699037907205),
             name: 'rolid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(11, 1992386234892143147),
+            id: const IdUid(11, 5001934921490386006),
             name: 'token',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(12, 5703729926669381839),
+            id: const IdUid(12, 7331012605278650487),
             name: 'telefono',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(13, 6864257885463019105),
+            id: const IdUid(13, 1250900817062191760),
             name: 'creado',
             type: 10,
             flags: 0),
         ModelProperty(
-            id: const IdUid(14, 4730131442437170980),
+            id: const IdUid(14, 3971287930822811409),
             name: 'actualizado',
             type: 10,
             flags: 0),
         ModelProperty(
-            id: const IdUid(15, 7449838203092679089),
+            id: const IdUid(15, 3648717716400661608),
             name: 'menuidFav1',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(16, 895227248289244575),
+            id: const IdUid(16, 5730924323889704786),
             name: 'menuidFav2',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(17, 9170134647869135217),
+            id: const IdUid(17, 2360841017612981891),
             name: 'menuidFav3',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(18, 1349478062183001316),
+            id: const IdUid(18, 8773110611572279053),
             name: 'motivobloqueo',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(19, 5970833939610985597),
+            id: const IdUid(19, 8083710651010972905),
             name: 'fechaExpiracion',
             type: 10,
             flags: 0),
         ModelProperty(
-            id: const IdUid(20, 1685656458476349900),
+            id: const IdUid(20, 6494930447688506683),
+            name: 'zoneIds',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(21, 7652116662092244320),
             name: 'tokenExpiracion',
             type: 6,
             flags: 0)
       ],
       relations: <ModelRelation>[],
-      backlinks: <ModelBacklink>[
-        ModelBacklink(name: 'zones', srcEntity: 'Zone', srcField: 'session')
-      ]),
-  ModelEntity(
-      id: const IdUid(12, 7316367034028052482),
-      name: 'SubChannel',
-      lastPropertyId: const IdUid(4, 604708071432769089),
-      flags: 0,
-      properties: <ModelProperty>[
-        ModelProperty(
-            id: const IdUid(1, 519905744809185010),
-            name: 'id',
-            type: 6,
-            flags: 1),
-        ModelProperty(
-            id: const IdUid(2, 8494783146090785132),
-            name: 'subcanalid',
-            type: 9,
-            flags: 2048,
-            indexId: const IdUid(9, 894786305182622328)),
-        ModelProperty(
-            id: const IdUid(3, 7170696707540780261),
-            name: 'nombre',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(4, 604708071432769089),
-            name: 'clientId',
-            type: 11,
-            flags: 520,
-            indexId: const IdUid(10, 6997823590811987237),
-            relationTarget: 'Client')
-      ],
-      relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(13, 6506461208677749186),
+      id: const IdUid(9, 2784592145936337288),
       name: 'SyncManager',
-      lastPropertyId: const IdUid(5, 8314546442199440139),
+      lastPropertyId: const IdUid(5, 5042890558679578082),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 9208826943885939752),
+            id: const IdUid(1, 4742316601510693343),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 1767209544534284553),
+            id: const IdUid(2, 6358678337112034045),
             name: 'zoneId',
             type: 9,
             flags: 2048,
-            indexId: const IdUid(11, 5671629088526967157)),
+            indexId: const IdUid(9, 2664474154083981393)),
         ModelProperty(
-            id: const IdUid(3, 2670552184424742092),
+            id: const IdUid(3, 5007689734149116683),
             name: 'syncType',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 8834118671014819357),
+            id: const IdUid(4, 1032376173258288377),
             name: 'lastSyncDownDate',
             type: 10,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 8314546442199440139),
+            id: const IdUid(5, 5042890558679578082),
             name: 'lastSyncUpDate',
             type: 10,
             flags: 0)
@@ -781,198 +869,77 @@ final _entities = <ModelEntity>[
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(14, 3080546480979458209),
-      name: 'Ubigeo',
-      lastPropertyId: const IdUid(4, 3959782640394342260),
-      flags: 0,
-      properties: <ModelProperty>[
-        ModelProperty(
-            id: const IdUid(1, 7493551009873083242),
-            name: 'id',
-            type: 6,
-            flags: 1),
-        ModelProperty(
-            id: const IdUid(2, 5267832687108559394),
-            name: 'ubigeoid',
-            type: 9,
-            flags: 2048,
-            indexId: const IdUid(12, 168447472078706818)),
-        ModelProperty(
-            id: const IdUid(3, 4821432877572357513),
-            name: 'nombre',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(4, 3959782640394342260),
-            name: 'clientId',
-            type: 11,
-            flags: 520,
-            indexId: const IdUid(13, 1037722445454940927),
-            relationTarget: 'Client')
-      ],
-      relations: <ModelRelation>[],
-      backlinks: <ModelBacklink>[]),
-  ModelEntity(
-      id: const IdUid(15, 124387529150130441),
-      name: 'User',
-      lastPropertyId: const IdUid(13, 8649731782597715939),
-      flags: 0,
-      properties: <ModelProperty>[
-        ModelProperty(
-            id: const IdUid(1, 8011498837331689280),
-            name: 'usuarioid',
-            type: 6,
-            flags: 1),
-        ModelProperty(
-            id: const IdUid(2, 1667126105267769636),
-            name: 'usuario',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(3, 4540752439419924836),
-            name: 'descripcion',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(4, 1626903225110567618),
-            name: 'correo',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(5, 1428382970166443132),
-            name: 'activo',
-            type: 1,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(6, 9064241760819869553),
-            name: 'bloqueado',
-            type: 1,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(7, 1123424460463011852),
-            name: 'rolid',
-            type: 6,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(8, 7719370062155154973),
-            name: 'token',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(9, 2310625808121738510),
-            name: 'telefono',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(10, 2552969127863915574),
-            name: 'creado',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(11, 6708347951751749511),
-            name: 'menuidFav1',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(12, 2527563014864554282),
-            name: 'menuidFav2',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(13, 8649731782597715939),
-            name: 'menuidFav3',
-            type: 9,
-            flags: 0)
-      ],
-      relations: <ModelRelation>[],
-      backlinks: <ModelBacklink>[]),
-  ModelEntity(
-      id: const IdUid(16, 7237481001992173610),
-      name: 'Vendor',
-      lastPropertyId: const IdUid(5, 8291980906813707833),
-      flags: 0,
-      properties: <ModelProperty>[
-        ModelProperty(
-            id: const IdUid(1, 2595615352541978032),
-            name: 'id',
-            type: 6,
-            flags: 1),
-        ModelProperty(
-            id: const IdUid(2, 4218317957283351251),
-            name: 'username',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(3, 7954608707858859433),
-            name: 'password',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(4, 3672158979611143250),
-            name: 'name',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(5, 8291980906813707833),
-            name: 'zone',
-            type: 9,
-            flags: 0)
-      ],
-      relations: <ModelRelation>[],
-      backlinks: <ModelBacklink>[]),
-  ModelEntity(
-      id: const IdUid(17, 2070541889657199523),
+      id: const IdUid(10, 4152022516733043249),
       name: 'Zone',
-      lastPropertyId: const IdUid(9, 6298157858931476617),
+      lastPropertyId: const IdUid(13, 7642766070056071939),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 482969105966468581),
+            id: const IdUid(1, 8215926067963133169),
             name: 'id',
             type: 6,
-            flags: 129),
+            flags: 1),
         ModelProperty(
-            id: const IdUid(2, 5467321902841245494),
+            id: const IdUid(2, 3898477250605780625),
             name: 'zonaid',
             type: 9,
-            flags: 0),
+            flags: 2048,
+            indexId: const IdUid(10, 1006598759200635903)),
         ModelProperty(
-            id: const IdUid(3, 1785475930169450345),
+            id: const IdUid(3, 2094868014652785283),
             name: 'nombre',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 942999469322271772),
+            id: const IdUid(4, 935822969479358565),
             name: 'vendedorid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 5683391615149077922),
+            id: const IdUid(5, 9188641515485131037),
+            name: 'vendedor',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(6, 194357996101341074),
             name: 'canalid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 2817324663318110534),
+            id: const IdUid(7, 4517143947122715940),
+            name: 'canal',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(8, 4130869907557084497),
             name: 'subcanalid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(7, 4855426848298087379),
+            id: const IdUid(9, 3572199570565910177),
+            name: 'subcanal',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(10, 2466032859617013556),
             name: 'unidadnegocioid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(8, 884533443731530537),
+            id: const IdUid(11, 6503575027607481),
+            name: 'unidadnegocio',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(12, 2757496450402556431),
             name: 'activo',
             type: 1,
             flags: 0),
         ModelProperty(
-            id: const IdUid(9, 6298157858931476617),
-            name: 'sessionId',
-            type: 11,
-            flags: 520,
-            indexId: const IdUid(14, 4118761698383431384),
-            relationTarget: 'Session')
+            id: const IdUid(13, 7642766070056071939),
+            name: 'especial',
+            type: 1,
+            flags: 0)
       ],
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[])
@@ -998,8 +965,8 @@ Future<Store> openStore(
 ModelDefinition getObjectBoxModel() {
   final model = ModelInfo(
       entities: _entities,
-      lastEntityId: const IdUid(17, 2070541889657199523),
-      lastIndexId: const IdUid(14, 4118761698383431384),
+      lastEntityId: const IdUid(10, 4152022516733043249),
+      lastIndexId: const IdUid(10, 1006598759200635903),
       lastRelationId: const IdUid(0, 0),
       lastSequenceId: const IdUid(0, 0),
       retiredEntityUids: const [],
@@ -1023,12 +990,21 @@ ModelDefinition getObjectBoxModel() {
           final clienteidOffset = object.clienteid == null
               ? null
               : fbb.writeString(object.clienteid!);
-          final ubigeoidOffset = object.ubigeoid == null
-              ? null
-              : fbb.writeString(object.ubigeoid!);
           final direccionOffset = object.direccion == null
               ? null
               : fbb.writeString(object.direccion!);
+          final ubigeoidOffset = object.ubigeoid == null
+              ? null
+              : fbb.writeString(object.ubigeoid!);
+          final distritoOffset = object.distrito == null
+              ? null
+              : fbb.writeString(object.distrito!);
+          final provinciaOffset = object.provincia == null
+              ? null
+              : fbb.writeString(object.provincia!);
+          final departamentoOffset = object.departamento == null
+              ? null
+              : fbb.writeString(object.departamento!);
           final referenciaOffset = object.referencia == null
               ? null
               : fbb.writeString(object.referencia!);
@@ -1037,76 +1013,60 @@ ModelDefinition getObjectBoxModel() {
           final longitudOffset = object.longitud == null
               ? null
               : fbb.writeString(object.longitud!);
-          final descargadoOffset = object.descargado == null
-              ? null
-              : fbb.writeString(object.descargado!);
-          final sincronizadoOffset = object.sincronizado == null
-              ? null
-              : fbb.writeString(object.sincronizado!);
-          final usuarioidOffset = object.usuarioid == null
-              ? null
-              : fbb.writeString(object.usuarioid!);
-          final tipoestablecimientoOffset = object.tipoestablecimiento == null
-              ? null
-              : fbb.writeString(object.tipoestablecimiento!);
           final tipoprioridadOffset = object.tipoprioridad == null
               ? null
               : fbb.writeString(object.tipoprioridad!);
-          fbb.startTable(17);
+          final tipoestablecimientoOffset = object.tipoestablecimiento == null
+              ? null
+              : fbb.writeString(object.tipoestablecimiento!);
+          fbb.startTable(15);
           fbb.addInt64(0, object.clientedireccionid ?? 0);
           fbb.addOffset(1, clienteidOffset);
-          fbb.addOffset(2, ubigeoidOffset);
-          fbb.addOffset(3, direccionOffset);
-          fbb.addOffset(4, referenciaOffset);
-          fbb.addInt64(5, object.tipoprioridadid);
-          fbb.addInt64(6, object.tipoestablecimientoid);
-          fbb.addOffset(7, latitudOffset);
-          fbb.addOffset(8, longitudOffset);
-          fbb.addInt64(9, object.creado?.millisecondsSinceEpoch);
-          fbb.addInt64(10, object.actualizado?.millisecondsSinceEpoch);
-          fbb.addOffset(11, descargadoOffset);
-          fbb.addOffset(12, sincronizadoOffset);
-          fbb.addOffset(13, usuarioidOffset);
-          fbb.addOffset(14, tipoestablecimientoOffset);
-          fbb.addOffset(15, tipoprioridadOffset);
+          fbb.addOffset(2, direccionOffset);
+          fbb.addOffset(3, ubigeoidOffset);
+          fbb.addOffset(4, distritoOffset);
+          fbb.addOffset(5, provinciaOffset);
+          fbb.addOffset(6, departamentoOffset);
+          fbb.addOffset(7, referenciaOffset);
+          fbb.addOffset(8, latitudOffset);
+          fbb.addOffset(9, longitudOffset);
+          fbb.addInt64(10, object.tipoprioridadid);
+          fbb.addOffset(11, tipoprioridadOffset);
+          fbb.addInt64(12, object.tipoestablecimientoid);
+          fbb.addOffset(13, tipoestablecimientoOffset);
           fbb.finish(fbb.endTable());
           return object.clientedireccionid ?? 0;
         },
         objectFromFB: (Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
-          final creadoValue =
-              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 22);
-          final actualizadoValue =
-              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 24);
+
           final object = Address(
               clientedireccionid: const fb.Int64Reader()
                   .vTableGetNullable(buffer, rootOffset, 4),
               clienteid: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 6),
-              ubigeoid: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 8),
               direccion: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 8),
+              ubigeoid: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 10),
-              referencia: const fb.StringReader()
+              distrito: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 12),
-              tipoprioridadid: const fb.Int64Reader()
+              provincia: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 14),
-              tipoestablecimientoid: const fb.Int64Reader()
+              departamento: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 16),
-              latitud: const fb.StringReader()
+              referencia: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 18),
-              longitud: const fb.StringReader()
+              latitud: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 20),
-              creado: creadoValue == null
-                  ? null
-                  : DateTime.fromMillisecondsSinceEpoch(creadoValue),
-              actualizado: actualizadoValue == null ? null : DateTime.fromMillisecondsSinceEpoch(actualizadoValue),
-              descargado: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 26),
-              sincronizado: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 28),
-              usuarioid: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 30),
-              tipoestablecimiento: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 32),
-              tipoprioridad: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 34));
+              longitud: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 22),
+              tipoprioridadid:
+                  const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 24),
+              tipoprioridad: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 26),
+              tipoestablecimientoid: const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 28),
+              tipoestablecimiento: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 30));
 
           return object;
         }),
@@ -1122,9 +1082,6 @@ ModelDefinition getObjectBoxModel() {
           final clienteidOffset = object.clienteid == null
               ? null
               : fbb.writeString(object.clienteid!);
-          final unidadnegocioidOffset = object.unidadnegocioid == null
-              ? null
-              : fbb.writeString(object.unidadnegocioid!);
           final rucOffset =
               object.ruc == null ? null : fbb.writeString(object.ruc!);
           final razonsocialOffset = object.razonsocial == null
@@ -1133,35 +1090,77 @@ ModelDefinition getObjectBoxModel() {
           final nombrecomercialOffset = object.nombrecomercial == null
               ? null
               : fbb.writeString(object.nombrecomercial!);
-          final zonaidOffset =
-              object.zonaid == null ? null : fbb.writeString(object.zonaid!);
-          final ubigeoidOffset = object.ubigeoid == null
-              ? null
-              : fbb.writeString(object.ubigeoid!);
           final direccionOffset = object.direccion == null
               ? null
               : fbb.writeString(object.direccion!);
+          final ubigeoidOffset = object.ubigeoid == null
+              ? null
+              : fbb.writeString(object.ubigeoid!);
+          final distritoOffset = object.distrito == null
+              ? null
+              : fbb.writeString(object.distrito!);
+          final provinciaOffset = object.provincia == null
+              ? null
+              : fbb.writeString(object.provincia!);
+          final departamentoOffset = object.departamento == null
+              ? null
+              : fbb.writeString(object.departamento!);
           final estadoclienteidOffset = object.estadoclienteid == null
               ? null
               : fbb.writeString(object.estadoclienteid!);
+          final estadoclienteOffset = object.estadocliente == null
+              ? null
+              : fbb.writeString(object.estadocliente!);
           final estadodiremididOffset = object.estadodiremidid == null
               ? null
               : fbb.writeString(object.estadodiremidid!);
-          final condicionventaidOffset = object.condicionventaid == null
+          final estadodiremidOffset = object.estadodiremid == null
               ? null
-              : fbb.writeString(object.condicionventaid!);
-          final tipodescuentoidOffset = object.tipodescuentoid == null
+              : fbb.writeString(object.estadodiremid!);
+          final sedeidOffset =
+              object.sedeid == null ? null : fbb.writeString(object.sedeid!);
+          final sedeOffset =
+              object.sede == null ? null : fbb.writeString(object.sede!);
+          final zonaidOffset =
+              object.zonaid == null ? null : fbb.writeString(object.zonaid!);
+          final zonaid2Offset =
+              object.zonaid2 == null ? null : fbb.writeString(object.zonaid2!);
+          final zonaid3Offset =
+              object.zonaid3 == null ? null : fbb.writeString(object.zonaid3!);
+          final zonaid4Offset =
+              object.zonaid4 == null ? null : fbb.writeString(object.zonaid4!);
+          final vendedoridOffset = object.vendedorid == null
               ? null
-              : fbb.writeString(object.tipodescuentoid!);
+              : fbb.writeString(object.vendedorid!);
+          final vendedorOffset = object.vendedor == null
+              ? null
+              : fbb.writeString(object.vendedor!);
           final subcanalidOffset = object.subcanalid == null
               ? null
               : fbb.writeString(object.subcanalid!);
-          final diavisita1Offset = object.diavisita1 == null
+          final subcanalOffset = object.subcanal == null
               ? null
-              : fbb.writeString(object.diavisita1!);
-          final diavisita2Offset = object.diavisita2 == null
+              : fbb.writeString(object.subcanal!);
+          final canalidOffset =
+              object.canalid == null ? null : fbb.writeString(object.canalid!);
+          final canalOffset =
+              object.canal == null ? null : fbb.writeString(object.canal!);
+          final condicionventaidOffset = object.condicionventaid == null
               ? null
-              : fbb.writeString(object.diavisita2!);
+              : fbb.writeString(object.condicionventaid!);
+          final condicionventaOffset = object.condicionventa == null
+              ? null
+              : fbb.writeString(object.condicionventa!);
+          final tipodescuentoidOffset = object.tipodescuentoid == null
+              ? null
+              : fbb.writeString(object.tipodescuentoid!);
+          final tipodescuentoOffset = object.tipodescuento == null
+              ? null
+              : fbb.writeString(object.tipodescuento!);
+          final dia1Offset =
+              object.dia1 == null ? null : fbb.writeString(object.dia1!);
+          final dia2Offset =
+              object.dia2 == null ? null : fbb.writeString(object.dia2!);
           final representantelegalOffset = object.representantelegal == null
               ? null
               : fbb.writeString(object.representantelegal!);
@@ -1175,91 +1174,45 @@ ModelDefinition getObjectBoxModel() {
               : fbb.writeString(object.telefono!);
           final movilOffset =
               object.movil == null ? null : fbb.writeString(object.movil!);
-          final lineacreditoOffset = object.lineacredito == null
-              ? null
-              : fbb.writeString(object.lineacredito!);
-          final deudaOffset =
-              object.deuda == null ? null : fbb.writeString(object.deuda!);
-          final lineadisponibleOffset = object.lineadisponible == null
-              ? null
-              : fbb.writeString(object.lineadisponible!);
-          final ubigeoOffset =
-              object.ubigeo == null ? null : fbb.writeString(object.ubigeo!);
-          final estadoclienteOffset = object.estadocliente == null
-              ? null
-              : fbb.writeString(object.estadocliente!);
-          final estadodiremOffset = object.estadodirem == null
-              ? null
-              : fbb.writeString(object.estadodirem!);
-          final tipodescuentoOffset = object.tipodescuento == null
-              ? null
-              : fbb.writeString(object.tipodescuento!);
-          final subcanalOffset = object.subcanal == null
-              ? null
-              : fbb.writeString(object.subcanal!);
-          final clientedireccionubigeoidOffset =
-              object.clientedireccionubigeoid == null
-                  ? null
-                  : fbb.writeString(object.clientedireccionubigeoid!);
-          final clientedirecciondireccionOffset =
-              object.clientedirecciondireccion == null
-                  ? null
-                  : fbb.writeString(object.clientedirecciondireccion!);
-          final clientedireccionreferenciaOffset =
-              object.clientedireccionreferencia == null
-                  ? null
-                  : fbb.writeString(object.clientedireccionreferencia!);
-          final tipoprioridadOffset = object.tipoprioridad == null
-              ? null
-              : fbb.writeString(object.tipoprioridad!);
-          final tipoestablecimientoOffset = object.tipoestablecimiento == null
-              ? null
-              : fbb.writeString(object.tipoestablecimiento!);
-          final latitudOffset =
-              object.latitud == null ? null : fbb.writeString(object.latitud!);
-          final longitudOffset = object.longitud == null
-              ? null
-              : fbb.writeString(object.longitud!);
-          fbb.startTable(40);
+          fbb.startTable(39);
           fbb.addInt64(0, object.id ?? 0);
           fbb.addOffset(1, clienteidOffset);
-          fbb.addOffset(2, unidadnegocioidOffset);
-          fbb.addOffset(3, rucOffset);
-          fbb.addOffset(4, razonsocialOffset);
-          fbb.addOffset(5, nombrecomercialOffset);
-          fbb.addOffset(6, zonaidOffset);
-          fbb.addOffset(7, ubigeoidOffset);
-          fbb.addOffset(8, direccionOffset);
-          fbb.addOffset(9, estadoclienteidOffset);
-          fbb.addOffset(10, estadodiremididOffset);
-          fbb.addOffset(11, condicionventaidOffset);
-          fbb.addOffset(12, tipodescuentoidOffset);
-          fbb.addOffset(13, subcanalidOffset);
-          fbb.addOffset(14, diavisita1Offset);
-          fbb.addOffset(15, diavisita2Offset);
-          fbb.addOffset(16, representantelegalOffset);
-          fbb.addOffset(17, dniOffset);
-          fbb.addOffset(18, aniversarioOffset);
-          fbb.addOffset(19, telefonoOffset);
-          fbb.addOffset(20, movilOffset);
-          fbb.addOffset(21, lineacreditoOffset);
-          fbb.addOffset(22, deudaOffset);
-          fbb.addOffset(23, lineadisponibleOffset);
-          fbb.addOffset(24, ubigeoOffset);
-          fbb.addOffset(25, estadoclienteOffset);
-          fbb.addOffset(26, estadodiremOffset);
-          fbb.addOffset(27, tipodescuentoOffset);
-          fbb.addOffset(28, subcanalOffset);
-          fbb.addOffset(29, clientedireccionubigeoidOffset);
-          fbb.addOffset(30, clientedirecciondireccionOffset);
-          fbb.addOffset(31, clientedireccionreferenciaOffset);
-          fbb.addInt64(32, object.tipoprioridadid);
-          fbb.addOffset(33, tipoprioridadOffset);
-          fbb.addInt64(34, object.tipoestablecimientoid);
-          fbb.addOffset(35, tipoestablecimientoOffset);
-          fbb.addOffset(36, latitudOffset);
-          fbb.addOffset(37, longitudOffset);
-          fbb.addInt64(38, object.lastSync?.millisecondsSinceEpoch);
+          fbb.addOffset(2, rucOffset);
+          fbb.addOffset(3, razonsocialOffset);
+          fbb.addOffset(4, nombrecomercialOffset);
+          fbb.addOffset(5, direccionOffset);
+          fbb.addOffset(6, ubigeoidOffset);
+          fbb.addOffset(7, distritoOffset);
+          fbb.addOffset(8, provinciaOffset);
+          fbb.addOffset(9, departamentoOffset);
+          fbb.addOffset(10, estadoclienteidOffset);
+          fbb.addOffset(11, estadoclienteOffset);
+          fbb.addOffset(12, estadodiremididOffset);
+          fbb.addOffset(13, estadodiremidOffset);
+          fbb.addOffset(14, sedeidOffset);
+          fbb.addOffset(15, sedeOffset);
+          fbb.addOffset(16, zonaidOffset);
+          fbb.addOffset(17, zonaid2Offset);
+          fbb.addOffset(18, zonaid3Offset);
+          fbb.addOffset(19, zonaid4Offset);
+          fbb.addOffset(20, vendedoridOffset);
+          fbb.addOffset(21, vendedorOffset);
+          fbb.addOffset(22, subcanalidOffset);
+          fbb.addOffset(23, subcanalOffset);
+          fbb.addOffset(24, canalidOffset);
+          fbb.addOffset(25, canalOffset);
+          fbb.addOffset(26, condicionventaidOffset);
+          fbb.addOffset(27, condicionventaOffset);
+          fbb.addOffset(28, tipodescuentoidOffset);
+          fbb.addOffset(29, tipodescuentoOffset);
+          fbb.addOffset(30, dia1Offset);
+          fbb.addOffset(31, dia2Offset);
+          fbb.addOffset(32, representantelegalOffset);
+          fbb.addOffset(33, dniOffset);
+          fbb.addOffset(34, aniversarioOffset);
+          fbb.addOffset(35, telefonoOffset);
+          fbb.addOffset(36, movilOffset);
+          fbb.addInt64(37, object.lastSync?.millisecondsSinceEpoch);
           fbb.finish(fbb.endTable());
           return object.id ?? 0;
         },
@@ -1267,80 +1220,97 @@ ModelDefinition getObjectBoxModel() {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
           final lastSyncValue =
-              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 80);
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 78);
           final object = Client(
               id: const fb.Int64Reader()
                   .vTableGetNullable(buffer, rootOffset, 4),
               clienteid: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 6),
-              unidadnegocioid: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 8),
               ruc: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 10),
+                  .vTableGetNullable(buffer, rootOffset, 8),
               razonsocial: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 12),
+                  .vTableGetNullable(buffer, rootOffset, 10),
               nombrecomercial: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 14),
-              zonaid: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 16),
-              ubigeoid: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 18),
+                  .vTableGetNullable(buffer, rootOffset, 12),
               direccion: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 14),
+              ubigeoid: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 16),
+              distrito: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 18),
+              provincia: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 20),
-              estadoclienteid: const fb.StringReader()
+              departamento: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 22),
-              estadodiremidid: const fb.StringReader()
+              estadoclienteid: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 24),
-              condicionventaid: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 26),
-              tipodescuentoid: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 28),
-              subcanalid: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 30),
-              diavisita1: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 32),
-              diavisita2: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 34),
-              representantelegal: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 36),
-              dni: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 38),
-              aniversario: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 40),
-              telefono: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 42),
-              movil: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 44),
-              lineacredito: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 46),
-              deuda: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 48),
-              lineadisponible: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 50),
-              ubigeo: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 52),
-              estadocliente: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 54),
-              estadodirem: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 56),
-              tipodescuento: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 58),
-              subcanal: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 60),
-              clientedireccionubigeoid: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 62),
-              clientedirecciondireccion: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 64),
-              clientedireccionreferencia: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 66),
-              tipoprioridadid: const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 68),
-              tipoprioridad: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 70),
-              tipoestablecimientoid: const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 72),
-              tipoestablecimiento: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 74),
-              latitud: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 76),
-              longitud: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 78),
+              estadocliente: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 26),
+              estadodiremidid: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 28),
+              estadodiremid: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 30),
+              sedeid: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 32),
+              sede: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 34),
+              zonaid: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 36),
+              zonaid2: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 38),
+              zonaid3: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 40),
+              zonaid4: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 42),
+              vendedorid: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 44),
+              vendedor: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 46),
+              subcanalid: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 48),
+              subcanal: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 50),
+              canalid: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 52),
+              canal: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 54),
+              condicionventaid: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 56),
+              condicionventa: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 58),
+              tipodescuentoid: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 60),
+              tipodescuento: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 62),
+              dia1: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 64),
+              dia2: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 66),
+              representantelegal: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 68),
+              dni: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 70),
+              aniversario: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 72),
+              telefono: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 74),
+              movil: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 76),
               lastSync: lastSyncValue == null ? null : DateTime.fromMillisecondsSinceEpoch(lastSyncValue));
 
           return object;
         }),
-    ClientStatus: EntityDefinition<ClientStatus>(
+    ClientWallet: EntityDefinition<ClientWallet>(
         model: _entities[2],
-        toOneRelations: (ClientStatus object) => [object.client],
-        toManyRelations: (ClientStatus object) => {},
-        getId: (ClientStatus object) => object.id,
-        setId: (ClientStatus object, int id) {
+        toOneRelations: (ClientWallet object) => [],
+        toManyRelations: (ClientWallet object) => {},
+        getId: (ClientWallet object) => object.id,
+        setId: (ClientWallet object, int id) {
           object.id = id;
         },
-        objectToFB: (ClientStatus object, fb.Builder fbb) {
-          final estadoclienteidOffset = object.estadoclienteid == null
+        objectToFB: (ClientWallet object, fb.Builder fbb) {
+          final clienteidOffset = object.clienteid == null
               ? null
-              : fbb.writeString(object.estadoclienteid!);
-          final nombreOffset =
-              object.nombre == null ? null : fbb.writeString(object.nombre!);
-          fbb.startTable(5);
+              : fbb.writeString(object.clienteid!);
+          final zonaidOffset =
+              object.zonaid == null ? null : fbb.writeString(object.zonaid!);
+          final lineanormalOffset = object.lineanormal == null
+              ? null
+              : fbb.writeString(object.lineanormal!);
+          final lineaespecialOffset = object.lineaespecial == null
+              ? null
+              : fbb.writeString(object.lineaespecial!);
+          final lineatotalOffset = object.lineatotal == null
+              ? null
+              : fbb.writeString(object.lineatotal!);
+          final lineadisponibleOffset = object.lineadisponible == null
+              ? null
+              : fbb.writeString(object.lineadisponible!);
+          final deudaOffset =
+              object.deuda == null ? null : fbb.writeString(object.deuda!);
+          fbb.startTable(9);
           fbb.addInt64(0, object.id ?? 0);
-          fbb.addOffset(1, estadoclienteidOffset);
-          fbb.addOffset(2, nombreOffset);
-          fbb.addInt64(3, object.client.targetId);
+          fbb.addOffset(1, clienteidOffset);
+          fbb.addOffset(2, zonaidOffset);
+          fbb.addOffset(3, lineanormalOffset);
+          fbb.addOffset(4, lineaespecialOffset);
+          fbb.addOffset(5, lineatotalOffset);
+          fbb.addOffset(6, lineadisponibleOffset);
+          fbb.addOffset(7, deudaOffset);
           fbb.finish(fbb.endTable());
           return object.id ?? 0;
         },
@@ -1348,260 +1318,245 @@ ModelDefinition getObjectBoxModel() {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
 
-          final object = ClientStatus(
+          final object = ClientWallet(
               id: const fb.Int64Reader()
                   .vTableGetNullable(buffer, rootOffset, 4),
-              estadoclienteid: const fb.StringReader()
+              clienteid: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 6),
-              nombre: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 8));
-          object.client.targetId =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0);
-          object.client.attach(store);
+              zonaid: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 8),
+              lineanormal: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 10),
+              lineaespecial: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 12),
+              lineatotal: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 14),
+              lineadisponible: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 16),
+              deuda: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 18));
+
           return object;
         }),
     Contact: EntityDefinition<Contact>(
         model: _entities[3],
         toOneRelations: (Contact object) => [],
         toManyRelations: (Contact object) => {},
-        getId: (Contact object) => object.clientecontactoid,
+        getId: (Contact object) => object.contactoid,
         setId: (Contact object, int id) {
-          object.clientecontactoid = id;
+          object.contactoid = id;
         },
         objectToFB: (Contact object, fb.Builder fbb) {
           final clienteidOffset = object.clienteid == null
               ? null
               : fbb.writeString(object.clienteid!);
-          final nombreOffset =
-              object.nombre == null ? null : fbb.writeString(object.nombre!);
+          final rucOffset =
+              object.ruc == null ? null : fbb.writeString(object.ruc!);
+          final dniOffset =
+              object.dni == null ? null : fbb.writeString(object.dni!);
+          final apellidopaternoOffset = object.apellidopaterno == null
+              ? null
+              : fbb.writeString(object.apellidopaterno!);
+          final apellidomaternoOffset = object.apellidomaterno == null
+              ? null
+              : fbb.writeString(object.apellidomaterno!);
+          final nombresOffset =
+              object.nombres == null ? null : fbb.writeString(object.nombres!);
           final fechanacimientoOffset = object.fechanacimiento == null
               ? null
               : fbb.writeString(object.fechanacimiento!);
-          final telefonoOffset = object.telefono == null
+          final documentoidentidadOffset = object.documentoidentidad == null
               ? null
-              : fbb.writeString(object.telefono!);
-          final correoOffset =
-              object.correo == null ? null : fbb.writeString(object.correo!);
-          final tipocontactoOffset = object.tipocontacto == null
+              : fbb.writeString(object.documentoidentidad!);
+          final tipodocumentoidentidadOffset =
+              object.tipodocumentoidentidad == null
+                  ? null
+                  : fbb.writeString(object.tipodocumentoidentidad!);
+          final estadocivilOffset = object.estadocivil == null
               ? null
-              : fbb.writeString(object.tipocontacto!);
-          fbb.startTable(10);
-          fbb.addInt64(0, object.clientecontactoid ?? 0);
-          fbb.addInt64(1, object.contactoak);
-          fbb.addOffset(2, clienteidOffset);
-          fbb.addOffset(3, nombreOffset);
-          fbb.addInt64(4, object.tipocontactoid);
-          fbb.addOffset(5, fechanacimientoOffset);
-          fbb.addOffset(6, telefonoOffset);
-          fbb.addOffset(7, correoOffset);
-          fbb.addOffset(8, tipocontactoOffset);
+              : fbb.writeString(object.estadocivil!);
+          final nacionalidadOffset = object.nacionalidad == null
+              ? null
+              : fbb.writeString(object.nacionalidad!);
+          final generoOffset =
+              object.genero == null ? null : fbb.writeString(object.genero!);
+          final origenOffset =
+              object.origen == null ? null : fbb.writeString(object.origen!);
+          fbb.startTable(22);
+          fbb.addInt64(0, object.contactoid ?? 0);
+          fbb.addOffset(1, clienteidOffset);
+          fbb.addOffset(2, rucOffset);
+          fbb.addOffset(3, dniOffset);
+          fbb.addInt64(4, object.compaiaid);
+          fbb.addInt64(5, object.personaid);
+          fbb.addOffset(6, apellidopaternoOffset);
+          fbb.addOffset(7, apellidomaternoOffset);
+          fbb.addOffset(8, nombresOffset);
+          fbb.addOffset(9, fechanacimientoOffset);
+          fbb.addOffset(10, documentoidentidadOffset);
+          fbb.addInt64(11, object.tipodocumentoidentidadid);
+          fbb.addOffset(12, tipodocumentoidentidadOffset);
+          fbb.addInt64(13, object.estadocivilid);
+          fbb.addOffset(14, estadocivilOffset);
+          fbb.addInt64(15, object.nacionalidadid);
+          fbb.addOffset(16, nacionalidadOffset);
+          fbb.addInt64(17, object.generoid);
+          fbb.addOffset(18, generoOffset);
+          fbb.addInt64(19, object.origenid);
+          fbb.addOffset(20, origenOffset);
           fbb.finish(fbb.endTable());
-          return object.clientecontactoid ?? 0;
+          return object.contactoid ?? 0;
         },
         objectFromFB: (Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
 
           final object = Contact(
-              clientecontactoid: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 4),
-              contactoak: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 6),
               clienteid: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 6),
+              ruc: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 8),
-              nombre: const fb.StringReader()
+              dni: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 10),
-              tipocontactoid: const fb.Int64Reader()
+              compaiaid: const fb.Int64Reader()
                   .vTableGetNullable(buffer, rootOffset, 12),
-              fechanacimiento: const fb.StringReader()
+              contactoid: const fb.Int64Reader()
+                  .vTableGetNullable(buffer, rootOffset, 4),
+              personaid: const fb.Int64Reader()
                   .vTableGetNullable(buffer, rootOffset, 14),
-              telefono: const fb.StringReader()
+              apellidopaterno: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 16),
-              correo: const fb.StringReader()
+              apellidomaterno: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 18),
-              tipocontacto: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 20));
+              nombres: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 20),
+              fechanacimiento: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 22),
+              documentoidentidad: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 24),
+              tipodocumentoidentidadid: const fb.Int64Reader()
+                  .vTableGetNullable(buffer, rootOffset, 26),
+              tipodocumentoidentidad: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 28),
+              estadocivilid: const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 30),
+              estadocivil: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 32),
+              nacionalidadid: const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 34),
+              nacionalidad: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 36),
+              generoid: const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 38),
+              genero: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 40),
+              origenid: const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 42),
+              origen: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 44));
 
           return object;
         }),
-    DiremidStatus: EntityDefinition<DiremidStatus>(
+    ContactMedia: EntityDefinition<ContactMedia>(
         model: _entities[4],
-        toOneRelations: (DiremidStatus object) => [object.client],
-        toManyRelations: (DiremidStatus object) => {},
-        getId: (DiremidStatus object) => object.id,
-        setId: (DiremidStatus object, int id) {
-          object.id = id;
+        toOneRelations: (ContactMedia object) => [],
+        toManyRelations: (ContactMedia object) => {},
+        getId: (ContactMedia object) => object.mediocomunicacionid,
+        setId: (ContactMedia object, int id) {
+          object.mediocomunicacionid = id;
         },
-        objectToFB: (DiremidStatus object, fb.Builder fbb) {
-          final estadodiremididOffset = object.estadodiremidid == null
+        objectToFB: (ContactMedia object, fb.Builder fbb) {
+          final clienteidOffset = object.clienteid == null
               ? null
-              : fbb.writeString(object.estadodiremidid!);
-          final nombreOffset =
-              object.nombre == null ? null : fbb.writeString(object.nombre!);
-          fbb.startTable(5);
-          fbb.addInt64(0, object.id ?? 0);
-          fbb.addOffset(1, estadodiremididOffset);
-          fbb.addOffset(2, nombreOffset);
-          fbb.addInt64(3, object.client.targetId);
-          fbb.finish(fbb.endTable());
-          return object.id ?? 0;
-        },
-        objectFromFB: (Store store, ByteData fbData) {
-          final buffer = fb.BufferContext(fbData);
-          final rootOffset = buffer.derefObject(0);
-
-          final object = DiremidStatus(
-              id: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 4),
-              estadodiremidid: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 6),
-              nombre: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 8));
-          object.client.targetId =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0);
-          object.client.attach(store);
-          return object;
-        }),
-    DiscountType: EntityDefinition<DiscountType>(
-        model: _entities[5],
-        toOneRelations: (DiscountType object) => [object.client],
-        toManyRelations: (DiscountType object) => {},
-        getId: (DiscountType object) => object.id,
-        setId: (DiscountType object, int id) {
-          object.id = id;
-        },
-        objectToFB: (DiscountType object, fb.Builder fbb) {
-          final tipodescuentoidOffset = object.tipodescuentoid == null
+              : fbb.writeString(object.clienteid!);
+          final tipomediocomunicacionOffset =
+              object.tipomediocomunicacion == null
+                  ? null
+                  : fbb.writeString(object.tipomediocomunicacion!);
+          final valorOffset =
+              object.valor == null ? null : fbb.writeString(object.valor!);
+          final origenOffset =
+              object.origen == null ? null : fbb.writeString(object.origen!);
+          final tipoprioridadOffset = object.tipoprioridad == null
               ? null
-              : fbb.writeString(object.tipodescuentoid!);
-          final nombreOffset =
-              object.nombre == null ? null : fbb.writeString(object.nombre!);
-          fbb.startTable(5);
-          fbb.addInt64(0, object.id ?? 0);
-          fbb.addOffset(1, tipodescuentoidOffset);
-          fbb.addOffset(2, nombreOffset);
-          fbb.addInt64(3, object.client.targetId);
+              : fbb.writeString(object.tipoprioridad!);
+          final ciudadOffset =
+              object.ciudad == null ? null : fbb.writeString(object.ciudad!);
+          final codigodiscadoOffset = object.codigodiscado == null
+              ? null
+              : fbb.writeString(object.codigodiscado!);
+          final estadoOffset =
+              object.estado == null ? null : fbb.writeString(object.estado!);
+          fbb.startTable(17);
+          fbb.addInt64(0, object.mediocomunicacionid ?? 0);
+          fbb.addOffset(1, clienteidOffset);
+          fbb.addInt64(2, object.personaid);
+          fbb.addInt64(3, object.contactoid);
+          fbb.addInt64(4, object.tipomediocomunicacionid);
+          fbb.addOffset(5, tipomediocomunicacionOffset);
+          fbb.addOffset(6, valorOffset);
+          fbb.addInt64(7, object.origenid);
+          fbb.addOffset(8, origenOffset);
+          fbb.addInt64(9, object.tipoprioridadid);
+          fbb.addOffset(10, tipoprioridadOffset);
+          fbb.addInt64(11, object.ciudadid);
+          fbb.addOffset(12, ciudadOffset);
+          fbb.addOffset(13, codigodiscadoOffset);
+          fbb.addInt64(14, object.estadoid);
+          fbb.addOffset(15, estadoOffset);
           fbb.finish(fbb.endTable());
-          return object.id ?? 0;
+          return object.mediocomunicacionid ?? 0;
         },
         objectFromFB: (Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
 
-          final object = DiscountType(
-              id: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 4),
-              tipodescuentoid: const fb.StringReader()
+          final object = ContactMedia(
+              clienteid: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 6),
-              nombre: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 8));
-          object.client.targetId =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0);
-          object.client.attach(store);
-          return object;
-        }),
-    Menu: EntityDefinition<Menu>(
-        model: _entities[6],
-        toOneRelations: (Menu object) => [],
-        toManyRelations: (Menu object) => {},
-        getId: (Menu object) => object.id,
-        setId: (Menu object, int id) {
-          object.id = id;
-        },
-        objectToFB: (Menu object, fb.Builder fbb) {
-          final menuidOffset =
-              object.menuid == null ? null : fbb.writeString(object.menuid!);
-          final tituloOffset =
-              object.titulo == null ? null : fbb.writeString(object.titulo!);
-          final rutaOffset =
-              object.ruta == null ? null : fbb.writeString(object.ruta!);
-          fbb.startTable(7);
-          fbb.addInt64(0, object.id ?? 0);
-          fbb.addOffset(1, menuidOffset);
-          fbb.addOffset(2, tituloOffset);
-          fbb.addOffset(3, rutaOffset);
-          fbb.addInt64(4, object.orden);
-          fbb.addBool(5, object.acceso);
-          fbb.finish(fbb.endTable());
-          return object.id ?? 0;
-        },
-        objectFromFB: (Store store, ByteData fbData) {
-          final buffer = fb.BufferContext(fbData);
-          final rootOffset = buffer.derefObject(0);
-
-          final object = Menu(
-              id: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 4),
-              menuid: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 6),
-              titulo: const fb.StringReader()
+              personaid: const fb.Int64Reader()
                   .vTableGetNullable(buffer, rootOffset, 8),
-              ruta: const fb.StringReader()
+              contactoid: const fb.Int64Reader()
                   .vTableGetNullable(buffer, rootOffset, 10),
-              orden: const fb.Int64Reader()
+              mediocomunicacionid: const fb.Int64Reader()
+                  .vTableGetNullable(buffer, rootOffset, 4),
+              tipomediocomunicacionid: const fb.Int64Reader()
                   .vTableGetNullable(buffer, rootOffset, 12),
-              acceso: const fb.BoolReader()
-                  .vTableGetNullable(buffer, rootOffset, 14));
+              tipomediocomunicacion: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 14),
+              valor: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 16),
+              origenid: const fb.Int64Reader()
+                  .vTableGetNullable(buffer, rootOffset, 18),
+              origen: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 20),
+              tipoprioridadid: const fb.Int64Reader()
+                  .vTableGetNullable(buffer, rootOffset, 22),
+              tipoprioridad: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 24),
+              ciudadid: const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 26),
+              ciudad: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 28),
+              codigodiscado: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 30),
+              estadoid: const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 32),
+              estado: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 34));
 
           return object;
         }),
-    MenuFav: EntityDefinition<MenuFav>(
-        model: _entities[7],
-        toOneRelations: (MenuFav object) => [],
-        toManyRelations: (MenuFav object) => {},
-        getId: (MenuFav object) => object.id,
-        setId: (MenuFav object, int id) {
-          object.id = id;
-        },
-        objectToFB: (MenuFav object, fb.Builder fbb) {
-          final menuidOffset =
-              object.menuid == null ? null : fbb.writeString(object.menuid!);
-          final tituloOffset =
-              object.titulo == null ? null : fbb.writeString(object.titulo!);
-          final rutaOffset =
-              object.ruta == null ? null : fbb.writeString(object.ruta!);
-          fbb.startTable(6);
-          fbb.addInt64(0, object.id ?? 0);
-          fbb.addOffset(1, menuidOffset);
-          fbb.addOffset(2, tituloOffset);
-          fbb.addOffset(3, rutaOffset);
-          fbb.addInt64(4, object.orden);
-          fbb.finish(fbb.endTable());
-          return object.id ?? 0;
-        },
-        objectFromFB: (Store store, ByteData fbData) {
-          final buffer = fb.BufferContext(fbData);
-          final rootOffset = buffer.derefObject(0);
-
-          final object = MenuFav(
-              id: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 4),
-              menuid: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 6),
-              titulo: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 8),
-              ruta: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 10),
-              orden: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 12));
-
-          return object;
-        }),
-    Role: EntityDefinition<Role>(
-        model: _entities[8],
-        toOneRelations: (Role object) => [object.roleMenu],
-        toManyRelations: (Role object) => {},
-        getId: (Role object) => object.rolid,
-        setId: (Role object, int id) {
+    ContactRole: EntityDefinition<ContactRole>(
+        model: _entities[5],
+        toOneRelations: (ContactRole object) => [],
+        toManyRelations: (ContactRole object) => {},
+        getId: (ContactRole object) => object.rolid,
+        setId: (ContactRole object, int id) {
           object.rolid = id;
         },
-        objectToFB: (Role object, fb.Builder fbb) {
-          final nombreOffset =
-              object.nombre == null ? null : fbb.writeString(object.nombre!);
-          fbb.startTable(4);
+        objectToFB: (ContactRole object, fb.Builder fbb) {
+          final clienteidOffset = object.clienteid == null
+              ? null
+              : fbb.writeString(object.clienteid!);
+          final tiporolOffset =
+              object.tiporol == null ? null : fbb.writeString(object.tiporol!);
+          final estadoOffset =
+              object.estado == null ? null : fbb.writeString(object.estado!);
+          fbb.startTable(9);
           fbb.addInt64(0, object.rolid ?? 0);
-          fbb.addOffset(1, nombreOffset);
-          fbb.addInt64(2, object.roleMenu.targetId);
+          fbb.addOffset(1, clienteidOffset);
+          fbb.addInt64(2, object.personaid);
+          fbb.addInt64(3, object.contactoid);
+          fbb.addInt64(4, object.tiporolid);
+          fbb.addOffset(5, tiporolOffset);
+          fbb.addInt64(6, object.estadoid);
+          fbb.addOffset(7, estadoOffset);
           fbb.finish(fbb.endTable());
           return object.rolid ?? 0;
         },
@@ -1609,62 +1564,152 @@ ModelDefinition getObjectBoxModel() {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
 
-          final object = Role(
+          final object = ContactRole(
+              clienteid: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 6),
+              personaid: const fb.Int64Reader()
+                  .vTableGetNullable(buffer, rootOffset, 8),
+              contactoid: const fb.Int64Reader()
+                  .vTableGetNullable(buffer, rootOffset, 10),
               rolid: const fb.Int64Reader()
                   .vTableGetNullable(buffer, rootOffset, 4),
-              nombre: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 6));
-          object.roleMenu.targetId =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0);
-          object.roleMenu.attach(store);
+              tiporolid: const fb.Int64Reader()
+                  .vTableGetNullable(buffer, rootOffset, 12),
+              tiporol: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 14),
+              estadoid: const fb.Int64Reader()
+                  .vTableGetNullable(buffer, rootOffset, 16),
+              estado: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 18));
+
           return object;
         }),
-    RoleMenu: EntityDefinition<RoleMenu>(
-        model: _entities[9],
-        toOneRelations: (RoleMenu object) => [],
-        toManyRelations: (RoleMenu object) => {},
-        getId: (RoleMenu object) => object.rolmenuid,
-        setId: (RoleMenu object, int id) {
-          object.rolmenuid = id;
+    Dashboard: EntityDefinition<Dashboard>(
+        model: _entities[6],
+        toOneRelations: (Dashboard object) => [],
+        toManyRelations: (Dashboard object) => {},
+        getId: (Dashboard object) => object.id,
+        setId: (Dashboard object, int id) {
+          object.id = id;
         },
-        objectToFB: (RoleMenu object, fb.Builder fbb) {
-          final menuidOffset =
-              object.menuid == null ? null : fbb.writeString(object.menuid!);
-          final registradoOffset = object.registrado == null
+        objectToFB: (Dashboard object, fb.Builder fbb) {
+          final zonaidOffset =
+              object.zonaid == null ? null : fbb.writeString(object.zonaid!);
+          final morosidadOffset = object.morosidad == null
               ? null
-              : fbb.writeString(object.registrado!);
-          fbb.startTable(5);
-          fbb.addInt64(0, object.rolmenuid ?? 0);
-          fbb.addInt64(1, object.rolid);
-          fbb.addOffset(2, menuidOffset);
-          fbb.addOffset(3, registradoOffset);
+              : fbb.writeString(object.morosidad!);
+          final cuotaMesOffset = object.cuotaMes == null
+              ? null
+              : fbb.writeString(object.cuotaMes!);
+          final ventaMesOffset = object.ventaMes == null
+              ? null
+              : fbb.writeString(object.ventaMes!);
+          final avanceMesOffset = object.avanceMes == null
+              ? null
+              : fbb.writeString(object.avanceMes!);
+          final ventaMesAnt01Offset = object.ventaMesAnt01 == null
+              ? null
+              : fbb.writeString(object.ventaMesAnt01!);
+          final ventaMesAnt02Offset = object.ventaMesAnt02 == null
+              ? null
+              : fbb.writeString(object.ventaMesAnt02!);
+          final ventaMesAnt03Offset = object.ventaMesAnt03 == null
+              ? null
+              : fbb.writeString(object.ventaMesAnt03!);
+          final ventaMesAnt04Offset = object.ventaMesAnt04 == null
+              ? null
+              : fbb.writeString(object.ventaMesAnt04!);
+          final ventaMesAnt05Offset = object.ventaMesAnt05 == null
+              ? null
+              : fbb.writeString(object.ventaMesAnt05!);
+          final ventaMesAnt06Offset = object.ventaMesAnt06 == null
+              ? null
+              : fbb.writeString(object.ventaMesAnt06!);
+          final ventaMesAnt01TitOffset = object.ventaMesAnt01Tit == null
+              ? null
+              : fbb.writeString(object.ventaMesAnt01Tit!);
+          final ventaMesAnt02TitOffset = object.ventaMesAnt02Tit == null
+              ? null
+              : fbb.writeString(object.ventaMesAnt02Tit!);
+          final ventaMesAnt03TitOffset = object.ventaMesAnt03Tit == null
+              ? null
+              : fbb.writeString(object.ventaMesAnt03Tit!);
+          final ventaMesAnt04TitOffset = object.ventaMesAnt04Tit == null
+              ? null
+              : fbb.writeString(object.ventaMesAnt04Tit!);
+          final ventaMesAnt05TitOffset = object.ventaMesAnt05Tit == null
+              ? null
+              : fbb.writeString(object.ventaMesAnt05Tit!);
+          final ventaMesAnt06TitOffset = object.ventaMesAnt06Tit == null
+              ? null
+              : fbb.writeString(object.ventaMesAnt06Tit!);
+          fbb.startTable(21);
+          fbb.addInt64(0, object.id ?? 0);
+          fbb.addOffset(1, zonaidOffset);
+          fbb.addInt64(2, object.clientes);
+          fbb.addInt64(3, object.clientesCobertura);
+          fbb.addOffset(4, morosidadOffset);
+          fbb.addOffset(5, cuotaMesOffset);
+          fbb.addOffset(6, ventaMesOffset);
+          fbb.addOffset(7, avanceMesOffset);
+          fbb.addOffset(8, ventaMesAnt01Offset);
+          fbb.addOffset(9, ventaMesAnt02Offset);
+          fbb.addOffset(10, ventaMesAnt03Offset);
+          fbb.addOffset(11, ventaMesAnt04Offset);
+          fbb.addOffset(12, ventaMesAnt05Offset);
+          fbb.addOffset(13, ventaMesAnt06Offset);
+          fbb.addOffset(14, ventaMesAnt01TitOffset);
+          fbb.addOffset(15, ventaMesAnt02TitOffset);
+          fbb.addOffset(16, ventaMesAnt03TitOffset);
+          fbb.addOffset(17, ventaMesAnt04TitOffset);
+          fbb.addOffset(18, ventaMesAnt05TitOffset);
+          fbb.addOffset(19, ventaMesAnt06TitOffset);
           fbb.finish(fbb.endTable());
-          return object.rolmenuid ?? 0;
+          return object.id ?? 0;
         },
         objectFromFB: (Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
 
-          final object = RoleMenu(
-              rolmenuid: const fb.Int64Reader()
+          final object = Dashboard(
+              id: const fb.Int64Reader()
                   .vTableGetNullable(buffer, rootOffset, 4),
-              rolid: const fb.Int64Reader()
+              zonaid: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 6),
-              menuid: const fb.StringReader()
+              clientes: const fb.Int64Reader()
                   .vTableGetNullable(buffer, rootOffset, 8),
-              registrado: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 10));
+              clientesCobertura: const fb.Int64Reader()
+                  .vTableGetNullable(buffer, rootOffset, 10),
+              morosidad: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 12),
+              cuotaMes: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 14),
+              ventaMes: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 16),
+              avanceMes: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 18),
+              ventaMesAnt01: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 20),
+              ventaMesAnt02: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 22),
+              ventaMesAnt03: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 24),
+              ventaMesAnt04: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 26),
+              ventaMesAnt05: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 28),
+              ventaMesAnt06: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 30),
+              ventaMesAnt01Tit: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 32),
+              ventaMesAnt02Tit: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 34),
+              ventaMesAnt03Tit: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 36),
+              ventaMesAnt04Tit: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 38),
+              ventaMesAnt05Tit: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 40),
+              ventaMesAnt06Tit: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 42));
 
           return object;
         }),
     Session: EntityDefinition<Session>(
-        model: _entities[10],
+        model: _entities[7],
         toOneRelations: (Session object) => [],
-        toManyRelations: (Session object) => {
-              RelInfo<Zone>.toOneBacklink(
-                      9, object.id, (Zone srcObject) => srcObject.session):
-                  object.zones
-            },
+        toManyRelations: (Session object) => {},
         getId: (Session object) => object.id,
         setId: (Session object, int id) {
           object.id = id;
@@ -1697,7 +1742,9 @@ ModelDefinition getObjectBoxModel() {
           final motivobloqueoOffset = object.motivobloqueo == null
               ? null
               : fbb.writeString(object.motivobloqueo!);
-          fbb.startTable(21);
+          final zoneIdsOffset =
+              object.zoneIds == null ? null : fbb.writeString(object.zoneIds!);
+          fbb.startTable(22);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, deviceTokenOffset);
           fbb.addInt64(2, object.usuarioid);
@@ -1717,7 +1764,8 @@ ModelDefinition getObjectBoxModel() {
           fbb.addOffset(16, menuidFav3Offset);
           fbb.addOffset(17, motivobloqueoOffset);
           fbb.addInt64(18, object.fechaExpiracion?.millisecondsSinceEpoch);
-          fbb.addInt64(19, object.tokenExpiracion);
+          fbb.addOffset(19, zoneIdsOffset);
+          fbb.addInt64(20, object.tokenExpiracion);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -1761,55 +1809,13 @@ ModelDefinition getObjectBoxModel() {
               menuidFav3: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 36),
               motivobloqueo: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 38),
               fechaExpiracion: fechaExpiracionValue == null ? null : DateTime.fromMillisecondsSinceEpoch(fechaExpiracionValue),
-              tokenExpiracion: const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 42));
-          InternalToManyAccess.setRelInfo(
-              object.zones,
-              store,
-              RelInfo<Zone>.toOneBacklink(
-                  9, object.id, (Zone srcObject) => srcObject.session),
-              store.box<Session>());
-          return object;
-        }),
-    SubChannel: EntityDefinition<SubChannel>(
-        model: _entities[11],
-        toOneRelations: (SubChannel object) => [object.client],
-        toManyRelations: (SubChannel object) => {},
-        getId: (SubChannel object) => object.id,
-        setId: (SubChannel object, int id) {
-          object.id = id;
-        },
-        objectToFB: (SubChannel object, fb.Builder fbb) {
-          final subcanalidOffset = object.subcanalid == null
-              ? null
-              : fbb.writeString(object.subcanalid!);
-          final nombreOffset =
-              object.nombre == null ? null : fbb.writeString(object.nombre!);
-          fbb.startTable(5);
-          fbb.addInt64(0, object.id ?? 0);
-          fbb.addOffset(1, subcanalidOffset);
-          fbb.addOffset(2, nombreOffset);
-          fbb.addInt64(3, object.client.targetId);
-          fbb.finish(fbb.endTable());
-          return object.id ?? 0;
-        },
-        objectFromFB: (Store store, ByteData fbData) {
-          final buffer = fb.BufferContext(fbData);
-          final rootOffset = buffer.derefObject(0);
+              tokenExpiracion: const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 44))
+            ..zoneIds = const fb.StringReader().vTableGetNullable(buffer, rootOffset, 42);
 
-          final object = SubChannel(
-              id: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 4),
-              subcanalid: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 6),
-              nombre: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 8));
-          object.client.targetId =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0);
-          object.client.attach(store);
           return object;
         }),
     SyncManager: EntityDefinition<SyncManager>(
-        model: _entities[12],
+        model: _entities[8],
         toOneRelations: (SyncManager object) => [],
         toManyRelations: (SyncManager object) => {},
         getId: (SyncManager object) => object.id,
@@ -1853,167 +1859,9 @@ ModelDefinition getObjectBoxModel() {
 
           return object;
         }),
-    Ubigeo: EntityDefinition<Ubigeo>(
-        model: _entities[13],
-        toOneRelations: (Ubigeo object) => [object.client],
-        toManyRelations: (Ubigeo object) => {},
-        getId: (Ubigeo object) => object.id,
-        setId: (Ubigeo object, int id) {
-          object.id = id;
-        },
-        objectToFB: (Ubigeo object, fb.Builder fbb) {
-          final ubigeoidOffset = object.ubigeoid == null
-              ? null
-              : fbb.writeString(object.ubigeoid!);
-          final nombreOffset =
-              object.nombre == null ? null : fbb.writeString(object.nombre!);
-          fbb.startTable(5);
-          fbb.addInt64(0, object.id);
-          fbb.addOffset(1, ubigeoidOffset);
-          fbb.addOffset(2, nombreOffset);
-          fbb.addInt64(3, object.client.targetId);
-          fbb.finish(fbb.endTable());
-          return object.id;
-        },
-        objectFromFB: (Store store, ByteData fbData) {
-          final buffer = fb.BufferContext(fbData);
-          final rootOffset = buffer.derefObject(0);
-
-          final object = Ubigeo(
-              id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0),
-              ubigeoid: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 6),
-              nombre: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 8));
-          object.client.targetId =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0);
-          object.client.attach(store);
-          return object;
-        }),
-    User: EntityDefinition<User>(
-        model: _entities[14],
-        toOneRelations: (User object) => [],
-        toManyRelations: (User object) => {},
-        getId: (User object) => object.usuarioid,
-        setId: (User object, int id) {
-          object.usuarioid = id;
-        },
-        objectToFB: (User object, fb.Builder fbb) {
-          final usuarioOffset =
-              object.usuario == null ? null : fbb.writeString(object.usuario!);
-          final descripcionOffset = object.descripcion == null
-              ? null
-              : fbb.writeString(object.descripcion!);
-          final correoOffset =
-              object.correo == null ? null : fbb.writeString(object.correo!);
-          final tokenOffset =
-              object.token == null ? null : fbb.writeString(object.token!);
-          final telefonoOffset = object.telefono == null
-              ? null
-              : fbb.writeString(object.telefono!);
-          final creadoOffset =
-              object.creado == null ? null : fbb.writeString(object.creado!);
-          final menuidFav1Offset = object.menuidFav1 == null
-              ? null
-              : fbb.writeString(object.menuidFav1!);
-          final menuidFav2Offset = object.menuidFav2 == null
-              ? null
-              : fbb.writeString(object.menuidFav2!);
-          final menuidFav3Offset = object.menuidFav3 == null
-              ? null
-              : fbb.writeString(object.menuidFav3!);
-          fbb.startTable(14);
-          fbb.addInt64(0, object.usuarioid);
-          fbb.addOffset(1, usuarioOffset);
-          fbb.addOffset(2, descripcionOffset);
-          fbb.addOffset(3, correoOffset);
-          fbb.addBool(4, object.activo);
-          fbb.addBool(5, object.bloqueado);
-          fbb.addInt64(6, object.rolid);
-          fbb.addOffset(7, tokenOffset);
-          fbb.addOffset(8, telefonoOffset);
-          fbb.addOffset(9, creadoOffset);
-          fbb.addOffset(10, menuidFav1Offset);
-          fbb.addOffset(11, menuidFav2Offset);
-          fbb.addOffset(12, menuidFav3Offset);
-          fbb.finish(fbb.endTable());
-          return object.usuarioid;
-        },
-        objectFromFB: (Store store, ByteData fbData) {
-          final buffer = fb.BufferContext(fbData);
-          final rootOffset = buffer.derefObject(0);
-
-          final object = User(
-              usuarioid:
-                  const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0),
-              usuario: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 6),
-              descripcion: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 8),
-              correo: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 10),
-              activo: const fb.BoolReader()
-                  .vTableGetNullable(buffer, rootOffset, 12),
-              bloqueado: const fb.BoolReader()
-                  .vTableGetNullable(buffer, rootOffset, 14),
-              rolid: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 16),
-              token: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 18),
-              telefono: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 20),
-              creado: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 22),
-              menuidFav1: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 24),
-              menuidFav2:
-                  const fb.StringReader().vTableGetNullable(buffer, rootOffset, 26),
-              menuidFav3: const fb.StringReader().vTableGetNullable(buffer, rootOffset, 28));
-
-          return object;
-        }),
-    Vendor: EntityDefinition<Vendor>(
-        model: _entities[15],
-        toOneRelations: (Vendor object) => [],
-        toManyRelations: (Vendor object) => {},
-        getId: (Vendor object) => object.id,
-        setId: (Vendor object, int id) {
-          object.id = id;
-        },
-        objectToFB: (Vendor object, fb.Builder fbb) {
-          final usernameOffset = fbb.writeString(object.username);
-          final passwordOffset = fbb.writeString(object.password);
-          final nameOffset = fbb.writeString(object.name);
-          final zoneOffset = fbb.writeString(object.zone);
-          fbb.startTable(6);
-          fbb.addInt64(0, object.id);
-          fbb.addOffset(1, usernameOffset);
-          fbb.addOffset(2, passwordOffset);
-          fbb.addOffset(3, nameOffset);
-          fbb.addOffset(4, zoneOffset);
-          fbb.finish(fbb.endTable());
-          return object.id;
-        },
-        objectFromFB: (Store store, ByteData fbData) {
-          final buffer = fb.BufferContext(fbData);
-          final rootOffset = buffer.derefObject(0);
-
-          final object = Vendor(
-              username:
-                  const fb.StringReader().vTableGet(buffer, rootOffset, 6, ''),
-              password:
-                  const fb.StringReader().vTableGet(buffer, rootOffset, 8, ''),
-              name:
-                  const fb.StringReader().vTableGet(buffer, rootOffset, 10, ''),
-              zone:
-                  const fb.StringReader().vTableGet(buffer, rootOffset, 12, ''))
-            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
-
-          return object;
-        }),
     Zone: EntityDefinition<Zone>(
-        model: _entities[16],
-        toOneRelations: (Zone object) => [object.session],
+        model: _entities[9],
+        toOneRelations: (Zone object) => [],
         toManyRelations: (Zone object) => {},
         getId: (Zone object) => object.id,
         setId: (Zone object, int id) {
@@ -2027,24 +1875,39 @@ ModelDefinition getObjectBoxModel() {
           final vendedoridOffset = object.vendedorid == null
               ? null
               : fbb.writeString(object.vendedorid!);
+          final vendedorOffset = object.vendedor == null
+              ? null
+              : fbb.writeString(object.vendedor!);
           final canalidOffset =
               object.canalid == null ? null : fbb.writeString(object.canalid!);
+          final canalOffset =
+              object.canal == null ? null : fbb.writeString(object.canal!);
           final subcanalidOffset = object.subcanalid == null
               ? null
               : fbb.writeString(object.subcanalid!);
+          final subcanalOffset = object.subcanal == null
+              ? null
+              : fbb.writeString(object.subcanal!);
           final unidadnegocioidOffset = object.unidadnegocioid == null
               ? null
               : fbb.writeString(object.unidadnegocioid!);
-          fbb.startTable(10);
+          final unidadnegocioOffset = object.unidadnegocio == null
+              ? null
+              : fbb.writeString(object.unidadnegocio!);
+          fbb.startTable(14);
           fbb.addInt64(0, object.id ?? 0);
           fbb.addOffset(1, zonaidOffset);
           fbb.addOffset(2, nombreOffset);
           fbb.addOffset(3, vendedoridOffset);
-          fbb.addOffset(4, canalidOffset);
-          fbb.addOffset(5, subcanalidOffset);
-          fbb.addOffset(6, unidadnegocioidOffset);
-          fbb.addBool(7, object.activo);
-          fbb.addInt64(8, object.session.targetId);
+          fbb.addOffset(4, vendedorOffset);
+          fbb.addOffset(5, canalidOffset);
+          fbb.addOffset(6, canalOffset);
+          fbb.addOffset(7, subcanalidOffset);
+          fbb.addOffset(8, subcanalOffset);
+          fbb.addOffset(9, unidadnegocioidOffset);
+          fbb.addOffset(10, unidadnegocioOffset);
+          fbb.addBool(11, object.activo);
+          fbb.addBool(12, object.especial);
           fbb.finish(fbb.endTable());
           return object.id ?? 0;
         },
@@ -2053,25 +1916,32 @@ ModelDefinition getObjectBoxModel() {
           final rootOffset = buffer.derefObject(0);
 
           final object = Zone(
-              id: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 4),
               zonaid: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 6),
               nombre: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 8),
               vendedorid: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 10),
-              canalid: const fb.StringReader()
+              vendedor: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 12),
-              subcanalid: const fb.StringReader()
+              canalid: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 14),
-              unidadnegocioid: const fb.StringReader()
+              canal: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 16),
+              subcanalid: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 18),
+              subcanal: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 20),
+              unidadnegocioid: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 22),
+              unidadnegocio: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 24),
               activo: const fb.BoolReader()
-                  .vTableGetNullable(buffer, rootOffset, 18));
-          object.session.targetId =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 20, 0);
-          object.session.attach(store);
+                  .vTableGetNullable(buffer, rootOffset, 26),
+              especial:
+                  const fb.BoolReader().vTableGetNullable(buffer, rootOffset, 28))
+            ..id = const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 4);
+
           return object;
         })
   };
@@ -2089,61 +1959,53 @@ class Address_ {
   static final clienteid =
       QueryStringProperty<Address>(_entities[0].properties[1]);
 
-  /// see [Address.ubigeoid]
-  static final ubigeoid =
-      QueryStringProperty<Address>(_entities[0].properties[2]);
-
   /// see [Address.direccion]
   static final direccion =
+      QueryStringProperty<Address>(_entities[0].properties[2]);
+
+  /// see [Address.ubigeoid]
+  static final ubigeoid =
       QueryStringProperty<Address>(_entities[0].properties[3]);
+
+  /// see [Address.distrito]
+  static final distrito =
+      QueryStringProperty<Address>(_entities[0].properties[4]);
+
+  /// see [Address.provincia]
+  static final provincia =
+      QueryStringProperty<Address>(_entities[0].properties[5]);
+
+  /// see [Address.departamento]
+  static final departamento =
+      QueryStringProperty<Address>(_entities[0].properties[6]);
 
   /// see [Address.referencia]
   static final referencia =
-      QueryStringProperty<Address>(_entities[0].properties[4]);
-
-  /// see [Address.tipoprioridadid]
-  static final tipoprioridadid =
-      QueryIntegerProperty<Address>(_entities[0].properties[5]);
-
-  /// see [Address.tipoestablecimientoid]
-  static final tipoestablecimientoid =
-      QueryIntegerProperty<Address>(_entities[0].properties[6]);
+      QueryStringProperty<Address>(_entities[0].properties[7]);
 
   /// see [Address.latitud]
   static final latitud =
-      QueryStringProperty<Address>(_entities[0].properties[7]);
+      QueryStringProperty<Address>(_entities[0].properties[8]);
 
   /// see [Address.longitud]
   static final longitud =
-      QueryStringProperty<Address>(_entities[0].properties[8]);
+      QueryStringProperty<Address>(_entities[0].properties[9]);
 
-  /// see [Address.creado]
-  static final creado =
-      QueryIntegerProperty<Address>(_entities[0].properties[9]);
-
-  /// see [Address.actualizado]
-  static final actualizado =
+  /// see [Address.tipoprioridadid]
+  static final tipoprioridadid =
       QueryIntegerProperty<Address>(_entities[0].properties[10]);
-
-  /// see [Address.descargado]
-  static final descargado =
-      QueryStringProperty<Address>(_entities[0].properties[11]);
-
-  /// see [Address.sincronizado]
-  static final sincronizado =
-      QueryStringProperty<Address>(_entities[0].properties[12]);
-
-  /// see [Address.usuarioid]
-  static final usuarioid =
-      QueryStringProperty<Address>(_entities[0].properties[13]);
-
-  /// see [Address.tipoestablecimiento]
-  static final tipoestablecimiento =
-      QueryStringProperty<Address>(_entities[0].properties[14]);
 
   /// see [Address.tipoprioridad]
   static final tipoprioridad =
-      QueryStringProperty<Address>(_entities[0].properties[15]);
+      QueryStringProperty<Address>(_entities[0].properties[11]);
+
+  /// see [Address.tipoestablecimientoid]
+  static final tipoestablecimientoid =
+      QueryIntegerProperty<Address>(_entities[0].properties[12]);
+
+  /// see [Address.tipoestablecimiento]
+  static final tipoestablecimiento =
+      QueryStringProperty<Address>(_entities[0].properties[13]);
 }
 
 /// [Client] entity fields to define ObjectBox queries.
@@ -2155,561 +2017,600 @@ class Client_ {
   static final clienteid =
       QueryStringProperty<Client>(_entities[1].properties[1]);
 
-  /// see [Client.unidadnegocioid]
-  static final unidadnegocioid =
-      QueryStringProperty<Client>(_entities[1].properties[2]);
-
   /// see [Client.ruc]
-  static final ruc = QueryStringProperty<Client>(_entities[1].properties[3]);
+  static final ruc = QueryStringProperty<Client>(_entities[1].properties[2]);
 
   /// see [Client.razonsocial]
   static final razonsocial =
-      QueryStringProperty<Client>(_entities[1].properties[4]);
+      QueryStringProperty<Client>(_entities[1].properties[3]);
 
   /// see [Client.nombrecomercial]
   static final nombrecomercial =
-      QueryStringProperty<Client>(_entities[1].properties[5]);
-
-  /// see [Client.zonaid]
-  static final zonaid = QueryStringProperty<Client>(_entities[1].properties[6]);
-
-  /// see [Client.ubigeoid]
-  static final ubigeoid =
-      QueryStringProperty<Client>(_entities[1].properties[7]);
+      QueryStringProperty<Client>(_entities[1].properties[4]);
 
   /// see [Client.direccion]
   static final direccion =
+      QueryStringProperty<Client>(_entities[1].properties[5]);
+
+  /// see [Client.ubigeoid]
+  static final ubigeoid =
+      QueryStringProperty<Client>(_entities[1].properties[6]);
+
+  /// see [Client.distrito]
+  static final distrito =
+      QueryStringProperty<Client>(_entities[1].properties[7]);
+
+  /// see [Client.provincia]
+  static final provincia =
       QueryStringProperty<Client>(_entities[1].properties[8]);
+
+  /// see [Client.departamento]
+  static final departamento =
+      QueryStringProperty<Client>(_entities[1].properties[9]);
 
   /// see [Client.estadoclienteid]
   static final estadoclienteid =
-      QueryStringProperty<Client>(_entities[1].properties[9]);
-
-  /// see [Client.estadodiremidid]
-  static final estadodiremidid =
       QueryStringProperty<Client>(_entities[1].properties[10]);
-
-  /// see [Client.condicionventaid]
-  static final condicionventaid =
-      QueryStringProperty<Client>(_entities[1].properties[11]);
-
-  /// see [Client.tipodescuentoid]
-  static final tipodescuentoid =
-      QueryStringProperty<Client>(_entities[1].properties[12]);
-
-  /// see [Client.subcanalid]
-  static final subcanalid =
-      QueryStringProperty<Client>(_entities[1].properties[13]);
-
-  /// see [Client.diavisita1]
-  static final diavisita1 =
-      QueryStringProperty<Client>(_entities[1].properties[14]);
-
-  /// see [Client.diavisita2]
-  static final diavisita2 =
-      QueryStringProperty<Client>(_entities[1].properties[15]);
-
-  /// see [Client.representantelegal]
-  static final representantelegal =
-      QueryStringProperty<Client>(_entities[1].properties[16]);
-
-  /// see [Client.dni]
-  static final dni = QueryStringProperty<Client>(_entities[1].properties[17]);
-
-  /// see [Client.aniversario]
-  static final aniversario =
-      QueryStringProperty<Client>(_entities[1].properties[18]);
-
-  /// see [Client.telefono]
-  static final telefono =
-      QueryStringProperty<Client>(_entities[1].properties[19]);
-
-  /// see [Client.movil]
-  static final movil = QueryStringProperty<Client>(_entities[1].properties[20]);
-
-  /// see [Client.lineacredito]
-  static final lineacredito =
-      QueryStringProperty<Client>(_entities[1].properties[21]);
-
-  /// see [Client.deuda]
-  static final deuda = QueryStringProperty<Client>(_entities[1].properties[22]);
-
-  /// see [Client.lineadisponible]
-  static final lineadisponible =
-      QueryStringProperty<Client>(_entities[1].properties[23]);
-
-  /// see [Client.ubigeo]
-  static final ubigeo =
-      QueryStringProperty<Client>(_entities[1].properties[24]);
 
   /// see [Client.estadocliente]
   static final estadocliente =
-      QueryStringProperty<Client>(_entities[1].properties[25]);
+      QueryStringProperty<Client>(_entities[1].properties[11]);
 
-  /// see [Client.estadodirem]
-  static final estadodirem =
-      QueryStringProperty<Client>(_entities[1].properties[26]);
+  /// see [Client.estadodiremidid]
+  static final estadodiremidid =
+      QueryStringProperty<Client>(_entities[1].properties[12]);
 
-  /// see [Client.tipodescuento]
-  static final tipodescuento =
-      QueryStringProperty<Client>(_entities[1].properties[27]);
+  /// see [Client.estadodiremid]
+  static final estadodiremid =
+      QueryStringProperty<Client>(_entities[1].properties[13]);
+
+  /// see [Client.sedeid]
+  static final sedeid =
+      QueryStringProperty<Client>(_entities[1].properties[14]);
+
+  /// see [Client.sede]
+  static final sede = QueryStringProperty<Client>(_entities[1].properties[15]);
+
+  /// see [Client.zonaid]
+  static final zonaid =
+      QueryStringProperty<Client>(_entities[1].properties[16]);
+
+  /// see [Client.zonaid2]
+  static final zonaid2 =
+      QueryStringProperty<Client>(_entities[1].properties[17]);
+
+  /// see [Client.zonaid3]
+  static final zonaid3 =
+      QueryStringProperty<Client>(_entities[1].properties[18]);
+
+  /// see [Client.zonaid4]
+  static final zonaid4 =
+      QueryStringProperty<Client>(_entities[1].properties[19]);
+
+  /// see [Client.vendedorid]
+  static final vendedorid =
+      QueryStringProperty<Client>(_entities[1].properties[20]);
+
+  /// see [Client.vendedor]
+  static final vendedor =
+      QueryStringProperty<Client>(_entities[1].properties[21]);
+
+  /// see [Client.subcanalid]
+  static final subcanalid =
+      QueryStringProperty<Client>(_entities[1].properties[22]);
 
   /// see [Client.subcanal]
   static final subcanal =
+      QueryStringProperty<Client>(_entities[1].properties[23]);
+
+  /// see [Client.canalid]
+  static final canalid =
+      QueryStringProperty<Client>(_entities[1].properties[24]);
+
+  /// see [Client.canal]
+  static final canal = QueryStringProperty<Client>(_entities[1].properties[25]);
+
+  /// see [Client.condicionventaid]
+  static final condicionventaid =
+      QueryStringProperty<Client>(_entities[1].properties[26]);
+
+  /// see [Client.condicionventa]
+  static final condicionventa =
+      QueryStringProperty<Client>(_entities[1].properties[27]);
+
+  /// see [Client.tipodescuentoid]
+  static final tipodescuentoid =
       QueryStringProperty<Client>(_entities[1].properties[28]);
 
-  /// see [Client.clientedireccionubigeoid]
-  static final clientedireccionubigeoid =
+  /// see [Client.tipodescuento]
+  static final tipodescuento =
       QueryStringProperty<Client>(_entities[1].properties[29]);
 
-  /// see [Client.clientedirecciondireccion]
-  static final clientedirecciondireccion =
-      QueryStringProperty<Client>(_entities[1].properties[30]);
+  /// see [Client.dia1]
+  static final dia1 = QueryStringProperty<Client>(_entities[1].properties[30]);
 
-  /// see [Client.clientedireccionreferencia]
-  static final clientedireccionreferencia =
-      QueryStringProperty<Client>(_entities[1].properties[31]);
+  /// see [Client.dia2]
+  static final dia2 = QueryStringProperty<Client>(_entities[1].properties[31]);
 
-  /// see [Client.tipoprioridadid]
-  static final tipoprioridadid =
-      QueryIntegerProperty<Client>(_entities[1].properties[32]);
+  /// see [Client.representantelegal]
+  static final representantelegal =
+      QueryStringProperty<Client>(_entities[1].properties[32]);
 
-  /// see [Client.tipoprioridad]
-  static final tipoprioridad =
-      QueryStringProperty<Client>(_entities[1].properties[33]);
+  /// see [Client.dni]
+  static final dni = QueryStringProperty<Client>(_entities[1].properties[33]);
 
-  /// see [Client.tipoestablecimientoid]
-  static final tipoestablecimientoid =
-      QueryIntegerProperty<Client>(_entities[1].properties[34]);
+  /// see [Client.aniversario]
+  static final aniversario =
+      QueryStringProperty<Client>(_entities[1].properties[34]);
 
-  /// see [Client.tipoestablecimiento]
-  static final tipoestablecimiento =
+  /// see [Client.telefono]
+  static final telefono =
       QueryStringProperty<Client>(_entities[1].properties[35]);
 
-  /// see [Client.latitud]
-  static final latitud =
-      QueryStringProperty<Client>(_entities[1].properties[36]);
-
-  /// see [Client.longitud]
-  static final longitud =
-      QueryStringProperty<Client>(_entities[1].properties[37]);
+  /// see [Client.movil]
+  static final movil = QueryStringProperty<Client>(_entities[1].properties[36]);
 
   /// see [Client.lastSync]
   static final lastSync =
-      QueryIntegerProperty<Client>(_entities[1].properties[38]);
+      QueryIntegerProperty<Client>(_entities[1].properties[37]);
 }
 
-/// [ClientStatus] entity fields to define ObjectBox queries.
-class ClientStatus_ {
-  /// see [ClientStatus.id]
+/// [ClientWallet] entity fields to define ObjectBox queries.
+class ClientWallet_ {
+  /// see [ClientWallet.id]
   static final id =
-      QueryIntegerProperty<ClientStatus>(_entities[2].properties[0]);
+      QueryIntegerProperty<ClientWallet>(_entities[2].properties[0]);
 
-  /// see [ClientStatus.estadoclienteid]
-  static final estadoclienteid =
-      QueryStringProperty<ClientStatus>(_entities[2].properties[1]);
+  /// see [ClientWallet.clienteid]
+  static final clienteid =
+      QueryStringProperty<ClientWallet>(_entities[2].properties[1]);
 
-  /// see [ClientStatus.nombre]
-  static final nombre =
-      QueryStringProperty<ClientStatus>(_entities[2].properties[2]);
+  /// see [ClientWallet.zonaid]
+  static final zonaid =
+      QueryStringProperty<ClientWallet>(_entities[2].properties[2]);
 
-  /// see [ClientStatus.client]
-  static final client =
-      QueryRelationToOne<ClientStatus, Client>(_entities[2].properties[3]);
+  /// see [ClientWallet.lineanormal]
+  static final lineanormal =
+      QueryStringProperty<ClientWallet>(_entities[2].properties[3]);
+
+  /// see [ClientWallet.lineaespecial]
+  static final lineaespecial =
+      QueryStringProperty<ClientWallet>(_entities[2].properties[4]);
+
+  /// see [ClientWallet.lineatotal]
+  static final lineatotal =
+      QueryStringProperty<ClientWallet>(_entities[2].properties[5]);
+
+  /// see [ClientWallet.lineadisponible]
+  static final lineadisponible =
+      QueryStringProperty<ClientWallet>(_entities[2].properties[6]);
+
+  /// see [ClientWallet.deuda]
+  static final deuda =
+      QueryStringProperty<ClientWallet>(_entities[2].properties[7]);
 }
 
 /// [Contact] entity fields to define ObjectBox queries.
 class Contact_ {
-  /// see [Contact.clientecontactoid]
-  static final clientecontactoid =
+  /// see [Contact.contactoid]
+  static final contactoid =
       QueryIntegerProperty<Contact>(_entities[3].properties[0]);
-
-  /// see [Contact.contactoak]
-  static final contactoak =
-      QueryIntegerProperty<Contact>(_entities[3].properties[1]);
 
   /// see [Contact.clienteid]
   static final clienteid =
-      QueryStringProperty<Contact>(_entities[3].properties[2]);
+      QueryStringProperty<Contact>(_entities[3].properties[1]);
 
-  /// see [Contact.nombre]
-  static final nombre =
-      QueryStringProperty<Contact>(_entities[3].properties[3]);
+  /// see [Contact.ruc]
+  static final ruc = QueryStringProperty<Contact>(_entities[3].properties[2]);
 
-  /// see [Contact.tipocontactoid]
-  static final tipocontactoid =
+  /// see [Contact.dni]
+  static final dni = QueryStringProperty<Contact>(_entities[3].properties[3]);
+
+  /// see [Contact.compaiaid]
+  static final compaiaid =
       QueryIntegerProperty<Contact>(_entities[3].properties[4]);
+
+  /// see [Contact.personaid]
+  static final personaid =
+      QueryIntegerProperty<Contact>(_entities[3].properties[5]);
+
+  /// see [Contact.apellidopaterno]
+  static final apellidopaterno =
+      QueryStringProperty<Contact>(_entities[3].properties[6]);
+
+  /// see [Contact.apellidomaterno]
+  static final apellidomaterno =
+      QueryStringProperty<Contact>(_entities[3].properties[7]);
+
+  /// see [Contact.nombres]
+  static final nombres =
+      QueryStringProperty<Contact>(_entities[3].properties[8]);
 
   /// see [Contact.fechanacimiento]
   static final fechanacimiento =
-      QueryStringProperty<Contact>(_entities[3].properties[5]);
+      QueryStringProperty<Contact>(_entities[3].properties[9]);
 
-  /// see [Contact.telefono]
-  static final telefono =
-      QueryStringProperty<Contact>(_entities[3].properties[6]);
+  /// see [Contact.documentoidentidad]
+  static final documentoidentidad =
+      QueryStringProperty<Contact>(_entities[3].properties[10]);
 
-  /// see [Contact.correo]
-  static final correo =
-      QueryStringProperty<Contact>(_entities[3].properties[7]);
+  /// see [Contact.tipodocumentoidentidadid]
+  static final tipodocumentoidentidadid =
+      QueryIntegerProperty<Contact>(_entities[3].properties[11]);
 
-  /// see [Contact.tipocontacto]
-  static final tipocontacto =
-      QueryStringProperty<Contact>(_entities[3].properties[8]);
+  /// see [Contact.tipodocumentoidentidad]
+  static final tipodocumentoidentidad =
+      QueryStringProperty<Contact>(_entities[3].properties[12]);
+
+  /// see [Contact.estadocivilid]
+  static final estadocivilid =
+      QueryIntegerProperty<Contact>(_entities[3].properties[13]);
+
+  /// see [Contact.estadocivil]
+  static final estadocivil =
+      QueryStringProperty<Contact>(_entities[3].properties[14]);
+
+  /// see [Contact.nacionalidadid]
+  static final nacionalidadid =
+      QueryIntegerProperty<Contact>(_entities[3].properties[15]);
+
+  /// see [Contact.nacionalidad]
+  static final nacionalidad =
+      QueryStringProperty<Contact>(_entities[3].properties[16]);
+
+  /// see [Contact.generoid]
+  static final generoid =
+      QueryIntegerProperty<Contact>(_entities[3].properties[17]);
+
+  /// see [Contact.genero]
+  static final genero =
+      QueryStringProperty<Contact>(_entities[3].properties[18]);
+
+  /// see [Contact.origenid]
+  static final origenid =
+      QueryIntegerProperty<Contact>(_entities[3].properties[19]);
+
+  /// see [Contact.origen]
+  static final origen =
+      QueryStringProperty<Contact>(_entities[3].properties[20]);
 }
 
-/// [DiremidStatus] entity fields to define ObjectBox queries.
-class DiremidStatus_ {
-  /// see [DiremidStatus.id]
-  static final id =
-      QueryIntegerProperty<DiremidStatus>(_entities[4].properties[0]);
+/// [ContactMedia] entity fields to define ObjectBox queries.
+class ContactMedia_ {
+  /// see [ContactMedia.mediocomunicacionid]
+  static final mediocomunicacionid =
+      QueryIntegerProperty<ContactMedia>(_entities[4].properties[0]);
 
-  /// see [DiremidStatus.estadodiremidid]
-  static final estadodiremidid =
-      QueryStringProperty<DiremidStatus>(_entities[4].properties[1]);
+  /// see [ContactMedia.clienteid]
+  static final clienteid =
+      QueryStringProperty<ContactMedia>(_entities[4].properties[1]);
 
-  /// see [DiremidStatus.nombre]
-  static final nombre =
-      QueryStringProperty<DiremidStatus>(_entities[4].properties[2]);
+  /// see [ContactMedia.personaid]
+  static final personaid =
+      QueryIntegerProperty<ContactMedia>(_entities[4].properties[2]);
 
-  /// see [DiremidStatus.client]
-  static final client =
-      QueryRelationToOne<DiremidStatus, Client>(_entities[4].properties[3]);
+  /// see [ContactMedia.contactoid]
+  static final contactoid =
+      QueryIntegerProperty<ContactMedia>(_entities[4].properties[3]);
+
+  /// see [ContactMedia.tipomediocomunicacionid]
+  static final tipomediocomunicacionid =
+      QueryIntegerProperty<ContactMedia>(_entities[4].properties[4]);
+
+  /// see [ContactMedia.tipomediocomunicacion]
+  static final tipomediocomunicacion =
+      QueryStringProperty<ContactMedia>(_entities[4].properties[5]);
+
+  /// see [ContactMedia.valor]
+  static final valor =
+      QueryStringProperty<ContactMedia>(_entities[4].properties[6]);
+
+  /// see [ContactMedia.origenid]
+  static final origenid =
+      QueryIntegerProperty<ContactMedia>(_entities[4].properties[7]);
+
+  /// see [ContactMedia.origen]
+  static final origen =
+      QueryStringProperty<ContactMedia>(_entities[4].properties[8]);
+
+  /// see [ContactMedia.tipoprioridadid]
+  static final tipoprioridadid =
+      QueryIntegerProperty<ContactMedia>(_entities[4].properties[9]);
+
+  /// see [ContactMedia.tipoprioridad]
+  static final tipoprioridad =
+      QueryStringProperty<ContactMedia>(_entities[4].properties[10]);
+
+  /// see [ContactMedia.ciudadid]
+  static final ciudadid =
+      QueryIntegerProperty<ContactMedia>(_entities[4].properties[11]);
+
+  /// see [ContactMedia.ciudad]
+  static final ciudad =
+      QueryStringProperty<ContactMedia>(_entities[4].properties[12]);
+
+  /// see [ContactMedia.codigodiscado]
+  static final codigodiscado =
+      QueryStringProperty<ContactMedia>(_entities[4].properties[13]);
+
+  /// see [ContactMedia.estadoid]
+  static final estadoid =
+      QueryIntegerProperty<ContactMedia>(_entities[4].properties[14]);
+
+  /// see [ContactMedia.estado]
+  static final estado =
+      QueryStringProperty<ContactMedia>(_entities[4].properties[15]);
 }
 
-/// [DiscountType] entity fields to define ObjectBox queries.
-class DiscountType_ {
-  /// see [DiscountType.id]
-  static final id =
-      QueryIntegerProperty<DiscountType>(_entities[5].properties[0]);
-
-  /// see [DiscountType.tipodescuentoid]
-  static final tipodescuentoid =
-      QueryStringProperty<DiscountType>(_entities[5].properties[1]);
-
-  /// see [DiscountType.nombre]
-  static final nombre =
-      QueryStringProperty<DiscountType>(_entities[5].properties[2]);
-
-  /// see [DiscountType.client]
-  static final client =
-      QueryRelationToOne<DiscountType, Client>(_entities[5].properties[3]);
-}
-
-/// [Menu] entity fields to define ObjectBox queries.
-class Menu_ {
-  /// see [Menu.id]
-  static final id = QueryIntegerProperty<Menu>(_entities[6].properties[0]);
-
-  /// see [Menu.menuid]
-  static final menuid = QueryStringProperty<Menu>(_entities[6].properties[1]);
-
-  /// see [Menu.titulo]
-  static final titulo = QueryStringProperty<Menu>(_entities[6].properties[2]);
-
-  /// see [Menu.ruta]
-  static final ruta = QueryStringProperty<Menu>(_entities[6].properties[3]);
-
-  /// see [Menu.orden]
-  static final orden = QueryIntegerProperty<Menu>(_entities[6].properties[4]);
-
-  /// see [Menu.acceso]
-  static final acceso = QueryBooleanProperty<Menu>(_entities[6].properties[5]);
-}
-
-/// [MenuFav] entity fields to define ObjectBox queries.
-class MenuFav_ {
-  /// see [MenuFav.id]
-  static final id = QueryIntegerProperty<MenuFav>(_entities[7].properties[0]);
-
-  /// see [MenuFav.menuid]
-  static final menuid =
-      QueryStringProperty<MenuFav>(_entities[7].properties[1]);
-
-  /// see [MenuFav.titulo]
-  static final titulo =
-      QueryStringProperty<MenuFav>(_entities[7].properties[2]);
-
-  /// see [MenuFav.ruta]
-  static final ruta = QueryStringProperty<MenuFav>(_entities[7].properties[3]);
-
-  /// see [MenuFav.orden]
-  static final orden =
-      QueryIntegerProperty<MenuFav>(_entities[7].properties[4]);
-}
-
-/// [Role] entity fields to define ObjectBox queries.
-class Role_ {
-  /// see [Role.rolid]
-  static final rolid = QueryIntegerProperty<Role>(_entities[8].properties[0]);
-
-  /// see [Role.nombre]
-  static final nombre = QueryStringProperty<Role>(_entities[8].properties[1]);
-
-  /// see [Role.roleMenu]
-  static final roleMenu =
-      QueryRelationToOne<Role, RoleMenu>(_entities[8].properties[2]);
-}
-
-/// [RoleMenu] entity fields to define ObjectBox queries.
-class RoleMenu_ {
-  /// see [RoleMenu.rolmenuid]
-  static final rolmenuid =
-      QueryIntegerProperty<RoleMenu>(_entities[9].properties[0]);
-
-  /// see [RoleMenu.rolid]
+/// [ContactRole] entity fields to define ObjectBox queries.
+class ContactRole_ {
+  /// see [ContactRole.rolid]
   static final rolid =
-      QueryIntegerProperty<RoleMenu>(_entities[9].properties[1]);
+      QueryIntegerProperty<ContactRole>(_entities[5].properties[0]);
 
-  /// see [RoleMenu.menuid]
-  static final menuid =
-      QueryStringProperty<RoleMenu>(_entities[9].properties[2]);
+  /// see [ContactRole.clienteid]
+  static final clienteid =
+      QueryStringProperty<ContactRole>(_entities[5].properties[1]);
 
-  /// see [RoleMenu.registrado]
-  static final registrado =
-      QueryStringProperty<RoleMenu>(_entities[9].properties[3]);
+  /// see [ContactRole.personaid]
+  static final personaid =
+      QueryIntegerProperty<ContactRole>(_entities[5].properties[2]);
+
+  /// see [ContactRole.contactoid]
+  static final contactoid =
+      QueryIntegerProperty<ContactRole>(_entities[5].properties[3]);
+
+  /// see [ContactRole.tiporolid]
+  static final tiporolid =
+      QueryIntegerProperty<ContactRole>(_entities[5].properties[4]);
+
+  /// see [ContactRole.tiporol]
+  static final tiporol =
+      QueryStringProperty<ContactRole>(_entities[5].properties[5]);
+
+  /// see [ContactRole.estadoid]
+  static final estadoid =
+      QueryIntegerProperty<ContactRole>(_entities[5].properties[6]);
+
+  /// see [ContactRole.estado]
+  static final estado =
+      QueryStringProperty<ContactRole>(_entities[5].properties[7]);
+}
+
+/// [Dashboard] entity fields to define ObjectBox queries.
+class Dashboard_ {
+  /// see [Dashboard.id]
+  static final id = QueryIntegerProperty<Dashboard>(_entities[6].properties[0]);
+
+  /// see [Dashboard.zonaid]
+  static final zonaid =
+      QueryStringProperty<Dashboard>(_entities[6].properties[1]);
+
+  /// see [Dashboard.clientes]
+  static final clientes =
+      QueryIntegerProperty<Dashboard>(_entities[6].properties[2]);
+
+  /// see [Dashboard.clientesCobertura]
+  static final clientesCobertura =
+      QueryIntegerProperty<Dashboard>(_entities[6].properties[3]);
+
+  /// see [Dashboard.morosidad]
+  static final morosidad =
+      QueryStringProperty<Dashboard>(_entities[6].properties[4]);
+
+  /// see [Dashboard.cuotaMes]
+  static final cuotaMes =
+      QueryStringProperty<Dashboard>(_entities[6].properties[5]);
+
+  /// see [Dashboard.ventaMes]
+  static final ventaMes =
+      QueryStringProperty<Dashboard>(_entities[6].properties[6]);
+
+  /// see [Dashboard.avanceMes]
+  static final avanceMes =
+      QueryStringProperty<Dashboard>(_entities[6].properties[7]);
+
+  /// see [Dashboard.ventaMesAnt01]
+  static final ventaMesAnt01 =
+      QueryStringProperty<Dashboard>(_entities[6].properties[8]);
+
+  /// see [Dashboard.ventaMesAnt02]
+  static final ventaMesAnt02 =
+      QueryStringProperty<Dashboard>(_entities[6].properties[9]);
+
+  /// see [Dashboard.ventaMesAnt03]
+  static final ventaMesAnt03 =
+      QueryStringProperty<Dashboard>(_entities[6].properties[10]);
+
+  /// see [Dashboard.ventaMesAnt04]
+  static final ventaMesAnt04 =
+      QueryStringProperty<Dashboard>(_entities[6].properties[11]);
+
+  /// see [Dashboard.ventaMesAnt05]
+  static final ventaMesAnt05 =
+      QueryStringProperty<Dashboard>(_entities[6].properties[12]);
+
+  /// see [Dashboard.ventaMesAnt06]
+  static final ventaMesAnt06 =
+      QueryStringProperty<Dashboard>(_entities[6].properties[13]);
+
+  /// see [Dashboard.ventaMesAnt01Tit]
+  static final ventaMesAnt01Tit =
+      QueryStringProperty<Dashboard>(_entities[6].properties[14]);
+
+  /// see [Dashboard.ventaMesAnt02Tit]
+  static final ventaMesAnt02Tit =
+      QueryStringProperty<Dashboard>(_entities[6].properties[15]);
+
+  /// see [Dashboard.ventaMesAnt03Tit]
+  static final ventaMesAnt03Tit =
+      QueryStringProperty<Dashboard>(_entities[6].properties[16]);
+
+  /// see [Dashboard.ventaMesAnt04Tit]
+  static final ventaMesAnt04Tit =
+      QueryStringProperty<Dashboard>(_entities[6].properties[17]);
+
+  /// see [Dashboard.ventaMesAnt05Tit]
+  static final ventaMesAnt05Tit =
+      QueryStringProperty<Dashboard>(_entities[6].properties[18]);
+
+  /// see [Dashboard.ventaMesAnt06Tit]
+  static final ventaMesAnt06Tit =
+      QueryStringProperty<Dashboard>(_entities[6].properties[19]);
 }
 
 /// [Session] entity fields to define ObjectBox queries.
 class Session_ {
   /// see [Session.id]
-  static final id = QueryIntegerProperty<Session>(_entities[10].properties[0]);
+  static final id = QueryIntegerProperty<Session>(_entities[7].properties[0]);
 
   /// see [Session.deviceToken]
   static final deviceToken =
-      QueryStringProperty<Session>(_entities[10].properties[1]);
+      QueryStringProperty<Session>(_entities[7].properties[1]);
 
   /// see [Session.usuarioid]
   static final usuarioid =
-      QueryIntegerProperty<Session>(_entities[10].properties[2]);
+      QueryIntegerProperty<Session>(_entities[7].properties[2]);
 
   /// see [Session.usuario]
   static final usuario =
-      QueryStringProperty<Session>(_entities[10].properties[3]);
+      QueryStringProperty<Session>(_entities[7].properties[3]);
 
   /// see [Session.descripcion]
   static final descripcion =
-      QueryStringProperty<Session>(_entities[10].properties[4]);
+      QueryStringProperty<Session>(_entities[7].properties[4]);
 
   /// see [Session.correo]
   static final correo =
-      QueryStringProperty<Session>(_entities[10].properties[5]);
+      QueryStringProperty<Session>(_entities[7].properties[5]);
 
   /// see [Session.activo]
   static final activo =
-      QueryBooleanProperty<Session>(_entities[10].properties[6]);
+      QueryBooleanProperty<Session>(_entities[7].properties[6]);
 
   /// see [Session.bloqueado]
   static final bloqueado =
-      QueryBooleanProperty<Session>(_entities[10].properties[7]);
+      QueryBooleanProperty<Session>(_entities[7].properties[7]);
 
   /// see [Session.motivobloqueoid]
   static final motivobloqueoid =
-      QueryIntegerProperty<Session>(_entities[10].properties[8]);
+      QueryIntegerProperty<Session>(_entities[7].properties[8]);
 
   /// see [Session.rolid]
   static final rolid =
-      QueryIntegerProperty<Session>(_entities[10].properties[9]);
+      QueryIntegerProperty<Session>(_entities[7].properties[9]);
 
   /// see [Session.token]
   static final token =
-      QueryStringProperty<Session>(_entities[10].properties[10]);
+      QueryStringProperty<Session>(_entities[7].properties[10]);
 
   /// see [Session.telefono]
   static final telefono =
-      QueryStringProperty<Session>(_entities[10].properties[11]);
+      QueryStringProperty<Session>(_entities[7].properties[11]);
 
   /// see [Session.creado]
   static final creado =
-      QueryIntegerProperty<Session>(_entities[10].properties[12]);
+      QueryIntegerProperty<Session>(_entities[7].properties[12]);
 
   /// see [Session.actualizado]
   static final actualizado =
-      QueryIntegerProperty<Session>(_entities[10].properties[13]);
+      QueryIntegerProperty<Session>(_entities[7].properties[13]);
 
   /// see [Session.menuidFav1]
   static final menuidFav1 =
-      QueryStringProperty<Session>(_entities[10].properties[14]);
+      QueryStringProperty<Session>(_entities[7].properties[14]);
 
   /// see [Session.menuidFav2]
   static final menuidFav2 =
-      QueryStringProperty<Session>(_entities[10].properties[15]);
+      QueryStringProperty<Session>(_entities[7].properties[15]);
 
   /// see [Session.menuidFav3]
   static final menuidFav3 =
-      QueryStringProperty<Session>(_entities[10].properties[16]);
+      QueryStringProperty<Session>(_entities[7].properties[16]);
 
   /// see [Session.motivobloqueo]
   static final motivobloqueo =
-      QueryStringProperty<Session>(_entities[10].properties[17]);
+      QueryStringProperty<Session>(_entities[7].properties[17]);
 
   /// see [Session.fechaExpiracion]
   static final fechaExpiracion =
-      QueryIntegerProperty<Session>(_entities[10].properties[18]);
+      QueryIntegerProperty<Session>(_entities[7].properties[18]);
+
+  /// see [Session.zoneIds]
+  static final zoneIds =
+      QueryStringProperty<Session>(_entities[7].properties[19]);
 
   /// see [Session.tokenExpiracion]
   static final tokenExpiracion =
-      QueryIntegerProperty<Session>(_entities[10].properties[19]);
-}
-
-/// [SubChannel] entity fields to define ObjectBox queries.
-class SubChannel_ {
-  /// see [SubChannel.id]
-  static final id =
-      QueryIntegerProperty<SubChannel>(_entities[11].properties[0]);
-
-  /// see [SubChannel.subcanalid]
-  static final subcanalid =
-      QueryStringProperty<SubChannel>(_entities[11].properties[1]);
-
-  /// see [SubChannel.nombre]
-  static final nombre =
-      QueryStringProperty<SubChannel>(_entities[11].properties[2]);
-
-  /// see [SubChannel.client]
-  static final client =
-      QueryRelationToOne<SubChannel, Client>(_entities[11].properties[3]);
+      QueryIntegerProperty<Session>(_entities[7].properties[20]);
 }
 
 /// [SyncManager] entity fields to define ObjectBox queries.
 class SyncManager_ {
   /// see [SyncManager.id]
   static final id =
-      QueryIntegerProperty<SyncManager>(_entities[12].properties[0]);
+      QueryIntegerProperty<SyncManager>(_entities[8].properties[0]);
 
   /// see [SyncManager.zoneId]
   static final zoneId =
-      QueryStringProperty<SyncManager>(_entities[12].properties[1]);
+      QueryStringProperty<SyncManager>(_entities[8].properties[1]);
 
   /// see [SyncManager.syncType]
   static final syncType =
-      QueryStringProperty<SyncManager>(_entities[12].properties[2]);
+      QueryStringProperty<SyncManager>(_entities[8].properties[2]);
 
   /// see [SyncManager.lastSyncDownDate]
   static final lastSyncDownDate =
-      QueryIntegerProperty<SyncManager>(_entities[12].properties[3]);
+      QueryIntegerProperty<SyncManager>(_entities[8].properties[3]);
 
   /// see [SyncManager.lastSyncUpDate]
   static final lastSyncUpDate =
-      QueryIntegerProperty<SyncManager>(_entities[12].properties[4]);
-}
-
-/// [Ubigeo] entity fields to define ObjectBox queries.
-class Ubigeo_ {
-  /// see [Ubigeo.id]
-  static final id = QueryIntegerProperty<Ubigeo>(_entities[13].properties[0]);
-
-  /// see [Ubigeo.ubigeoid]
-  static final ubigeoid =
-      QueryStringProperty<Ubigeo>(_entities[13].properties[1]);
-
-  /// see [Ubigeo.nombre]
-  static final nombre =
-      QueryStringProperty<Ubigeo>(_entities[13].properties[2]);
-
-  /// see [Ubigeo.client]
-  static final client =
-      QueryRelationToOne<Ubigeo, Client>(_entities[13].properties[3]);
-}
-
-/// [User] entity fields to define ObjectBox queries.
-class User_ {
-  /// see [User.usuarioid]
-  static final usuarioid =
-      QueryIntegerProperty<User>(_entities[14].properties[0]);
-
-  /// see [User.usuario]
-  static final usuario = QueryStringProperty<User>(_entities[14].properties[1]);
-
-  /// see [User.descripcion]
-  static final descripcion =
-      QueryStringProperty<User>(_entities[14].properties[2]);
-
-  /// see [User.correo]
-  static final correo = QueryStringProperty<User>(_entities[14].properties[3]);
-
-  /// see [User.activo]
-  static final activo = QueryBooleanProperty<User>(_entities[14].properties[4]);
-
-  /// see [User.bloqueado]
-  static final bloqueado =
-      QueryBooleanProperty<User>(_entities[14].properties[5]);
-
-  /// see [User.rolid]
-  static final rolid = QueryIntegerProperty<User>(_entities[14].properties[6]);
-
-  /// see [User.token]
-  static final token = QueryStringProperty<User>(_entities[14].properties[7]);
-
-  /// see [User.telefono]
-  static final telefono =
-      QueryStringProperty<User>(_entities[14].properties[8]);
-
-  /// see [User.creado]
-  static final creado = QueryStringProperty<User>(_entities[14].properties[9]);
-
-  /// see [User.menuidFav1]
-  static final menuidFav1 =
-      QueryStringProperty<User>(_entities[14].properties[10]);
-
-  /// see [User.menuidFav2]
-  static final menuidFav2 =
-      QueryStringProperty<User>(_entities[14].properties[11]);
-
-  /// see [User.menuidFav3]
-  static final menuidFav3 =
-      QueryStringProperty<User>(_entities[14].properties[12]);
-}
-
-/// [Vendor] entity fields to define ObjectBox queries.
-class Vendor_ {
-  /// see [Vendor.id]
-  static final id = QueryIntegerProperty<Vendor>(_entities[15].properties[0]);
-
-  /// see [Vendor.username]
-  static final username =
-      QueryStringProperty<Vendor>(_entities[15].properties[1]);
-
-  /// see [Vendor.password]
-  static final password =
-      QueryStringProperty<Vendor>(_entities[15].properties[2]);
-
-  /// see [Vendor.name]
-  static final name = QueryStringProperty<Vendor>(_entities[15].properties[3]);
-
-  /// see [Vendor.zone]
-  static final zone = QueryStringProperty<Vendor>(_entities[15].properties[4]);
+      QueryIntegerProperty<SyncManager>(_entities[8].properties[4]);
 }
 
 /// [Zone] entity fields to define ObjectBox queries.
 class Zone_ {
   /// see [Zone.id]
-  static final id = QueryIntegerProperty<Zone>(_entities[16].properties[0]);
+  static final id = QueryIntegerProperty<Zone>(_entities[9].properties[0]);
 
   /// see [Zone.zonaid]
-  static final zonaid = QueryStringProperty<Zone>(_entities[16].properties[1]);
+  static final zonaid = QueryStringProperty<Zone>(_entities[9].properties[1]);
 
   /// see [Zone.nombre]
-  static final nombre = QueryStringProperty<Zone>(_entities[16].properties[2]);
+  static final nombre = QueryStringProperty<Zone>(_entities[9].properties[2]);
 
   /// see [Zone.vendedorid]
   static final vendedorid =
-      QueryStringProperty<Zone>(_entities[16].properties[3]);
+      QueryStringProperty<Zone>(_entities[9].properties[3]);
+
+  /// see [Zone.vendedor]
+  static final vendedor = QueryStringProperty<Zone>(_entities[9].properties[4]);
 
   /// see [Zone.canalid]
-  static final canalid = QueryStringProperty<Zone>(_entities[16].properties[4]);
+  static final canalid = QueryStringProperty<Zone>(_entities[9].properties[5]);
+
+  /// see [Zone.canal]
+  static final canal = QueryStringProperty<Zone>(_entities[9].properties[6]);
 
   /// see [Zone.subcanalid]
   static final subcanalid =
-      QueryStringProperty<Zone>(_entities[16].properties[5]);
+      QueryStringProperty<Zone>(_entities[9].properties[7]);
+
+  /// see [Zone.subcanal]
+  static final subcanal = QueryStringProperty<Zone>(_entities[9].properties[8]);
 
   /// see [Zone.unidadnegocioid]
   static final unidadnegocioid =
-      QueryStringProperty<Zone>(_entities[16].properties[6]);
+      QueryStringProperty<Zone>(_entities[9].properties[9]);
+
+  /// see [Zone.unidadnegocio]
+  static final unidadnegocio =
+      QueryStringProperty<Zone>(_entities[9].properties[10]);
 
   /// see [Zone.activo]
-  static final activo = QueryBooleanProperty<Zone>(_entities[16].properties[7]);
+  static final activo = QueryBooleanProperty<Zone>(_entities[9].properties[11]);
 
-  /// see [Zone.session]
-  static final session =
-      QueryRelationToOne<Zone, Session>(_entities[16].properties[8]);
+  /// see [Zone.especial]
+  static final especial =
+      QueryBooleanProperty<Zone>(_entities[9].properties[12]);
 }

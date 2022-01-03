@@ -1,4 +1,6 @@
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
+import 'package:dimexa_vendors/core/utils/collection_utils/collection_utils.dart';
+import 'package:dimexa_vendors/data/models/address/address.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:dimexa_vendors/global_widgets/base_dropdown/base_dropdown.dart';
 import 'package:dimexa_vendors/global_widgets/card_title/card_title.dart';
@@ -10,10 +12,12 @@ import 'package:flutter/material.dart';
 class StartOderBottomSheet extends StatelessWidget {
   ScrollController? scrollController;
   Function onStartOrder;
+  List<Address>? addresses;
 
   StartOderBottomSheet({
     this.scrollController,
-    required this.onStartOrder
+    required this.onStartOrder,
+    required this.addresses
   });
 
   @override
@@ -126,10 +130,9 @@ class StartOderBottomSheet extends StatelessWidget {
                   child: SingleChildScrollView(
                     scrollDirection: Axis.vertical,
                     controller: scrollController,
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 8,),
-                        Row(
+                    child: CollectionUtils.isNotNullNorEmpty(addresses) ? Column(
+                      children: addresses!.map((address) {
+                        return Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
@@ -152,152 +155,14 @@ class StartOderBottomSheet extends StatelessWidget {
                                 topPadding: 0,
                                 bottomPadding: 0,
                                 backgroundColor: Colors.transparent,
+                                address: address,
                               ),
                             ),
                           ],
-                        ),
-                        const SizedBox(height: 24,),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: 18,
-                              height: 24,
-                              child: Radio<String>(
-                                value: "value",
-                                groupValue: "value",
-                                onChanged: (val) {},
-                                toggleable: true,
-                              ),
-                            ),
-                            const SizedBox(width: 12,),
-                            Flexible(
-                              child: AddressItem(
-                                showButton: false,
-                                horizontalMargin: 0,
-                                leftPadding: 0,
-                                rightPadding: 0,
-                                topPadding: 0,
-                                bottomPadding: 0,
-                                backgroundColor: Colors.transparent,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 24,),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: 18,
-                              height: 24,
-                              child: Radio<String>(
-                                value: "value",
-                                groupValue: "value",
-                                onChanged: (val) {},
-                                toggleable: true,
-                              ),
-                            ),
-                            const SizedBox(width: 12,),
-                            Flexible(
-                              child: AddressItem(
-                                showButton: false,
-                                horizontalMargin: 0,
-                                leftPadding: 0,
-                                rightPadding: 0,
-                                topPadding: 0,
-                                bottomPadding: 0,
-                                backgroundColor: Colors.transparent,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 24,),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: 18,
-                              height: 24,
-                              child: Radio<String>(
-                                value: "value",
-                                groupValue: "value",
-                                onChanged: (val) {},
-                                toggleable: true,
-                              ),
-                            ),
-                            const SizedBox(width: 12,),
-                            Flexible(
-                              child: AddressItem(
-                                showButton: false,
-                                horizontalMargin: 0,
-                                leftPadding: 0,
-                                rightPadding: 0,
-                                topPadding: 0,
-                                bottomPadding: 0,
-                                backgroundColor: Colors.transparent,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 24,),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: 18,
-                              height: 24,
-                              child: Radio<String>(
-                                value: "value",
-                                groupValue: "value",
-                                onChanged: (val) {},
-                                toggleable: true,
-                              ),
-                            ),
-                            const SizedBox(width: 12,),
-                            Flexible(
-                              child: AddressItem(
-                                showButton: false,
-                                horizontalMargin: 0,
-                                leftPadding: 0,
-                                rightPadding: 0,
-                                topPadding: 0,
-                                bottomPadding: 0,
-                                backgroundColor: Colors.transparent,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 24,),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: 18,
-                              height: 24,
-                              child: Radio<String>(
-                                value: "value",
-                                groupValue: "value",
-                                onChanged: (val) {},
-                                toggleable: true,
-                              ),
-                            ),
-                            const SizedBox(width: 12,),
-                            Flexible(
-                              child: AddressItem(
-                                showButton: false,
-                                horizontalMargin: 0,
-                                leftPadding: 0,
-                                rightPadding: 0,
-                                topPadding: 0,
-                                bottomPadding: 0,
-                                backgroundColor: Colors.transparent,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 8,),
-                      ],
+                        );
+                      }).toList()
+                    ) : const Center(
+                      child: Text('No se encontraron direcciones registradas'),
                     ),
                   )
                 ),

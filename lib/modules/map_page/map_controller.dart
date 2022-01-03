@@ -4,6 +4,7 @@ import 'package:dimexa_vendors/core/utils/app_exception/app_exception.dart';
 import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:dimexa_vendors/core/values/strings.dart';
 import 'package:dimexa_vendors/data/interceptors/google_interceptor/google_interceptor.dart';
+import 'package:dimexa_vendors/data/models/address/address.dart';
 import 'package:dimexa_vendors/data/models/reverse_geocoding_result/reverse_geocoding_result.dart';
 import 'package:dimexa_vendors/global_controllers/global_controller.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,6 +28,12 @@ class MapController extends GetxController {
   final Completer<GoogleMapController> _mapCompleter = Completer();
   late GoogleMapController _mapController;
   LatLng? _mapMoveTarget;
+  final CameraPosition _dimexaCameraPosition = const CameraPosition(
+    target: LatLng(-12.0964112, -77.0590747),
+    zoom: 16.48,
+  );
+  CameraPosition? _initCameraPosition;
+  Address? _address;
 
   ///Map view getters
   TextEditingController get referenceTextController => _referenceTextController;
@@ -37,6 +44,7 @@ class MapController extends GetxController {
   bool get showAddressAutoComplete => _showAddressAutoComplete;
   RxList get autoCompleteAddresses => _autoCompleteAddresses;
   Completer<GoogleMapController> get mapCompleter => _mapCompleter;
+  CameraPosition get initCameraPosition => _initCameraPosition!;
 
   @override
   void onInit() {
@@ -47,6 +55,22 @@ class MapController extends GetxController {
     },
         time: const Duration(milliseconds: 500)
     );
+    _address = Get.arguments['address'];
+    if (_address != null) {
+      _addressTextController.text = StringUtils.checkNullOrEmpty(_address!.direccion);
+      _referenceTextController.text = StringUtils.checkNullOrEmpty(_address!.referencia);
+      if (StringUtils.isNotNullNorEmpty(_address!.latitud) && StringUtils.isNotNullNorEmpty(_address!.longitud)) {
+        double lat = double.parse(_address!.latitud!);
+        double lng = double.parse(_address!.longitud!);
+        _initCameraPosition = CameraPosition(
+          target: LatLng(lat, lng),
+          zoom: 16.48,
+        );
+      } else {
+        _initCameraPosition = _dimexaCameraPosition;
+      }
+    }
+
   }
 
   @override
@@ -56,7 +80,7 @@ class MapController extends GetxController {
   }
 
   void onBack() {
-    Get.back(closeOverlays: true);
+    Get.back();
   }
 
   void setSearchAddressText(String text) {

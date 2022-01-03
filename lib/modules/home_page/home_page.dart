@@ -26,8 +26,8 @@ class _HomePageState extends State<HomePage> {
       builder: (_) => Scaffold(
         appBar: BaseAppBar(
           title: AppTranslations.of(context)!.text('welcome'),
-          //lastUpdate: DateTimeUtil.dateTimeToText(_.lastSyncDate),
-          //syncOnDemand: () {}
+          lastUpdate: DateTimeUtil.dateTimeToText(_.lastSyncDate),
+          syncOnDemand: () {}
         ).widget(),
         body: Container(
           width: MediaQuery.of(context).size.width,
@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 SizedBox(height: 6,),
                 Obx(
-                    () => _.currentZones.length > 1 ?
+                    () => _.currentZoneIds.length > 1 ?
                     BaseDropdown(
                       fontSize: 14,
                       borderColor: Colors.transparent,
@@ -79,11 +79,11 @@ class _HomePageState extends State<HomePage> {
                       radius: 146.0,
                       lineWidth: 18.0,
                       animation: true,
-                      percent: 0.7,
+                      percent:_.dashboard != null ? double.parse(StringUtils.checkNullOrEmpty(_.dashboard!.avanceMes)) : 0.0,
                       center: Text(
-                        "80.0%",
+                        _.dashboard != null ? '${StringUtils.checkNullOrEmpty(_.dashboard!.avanceMes)}%' : "0.00%",
                         style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+                        const TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
                       ),
                       circularStrokeCap: CircularStrokeCap.round,
                       progressColor: AppColors.green,
@@ -93,12 +93,12 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Indicator(
                           title: 'Cuota',
-                          value: '80,000',
+                          value: _.dashboard != null ? StringUtils.checkNullOrEmpty(_.dashboard!.cuotaMes) : "0.00",
                         ),
-                        SizedBox(height: 16,),
+                        const SizedBox(height: 16,),
                         Indicator(
                           title: 'Venta',
-                          value: '64,000',
+                          value:  _.dashboard != null ? StringUtils.checkNullOrEmpty(_.dashboard!.ventaMes) : "0.00",
                         )
                       ],
                     ),
@@ -106,12 +106,12 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Indicator(
                           title: 'Morosidad',
-                          value: '5.0%',
+                          value: _.dashboard != null ? '${StringUtils.checkNullOrEmpty(_.dashboard!.morosidad)}%' : "0.00%",
                         ),
                         SizedBox(height: 16,),
                         Indicator(
                           title: 'Cobertura',
-                          value: '80/100',
+                          value:_.dashboard != null ? '${_.dashboard!.clientesCobertura}/${_.dashboard!.clientes}' : "0/0",
                         )
                       ],
                     )
@@ -123,7 +123,9 @@ class _HomePageState extends State<HomePage> {
                   child: Card(
                     elevation: 0,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-                    child: const CustomBarChart(),
+                    child: CustomBarChart(
+                      dashboard: _.dashboard!,
+                    ),
                   ),
                 )
               ],
@@ -145,11 +147,11 @@ class _HomePageState extends State<HomePage> {
                 color: AppColors.gray
             ),
           ),
-          actions: _.currentZones.map((zone) {
+          actions: _.currentZoneIds.map((zoneId) {
             return CupertinoBSheetItem(
-              label: '${zone.zonaid}',
+              label: zoneId,
               onClick: () {
-                _.onChangeZone(zone.zonaid!);
+                _.onChangeZone(zoneId);
               },
               isSelected: false,
             );

@@ -5,6 +5,8 @@ import 'package:dimexa_vendors/core/utils/date_time_util/date_time_util.dart';
 import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:dimexa_vendors/data/models/address/address.dart';
 import 'package:dimexa_vendors/data/models/contact/contact.dart';
+import 'package:dimexa_vendors/data/models/contact_media/contact_media.dart';
+import 'package:dimexa_vendors/data/models/contact_role/contact_role.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:dimexa_vendors/global_widgets/base_bottom_sheet/base_bottom_sheet.dart';
 import 'package:dimexa_vendors/global_widgets/custom_info_field/custom_info_field.dart';
@@ -83,7 +85,7 @@ class DetailBottomSheet {
                 Flexible(
                   child: CustomInfoField(
                       label: AppTranslations.of(context)!.text("diremid_status"),
-                      value: StringUtils.checkNullOrEmpty(client.estadodirem)
+                      value: StringUtils.checkNullOrEmpty(client.estadodiremid)
                   ),
                 )
               ],
@@ -93,15 +95,15 @@ class DetailBottomSheet {
             ),
             CustomInfoField(
               label:AppTranslations.of(context)!.text("address"),
-              value: client.nombrecomercial,
+              value: StringUtils.checkNullOrEmpty(client.direccion),
             ),
             const Divider(
               thickness: 1,
             ),
             CustomInfoField(
               label:AppTranslations.of(context)!.text("ubigeo"),
-              value: StringUtils.checkNullOrEmpty(client.ubigeo)
-            ),
+              value: '${StringUtils.checkNullOrEmpty(client.distrito)}, ${StringUtils.checkNullOrEmpty(client.departamento)}'
+            )
           ],
         )
     );
@@ -136,7 +138,7 @@ class DetailBottomSheet {
                 Flexible(
                   child: CustomInfoField(
                     label: AppTranslations.of(context)!.text("condition"),
-                    value: "",
+                    value: StringUtils.checkNullOrEmpty(client.condicionventa),
                   ),
                 )
               ],
@@ -149,13 +151,13 @@ class DetailBottomSheet {
                 Flexible(
                   child: CustomInfoField(
                     label: AppTranslations.of(context)!.text("visit_day") + "1",
-                    value: StringUtils.checkNullOrEmpty(client.diavisita1),
+                    value: DateTimeUtil.getNameDay(client.dia1),
                   ),
                 ),
                 Flexible(
                   child: CustomInfoField(
                     label: AppTranslations.of(context)!.text("visit_day") + "2",
-                    value: StringUtils.checkNullOrEmpty(client.diavisita2),
+                    value:  DateTimeUtil.getNameDay(client.dia2),
                   ),
                 )
               ],
@@ -207,8 +209,11 @@ class DetailBottomSheet {
     required BuildContext context,
     required this.client,
     required List<Contact> contacts,
+    required List<ContactRole> contactRoles,
+    required List<ContactMedia> contactMedias,
     required this.height
   }) {
+
     child = CarouselSlider(
         options: CarouselOptions(
           aspectRatio: 1.3,
@@ -221,6 +226,8 @@ class DetailBottomSheet {
         items: contacts.map((contact) {
           return ContactItem(
             contact: contact,
+            roles: contactRoles.where((role) => role.contactoid == contact.contactoid).toList(),
+            contactMedia: contactMedias.firstWhere((media) => media.contactoid == contact.contactoid),
           );
         }).toList()
     );

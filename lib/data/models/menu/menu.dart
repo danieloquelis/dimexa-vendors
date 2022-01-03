@@ -1,8 +1,5 @@
 import 'dart:convert';
 
-import 'package:objectbox/objectbox.dart';
-
-@Entity()
 class Menu {
   Menu({
     this.id,
@@ -29,7 +26,7 @@ class Menu {
     titulo: json["titulo"],
     ruta: json["ruta"],
     orden: json["orden"],
-    acceso: json["acceso"] == null ? null : json["acceso"],
+    acceso: json["acceso"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -38,6 +35,6 @@ class Menu {
     "titulo": titulo,
     "ruta": ruta,
     "orden": orden,
-    "acceso": acceso == null ? null : acceso,
+    "acceso": acceso,
   };
 }

@@ -49,7 +49,6 @@ class AppPages {
       page: () => MapPage(),
       binding: MapBinding(),
       transition: Transition.rightToLeft,
-      preventDuplicates: true,
     ),
     GetPage(
       name: AppRoutes.product,

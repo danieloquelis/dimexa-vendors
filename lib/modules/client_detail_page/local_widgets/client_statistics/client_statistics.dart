@@ -1,5 +1,6 @@
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
 import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
+import 'package:dimexa_vendors/data/models/client_wallet/cient_wallet.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:flutter/material.dart';
 import 'package:dimexa_vendors/data/models/client/client.dart';
@@ -7,10 +8,12 @@ import 'package:dimexa_vendors/data/models/client/client.dart';
 class ClientStatistics extends StatelessWidget {
 
   Client? client;
+  ClientWallet? clientWallet;
   String? lastUpdate;
 
   ClientStatistics({
     required this.client,
+    required this.clientWallet,
     this.lastUpdate
   });
 
@@ -36,27 +39,27 @@ class ClientStatistics extends StatelessWidget {
             children: [
               Column(
                 children: [
-                  Text(AppTranslations.of(context)!.text("credit"), style: TextStyle(color: Colors.white),),
+                  Text(AppTranslations.of(context)!.text("credit"), style: const TextStyle(color: Colors.white),),
                   Text(
-                      StringUtils.checkNullOrEmpty(client!.lineacredito),
+                      clientWallet != null ? StringUtils.checkNullOrEmpty(clientWallet!.lineatotal) : "0.00",
                       style: const TextStyle(color: Colors.white)
                   )
                 ],
               ),
               Column(
                 children: [
-                  Text(AppTranslations.of(context)!.text("debt"), style: TextStyle(color: Colors.white)),
+                  Text(AppTranslations.of(context)!.text("debt"), style: const TextStyle(color: Colors.white)),
                   Text(
-                      StringUtils.checkNullOrEmpty(client!.deuda),
+                      clientWallet != null ? StringUtils.checkNullOrEmpty(clientWallet!.deuda) : "0.00",
                       style: const TextStyle(color: Colors.white)
                   )
                 ],
               ),
               Column(
                 children: [
-                  Text(AppTranslations.of(context)!.text("available"), style: TextStyle(color: Colors.white)),
+                  Text(AppTranslations.of(context)!.text("available"), style: const TextStyle(color: Colors.white)),
                   Text(
-                      StringUtils.checkNullOrEmpty(client!.lineadisponible),
+                      clientWallet != null ? StringUtils.checkNullOrEmpty(clientWallet!.lineadisponible) : "0.00",
                       style: const TextStyle(color: Colors.white)
                   )
                 ],

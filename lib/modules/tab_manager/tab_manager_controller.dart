@@ -36,9 +36,16 @@ class TabManagerController extends GetxController {
   @override
   void onReady() async {
     super.onReady();
+
+    await globalController.syncZones();
     List<String> clientIds = await globalController.syncDownClients();
     await globalController.syncDownContacts(clientIds);
+    await globalController.syncDownContactRoles(clientIds);
+    await globalController.syncDownContactMedias(clientIds);
     await globalController.syncDownAddresses(clientIds);
+    await globalController.syncDownClientWallet(clientIds: clientIds);
+    await globalController.syncDashboard();
+    globalController.hideLoadingDialog();
   }
 
   void onItemTapped(int index) {

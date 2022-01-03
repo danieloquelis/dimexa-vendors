@@ -28,5 +28,4 @@ class DeviceInterceptorImpl implements DeviceInterceptor {
       )
     );
   }
-
 }

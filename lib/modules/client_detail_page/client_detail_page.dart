@@ -31,8 +31,9 @@ class _ClientDetailPageState extends State<ClientDetailPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClientStatistics(
-              client: _.selectedClient,
-              lastUpdate: DateTimeUtil.dateTimeToText(_.selectedClient.lastSync),
+              client: _.client,
+              clientWallet: _.clientWallet,
+              lastUpdate: DateTimeUtil.dateTimeToText(_.client.lastSync),
             ),
             Expanded(
               child: Container(
@@ -62,31 +63,33 @@ class _ClientDetailPageState extends State<ClientDetailPage> {
                     ClientCardInfo.generalInfo(
                       context: context,
                       title: AppTranslations.of(context)!.text("general_data"),
-                      client: _.selectedClient,
+                      client: _.client,
                       onClickSeeMore: () => _.showGeneralInfoBottomSheet(),
                     ),
                     const SizedBox(height: 24,),
                     ClientCardInfo.commercialData(
                       context: context,
                       title: AppTranslations.of(context)!.text("commercial_data"),
-                      client: _.selectedClient,
+                      client: _.client,
                       onClickSeeMore: () => _.showCommercialInfoBottomSheet(),
                     ),
                     const SizedBox(height: 24,),
                     ClientCardInfo.contacts(
                       context: context,
                       title: AppTranslations.of(context)!.text("contacts"),
-                      client: _.selectedClient,
+                      client: _.client,
                       contacts: _.contacts,
                       onClickSeeMore: () => _.showContactsBottomSheet(),
+                      contactRoles: _.contactRoles,
+                      contactMedias: _.contactMedias,
                     ),
                     const SizedBox(height: 24,),
                     ClientCardInfo.addresses(
                       context: context,
                       title: AppTranslations.of(context)!.text("addresses"),
-                      client: _.selectedClient,
+                      addresses: _.clientAddresses,
                       onClickSeeMore: () => _.showAddressesBottomSheet(),
-                      seeMap: () => _.goToMapView(),
+                      seeMap: (address) => _.goToMapView(address),
                     )
                   ],
                 )

@@ -20,7 +20,7 @@ class ClientRepository implements ClientRepositoryAbstract {
   }
 
   @override
-  Future<List<Client>> searchByZoneIdAndFilterType(String zoneId, String searchText, SearchClientFilter filterType) async {
+  Future<List<Client>> searchByZoneIdAndFilterType(String zoneId, bool zoneSpecial, String searchText, SearchClientFilter filterType) async {
     if (searchText.isEmpty) {
       return Future.value(List.empty());
     }
@@ -28,35 +28,71 @@ class ClientRepository implements ClientRepositoryAbstract {
       late Query<Client> query;
       switch (filterType) {
         case SearchClientFilter.CommercialName:
-          query = clientBox.query(
+          if (!zoneSpecial) {
+            query = clientBox.query(
               Client_.zonaid.equals(zoneId)
-                  .and(Client_.nombrecomercial.contains(searchText))
-          ).build();
+              .and(Client_.nombrecomercial.contains(searchText))
+            ).build();
+          } else {
+            query = clientBox.query(
+              Client_.zonaid.equals(zoneId)
+              .or(Client_.zonaid2.equals(zoneId))
+              .or(Client_.zonaid3.equals(zoneId))
+              .or(Client_.zonaid4.equals(zoneId))
+              .and(Client_.nombrecomercial.contains(searchText))
+            ).build();
+          }
           break;
         case SearchClientFilter.SocialName:
-          query = clientBox.query(
+          if (!zoneSpecial) {
+            query = clientBox.query(
               Client_.zonaid.equals(zoneId)
-                  .and(Client_.razonsocial.contains(searchText))
-          ).build();
+              .and(Client_.razonsocial.contains(searchText))
+            ).build();
+          } else {
+            query = clientBox.query(
+              Client_.zonaid.equals(zoneId)
+              .or(Client_.zonaid2.equals(zoneId))
+              .or(Client_.zonaid3.equals(zoneId))
+              .or(Client_.zonaid4.equals(zoneId))
+              .and(Client_.razonsocial.contains(searchText))
+            ).build();
+          }
           break;
         case SearchClientFilter.RUC:
-          query = clientBox.query(
+          if (!zoneSpecial) {
+            query = clientBox.query(
+                Client_.zonaid.equals(zoneId)
+                    .and(Client_.ruc.contains(searchText))
+            ).build();
+          } else {
+            query = clientBox.query(
               Client_.zonaid.equals(zoneId)
-                  .and(Client_.ruc.contains(searchText))
-          ).build();
+              .or(Client_.zonaid2.equals(zoneId))
+              .or(Client_.zonaid3.equals(zoneId))
+              .or(Client_.zonaid4.equals(zoneId))
+              .and(Client_.ruc.contains(searchText))
+            ).build();
+          }
+
           break;
         case SearchClientFilter.Code:
-          query = clientBox.query(
+          if (!zoneSpecial) {
+            query = clientBox.query(
               Client_.zonaid.equals(zoneId)
-                  .and(Client_.clienteid.contains(searchText))
+              .and(Client_.clienteid.contains(searchText))
 
-          ).build();
-          break;
-        default:
-          query = clientBox.query(
+            ).build();
+          } else {
+            query = clientBox.query(
               Client_.zonaid.equals(zoneId)
-                  .and(Client_.nombrecomercial.contains(searchText))
-          ).build();
+              .or(Client_.zonaid2.equals(zoneId))
+              .or(Client_.zonaid3.equals(zoneId))
+              .or(Client_.zonaid4.equals(zoneId))
+              .and(Client_.clienteid.contains(searchText))
+            ).build();
+          }
+          break;
       }
 
       return query.find();

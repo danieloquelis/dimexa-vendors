@@ -12,7 +12,7 @@ class AddressItem extends StatelessWidget {
   double topPadding;
   double bottomPadding;
   Color backgroundColor;
-  Address? address;
+  Address address;
 
   AddressItem({
     this.showButton = true,
@@ -22,7 +22,7 @@ class AddressItem extends StatelessWidget {
     this.topPadding= 16,
     this.bottomPadding = 0,
     this.backgroundColor = Colors.white,
-    this.address
+    required this.address
   });
 
   @override
@@ -52,7 +52,7 @@ class AddressItem extends StatelessWidget {
                     ),
                     const SizedBox(height: 4,),
                     Text(
-                      StringUtils.checkNullOrEmpty(address!.ubigeoid),
+                      '${StringUtils.checkNullOrEmpty(address!.distrito)}, ${StringUtils.checkNullOrEmpty(address!.departamento)}',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -77,7 +77,7 @@ class AddressItem extends StatelessWidget {
                 backgroundColor: AppColors.tagBackground,
                 label: StringUtils.checkNullOrEmpty(address!.tipoprioridad),
               ),
-              SizedBox(width: 8,),
+              const SizedBox(width: 8,),
               Tag(
                 borderColor: Colors.transparent,
                 backgroundColor: AppColors.tagBackground,

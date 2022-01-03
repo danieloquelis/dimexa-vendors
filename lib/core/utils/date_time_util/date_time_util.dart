@@ -1,3 +1,4 @@
+import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:intl/intl.dart';
 
 class DateTimeUtil {
@@ -44,5 +45,21 @@ class DateTimeUtil {
     }
 
     return date;
+  }
+
+  static String getNameDay(String? numberDay) {
+    if (StringUtils.isNullOrEmpty(numberDay)) {
+      return "";
+    }
+
+    int index = int.parse(numberDay!);
+
+    if (index == 8) {
+      return "Todos";
+    }
+
+    List<String> days = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+
+    return days[index - 1];
   }
 }

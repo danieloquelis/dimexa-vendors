@@ -35,12 +35,15 @@ class MapInfoCard extends StatelessWidget {
                 child: Row(
                   children: [
                     Expanded(
-                      child: MapTextField(
-                        textController: _.addressTextController,
-                        onChanged: _.setSearchAddressText,
-                        prefixIcon: Icons.location_on,
-                        hintText: "Buscar dirección",
-                        onFocusChanged: _.onSearchAddressFocusChanged,
+                      child: AbsorbPointer(
+                        absorbing: true,
+                        child: MapTextField(
+                          textController: _.addressTextController,
+                          onChanged: _.setSearchAddressText,
+                          prefixIcon: Icons.location_on,
+                          hintText: "Dirreción no disponible",
+                          onFocusChanged: _.onSearchAddressFocusChanged,
+                        ),
                       ),
                     ),
                     Visibility(

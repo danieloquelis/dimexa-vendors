@@ -1,7 +1,10 @@
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
 import 'package:dimexa_vendors/core/utils/collection_utils/collection_utils.dart';
 import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
+import 'package:dimexa_vendors/data/models/address/address.dart';
 import 'package:dimexa_vendors/data/models/contact/contact.dart';
+import 'package:dimexa_vendors/data/models/contact_media/contact_media.dart';
+import 'package:dimexa_vendors/data/models/contact_role/contact_role.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:dimexa_vendors/global_widgets/card_title/card_title.dart';
 import 'package:dimexa_vendors/global_widgets/custom_card/custom_card.dart';
@@ -112,7 +115,7 @@ class ClientCardInfo extends StatelessWidget {
             Flexible(
               child: CustomInfoField(
                 label: AppTranslations.of(context)!.text("condition"),
-                value: "",
+                value: StringUtils.checkNullOrEmpty(client!.condicionventa),
               ),
             )
           ],
@@ -138,9 +141,26 @@ class ClientCardInfo extends StatelessWidget {
     required this.client,
     required this.title,
     required this.onClickSeeMore,
-    required List<Contact>? contacts
+    required List<Contact>? contacts,
+    required List<ContactRole>? contactRoles,
+    required List<ContactMedia>? contactMedias
   }) {
-    child = CollectionUtils.isNotNullNorEmpty(contacts) ? Column(
+
+    if (CollectionUtils.isNullOrEmpty(contacts)) {
+      child = const Center(
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Text('No se encontraron contactos registrados'),
+        ),
+      );
+      return;
+    }
+
+    Contact firstContact = contacts!.first;
+    List<ContactRole> roles = contactRoles!.where((e) => e.contactoid == firstContact.contactoid).toList();
+    ContactMedia firstMedia = contactMedias!.firstWhere((e) => e.contactoid == firstContact.contactoid);
+
+    child = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
@@ -148,13 +168,13 @@ class ClientCardInfo extends StatelessWidget {
             Flexible(
               child: CustomInfoField(
                 label: AppTranslations.of(context)!.text("name"),
-                value: StringUtils.checkNullOrEmpty(contacts!.first.nombre),
+                value: StringUtils.checkNullOrEmpty(firstContact.nombres),
               ),
             ),
             Flexible(
               child: CustomInfoField(
                 label: AppTranslations.of(context)!.text("phone"),
-                value: StringUtils.checkNullOrEmpty(contacts.first.telefono),
+                value: ""//TODO:StringUtils.checkNullOrEmpty(firstMedia.),
               ),
             )
 
@@ -165,34 +185,48 @@ class ClientCardInfo extends StatelessWidget {
         ),
         CustomInfoField(
           label: AppTranslations.of(context)!.text("role"),
-          value: StringUtils.checkNullOrEmpty(contacts.first.tipocontacto),
+          widgetValue: Row(
+            children: roles.map((role) {
+              return Tag(
+                borderColor: Colors.transparent,
+                backgroundColor: AppColors.tagBackground,
+                label: role.tiporol,
+              );
+            }).toList()
+          ),
         ),
-        SizedBox(height: 18,),
+        const SizedBox(height: 18,),
         InkWell(
             onTap: () {
               if (onClickSeeMore != null) {
                 onClickSeeMore!();
               }
             },
-            child: Text('Ver más', style: TextStyle(color: AppColors.orange),)
+            child: const Text('Ver más', style: TextStyle(color: AppColors.orange),)
         )
       ],
-    ): const Center(
-      child: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Text('No se encontraron contactos registrados'),
-      ),
     );
   }
 
   ClientCardInfo.addresses({Key? key,
     required this.context,
-    required this.client,
     required this.title,
     required this.onClickSeeMore,
+    required List<Address>? addresses,
     required Function seeMap
   }) {
     isEditable = false;
+    if (CollectionUtils.isNullOrEmpty(addresses)) {
+      child = const Center(
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Text('No se encontraron direcciones registradas'),
+        ),
+      );
+      return;
+    }
+
+    Address firstAddress = addresses!.first;
     child = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -205,18 +239,18 @@ class ClientCardInfo extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    StringUtils.checkNullOrEmpty(client!.clientedirecciondireccion)
+                    StringUtils.checkNullOrEmpty(firstAddress.direccion)
                   ),
                   const SizedBox(height: 4,),
                   Text(
-                    StringUtils.checkNullOrEmpty(client!.clientedireccionubigeoid)
+                   '${StringUtils.checkNullOrEmpty(firstAddress.distrito)}, ${StringUtils.checkNullOrEmpty(firstAddress.departamento)}'
                   ),
                 ],
               ),
             ),
             IconButton(
               onPressed: () {
-                seeMap();
+                seeMap(firstAddress);
               },
               icon: const Icon(Icons.location_on, color: AppColors.blue,),
             ),
@@ -229,13 +263,13 @@ class ClientCardInfo extends StatelessWidget {
             Tag(
               borderColor: Colors.transparent,
               backgroundColor: AppColors.tagBackground,
-              label: 'Principal',
+              label: StringUtils.checkNullOrEmpty(firstAddress.tipoprioridad),
             ),
-            SizedBox(width: 8,),
+            const SizedBox(width: 8,),
             Tag(
               borderColor: Colors.transparent,
               backgroundColor: AppColors.tagBackground,
-              label: 'Oficina',
+              label: StringUtils.checkNullOrEmpty(firstAddress.tipoestablecimiento),
             ),
           ],
         ),

@@ -1,58 +1,109 @@
 import 'dart:convert';
 import 'package:objectbox/objectbox.dart';
 
+///Model for client contacts
 @Entity()
 class Contact {
   Contact({
-    this.clientecontactoid,
-    this.contactoak,
     this.clienteid,
-    this.nombre,
-    this.tipocontactoid,
+    this.ruc,
+    this.dni,
+    this.compaiaid,
+    this.contactoid,
+    this.personaid,
+    this.apellidopaterno,
+    this.apellidomaterno,
+    this.nombres,
     this.fechanacimiento,
-    this.telefono,
-    this.correo,
-    this.tipocontacto,
+    this.documentoidentidad,
+    this.tipodocumentoidentidadid,
+    this.tipodocumentoidentidad,
+    this.estadocivilid,
+    this.estadocivil,
+    this.nacionalidadid,
+    this.nacionalidad,
+    this.generoid,
+    this.genero,
+    this.origenid,
+    this.origen,
   });
 
   @Id(assignable: true)
-  int? clientecontactoid;
-  int? contactoak;
+  int? contactoid;
+  @Index()
   String? clienteid;
-  String? nombre;
-  int? tipocontactoid;
+  String? ruc;
+  String? dni;
+  int? compaiaid;
+  int? personaid;
+  String? apellidopaterno;
+  String? apellidomaterno;
+  String? nombres;
   String? fechanacimiento;
-  String? telefono;
-  String? correo;
-  String? tipocontacto;
+  String? documentoidentidad;
+  int? tipodocumentoidentidadid;
+  String? tipodocumentoidentidad;
+  int? estadocivilid;
+  String? estadocivil;
+  int? nacionalidadid;
+  String? nacionalidad;
+  int? generoid;
+  String? genero;
+  int? origenid;
+  String? origen;
 
   factory Contact.fromRawJson(String str) => Contact.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
   factory Contact.fromJson(Map<String, dynamic> json) => Contact(
-    clientecontactoid: json["clientecontactoid"],
-    contactoak: json["contactoak"],
     clienteid: json["clienteid"],
-    nombre: json["nombre"],
-    tipocontactoid: json["tipocontactoid"],
+    ruc: json["ruc"],
+    dni: json["dni"],
+    compaiaid: json["compañiaid"],
+    contactoid: json["contactoid"],
+    personaid: json["personaid"],
+    apellidopaterno: json["apellidopaterno"],
+    apellidomaterno: json["apellidomaterno"],
+    nombres: json["nombres"],
     fechanacimiento: json["fechanacimiento"],
-    telefono: json["telefono"],
-    correo: json["correo"],
-    tipocontacto: json["tipocontacto"],
+    documentoidentidad: json["documentoidentidad"],
+    tipodocumentoidentidadid: json["tipodocumentoidentidadid"],
+    tipodocumentoidentidad: json["tipodocumentoidentidad"],
+    estadocivilid: json["estadocivilid"],
+    estadocivil: json["estadocivil"],
+    nacionalidadid: json["nacionalidadid"],
+    nacionalidad: json["nacionalidad"],
+    generoid: json["generoid"],
+    genero: json["genero"],
+    origenid: json["origenid"],
+    origen: json["origen"],
   );
 
   Map<String, dynamic> toJson() => {
-    "clientecontactoid": clientecontactoid,
-    "contactoak": contactoak,
     "clienteid": clienteid,
-    "nombre": nombre,
-    "tipocontactoid": tipocontactoid,
+    "ruc": ruc,
+    "dni": dni,
+    "compañiaid": compaiaid,
+    "contactoid": contactoid,
+    "personaid": personaid,
+    "apellidopaterno": apellidopaterno,
+    "apellidomaterno": apellidomaterno,
+    "nombres": nombres,
     "fechanacimiento": fechanacimiento,
-    "telefono": telefono,
-    "correo": correo,
-    "tipocontacto": tipocontacto,
+    "documentoidentidad": documentoidentidad,
+    "tipodocumentoidentidadid": tipodocumentoidentidadid,
+    "tipodocumentoidentidad": tipodocumentoidentidad,
+    "estadocivilid": estadocivilid,
+    "estadocivil": estadocivil,
+    "nacionalidadid": nacionalidadid,
+    "nacionalidad": nacionalidad,
+    "generoid": generoid,
+    "genero": genero,
+    "origenid": origenid,
+    "origen": origen,
   };
 
   static Contact fromJsonModel(Map<String, dynamic> json) => Contact.fromJson(json);
 }
+

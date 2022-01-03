@@ -6,5 +6,6 @@ class Numbers {
 
   ///Max days allow after request for sync
   static int maxDaysAllow = 1;
+  static int maxSyncDiffHoursAllowed = 24; //in hours
   static double appBarHeight = 72;
 }

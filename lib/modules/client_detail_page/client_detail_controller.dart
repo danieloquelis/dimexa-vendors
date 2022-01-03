@@ -2,7 +2,10 @@ import 'dart:async';
 
 import 'package:dimexa_vendors/data/interceptors/client_interceptor/client_interceptor.dart';
 import 'package:dimexa_vendors/data/models/address/address.dart';
+import 'package:dimexa_vendors/data/models/client_wallet/cient_wallet.dart';
 import 'package:dimexa_vendors/data/models/contact/contact.dart';
+import 'package:dimexa_vendors/data/models/contact_media/contact_media.dart';
+import 'package:dimexa_vendors/data/models/contact_role/contact_role.dart';
 import 'package:dimexa_vendors/data/models/session/session.dart';
 import 'package:dimexa_vendors/data/provider/objectbox/objectbox.dart';
 import 'package:dimexa_vendors/data/repositories/address_repository/address_repository.dart';
@@ -28,7 +31,12 @@ class ClientDetailController extends GetxController {
   final contactRepository = Get.find<ContactRepository>();
 
   ///Private variables
-  late Client _selectedClient;
+  Client? _client;
+  List<Contact>? _clientContacts;
+  List<ContactRole>? _contactRoles;
+  List<ContactMedia>? _contactMedias;
+  List<Address>? _clientAddresses;
+  ClientWallet? _clientWallet;
   late Session _session;
 
   late ScrollController _scrollController;
@@ -36,20 +44,25 @@ class ClientDetailController extends GetxController {
   List<Contact>? _contacts;
 
   ///Getters
-  Client get selectedClient => _selectedClient;
+  Client get client => _client!;
   List<Contact>? get contacts => _contacts;
+
+  List<Address>? get clientAddresses => _clientAddresses;
+  ClientWallet? get clientWallet => _clientWallet;
+  List<ContactRole>? get contactRoles => _contactRoles;
+  List<Contact>? get clientContacts => _clientContacts;
+  List<ContactMedia>? get contactMedias => _contactMedias;
 
   @override
   void onInit() {
     super.onInit();
     _session = globalController.session;
-    _selectedClient = Get.arguments['selectedClient'];
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-    _contacts = contactRepository.listByClientId(_selectedClient.clienteid!);
+    _client = Get.arguments['client'];
+    _clientContacts = Get.arguments['clientContacts'];
+    _contactRoles = Get.arguments['contactRoles'];
+    _contactMedias = Get.arguments['contactMedias'];
+    _clientAddresses = Get.arguments['clientAddresses'];
+    _clientWallet = Get.arguments['clientWallet'];
   }
 
   @override
@@ -66,7 +79,7 @@ class ClientDetailController extends GetxController {
 
   void onSyncClient() async {
     globalController.showLoadingDialog();
-    Client? client = await clientInterceptor.getClientById(_session.token!, _selectedClient.clienteid!)
+    Client? client = await clientInterceptor.getClientById(_session.token!, _client!.clienteid!)
         .onError((error, stackTrace) async {
       await globalController.hideLoadingDialog(
           errorMessage: '$error'
@@ -80,7 +93,7 @@ class ClientDetailController extends GetxController {
       return;
     }
 
-    _selectedClient = clientRepository.updateClientById(globalController.selectedZoneId.value, _selectedClient.clienteid!, client);
+    _client = clientRepository.updateClientById(globalController.selectedZoneId.value, _client!.clienteid!, client);
     //TODO: sync address and contacts
 
     update();
@@ -90,7 +103,7 @@ class ClientDetailController extends GetxController {
     Get.bottomSheet(
         DetailBottomSheet.generalInfo(
             context: Get.overlayContext!,
-            client: _selectedClient,
+            client: _client!,
             height: 408
         ).show(),
         isScrollControlled: true,
@@ -101,7 +114,7 @@ class ClientDetailController extends GetxController {
     Get.bottomSheet(
         DetailBottomSheet.commercialInfo(
             context: Get.overlayContext!,
-            client: _selectedClient,
+            client: _client!,
             height: 316
         ).show(),
         isScrollControlled: true
@@ -109,34 +122,39 @@ class ClientDetailController extends GetxController {
   }
 
   void showContactsBottomSheet() {
-    List<Contact> contacts = contactRepository.listByClientId(_selectedClient.clienteid!);
     Get.bottomSheet(
-        DetailBottomSheet.contacts(
-            context: Get.overlayContext!,
-            client: _selectedClient,
-            contacts: contacts,
-            height: 360
-        ).showOnlyWidget(),
-        isScrollControlled: true
+      DetailBottomSheet.contacts(
+        context: Get.overlayContext!,
+        client: _client!,
+        contacts: _clientContacts!,
+        height: 360,
+        contactRoles: _contactRoles!,
+        contactMedias: _contactMedias!
+      ).showOnlyWidget(),
+      isScrollControlled: true
     );
   }
 
   void showAddressesBottomSheet() {
-    List<Address> addresses = addressRepository.listByClientId(_selectedClient.clienteid!);
     Get.bottomSheet(
       DetailBottomSheet.adresses(
           context: Get.overlayContext!,
-          client: _selectedClient,
-          addresses: addresses,
+          client: _client!,
+          addresses: _clientAddresses!,
           height: 150
       ).showOnlyWidget(),
       isScrollControlled: true,
     );
   }
 
-  void goToMapView() {
+  void goToMapView(Address address) {
     //here we initialized everything regarding map view
-    Get.toNamed(AppRoutes.clientAddressMap);
+    Get.toNamed(
+      AppRoutes.clientAddressMap,
+      arguments: {
+        'address': address
+      }
+    );
   }
 
   void showStartOrderBottomSheet() async {
@@ -150,6 +168,7 @@ class ClientDetailController extends GetxController {
           Get.back();
           Get.toNamed(AppRoutes.product);
         },
+        addresses: _clientAddresses!,
       ),
       isScrollControlled: true
     ).whenComplete(() {
@@ -180,4 +199,6 @@ class ClientDetailController extends GetxController {
       }
     }
   }
+
+
 }

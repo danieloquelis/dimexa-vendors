@@ -1,9 +1,13 @@
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
+import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
+import 'package:dimexa_vendors/data/models/dashboard/dashboard.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class CustomBarChart extends StatelessWidget {
-  const CustomBarChart({Key? key}) : super(key: key);
+  Dashboard dashboard;
+
+  CustomBarChart({required this.dashboard});
 
   @override
   Widget build(BuildContext context) {
@@ -56,19 +60,17 @@ class CustomBarChart extends StatelessWidget {
       getTitles: (double value) {
         switch (value.toInt()) {
           case 0:
-            return 'Mar';
+            return StringUtils.checkNullOrEmpty(dashboard.ventaMesAnt01Tit);
           case 1:
-            return 'Abr';
+            return StringUtils.checkNullOrEmpty(dashboard.ventaMesAnt02Tit);
           case 2:
-            return 'May';
+            return StringUtils.checkNullOrEmpty(dashboard.ventaMesAnt03Tit);
           case 3:
-            return 'Jun';
+            return StringUtils.checkNullOrEmpty(dashboard.ventaMesAnt04Tit);
           case 4:
-            return 'Jul';
+            return StringUtils.checkNullOrEmpty(dashboard.ventaMesAnt05Tit);
           case 5:
-            return 'Ago';
-          case 6:
-            return 'Sep';
+            return StringUtils.checkNullOrEmpty(dashboard.ventaMesAnt06Tit);
           default:
             return '';
         }
@@ -88,7 +90,7 @@ class CustomBarChart extends StatelessWidget {
       x: 0,
       barRods: [
         BarChartRodData(
-            y: 8,
+            y: double.parse(dashboard.ventaMesAnt01!),
             colors: [Colors.lightBlueAccent, Colors.greenAccent],
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(14),
@@ -103,7 +105,7 @@ class CustomBarChart extends StatelessWidget {
       x: 1,
       barRods: [
         BarChartRodData(
-            y: 10,
+            y: double.parse(dashboard.ventaMesAnt02!),
             colors: [Colors.lightBlueAccent, Colors.greenAccent],
             width: 28,
           borderRadius: BorderRadius.only(
@@ -118,7 +120,7 @@ class CustomBarChart extends StatelessWidget {
       x: 2,
       barRods: [
         BarChartRodData(
-            y: 14,
+            y: double.parse(dashboard.ventaMesAnt03!),
             colors: [Colors.lightBlueAccent, Colors.greenAccent],
             width: 28,
           borderRadius: BorderRadius.only(
@@ -133,7 +135,7 @@ class CustomBarChart extends StatelessWidget {
       x: 3,
       barRods: [
         BarChartRodData(
-            y: 15,
+            y: double.parse(dashboard.ventaMesAnt04!),
             colors: [Colors.lightBlueAccent, Colors.greenAccent],
             width: 28,
           borderRadius: BorderRadius.only(
@@ -145,10 +147,10 @@ class CustomBarChart extends StatelessWidget {
       showingTooltipIndicators: [0],
     ),
     BarChartGroupData(
-      x: 3,
+      x: 4,
       barRods: [
         BarChartRodData(
-            y: 13,
+            y: double.parse(dashboard.ventaMesAnt05!),
             colors: [Colors.lightBlueAccent, Colors.greenAccent],
             width: 28,
           borderRadius: BorderRadius.only(
@@ -160,10 +162,10 @@ class CustomBarChart extends StatelessWidget {
       showingTooltipIndicators: [0],
     ),
     BarChartGroupData(
-      x: 3,
+      x: 5,
       barRods: [
         BarChartRodData(
-            y: 10,
+            y: double.parse(dashboard.ventaMesAnt06!),
             colors: [Colors.lightBlueAccent, Colors.greenAccent],
             width: 28,
           borderRadius: BorderRadius.only(
@@ -173,6 +175,6 @@ class CustomBarChart extends StatelessWidget {
         )
       ],
       showingTooltipIndicators: [0],
-    ),
+    )
   ];
 }

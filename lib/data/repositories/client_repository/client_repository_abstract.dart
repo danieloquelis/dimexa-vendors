@@ -4,7 +4,7 @@ import 'package:dimexa_vendors/data/models/client/client.dart';
 abstract class ClientRepositoryAbstract {
   void saveSyncDownClients(List<String> zoneIds, List<Client> clients);
 
-  Future<List<Client>> searchByZoneIdAndFilterType(String zoneId, String searchText, SearchClientFilter filterType);
+  Future<List<Client>> searchByZoneIdAndFilterType(String zoneId, bool zoneSpecial, String searchText, SearchClientFilter filterType);
 
   Client updateClientById(String zoneId, String clientId, Client client);
 

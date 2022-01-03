@@ -77,7 +77,7 @@ class SessionRepositoryImpl implements SessionRepository {
 
     try {
       _sessionBox.put(currentSession);
-    } catch(e,s) {
+    } catch(e) {
       onDBCatchError();
     }
   }

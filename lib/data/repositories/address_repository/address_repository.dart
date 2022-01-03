@@ -19,8 +19,13 @@ class AddressRepository implements AddressRepositoryAbstract {
   }
 
   @override
-  List<Address> listByClientId(String clientId) {
-    return addressBox.query(Address_.clienteid.equals(clientId)).build().find();
+  List<Address>? listByClientId(String clientId) {
+    try {
+      return addressBox.query(Address_.clienteid.equals(clientId)).build().find();
+    } catch(e) {
+      onDBCatchError();
+    }
+    return null;
   }
 
 }

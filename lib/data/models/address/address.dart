@@ -7,39 +7,36 @@ class Address {
   Address({
     this.clientedireccionid,
     this.clienteid,
-    this.ubigeoid,
     this.direccion,
+    this.ubigeoid,
+    this.distrito,
+    this.provincia,
+    this.departamento,
     this.referencia,
-    this.tipoprioridadid,
-    this.tipoestablecimientoid,
     this.latitud,
     this.longitud,
-    this.creado,
-    this.actualizado,
-    this.descargado,
-    this.sincronizado,
-    this.usuarioid,
-    this.tipoestablecimiento,
+    this.tipoprioridadid,
     this.tipoprioridad,
+    this.tipoestablecimientoid,
+    this.tipoestablecimiento,
   });
 
   @Id(assignable: true)
   int? clientedireccionid;
+  @Index()
   String? clienteid;
-  String? ubigeoid;
   String? direccion;
+  String? ubigeoid;
+  String? distrito;
+  String? provincia;
+  String? departamento;
   String? referencia;
-  int? tipoprioridadid;
-  int? tipoestablecimientoid;
   String? latitud;
   String? longitud;
-  DateTime? creado;
-  DateTime? actualizado;
-  String? descargado;
-  String? sincronizado;
-  String? usuarioid;
-  String? tipoestablecimiento;
+  int? tipoprioridadid;
   String? tipoprioridad;
+  int? tipoestablecimientoid;
+  String? tipoestablecimiento;
 
   factory Address.fromRawJson(String str) => Address.fromJson(json.decode(str));
 
@@ -48,40 +45,37 @@ class Address {
   factory Address.fromJson(Map<String, dynamic> json) => Address(
     clientedireccionid: json["clientedireccionid"],
     clienteid: json["clienteid"],
-    ubigeoid: json["ubigeoid"],
     direccion: json["direccion"],
+    ubigeoid: json["ubigeoid"],
+    distrito: json["distrito"],
+    provincia: json["provincia"],
+    departamento: json["departamento"],
     referencia: json["referencia"],
-    tipoprioridadid: json["tipoprioridadid"],
-    tipoestablecimientoid: json["tipoestablecimientoid"],
     latitud: json["latitud"],
     longitud: json["longitud"],
-    creado: DateTime.parse(json["creado"]),
-    actualizado: DateTime.parse(json["actualizado"]),
-    descargado: json["descargado"],
-    sincronizado: json["sincronizado"],
-    usuarioid: json["usuarioid"],
-    tipoestablecimiento: json["tipoestablecimiento"],
+    tipoprioridadid: json["tipoprioridadid"],
     tipoprioridad: json["tipoprioridad"],
+    tipoestablecimientoid: json["tipoestablecimientoid"],
+    tipoestablecimiento: json["tipoestablecimiento"],
   );
 
   Map<String, dynamic> toJson() => {
     "clientedireccionid": clientedireccionid,
     "clienteid": clienteid,
-    "ubigeoid": ubigeoid,
     "direccion": direccion,
+    "ubigeoid": ubigeoid,
+    "distrito": distrito,
+    "provincia": provincia,
+    "departamento": departamento,
     "referencia": referencia,
-    "tipoprioridadid": tipoprioridadid,
-    "tipoestablecimientoid": tipoestablecimientoid,
     "latitud": latitud,
     "longitud": longitud,
-    "creado": creado != null ? creado!.toIso8601String() : null,
-    "actualizado": actualizado != null ? actualizado!.toIso8601String() : null,
-    "descargado": descargado,
-    "sincronizado": sincronizado,
-    "usuarioid": usuarioid,
-    "tipoestablecimiento": tipoestablecimiento,
+    "tipoprioridadid": tipoprioridadid,
     "tipoprioridad": tipoprioridad,
+    "tipoestablecimientoid": tipoestablecimientoid,
+    "tipoestablecimiento": tipoestablecimiento,
   };
 
   static Address fromJsonModel(Map<String, dynamic> json) => Address.fromJson(json);
 }
+

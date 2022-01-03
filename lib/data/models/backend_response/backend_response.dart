@@ -19,7 +19,6 @@ class BackendResponse<T> {
         //case when is not a list of the entity
         castedData = fromJsonModel(rawData);
       } catch(e) {
-        print(e);
         //ignore
       }
 

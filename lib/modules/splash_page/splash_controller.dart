@@ -1,5 +1,4 @@
 import 'package:carousel_slider/carousel_controller.dart';
-import 'package:dimexa_vendors/core/utils/app_exception/app_exception.dart';
 import 'package:dimexa_vendors/core/values/strings.dart';
 import 'package:dimexa_vendors/data/interceptors/device_interceptor/device_interceptor_impl.dart';
 import 'package:dimexa_vendors/data/models/app_permission/app_permission.dart';
@@ -10,7 +9,6 @@ import 'package:dimexa_vendors/modules/splash_page/local_widgets/permissions/per
 import 'package:dimexa_vendors/routes/app_routes/app_routes.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_device_identifier/flutter_device_identifier.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 

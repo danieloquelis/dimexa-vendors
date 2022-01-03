@@ -1,14 +1,22 @@
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
 import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:dimexa_vendors/data/models/contact/contact.dart';
+import 'package:dimexa_vendors/data/models/contact_media/contact_media.dart';
+import 'package:dimexa_vendors/data/models/contact_role/contact_role.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:dimexa_vendors/global_widgets/custom_info_field/custom_info_field.dart';
+import 'package:dimexa_vendors/global_widgets/tag/tag.dart';
 import 'package:flutter/material.dart';
 
 class ContactItem extends StatelessWidget {
   Contact contact;
-
-  ContactItem({required this.contact});
+  List<ContactRole> roles;
+  ContactMedia contactMedia;
+  ContactItem({
+    required this.contact,
+    required this.roles,
+    required this.contactMedia
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,15 +31,23 @@ class ContactItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomInfoField(
-              label: AppTranslations.of(context)!.text("position"),
-              value: StringUtils.checkNullOrEmpty(contact.tipocontacto),
+              label: AppTranslations.of(context)!.text("role"),
+              widgetValue: Row(
+                  children: roles.map((role) {
+                    return Tag(
+                      borderColor: Colors.transparent,
+                      backgroundColor: AppColors.tagBackground,
+                      label: role.tiporol,
+                    );
+                  }).toList()
+              ),
             ),
             const Divider(
               thickness: 1,
             ),
             CustomInfoField(
               label: AppTranslations.of(context)!.text("full_name"),
-              value: StringUtils.checkNullOrEmpty(contact.nombre),
+              value: StringUtils.checkNullOrEmpty(contact.nombres),
             ),
             const Divider(
               thickness: 1,
@@ -41,13 +57,13 @@ class ContactItem extends StatelessWidget {
                 Flexible(
                   child: CustomInfoField(
                     label: AppTranslations.of(context)!.text("gender"),
-                    value: "Masculino",
+                    value: StringUtils.checkNullOrEmpty(contact.genero),
                   ),
                 ),
                 Flexible(
                   child: CustomInfoField(
                     label: AppTranslations.of(context)!.text("civil_status"),
-                    value: "Soltero",
+                    value: StringUtils.checkNullOrEmpty(contact.estadocivil),
                   ),
                 )
               ],
@@ -66,7 +82,7 @@ class ContactItem extends StatelessWidget {
                 Flexible(
                   child: CustomInfoField(
                     label: AppTranslations.of(context)!.text("phone_number"),
-                    value: StringUtils.checkNullOrEmpty(contact.telefono),
+                    value: ""//TODO:StringUtils.checkNullOrEmpty(contact.telefono),
                   ),
                 )
               ],
@@ -76,7 +92,7 @@ class ContactItem extends StatelessWidget {
             ),
             CustomInfoField(
               label: AppTranslations.of(context)!.text("email"),
-              value: StringUtils.checkNullOrEmpty(contact.correo),
+              value: ""//TODO:StringUtils.checkNullOrEmpty(contact.correo),
             ),
           ],
         )
