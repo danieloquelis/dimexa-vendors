@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:math';
+import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:objectbox/objectbox.dart';
 
 @Entity()
@@ -97,4 +99,25 @@ class Dashboard {
   };
 
   static Dashboard fromJsonModel(Map<String, dynamic> json) => Dashboard.fromJson(json);
+
+  double getMax() {
+    if (StringUtils.isNullOrEmpty(ventaMesAnt01) ||
+        StringUtils.isNullOrEmpty(ventaMesAnt02) ||
+        StringUtils.isNullOrEmpty(ventaMesAnt03) ||
+        StringUtils.isNullOrEmpty(ventaMesAnt04) ||
+        StringUtils.isNullOrEmpty(ventaMesAnt05) ||
+        StringUtils.isNullOrEmpty(ventaMesAnt06)) {
+      return 100.0;
+    }
+
+    double m1 = double.parse(ventaMesAnt01!);
+    double m2 = double.parse(ventaMesAnt02!);
+    double m3 = double.parse(ventaMesAnt03!);
+    double m4 = double.parse(ventaMesAnt04!);
+    double m5 = double.parse(ventaMesAnt05!);
+    double m6 = double.parse(ventaMesAnt06!);
+
+    List<double> nums = [m1, m2, m3, m4, m5, m6];
+    return nums.reduce(max);
+  }
 }

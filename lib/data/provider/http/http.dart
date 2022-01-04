@@ -19,7 +19,7 @@ class Http {
       Map<String, String> queryParameters = const {},
       dynamic body,
       Parser<T>? parser,
-      Duration timeOut = const Duration(seconds: 10),
+      Duration timeOut = const Duration(minutes: 1),
       String? token,
       RxInt? received,
       RxInt? total

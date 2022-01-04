@@ -17,18 +17,18 @@ class CustomBarChart extends StatelessWidget {
         titlesData: titlesData,
         borderData: borderData,
         barGroups: barGroups,
-        alignment: BarChartAlignment.spaceAround,
-        maxY: 20,
-
+        alignment: BarChartAlignment.spaceBetween,
+        maxY: dashboard.getMax(),
       ),
     );
   }
 
   BarTouchData get barTouchData => BarTouchData(
-    enabled: false,
+    enabled: true,
     touchTooltipData: BarTouchTooltipData(
       tooltipBgColor: Colors.transparent,
       tooltipPadding: const EdgeInsets.all(0),
+      direction: TooltipDirection.top,
       tooltipMargin: 8,
       getTooltipItem: (
           BarChartGroupData group,
@@ -37,10 +37,11 @@ class CustomBarChart extends StatelessWidget {
           int rodIndex,
           ) {
         return BarTooltipItem(
-          '${rod.y.round().toString()} %',
+          'S/.${(rod.y/1000).toStringAsFixed(2)}K',
           const TextStyle(
             color: AppColors.gray,
             fontWeight: FontWeight.bold,
+            fontSize: 12
           ),
         );
       },
@@ -56,7 +57,7 @@ class CustomBarChart extends StatelessWidget {
         fontWeight: FontWeight.bold,
         fontSize: 14,
       ),
-      margin: 20,
+      margin: 24,
       getTitles: (double value) {
         switch (value.toInt()) {
           case 0:
@@ -92,11 +93,11 @@ class CustomBarChart extends StatelessWidget {
         BarChartRodData(
             y: double.parse(dashboard.ventaMesAnt01!),
             colors: [Colors.lightBlueAccent, Colors.greenAccent],
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(14),
-              topRight: Radius.circular(14),
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(24),
+              topRight: Radius.circular(24),
             ),
-            width: 28
+            width: 42
         )
       ],
       showingTooltipIndicators: [0],
@@ -107,10 +108,10 @@ class CustomBarChart extends StatelessWidget {
         BarChartRodData(
             y: double.parse(dashboard.ventaMesAnt02!),
             colors: [Colors.lightBlueAccent, Colors.greenAccent],
-            width: 28,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(14),
-            topRight: Radius.circular(14),
+            width: 42,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(24),
+            topRight: Radius.circular(24),
           ),
         )
       ],
@@ -122,10 +123,10 @@ class CustomBarChart extends StatelessWidget {
         BarChartRodData(
             y: double.parse(dashboard.ventaMesAnt03!),
             colors: [Colors.lightBlueAccent, Colors.greenAccent],
-            width: 28,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(14),
-            topRight: Radius.circular(14),
+            width: 42,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(24),
+            topRight: Radius.circular(24),
           ),
         )
       ],
@@ -137,10 +138,10 @@ class CustomBarChart extends StatelessWidget {
         BarChartRodData(
             y: double.parse(dashboard.ventaMesAnt04!),
             colors: [Colors.lightBlueAccent, Colors.greenAccent],
-            width: 28,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(14),
-            topRight: Radius.circular(14),
+            width: 42,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(24),
+            topRight: Radius.circular(24),
           ),
         )
       ],
@@ -152,10 +153,10 @@ class CustomBarChart extends StatelessWidget {
         BarChartRodData(
             y: double.parse(dashboard.ventaMesAnt05!),
             colors: [Colors.lightBlueAccent, Colors.greenAccent],
-            width: 28,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(14),
-            topRight: Radius.circular(14),
+            width: 42,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(24),
+            topRight: Radius.circular(24),
           ),
         )
       ],
@@ -167,10 +168,10 @@ class CustomBarChart extends StatelessWidget {
         BarChartRodData(
             y: double.parse(dashboard.ventaMesAnt06!),
             colors: [Colors.lightBlueAccent, Colors.greenAccent],
-            width: 28,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(14),
-            topRight: Radius.circular(14),
+            width: 42,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(24),
+            topRight: Radius.circular(24),
           ),
         )
       ],

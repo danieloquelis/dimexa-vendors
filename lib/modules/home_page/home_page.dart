@@ -61,8 +61,7 @@ class _HomePageState extends State<HomePage> {
                       },
                     ): Text(StringUtils.checkNullOrEmpty(_.selectedZoneId.value)),
                 ),
-
-                SizedBox(height: 36,),
+                SizedBox(height: 42,),
                 Text(
                   'Avance',
                   style: TextStyle(
@@ -90,6 +89,7 @@ class _HomePageState extends State<HomePage> {
                       backgroundColor: Colors.grey.shade200,
                     ),
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Indicator(
                           title: 'Cuota',
@@ -117,7 +117,7 @@ class _HomePageState extends State<HomePage> {
                     )
                   ],
                 ),
-                SizedBox(height: 36,),
+                SizedBox(height: 72,),
                 AspectRatio(
                   aspectRatio: 1.7,
                   child: Card(
