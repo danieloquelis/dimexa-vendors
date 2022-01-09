@@ -80,6 +80,8 @@ class LoginController extends GetxController {
             errorMessage: Strings.systemError
         );
       }
+
+      //TODO: logout or show message in ui and avoid login
       _loading = false;
       update();
     }

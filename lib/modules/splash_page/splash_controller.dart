@@ -153,7 +153,7 @@ class SplashController extends GetxController {
         }
 
         showMessage(
-          message: "Cierre la aplicación e inténtelo nuevamente"
+          message: "Cierre la aplicación e inténtelo nuevamente",
         );
       }
     }

@@ -32,9 +32,10 @@ class _HomePageState extends State<HomePage> {
         ).widget(),
         body: Container(
           width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
           decoration: const BoxDecoration(
-              color: AppColors.basePage,
-              borderRadius: BorderRadius.vertical(top: Radius.circular(18))
+            color: AppColors.basePage,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(18))
           ),
           child: SingleChildScrollView(
             child: Padding(

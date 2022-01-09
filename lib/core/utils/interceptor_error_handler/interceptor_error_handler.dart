@@ -27,8 +27,9 @@ String interceptorErrorHandler(HttpResult result, {
     return timeoutErrorMessage ?? Strings.timeoutDefaultError;
   }
 
-  if (errorException is DioErrorType) {
-    switch (errorException) {
+  if (errorException is DioError) {
+    final type = errorException.type;
+    switch (type) {
       case DioErrorType.connectTimeout:
         return timeoutErrorMessage ?? Strings.timeoutDefaultError;
       case DioErrorType.sendTimeout:
