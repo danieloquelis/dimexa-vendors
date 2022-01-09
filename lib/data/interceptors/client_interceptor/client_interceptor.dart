@@ -1,7 +1,6 @@
 import 'package:dimexa_vendors/core/utils/app_exception/app_exception.dart';
 import 'package:dimexa_vendors/core/utils/interceptor_error_handler/interceptor_error_handler.dart';
 import 'package:dimexa_vendors/data/api/client_api/cient_api.dart';
-import 'package:dimexa_vendors/data/interceptors/client_interceptor/client_interceptor_abstract.dart';
 import 'package:dimexa_vendors/data/models/address/address.dart';
 import 'package:dimexa_vendors/data/models/backend_response/backend_response.dart';
 import 'package:dimexa_vendors/data/models/client/client.dart';
@@ -11,10 +10,9 @@ import 'package:dimexa_vendors/data/models/contact_media/contact_media.dart';
 import 'package:dimexa_vendors/data/models/contact_role/contact_role.dart';
 import 'package:get/get.dart';
 
-class ClientInterceptor implements ClientInterceptorAbstract {
+class ClientInterceptor {
   final _api = Get.find<ClientAPI>();
 
-  @override
   Future<BackendResponse<Client>?> syncClients(String? token, List<String> zoneIds, RxInt received, RxInt total) async {
     final result = await _api.getByZoneIds(
       zoneIds: zoneIds,
@@ -37,7 +35,6 @@ class ClientInterceptor implements ClientInterceptorAbstract {
     );
   }
 
-  @override
   Future<Client?> getClientById(String token, String clientId) async {
     final result = await _api.getById(
       token: token,
@@ -58,7 +55,6 @@ class ClientInterceptor implements ClientInterceptorAbstract {
     );
   }
 
-  @override
   Future<BackendResponse<Address>?> syncAddresses(String? token, List<String> clientIds, RxInt received, RxInt total) async {
     final result = await _api.getAddressesByClientIds(
       token: token!,
@@ -81,7 +77,6 @@ class ClientInterceptor implements ClientInterceptorAbstract {
     );
   }
 
-  @override
   Future<BackendResponse<Contact>?> syncContacts(String? token, List<String> clientIds, RxInt received, RxInt total) async {
     final result = await _api.getContactsByClientIds(
       token: token!,
@@ -104,7 +99,6 @@ class ClientInterceptor implements ClientInterceptorAbstract {
     );
   }
 
-  @override
   Future<BackendResponse<ContactRole>?> syncContactRoles(String? token, List<String> clientIds, RxInt received, RxInt total) async {
     final result = await _api.getRoleContactsByClientIds(
         token: token!,
@@ -127,7 +121,6 @@ class ClientInterceptor implements ClientInterceptorAbstract {
     );
   }
 
-  @override
   Future<BackendResponse<ContactMedia>?> syncContactMedias(String? token, List<String> clientIds, RxInt received, RxInt total) async {
     final result = await _api.getMediaContactsByClientIds(
         token: token!,
@@ -150,7 +143,6 @@ class ClientInterceptor implements ClientInterceptorAbstract {
     );
   }
 
-  @override
   Future<BackendResponse<ClientWallet>?> syncWallets(String? token, List<String> zoneIds, List<String>? clientIds, RxInt received, RxInt total) async {
     final result = await _api.getWalletByZoneIds(
         zoneIds: zoneIds,

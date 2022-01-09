@@ -1,15 +1,13 @@
 import 'package:dimexa_vendors/core/utils/app_exception/app_exception.dart';
 import 'package:dimexa_vendors/core/utils/interceptor_error_handler/interceptor_error_handler.dart';
 import 'package:dimexa_vendors/data/api/google_api/google_api.dart';
-import 'package:dimexa_vendors/data/interceptors/google_interceptor/google_interceptor_abstract.dart';
 import 'package:dimexa_vendors/data/models/reverse_geocoding_result/reverse_geocoding_result.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class GoogleInterceptor implements GoogleInterceptorAbstract{
+class GoogleInterceptor {
   final _api = Get.find<GoogleAPI>();
 
-  @override
   Future<List<GoogleAddress>?> getAutoCompleteAddresses(String input) async {
     input = input.replaceAll(RegExp('\\s+'), '+');
     final result = await _api.placeAutoComplete(
@@ -31,7 +29,6 @@ class GoogleInterceptor implements GoogleInterceptorAbstract{
     );
   }
 
-  @override
   Future<String?> getAddressFromLocation(LatLng location) async {
     final result = await _api.reverseGeoCoding(
         lat: location.latitude,
@@ -53,7 +50,6 @@ class GoogleInterceptor implements GoogleInterceptorAbstract{
     );
   }
 
-  @override
   Future<LatLng?> getLatLngByPlaceId(String placeId) async {
     final result = await _api.placeDetailsById(
       placeId: placeId,
@@ -75,7 +71,6 @@ class GoogleInterceptor implements GoogleInterceptorAbstract{
     );
   }
 
-  @override
   Future<bool> pingGoogle() async {
     final result = await _api.pingGoogle();
 

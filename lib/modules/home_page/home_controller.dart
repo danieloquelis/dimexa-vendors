@@ -29,7 +29,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _currentSession = globalController.session;
+    _currentSession = globalController.session!;
     _currentZoneIds = globalController.sessionZoneIds;
     String zoneId = globalController.selectedZoneId.value;
     SyncManager? syncManager = syncManagerRepository.getByTypeAndZoneId(zoneId, SyncType.dashboard);

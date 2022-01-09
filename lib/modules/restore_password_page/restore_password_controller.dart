@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:dimexa_vendors/core/utils/app_exception/app_exception.dart';
 import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:dimexa_vendors/core/values/strings.dart';
-import 'package:dimexa_vendors/data/interceptors/auth_interceptor/auth_interceptor_impl.dart';
+import 'package:dimexa_vendors/data/interceptors/auth_interceptor/auth_interceptor.dart';
 import 'package:dimexa_vendors/global_controllers/global_controller.dart';
 import 'package:dimexa_vendors/modules/restore_password_page/local_widgets/code_dialog/code_dialog.dart';
 import 'package:dimexa_vendors/routes/app_routes/app_routes.dart';
@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 class RestorePasswordController extends GetxController {
   ///Injections
   final globalController = Get.find<GlobalController>();
-  final authInterceptor = Get.find<AuthInterceptorImpl>();
+  final authInterceptor = Get.find<AuthInterceptor>();
 
   ///Private variables
   late String _user = "";

@@ -3,10 +3,9 @@ import 'package:dimexa_vendors/data/enums/search_client_filter/search_client_fil
 import 'package:dimexa_vendors/data/models/client/client.dart';
 import 'package:dimexa_vendors/data/provider/objectbox/objectbox.dart';
 import 'package:dimexa_vendors/data/provider/objectbox/objectbox.g.dart';
-import 'package:dimexa_vendors/data/repositories/client_repository/client_repository_abstract.dart';
 import 'package:get/get.dart';
 
-class ClientRepository implements ClientRepositoryAbstract {
+class ClientRepository  {
   final clientBox = Get.find<ObjectBox>().clientBox;
 
   @override

@@ -70,5 +70,11 @@
   "term": "Plazo",
   "product_detail": "Detalle de producto",
   "product_info": "Información de producto",
-  "quantity": "Cantidad"
+  "quantity": "Cantidad",
+  "select_a_zone": "Seleccione una zone",
+  "quota": "Cuota",
+  "sale": "Venta",
+  "deliquency": "Morosidad",
+  "coverage": "Cobertura",
+  "progress": "Avance"
 }

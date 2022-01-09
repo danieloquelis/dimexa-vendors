@@ -27,7 +27,8 @@ class _HomePageState extends State<HomePage> {
         appBar: BaseAppBar(
           title: AppTranslations.of(context)!.text('welcome'),
           lastUpdate: DateTimeUtil.dateTimeToText(_.lastSyncDate),
-          syncOnDemand: _.syncOnDemand
+          syncOnDemand: _.syncOnDemand,
+          openDrawer: _.globalController.openDrawer
         ).widget(),
         body: Container(
           width: MediaQuery.of(context).size.width,
@@ -35,100 +36,102 @@ class _HomePageState extends State<HomePage> {
               color: AppColors.basePage,
               borderRadius: BorderRadius.vertical(top: Radius.circular(18))
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  StringUtils.checkNullOrEmpty(_.currentSession.descripcion),
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: AppColors.black,
-                    fontWeight: FontWeight.bold
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    StringUtils.checkNullOrEmpty(_.currentSession.descripcion),
+                    style: const TextStyle(
+                      fontSize: 18,
+                      color: AppColors.black,
+                      fontWeight: FontWeight.bold
+                    ),
                   ),
-                ),
-                SizedBox(height: 6,),
-                Obx(
-                    () => _.currentZoneIds.length > 1 ?
-                    BaseDropdown(
-                      fontSize: 14,
-                      borderColor: Colors.transparent,
-                      backgroundColor: Colors.grey.shade200,
-                      label: StringUtils.checkNullOrEmpty(_.selectedZoneId.value),
-                      onClick: () {
-                        showZones(_);
-                      },
-                    ): Text(StringUtils.checkNullOrEmpty(_.selectedZoneId.value)),
-                ),
-                SizedBox(height: 42,),
-                Text(
-                  'Avance',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 18
+                  const SizedBox(height: 6,),
+                  Obx(
+                      () => _.currentZoneIds.length > 1 ?
+                      BaseDropdown(
+                        fontSize: 14,
+                        borderColor: Colors.transparent,
+                        backgroundColor: Colors.grey.shade200,
+                        label: StringUtils.checkNullOrEmpty(_.selectedZoneId.value),
+                        onClick: () {
+                          showZones(_);
+                        },
+                      ): Text(StringUtils.checkNullOrEmpty(_.selectedZoneId.value)),
                   ),
-                ),
-                SizedBox(height: 16,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    CircularPercentIndicator(
-                      radius: 146.0,
-                      lineWidth: 18.0,
-                      animation: true,
-                      percent:_.dashboard != null ? double.parse(StringUtils.checkNullOrEmpty(_.dashboard!.avanceMes)) : 0.0,
-                      center: Text(
-                        _.dashboard != null ? '${StringUtils.checkNullOrEmpty(_.dashboard!.avanceMes)}%' : "0.00%",
-                        style:
-                        const TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+                  const SizedBox(height: 42,),
+                  Text(
+                    AppTranslations.of(context)!.text('progress'),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 18
+                    ),
+                  ),
+                  const SizedBox(height: 16,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      CircularPercentIndicator(
+                        radius: 146.0,
+                        lineWidth: 18.0,
+                        animation: true,
+                        percent:_.dashboard != null ? double.parse(StringUtils.checkNullOrEmpty(_.dashboard!.avanceMes)) : 0.0,
+                        center: Text(
+                          _.dashboard != null ? '${StringUtils.checkNullOrEmpty(_.dashboard!.avanceMes)}%' : "0.00%",
+                          style:
+                          const TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+                        ),
+                        circularStrokeCap: CircularStrokeCap.round,
+                        progressColor: AppColors.green,
+                        backgroundColor: Colors.grey.shade200,
                       ),
-                      circularStrokeCap: CircularStrokeCap.round,
-                      progressColor: AppColors.green,
-                      backgroundColor: Colors.grey.shade200,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Indicator(
-                          title: 'Cuota',
-                          value: _.dashboard != null ? StringUtils.checkNullOrEmpty(_.dashboard!.cuotaMes) : "0.00",
-                        ),
-                        const SizedBox(height: 16,),
-                        Indicator(
-                          title: 'Venta',
-                          value:  _.dashboard != null ? StringUtils.checkNullOrEmpty(_.dashboard!.ventaMes) : "0.00",
-                        )
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Indicator(
-                          title: 'Morosidad',
-                          value: _.dashboard != null ? '${StringUtils.checkNullOrEmpty(_.dashboard!.morosidad)}%' : "0.00%",
-                        ),
-                        SizedBox(height: 16,),
-                        Indicator(
-                          title: 'Cobertura',
-                          value:_.dashboard != null ? '${_.dashboard!.clientesCobertura}/${_.dashboard!.clientes}' : "0/0",
-                        )
-                      ],
-                    )
-                  ],
-                ),
-                SizedBox(height: 72,),
-                AspectRatio(
-                  aspectRatio: 1.7,
-                  child: Card(
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-                    child: CustomBarChart(
-                      dashboard: _.dashboard!,
-                    ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Indicator(
+                            title: AppTranslations.of(context)!.text('quota'),
+                            value: _.dashboard != null ? StringUtils.scaleAmount(_.dashboard!.cuotaMes) : "0K",
+                          ),
+                          const SizedBox(height: 16,),
+                          Indicator(
+                            title: AppTranslations.of(context)!.text('sale'),
+                            value:  _.dashboard != null ? StringUtils.scaleAmount(_.dashboard!.ventaMes) : "0K",
+                          )
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Indicator(
+                            title: AppTranslations.of(context)!.text('deliquency'),
+                            value: _.dashboard != null ? '${StringUtils.checkNullOrEmpty(_.dashboard!.morosidad)}%' : "0.00%",
+                          ),
+                          const SizedBox(height: 16,),
+                          Indicator(
+                            title: AppTranslations.of(context)!.text('coverage'),
+                            value:_.dashboard != null ? '${_.dashboard!.clientesCobertura}/${_.dashboard!.clientes}' : "0/0",
+                          )
+                        ],
+                      )
+                    ],
                   ),
-                )
-              ],
+                  const SizedBox(height: 72,),
+                  AspectRatio(
+                    aspectRatio: 1.7,
+                    child: Card(
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                      child: CustomBarChart(
+                        dashboard: _.dashboard!,
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
@@ -141,7 +144,7 @@ class _HomePageState extends State<HomePage> {
         context: context,
         builder: (BuildContext context) => CupertinoActionSheet(
           title: Text(
-            "Seleccione una zona",
+            AppTranslations.of(context)!.text('select_a_zone'),
             style: const TextStyle(
                 fontSize: 18,
                 color: AppColors.gray

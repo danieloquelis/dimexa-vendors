@@ -2,10 +2,9 @@ import 'package:dimexa_vendors/core/utils/interceptor_error_handler/interceptor_
 import 'package:dimexa_vendors/data/models/address/address.dart';
 import 'package:dimexa_vendors/data/provider/objectbox/objectbox.dart';
 import 'package:dimexa_vendors/data/provider/objectbox/objectbox.g.dart';
-import 'package:dimexa_vendors/data/repositories/address_repository/address_repository_abstract.dart';
 import 'package:get/get.dart';
 
-class AddressRepository implements AddressRepositoryAbstract {
+class AddressRepository {
   final addressBox = Get.find<ObjectBox>().addressBox;
 
   @override

@@ -5,6 +5,7 @@ import 'package:dimexa_vendors/modules/collects_page/collects_page.dart';
 import 'package:dimexa_vendors/modules/home_page/home_page.dart';
 import 'package:dimexa_vendors/modules/order_page/order_page.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TabManagerController extends GetxController {
@@ -30,7 +31,8 @@ class TabManagerController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _session = globalController.session;
+    _session = globalController.session!;
+
   }
 
   @override
@@ -42,5 +44,4 @@ class TabManagerController extends GetxController {
     _selectedIndex = index;
     update();
   }
-
 }

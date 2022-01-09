@@ -1,11 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:dimexa_vendors/core/utils/app_exception/app_exception.dart';
 import 'package:dimexa_vendors/core/utils/collection_utils/collection_utils.dart';
 import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:dimexa_vendors/core/values/numbers.dart';
-import 'package:dimexa_vendors/core/values/strings.dart';
 import 'package:dimexa_vendors/data/enums/sync_type/sync_type.dart';
+import 'package:dimexa_vendors/data/interceptors/auth_interceptor/auth_interceptor.dart';
 import 'package:dimexa_vendors/data/interceptors/client_interceptor/client_interceptor.dart';
 import 'package:dimexa_vendors/data/interceptors/dashboard_interceptor/dashboard_interceptor.dart';
 import 'package:dimexa_vendors/data/interceptors/product_interceptor/product_interceptor.dart';
@@ -28,9 +27,11 @@ import 'package:dimexa_vendors/data/repositories/client_wallet_repository/client
 import 'package:dimexa_vendors/data/repositories/contact_repository/contact_repository.dart';
 import 'package:dimexa_vendors/data/repositories/dashboard_repository/dashboard_repository.dart';
 import 'package:dimexa_vendors/data/repositories/product_repository/product_repository.dart';
+import 'package:dimexa_vendors/data/repositories/session_repository/session_repository.dart';
 import 'package:dimexa_vendors/data/repositories/sync_manager_repository/sync_manager_repository.dart';
 import 'package:dimexa_vendors/data/repositories/zone_repository/zone_repository.dart';
 import 'package:dimexa_vendors/global_widgets/loading_dialog/loading_dialog.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:dimexa_vendors/data/models/client/client.dart';
@@ -49,23 +50,27 @@ class GlobalController extends GetxController {
   final clientWalletRepository = Get.find<ClientWalletRepository>();
   final productInterceptor = Get.find<ProductInterceptor>();
   final productRepository = Get.find<ProductRepository>();
+  final sessionRepository = Get.find<SessionRepository>();
+  final authInterceptor = Get.find<AuthInterceptor>();
 
   ///Private variables
   final List<AppPermission> _filteredPermissions = [];
-  late Session _session;
+  Session? _session;
   late List<String> _sessionZoneIds = [];
   final RxString _selectedZoneId = "".obs;
   final RxInt _received = 0.obs;
   final RxInt _total = 0.obs;
+  final GlobalKey<ScaffoldState> _tabManagerKey = GlobalKey();
 
   ///Local used variables
   bool isLoadingDialogOn = false;
 
   ///Getters
   List<AppPermission> get filteredPermissions => _filteredPermissions;
-  Session get session => _session;
+  Session? get session => _session;
   RxString get selectedZoneId => _selectedZoneId;
   List<String> get sessionZoneIds => _sessionZoneIds;
+  GlobalKey<ScaffoldState> get tabManagerKey => _tabManagerKey;
 
   @override
   void onReady() async {
@@ -76,7 +81,6 @@ class GlobalController extends GetxController {
     //filter list of permissions based on current status
     await filterPermissions();
   }
-
 
   Future<void> filterPermissions() async {
     //build list of permissions
@@ -94,13 +98,30 @@ class GlobalController extends GetxController {
     _session = session;
     if (StringUtils.isNotNullNorEmpty(session.zoneIds)) {
       _sessionZoneIds = json.decode(session.zoneIds!).cast<String>();
-      _selectedZoneId.value = StringUtils.checkNullOrEmpty(_sessionZoneIds.first);
+      setSelectedZoneId(StringUtils.checkNullOrEmpty(_sessionZoneIds.first));
     }
   }
 
   void setSelectedZoneId(String zoneId) {
     _selectedZoneId.value = zoneId;
     update(["selected_zone_id"]);
+  }
+
+  Future<String?> getToken() async {
+    String? token = sessionRepository.getToken(currentSession: _session);
+
+    if (_session != null && StringUtils.isNullOrEmpty(token)) {
+      //need to refresh token
+      Session? newSession = await authInterceptor.refreshSession(StringUtils.checkNullOrEmpty(_session!.usuario));
+      if (newSession == null) {
+        return null;
+      }
+
+      setSession(newSession);
+      return newSession.token;
+    }
+
+    return token;
   }
 
   void showLoadingDialog({String? message}) {
@@ -177,19 +198,7 @@ class GlobalController extends GetxController {
         prefixMessage: "Sincronizando clientes"
     );
 
-    BackendResponse<Client>? response = await clientInterceptor.syncClients(_session.token, zoneIds, _received, _total)
-        .onError((error, stackTrace) {
-      if (error is AppException) {
-        hideLoadingDialog(
-            errorMessage: error.uiMessage
-        );
-      } else {
-        hideLoadingDialog(
-            errorMessage: Strings.systemError
-        );
-      }
-      return null;
-    });
+    BackendResponse<Client>? response = await clientInterceptor.syncClients(await getToken(), zoneIds, _received, _total);
 
     if (response == null) {
       return [];
@@ -226,19 +235,7 @@ class GlobalController extends GetxController {
         prefixMessage: "Sincronizando direcciones"
     );
 
-    BackendResponse<Address>? response = await clientInterceptor.syncAddresses(_session.token, clientIds, _received, _total)
-    .onError((error, stackTrace) {
-      if (error is AppException) {
-        hideLoadingDialog(
-            errorMessage: error.uiMessage
-        );
-      } else {
-        hideLoadingDialog(
-            errorMessage: Strings.systemError
-        );
-      }
-      return null;
-    });
+    BackendResponse<Address>? response = await clientInterceptor.syncAddresses(await getToken(), clientIds, _received, _total);
 
     if (response == null) {
       return;
@@ -268,19 +265,7 @@ class GlobalController extends GetxController {
         prefixMessage: "Sincronizando contactos"
     );
 
-    BackendResponse<Contact>? response = await clientInterceptor.syncContacts(_session.token, clientIds, _received, _total).onError((error, stackTrace) {
-      if (error is AppException) {
-        hideLoadingDialog(
-            errorMessage: error.uiMessage
-        );
-      } else {
-        hideLoadingDialog(
-            errorMessage: Strings.systemError
-        );
-      }
-
-      return null;
-    });
+    BackendResponse<Contact>? response = await clientInterceptor.syncContacts(await getToken(), clientIds, _received, _total);
 
     if (response == null) {
       return;
@@ -310,20 +295,7 @@ class GlobalController extends GetxController {
         prefixMessage: "Sincronizando roles"
     );
 
-    BackendResponse<ContactRole>? response = await clientInterceptor.syncContactRoles(_session.token, clientIds, _received, _total)
-    .onError((error, stackTrace) {
-      if (error is AppException) {
-        hideLoadingDialog(
-            errorMessage: error.uiMessage
-        );
-      } else {
-        hideLoadingDialog(
-            errorMessage: Strings.systemError
-        );
-      }
-
-      return null;
-    });
+    BackendResponse<ContactRole>? response = await clientInterceptor.syncContactRoles(await getToken(), clientIds, _received, _total);
 
     if (response == null) {
       return;
@@ -353,20 +325,7 @@ class GlobalController extends GetxController {
         prefixMessage: "Sincronizando medios"
     );
 
-    BackendResponse<ContactMedia>? response = await clientInterceptor.syncContactMedias(_session.token, clientIds, _received, _total)
-    .onError((error, stackTrace) {
-      if (error is AppException) {
-        hideLoadingDialog(
-            errorMessage: error.uiMessage
-        );
-      } else {
-        hideLoadingDialog(
-            errorMessage: Strings.systemError
-        );
-      }
-
-      return null;
-    });
+    BackendResponse<ContactMedia>? response = await clientInterceptor.syncContactMedias(await getToken(), clientIds, _received, _total);
 
     if (response == null) {
       return;
@@ -417,20 +376,7 @@ class GlobalController extends GetxController {
         prefixMessage: "Sincronizando datos de cartera"
     );
 
-    BackendResponse<ClientWallet>? response = await clientInterceptor.syncWallets(_session.token, zoneIds, onDemand ? clientIds: null, _received, _total)
-    .onError((error, stackTrace) {
-      if (error is AppException) {
-        hideLoadingDialog(
-            errorMessage: error.uiMessage
-        );
-      } else {
-        hideLoadingDialog(
-            errorMessage: Strings.systemError
-        );
-      }
-
-      return null;
-    });
+    BackendResponse<ClientWallet>? response = await clientInterceptor.syncWallets(await getToken(), zoneIds, onDemand ? clientIds: null, _received, _total);
 
     if (response == null) {
       return;
@@ -465,20 +411,7 @@ class GlobalController extends GetxController {
         prefixMessage: "Sincronizando zonas"
     );
 
-    BackendResponse<Zone>? response = await zoneInterceptor.syncDownZones(_session.token, _received, _total)
-    .onError((error, stackTrace) {
-      if (error is AppException) {
-        hideLoadingDialog(
-            errorMessage: error.uiMessage
-        );
-      } else {
-        hideLoadingDialog(
-            errorMessage: Strings.systemError
-        );
-      }
-
-      return null;
-    });
+    BackendResponse<Zone>? response = await zoneInterceptor.syncDownZones(await getToken(), _received, _total);
 
     if (response == null) {
       return;
@@ -529,20 +462,7 @@ class GlobalController extends GetxController {
         prefixMessage: "Sincronizando dashboard"
     );
 
-    BackendResponse<Dashboard>? response = await dashboardInterceptor.sync(_session.token, zoneIds, _received, _total)
-        .onError((error, stackTrace) {
-      if (error is AppException) {
-        hideLoadingDialog(
-            errorMessage: error.uiMessage
-        );
-      } else {
-        hideLoadingDialog(
-            errorMessage: Strings.systemError
-        );
-      }
-
-      return null;
-    });
+    BackendResponse<Dashboard>? response = await dashboardInterceptor.sync(await getToken(), zoneIds, _received, _total);
 
     if (response == null) {
       return;
@@ -592,20 +512,7 @@ class GlobalController extends GetxController {
         prefixMessage: "Sincronizando productos"
     );
 
-    BackendResponse<Product>? response = await productInterceptor.sync(_session.token, zoneIds, _received, _total)
-        .onError((error, stackTrace) {
-      if (error is AppException) {
-        hideLoadingDialog(
-            errorMessage: error.uiMessage
-        );
-      } else {
-        hideLoadingDialog(
-            errorMessage: Strings.systemError
-        );
-      }
-
-      return null;
-    });
+    BackendResponse<Product>? response = await productInterceptor.sync(await getToken(), zoneIds, _received, _total);
 
     if (response == null) {
       return;
@@ -639,5 +546,11 @@ class GlobalController extends GetxController {
   void resetSyncProgress() {
     _received.value = 0;
     _total.value = 0;
+  }
+
+  void openDrawer() {
+    if (_tabManagerKey.currentState != null) {
+      _tabManagerKey.currentState!.openDrawer();
+    }
   }
 }

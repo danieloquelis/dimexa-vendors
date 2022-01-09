@@ -2,10 +2,9 @@ import 'package:dimexa_vendors/core/utils/interceptor_error_handler/interceptor_
 import 'package:dimexa_vendors/data/models/dashboard/dashboard.dart';
 import 'package:dimexa_vendors/data/provider/objectbox/objectbox.dart';
 import 'package:dimexa_vendors/data/provider/objectbox/objectbox.g.dart';
-import 'package:dimexa_vendors/data/repositories/dashboard_repository/dashboard_repository_abstract.dart';
 import 'package:get/get.dart';
 
-class DashboardRepository implements DashboardRepositoryAbstract {
+class DashboardRepository {
   final dashboardBox = Get.find<ObjectBox>().dashboardBox;
 
   @override

@@ -1,16 +1,14 @@
 import 'package:dimexa_vendors/core/utils/app_exception/app_exception.dart';
 import 'package:dimexa_vendors/core/utils/interceptor_error_handler/interceptor_error_handler.dart';
 import 'package:dimexa_vendors/data/api/dashboard_api/dashboard_api.dart';
-import 'package:dimexa_vendors/data/interceptors/dashboard_interceptor/dashboard_interceptor_abstract.dart';
 import 'package:dimexa_vendors/data/models/backend_response/backend_response.dart';
 import 'package:dimexa_vendors/data/models/dashboard/dashboard.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
-class DashboardInterceptor implements DashboardInterceptorAbstract {
+class DashboardInterceptor {
   final _api = Get.find<DashboardAPI>();
 
-  @override
   Future<BackendResponse<Dashboard>?> sync(String? token, List<String> zoneIds, RxInt received, RxInt total) async {
     final result = await _api.getByZoneIds(
         zoneIds: zoneIds,

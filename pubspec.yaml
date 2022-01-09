@@ -42,7 +42,6 @@ dependencies:
   path_provider:
   expandable:
   google_fonts:
-  shared_preferences:
   infinite_scroll_pagination:
   package_info:
   provider:

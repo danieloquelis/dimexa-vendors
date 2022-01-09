@@ -4,10 +4,9 @@ import 'package:dimexa_vendors/data/models/contact_media/contact_media.dart';
 import 'package:dimexa_vendors/data/models/contact_role/contact_role.dart';
 import 'package:dimexa_vendors/data/provider/objectbox/objectbox.dart';
 import 'package:dimexa_vendors/data/provider/objectbox/objectbox.g.dart';
-import 'package:dimexa_vendors/data/repositories/contact_repository/contact_repository_abstract.dart';
 import 'package:get/get.dart';
 
-class ContactRepository implements ContactRepositoryAbstract {
+class ContactRepository {
   final contactBox = Get.find<ObjectBox>().contactBox;
   final contactRoleBox = Get.find<ObjectBox>().contactRoleBox;
   final contactMediaBox = Get.find<ObjectBox>().contactMediaBox;

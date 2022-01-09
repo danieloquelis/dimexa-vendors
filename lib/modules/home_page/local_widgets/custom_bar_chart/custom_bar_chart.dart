@@ -37,7 +37,7 @@ class CustomBarChart extends StatelessWidget {
           int rodIndex,
           ) {
         return BarTooltipItem(
-          'S/.${(rod.y/1000).toStringAsFixed(2)}K',
+          'S/.${(rod.y/1000).round()}K',
           const TextStyle(
             color: AppColors.gray,
             fontWeight: FontWeight.bold,

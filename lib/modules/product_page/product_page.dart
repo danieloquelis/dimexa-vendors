@@ -4,7 +4,6 @@ import 'package:dimexa_vendors/core/utils/date_time_util/date_time_util.dart';
 import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:dimexa_vendors/core/values/strings.dart';
 import 'package:dimexa_vendors/data/enums/search_product_filter/search_product_filter.dart';
-import 'package:dimexa_vendors/data/models/product/product.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:dimexa_vendors/global_widgets/base_appbar/base_appbar.dart';
 import 'package:dimexa_vendors/global_widgets/cupertino_bsheet_item/cupertino_bsheet_item.dart';
@@ -19,7 +18,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class ProductPage extends StatefulWidget {
   @override

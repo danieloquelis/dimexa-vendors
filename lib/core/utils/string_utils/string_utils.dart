@@ -26,4 +26,13 @@ class StringUtils {
   static bool isNotNullNorEmpty(String? value) {
     return !isNullOrEmpty(value);
   }
+
+  static String scaleAmount(String? value) {
+    if (isNullOrEmpty(value)) {
+      value = "0";
+    }
+
+    double val = double.parse(value!);
+    return '${(val/1000).round()}K';
+  }
 }

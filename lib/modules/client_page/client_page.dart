@@ -28,7 +28,8 @@ class _ClientPageState extends State<ClientPage> {
         appBar: BaseAppBar(
           title: AppTranslations.of(context)!.text('clients'),
           lastUpdate: DateTimeUtil.dateTimeToText(_.lastSyncDate),
-          syncOnDemand: _.syncOnDemand
+          syncOnDemand: _.syncOnDemand,
+          openDrawer: _.globalController.openDrawer
         ).widget(),
         body: Container(
           decoration: const BoxDecoration(

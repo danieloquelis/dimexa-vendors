@@ -2,10 +2,9 @@ import 'package:dimexa_vendors/core/utils/interceptor_error_handler/interceptor_
 import 'package:dimexa_vendors/data/models/zone/zone.dart';
 import 'package:dimexa_vendors/data/provider/objectbox/objectbox.dart';
 import 'package:dimexa_vendors/data/provider/objectbox/objectbox.g.dart';
-import 'package:dimexa_vendors/data/repositories/zone_repository/zone_repository_abstract.dart';
 import 'package:get/get.dart';
 
-class ZoneRepository implements ZoneRepositoryAbstract {
+class ZoneRepository {
   final zoneBox = Get.find<ObjectBox>().zoneBox;
 
   @override

@@ -56,7 +56,7 @@ class ClientDetailController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _session = globalController.session;
+    _session = globalController.session!;
     _client = Get.arguments['client'];
     _clientContacts = Get.arguments['clientContacts'];
     _contactRoles = Get.arguments['contactRoles'];

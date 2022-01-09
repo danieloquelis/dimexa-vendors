@@ -5,10 +5,9 @@ import 'package:dimexa_vendors/data/enums/sync_type/sync_type.dart';
 import 'package:dimexa_vendors/data/models/sync_manager/sync_manager.dart';
 import 'package:dimexa_vendors/data/provider/objectbox/objectbox.dart';
 import 'package:dimexa_vendors/data/provider/objectbox/objectbox.g.dart';
-import 'package:dimexa_vendors/data/repositories/sync_manager_repository/sync_manager_repository_abstract.dart';
 import 'package:get/get.dart';
 
-class SyncManagerRepository implements SyncManagerRepositoryAbstract {
+class SyncManagerRepository {
   final _syncManagerBox = Get.find<ObjectBox>().syncManagerBox;
 
   @override
