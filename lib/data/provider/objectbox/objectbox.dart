@@ -6,6 +6,7 @@ import 'package:dimexa_vendors/data/models/contact/contact.dart';
 import 'package:dimexa_vendors/data/models/contact_media/contact_media.dart';
 import 'package:dimexa_vendors/data/models/contact_role/contact_role.dart';
 import 'package:dimexa_vendors/data/models/dashboard/dashboard.dart';
+import 'package:dimexa_vendors/data/models/document_type/document_type.dart';
 import 'package:dimexa_vendors/data/models/product/product.dart';
 import 'package:dimexa_vendors/data/models/session/session.dart';
 import 'package:dimexa_vendors/data/models/client/client.dart';
@@ -28,6 +29,7 @@ class ObjectBox {
   Box<Zone>? _zoneBox;
   Box<Dashboard>? _dashboardBox;
   Box<Product>? _productBox;
+  Box<DocumentType>? _documentTypeBox;
 
   Box<Session> get sessionBox => _sessionBox!;
   Box<Client> get clientBox => _clientBox!;
@@ -40,6 +42,7 @@ class ObjectBox {
   Box<Dashboard> get dashboardBox => _dashboardBox!;
   Box<ClientWallet> get clientWalletBox => _clientWalletBox!;
   Box<Product> get productBox => _productBox!;
+  Box<DocumentType> get documentTypeBox => _documentTypeBox!;
 
   ObjectBox(Store store) {
     _sessionBox = store.box<Session>();
@@ -53,6 +56,7 @@ class ObjectBox {
     _dashboardBox = store.box<Dashboard>();
     _clientWalletBox = store.box<ClientWallet>();
     _productBox = store.box<Product>();
+    _documentTypeBox = store.box<DocumentType>();
   }
 
   static Future<ObjectBox> create() async {

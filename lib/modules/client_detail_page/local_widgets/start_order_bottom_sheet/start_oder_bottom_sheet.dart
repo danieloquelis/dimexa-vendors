@@ -1,23 +1,28 @@
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
 import 'package:dimexa_vendors/core/utils/collection_utils/collection_utils.dart';
+import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:dimexa_vendors/data/models/address/address.dart';
+import 'package:dimexa_vendors/data/models/document_type/document_type.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:dimexa_vendors/global_widgets/base_dropdown/base_dropdown.dart';
 import 'package:dimexa_vendors/global_widgets/card_title/card_title.dart';
 import 'package:dimexa_vendors/global_widgets/custom_card/custom_card.dart';
 import 'package:dimexa_vendors/global_widgets/custom_info_field/custom_info_field.dart';
 import 'package:dimexa_vendors/modules/client_detail_page/local_widgets/address_item/address_item.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 
 class StartOderBottomSheet extends StatelessWidget {
   ScrollController? scrollController;
   Function onStartOrder;
   List<Address>? addresses;
+  List<DocumentType>? documentTypes;
 
   StartOderBottomSheet({
     this.scrollController,
     required this.onStartOrder,
-    required this.addresses
+    required this.addresses,
+    required this.documentTypes
   });
 
   @override
@@ -62,11 +67,15 @@ class StartOderBottomSheet extends StatelessWidget {
                         Flexible(
                           child: CustomInfoField(
                             label: AppTranslations.of(context)!.text("document"),
-                            widgetValue: BaseDropdown(
-                              label: "Factura",
-                              fontSize: 14,
-                              backgroundColor: AppColors.tagBackground,
-                              borderColor: Colors.transparent,
+                            widgetValue: DropdownSearch<DocumentType>(
+                              mode: Mode.MENU,
+                              selectedItem: documentTypes!.first,
+                              items: documentTypes,
+                              itemAsString: (DocumentType? document) {
+                                return StringUtils.checkNullOrEmpty(document!.nombre);
+                              },
+                              onChanged: print,
+                              maxHeight: 120,
                             ),
                           ),
                         ),

@@ -1,16 +1,19 @@
 import 'dart:async';
 
+import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
 import 'package:dimexa_vendors/data/interceptors/client_interceptor/client_interceptor.dart';
 import 'package:dimexa_vendors/data/models/address/address.dart';
 import 'package:dimexa_vendors/data/models/client_wallet/cient_wallet.dart';
 import 'package:dimexa_vendors/data/models/contact/contact.dart';
 import 'package:dimexa_vendors/data/models/contact_media/contact_media.dart';
 import 'package:dimexa_vendors/data/models/contact_role/contact_role.dart';
+import 'package:dimexa_vendors/data/models/document_type/document_type.dart';
 import 'package:dimexa_vendors/data/models/session/session.dart';
 import 'package:dimexa_vendors/data/provider/objectbox/objectbox.dart';
 import 'package:dimexa_vendors/data/repositories/address_repository/address_repository.dart';
 import 'package:dimexa_vendors/data/repositories/client_repository/client_repository.dart';
 import 'package:dimexa_vendors/data/repositories/contact_repository/contact_repository.dart';
+import 'package:dimexa_vendors/data/repositories/document_type_repository/document_type_repository.dart';
 import 'package:dimexa_vendors/data/repositories/sync_manager_repository/sync_manager_repository.dart';
 import 'package:dimexa_vendors/global_controllers/global_controller.dart';
 import 'package:dimexa_vendors/modules/client_detail_page/local_widgets/detail_bottom_sheet/detail_bottom_sheet.dart';
@@ -29,6 +32,7 @@ class ClientDetailController extends GetxController {
   final clientInterceptor = Get.find<ClientInterceptor>();
   final addressRepository = Get.find<AddressRepository>();
   final contactRepository = Get.find<ContactRepository>();
+  final documentTypeRepository = Get.find<DocumentTypeRepository>();
 
   ///Private variables
   Client? _client;
@@ -161,6 +165,9 @@ class ClientDetailController extends GetxController {
     _scrollController = ScrollController();
     _scrollController.addListener(scrollListener);
 
+    //fetching needed data
+    List<DocumentType>? documentTypes = documentTypeRepository.getByRUCCondition(StringUtils.isNotNullNorEmpty(client.ruc));
+
     Get.bottomSheet(
       StartOderBottomSheet(
         scrollController: _scrollController,
@@ -169,6 +176,7 @@ class ClientDetailController extends GetxController {
           Get.toNamed(AppRoutes.product);
         },
         addresses: _clientAddresses!,
+        documentTypes: documentTypes,
       ),
       isScrollControlled: true
     ).whenComplete(() {

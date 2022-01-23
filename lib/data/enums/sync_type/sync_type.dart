@@ -6,5 +6,6 @@ enum SyncType {
   contact,
   zone,
   clientWallet,
-  dashboard
+  dashboard,
+  documentType
 }

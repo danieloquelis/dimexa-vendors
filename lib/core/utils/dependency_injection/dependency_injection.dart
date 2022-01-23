@@ -2,12 +2,14 @@ import 'package:dimexa_vendors/data/api/auth_api/auth_api.dart';
 import 'package:dimexa_vendors/data/api/client_api/cient_api.dart';
 import 'package:dimexa_vendors/data/api/dashboard_api/dashboard_api.dart';
 import 'package:dimexa_vendors/data/api/device_api/device_api.dart';
+import 'package:dimexa_vendors/data/api/order_api/order_api.dart';
 import 'package:dimexa_vendors/data/api/product_api/product_api.dart';
 import 'package:dimexa_vendors/data/api/zone_api/zone_api.dart';
 import 'package:dimexa_vendors/data/interceptors/auth_interceptor/auth_interceptor.dart';
 import 'package:dimexa_vendors/data/interceptors/client_interceptor/client_interceptor.dart';
 import 'package:dimexa_vendors/data/interceptors/dashboard_interceptor/dashboard_interceptor.dart';
 import 'package:dimexa_vendors/data/interceptors/device_interceptor/device_interceptor.dart';
+import 'package:dimexa_vendors/data/interceptors/order_interceptor/order_interceptor.dart';
 import 'package:dimexa_vendors/data/interceptors/product_interceptor/product_interceptor.dart';
 import 'package:dimexa_vendors/data/interceptors/zone_interceptor/zone_interceptor.dart';
 import 'package:dimexa_vendors/data/provider/http/http.dart';
@@ -17,6 +19,7 @@ import 'package:dimexa_vendors/data/repositories/client_repository/client_reposi
 import 'package:dimexa_vendors/data/repositories/client_wallet_repository/client_wallet_repository.dart';
 import 'package:dimexa_vendors/data/repositories/contact_repository/contact_repository.dart';
 import 'package:dimexa_vendors/data/repositories/dashboard_repository/dashboard_repository.dart';
+import 'package:dimexa_vendors/data/repositories/document_type_repository/document_type_repository.dart';
 import 'package:dimexa_vendors/data/repositories/product_repository/product_repository.dart';
 import 'package:dimexa_vendors/data/repositories/session_repository/session_repository.dart';
 import 'package:dimexa_vendors/data/repositories/sync_manager_repository/sync_manager_repository.dart';
@@ -38,6 +41,7 @@ class DependencyInjection {
     Get.lazyPut(() => ZoneAPI());
     Get.lazyPut(() => DashboardAPI());
     Get.lazyPut(() => ProductAPI());
+    Get.lazyPut(() => OrderAPI());
 
     //repositories
     Get.lazyPut(() => SessionRepository());
@@ -49,6 +53,7 @@ class DependencyInjection {
     Get.lazyPut(() => DashboardRepository());
     Get.lazyPut(() => ClientWalletRepository());
     Get.lazyPut(() => ProductRepository());
+    Get.lazyPut(() => DocumentTypeRepository());
 
     //interceptors
     Get.lazyPut(() => DeviceInterceptor());
@@ -57,5 +62,6 @@ class DependencyInjection {
     Get.lazyPut(() => ZoneInterceptor());
     Get.lazyPut(() => DashboardInterceptor());
     Get.lazyPut(() => ProductInterceptor());
+    Get.lazyPut(() => OrderInterceptor());
   }
 }
