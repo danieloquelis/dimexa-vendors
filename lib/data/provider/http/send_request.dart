@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:dimexa_vendors/data/provider/http/http_method.dart';
-import 'package:http/http.dart';
+import 'package:dio/dio.dart';
 
 dynamic _parseBody(dynamic body) {
   try {
@@ -17,6 +17,7 @@ Future<Response> sendRequest({
   required Map<String, String> headers,
   required dynamic body,
   required Duration timeOut,
+  ProgressCallback? onReceiveProgress,
   String? token
 }) {
 
@@ -35,18 +36,24 @@ Future<Response> sendRequest({
     finalHeaders['x-access-token'] = token;
   }
 
-  final client = Client();
+  //final client = Client();
+
+  final options = BaseOptions(
+    headers: finalHeaders,
+    connectTimeout: timeOut.inMilliseconds
+  );
+  final dio = Dio(options);
 
   switch (method) {
     case HttpMethod.get:
-      return client.get(url, headers: finalHeaders);
+      return dio.getUri(url, onReceiveProgress: onReceiveProgress);
     case HttpMethod.post:
-      return client.post(url, headers: finalHeaders, body: body);
+      return dio.postUri(url, data: body, onReceiveProgress: onReceiveProgress);
     case HttpMethod.put:
-      return client.put(url, headers: finalHeaders, body: body);
+      return dio.putUri(url, data: body, onReceiveProgress: onReceiveProgress);
     case HttpMethod.delete:
-      return client.delete(url, headers: finalHeaders, body: body);
+      return dio.deleteUri(url, data: body);
     case HttpMethod.patch:
-      return client.patch(url, headers: finalHeaders, body: body);
+      return dio.patchUri(url, data: body, onReceiveProgress: onReceiveProgress);
   }
 }

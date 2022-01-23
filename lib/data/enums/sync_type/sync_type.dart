@@ -1,5 +1,10 @@
 enum SyncType {
-  clients,
-  products,
-  session
+  client,
+  product,
+  session,
+  address,
+  contact,
+  zone,
+  clientWallet,
+  dashboard
 }

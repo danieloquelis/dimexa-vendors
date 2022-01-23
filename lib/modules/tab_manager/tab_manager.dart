@@ -2,6 +2,7 @@
 import 'package:dimexa_vendors/core/theme/dimexa_icons/dimexa_icons.dart';
 import 'package:dimexa_vendors/data/provider/localizations/app_translations.dart';
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
+import 'package:dimexa_vendors/modules/tab_manager/local_widgets/custom_drawer/custom_drawer.dart';
 import 'package:dimexa_vendors/modules/tab_manager/tab_manager_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,17 +13,15 @@ class TabManager extends StatefulWidget {
 }
 
 class _TabManagerState extends State<TabManager> with TickerProviderStateMixin {
-  final GlobalKey<ScaffoldState> _key = GlobalKey();
+
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<TabManagerController>(
       builder: (_) => Scaffold(
-        key: _key,
+        key: _.globalController.tabManagerKey,
         body: _.widgetOptions.elementAt(_.selectedIndex),
-
-        //drawer: CustomDrawer(),
-
+        drawer: CustomDrawer(),
         bottomNavigationBar: BottomNavigationBar(
           showUnselectedLabels: true,
           items: <BottomNavigationBarItem>[
@@ -36,7 +35,7 @@ class _TabManagerState extends State<TabManager> with TickerProviderStateMixin {
             ),
             BottomNavigationBarItem(
               icon: const Icon(DimexaIcons.products, size: 24),
-              label: AppTranslations.of(context)!.text("products"),
+              label: AppTranslations.of(context)!.text("orders"),
             ),
             BottomNavigationBarItem(
               icon: const Padding(

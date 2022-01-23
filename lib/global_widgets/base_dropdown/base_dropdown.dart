@@ -30,7 +30,9 @@ class BaseDropdown extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(label!, style: TextStyle(fontSize: fontSize)),
+            Flexible(
+              child: Text(label!, style: TextStyle(fontSize: fontSize), overflow: TextOverflow.ellipsis,)
+            ),
             const Icon(Icons.arrow_drop_down)
           ],
         ),

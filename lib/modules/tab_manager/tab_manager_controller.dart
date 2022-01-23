@@ -3,8 +3,9 @@ import 'package:dimexa_vendors/global_controllers/global_controller.dart';
 import 'package:dimexa_vendors/modules/client_page/client_page.dart';
 import 'package:dimexa_vendors/modules/collects_page/collects_page.dart';
 import 'package:dimexa_vendors/modules/home_page/home_page.dart';
-import 'package:dimexa_vendors/modules/products_page/products_page.dart';
+import 'package:dimexa_vendors/modules/order_page/order_page.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TabManagerController extends GetxController {
@@ -14,8 +15,8 @@ class TabManagerController extends GetxController {
   ///Private variables
   final List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    ClientsPage(),
-    ProductsPage(),
+    ClientPage(),
+    OrderPage(),
     CollectsPage(),
   ];
   int _selectedIndex = 0;
@@ -30,18 +31,17 @@ class TabManagerController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _session = globalController.session;
+    _session = globalController.session!;
+
   }
 
   @override
-  void onReady() {
+  void onReady() async {
     super.onReady();
-    globalController.syncDownClients();
   }
 
   void onItemTapped(int index) {
     _selectedIndex = index;
     update();
   }
-
 }

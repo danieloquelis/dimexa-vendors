@@ -39,9 +39,7 @@ class Session {
   DateTime? fechaExpiracion;
   @Transient()
   List<Zone>? zona;
-  @Backlink('session')
-  final zones = ToMany<Zone>();
-
+  String? zoneIds;
   int? tokenExpiracion;
 
   Session({
@@ -73,7 +71,8 @@ class Session {
     this.tokenExpiracion,
   }) {
     if (zona != null) {
-      zones.addAll(zona!);
+      List<String> zoneIds = zona!.map((e) => e.zonaid!).toList();
+      this.zoneIds = json.encode(zoneIds);
     }
   }
 

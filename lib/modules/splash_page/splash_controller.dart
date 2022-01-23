@@ -1,24 +1,23 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:dimexa_vendors/core/utils/app_exception/app_exception.dart';
 import 'package:dimexa_vendors/core/values/strings.dart';
-import 'package:dimexa_vendors/data/interceptors/device_interceptor/device_interceptor_impl.dart';
+import 'package:dimexa_vendors/data/interceptors/device_interceptor/device_interceptor.dart';
 import 'package:dimexa_vendors/data/models/app_permission/app_permission.dart';
 import 'package:dimexa_vendors/data/models/session/session.dart';
-import 'package:dimexa_vendors/data/repositories/session_repository/session_repository_impl.dart';
+import 'package:dimexa_vendors/data/repositories/session_repository/session_repository.dart';
 import 'package:dimexa_vendors/global_controllers/global_controller.dart';
 import 'package:dimexa_vendors/modules/splash_page/local_widgets/permissions/permission_bottom_sheet.dart';
 import 'package:dimexa_vendors/routes/app_routes/app_routes.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_device_identifier/flutter_device_identifier.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class SplashController extends GetxController {
   ///Injections
   final globalController = Get.find<GlobalController>();
-  final sessionRepository = Get.find<SessionRepositoryImpl>();
-  final deviceInterceptor = Get.find<DeviceInterceptorImpl>();
+  final sessionRepository = Get.find<SessionRepository>();
+  final deviceInterceptor = Get.find<DeviceInterceptor>();
 
   ///Private variables
   final CarouselController _carouselController = CarouselController();
@@ -135,11 +134,28 @@ class SplashController extends GetxController {
     }
 
     //check token
-    String? token = sessionRepository.getToken(currentSession: session);
+    String? token = await globalController.getToken();
     if (token == null || token.isEmpty) {
       Get.offNamed(AppRoutes.login);
     } else {
-      Get.offNamed(AppRoutes.tabManager);
+      try {
+        await globalController.firstSyncProcess();
+        Get.offNamed(AppRoutes.tabManager);
+      } catch (error) {
+        if (error is AppException) {
+          globalController.hideLoadingDialog(
+              errorMessage: error.uiMessage
+          );
+        } else {
+          globalController.hideLoadingDialog(
+              errorMessage: Strings.systemError
+          );
+        }
+
+        showMessage(
+          message: "Cierre la aplicación e inténtelo nuevamente",
+        );
+      }
     }
   }
 

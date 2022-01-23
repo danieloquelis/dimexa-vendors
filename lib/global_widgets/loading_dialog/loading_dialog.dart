@@ -20,19 +20,26 @@ class LoadingDialog {
   LoadingDialog.showProgress({
     required BuildContext context,
     String? prefixMessage,
-    required RxDouble progress
+    required RxInt received,
+    required RxInt total,
   }) {
+    double progress = 0.0;
     baseDialog(
-        context: context,
-        child: SpinKitRing(color: Colors.grey.shade500, size: 80,lineWidth: 5,),
-        dynamicMessage: Obx(
-          () => TweenAnimationBuilder(
-            tween: Tween<double>(begin: 0.0, end: progress.value),
+      context: context,
+      child: SpinKitRing(color: Colors.grey.shade500, size: 80,lineWidth: 5,),
+      dynamicMessage: Obx(
+        () {
+          if (received.value > 0 && total.value > 0) {
+            progress = (received.value * 100) / total.value;
+          }
+          return TweenAnimationBuilder(
+            tween: Tween<double>(begin: 0.0, end: progress),
             duration: const Duration(milliseconds: 3500),
             builder: (_, double value, __) =>
-              Text('$prefixMessage\n(${value.toStringAsFixed(1)}/100%)', textAlign: TextAlign.center,)
-          )
-        ),
+                Text('$prefixMessage\n(${value.toStringAsFixed(1)}/100%)', textAlign: TextAlign.center,)
+          );
+        }
+      ),
     );
   }
 
@@ -41,23 +48,23 @@ class LoadingDialog {
     String? message
   }) {
     baseDialog(
-        context: context,
-        child: Container(
-            width: 80,
-            height: 80,
-            child: Icon(
-              Icons.clear,
-              color: Colors.grey.shade500,
-              size: 50,
-            ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(40.0),
-              border: Border.all(
-                width: 4.0,
-                color: Colors.grey.shade500,
-              ),
-            )),
-        message: StringUtils.isNullOrEmpty(message) ? 'Ha ocurrido un error, por favor intente otra vez.' : message!
+      context: context,
+      child: Container(
+        width: 80,
+        height: 80,
+        child: Icon(
+          Icons.clear,
+          color: Colors.grey.shade500,
+          size: 50,
+        ),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(40.0),
+          border: Border.all(
+            width: 4.0,
+            color: Colors.grey.shade500,
+          ),
+        )),
+      message: StringUtils.isNullOrEmpty(message) ? 'Ha ocurrido un error, por favor intente otra vez.' : message!
     );
   }
 
@@ -68,33 +75,33 @@ class LoadingDialog {
     Widget? dynamicMessage
   }) {
     showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (_) => Dialog(
-          backgroundColor: Colors.transparent,
-          child: ClipRRect(
-            borderRadius: const BorderRadius.all(Radius.circular(16)),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              color: Colors.white,
-              height: 200,
-              width: 300,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  child,
-                  const SizedBox(height: 24,),
-                  dynamicMessage ?? Text(
-                    StringUtils.checkNullOrEmpty(message),
-                    style: TextStyle(color: Colors.grey.shade500),
-                    textAlign: TextAlign.center,
-                  )
-                ],
-              ),
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => Dialog(
+        backgroundColor: Colors.transparent,
+        child: ClipRRect(
+          borderRadius: const BorderRadius.all(Radius.circular(16)),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            color: Colors.white,
+            height: 200,
+            width: 300,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                child,
+                const SizedBox(height: 24,),
+                dynamicMessage ?? Text(
+                  StringUtils.checkNullOrEmpty(message),
+                  style: TextStyle(color: Colors.grey.shade500),
+                  textAlign: TextAlign.center,
+                )
+              ],
             ),
           ),
-        )
+        ),
+      )
     );
   }
 }

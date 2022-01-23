@@ -5,21 +5,20 @@ import 'package:dimexa_vendors/data/enums/sync_type/sync_type.dart';
 import 'package:dimexa_vendors/data/models/sync_manager/sync_manager.dart';
 import 'package:dimexa_vendors/data/provider/objectbox/objectbox.dart';
 import 'package:dimexa_vendors/data/provider/objectbox/objectbox.g.dart';
-import 'package:dimexa_vendors/data/repositories/sync_manager_repository/sync_manager_repository_abstract.dart';
 import 'package:get/get.dart';
 
-class SyncManagerRepository implements SyncManagerRepositoryAbstract {
+class SyncManagerRepository {
   final _syncManagerBox = Get.find<ObjectBox>().syncManagerBox;
 
   @override
-  SyncManager? getByType(String zoneId, SyncType type) {
+  SyncManager? getByTypeAndZoneId(String zoneId, SyncType type) {
     final query = _syncManagerBox.query(SyncManager_.zoneId.equals(zoneId).and(SyncManager_.syncType.equals(type.toString()))).build();
     return query.findFirst();
   }
 
   @override
-  void updateByType(String zoneId, SyncType type, {bool syncDown = true, bool syncUp = false}) {
-    SyncManager? currentDocument = getByType(zoneId, type);
+  void updateByTypeAndZone(String zoneId, SyncType type, {bool syncDown = true, bool syncUp = false}) {
+    SyncManager? currentDocument = getByTypeAndZoneId(zoneId, type);
     SyncManager newSync = SyncManager();
     if (currentDocument != null) {
       newSync.id = currentDocument.id;
@@ -44,7 +43,10 @@ class SyncManagerRepository implements SyncManagerRepositoryAbstract {
 
   @override
   List<SyncManager>? getByTypeAndZoneIds(List<String> zoneIds, SyncType type) {
-    final query = _syncManagerBox.query(SyncManager_.zoneId.oneOf(zoneIds).and(SyncManager_.syncType.equals(type.toString()))).build();
+    final query = _syncManagerBox.query(
+      SyncManager_.zoneId.oneOf(zoneIds)
+      .and(SyncManager_.syncType.equals(type.toString()))
+    ).build();
     return query.find();
   }
 
@@ -82,6 +84,37 @@ class SyncManagerRepository implements SyncManagerRepositoryAbstract {
 
     try {
       _syncManagerBox.putMany(newSyncs);
+    } catch(e) {
+      onDBCatchError();
+    }
+  }
+
+  @override
+  SyncManager? getByType(SyncType type) {
+    final query = _syncManagerBox.query(SyncManager_.syncType.equals(type.toString())).build();
+    return query.findFirst();
+  }
+
+  @override
+  void updateByType(SyncType type, {bool syncDown = true, bool syncUp = false}) {
+    SyncManager? currentDocument = getByType(type);
+    SyncManager newSync = SyncManager();
+    if (currentDocument != null) {
+      newSync.id = currentDocument.id;
+    }
+
+    newSync.syncType = type.toString();
+
+    if (syncDown) {
+      newSync.lastSyncDownDate = DateTime.now();
+    }
+
+    if (syncUp) {
+      newSync.lastSyncUpDate = DateTime.now();
+    }
+
+    try {
+      _syncManagerBox.put(newSync);
     } catch(e) {
       onDBCatchError();
     }

@@ -1,9 +1,7 @@
 import 'dart:convert';
 
 import 'package:dimexa_vendors/data/models/role_menu/role_menu.dart';
-import 'package:objectbox/objectbox.dart';
 
-@Entity()
 class Role {
   Role({
     this.rolid,
@@ -11,13 +9,10 @@ class Role {
     this.rolmenu,
   });
 
-  @Id()
   int? rolid;
   String? nombre;
 
-  @Transient()
   RoleMenu? rolmenu;
-  final roleMenu = ToOne<RoleMenu>();
 
   factory Role.fromRawJson(String str) => Role.fromJson(json.decode(str));
 

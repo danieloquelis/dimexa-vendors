@@ -1,9 +1,13 @@
 import 'package:dimexa_vendors/core/theme/app_colors/app_colors.dart';
+import 'package:dimexa_vendors/core/utils/string_utils/string_utils.dart';
+import 'package:dimexa_vendors/data/models/dashboard/dashboard.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class CustomBarChart extends StatelessWidget {
-  const CustomBarChart({Key? key}) : super(key: key);
+  Dashboard dashboard;
+
+  CustomBarChart({required this.dashboard});
 
   @override
   Widget build(BuildContext context) {
@@ -13,18 +17,18 @@ class CustomBarChart extends StatelessWidget {
         titlesData: titlesData,
         borderData: borderData,
         barGroups: barGroups,
-        alignment: BarChartAlignment.spaceAround,
-        maxY: 20,
-
+        alignment: BarChartAlignment.spaceBetween,
+        maxY: dashboard.getMax(),
       ),
     );
   }
 
   BarTouchData get barTouchData => BarTouchData(
-    enabled: false,
+    enabled: true,
     touchTooltipData: BarTouchTooltipData(
       tooltipBgColor: Colors.transparent,
       tooltipPadding: const EdgeInsets.all(0),
+      direction: TooltipDirection.top,
       tooltipMargin: 8,
       getTooltipItem: (
           BarChartGroupData group,
@@ -33,10 +37,11 @@ class CustomBarChart extends StatelessWidget {
           int rodIndex,
           ) {
         return BarTooltipItem(
-          '${rod.y.round().toString()} %',
+          'S/.${(rod.y/1000).round()}K',
           const TextStyle(
             color: AppColors.gray,
             fontWeight: FontWeight.bold,
+            fontSize: 12
           ),
         );
       },
@@ -52,23 +57,21 @@ class CustomBarChart extends StatelessWidget {
         fontWeight: FontWeight.bold,
         fontSize: 14,
       ),
-      margin: 20,
+      margin: 24,
       getTitles: (double value) {
         switch (value.toInt()) {
           case 0:
-            return 'Mar';
+            return StringUtils.checkNullOrEmpty(dashboard.ventaMesAnt01Tit);
           case 1:
-            return 'Abr';
+            return StringUtils.checkNullOrEmpty(dashboard.ventaMesAnt02Tit);
           case 2:
-            return 'May';
+            return StringUtils.checkNullOrEmpty(dashboard.ventaMesAnt03Tit);
           case 3:
-            return 'Jun';
+            return StringUtils.checkNullOrEmpty(dashboard.ventaMesAnt04Tit);
           case 4:
-            return 'Jul';
+            return StringUtils.checkNullOrEmpty(dashboard.ventaMesAnt05Tit);
           case 5:
-            return 'Ago';
-          case 6:
-            return 'Sep';
+            return StringUtils.checkNullOrEmpty(dashboard.ventaMesAnt06Tit);
           default:
             return '';
         }
@@ -88,13 +91,13 @@ class CustomBarChart extends StatelessWidget {
       x: 0,
       barRods: [
         BarChartRodData(
-            y: 8,
+            y: double.parse(dashboard.ventaMesAnt01!),
             colors: [Colors.lightBlueAccent, Colors.greenAccent],
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(14),
-              topRight: Radius.circular(14),
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(24),
+              topRight: Radius.circular(24),
             ),
-            width: 28
+            width: 42
         )
       ],
       showingTooltipIndicators: [0],
@@ -103,12 +106,12 @@ class CustomBarChart extends StatelessWidget {
       x: 1,
       barRods: [
         BarChartRodData(
-            y: 10,
+            y: double.parse(dashboard.ventaMesAnt02!),
             colors: [Colors.lightBlueAccent, Colors.greenAccent],
-            width: 28,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(14),
-            topRight: Radius.circular(14),
+            width: 42,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(24),
+            topRight: Radius.circular(24),
           ),
         )
       ],
@@ -118,12 +121,12 @@ class CustomBarChart extends StatelessWidget {
       x: 2,
       barRods: [
         BarChartRodData(
-            y: 14,
+            y: double.parse(dashboard.ventaMesAnt03!),
             colors: [Colors.lightBlueAccent, Colors.greenAccent],
-            width: 28,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(14),
-            topRight: Radius.circular(14),
+            width: 42,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(24),
+            topRight: Radius.circular(24),
           ),
         )
       ],
@@ -133,46 +136,46 @@ class CustomBarChart extends StatelessWidget {
       x: 3,
       barRods: [
         BarChartRodData(
-            y: 15,
+            y: double.parse(dashboard.ventaMesAnt04!),
             colors: [Colors.lightBlueAccent, Colors.greenAccent],
-            width: 28,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(14),
-            topRight: Radius.circular(14),
+            width: 42,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(24),
+            topRight: Radius.circular(24),
           ),
         )
       ],
       showingTooltipIndicators: [0],
     ),
     BarChartGroupData(
-      x: 3,
+      x: 4,
       barRods: [
         BarChartRodData(
-            y: 13,
+            y: double.parse(dashboard.ventaMesAnt05!),
             colors: [Colors.lightBlueAccent, Colors.greenAccent],
-            width: 28,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(14),
-            topRight: Radius.circular(14),
+            width: 42,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(24),
+            topRight: Radius.circular(24),
           ),
         )
       ],
       showingTooltipIndicators: [0],
     ),
     BarChartGroupData(
-      x: 3,
+      x: 5,
       barRods: [
         BarChartRodData(
-            y: 10,
+            y: double.parse(dashboard.ventaMesAnt06!),
             colors: [Colors.lightBlueAccent, Colors.greenAccent],
-            width: 28,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(14),
-            topRight: Radius.circular(14),
+            width: 42,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(24),
+            topRight: Radius.circular(24),
           ),
         )
       ],
       showingTooltipIndicators: [0],
-    ),
+    )
   ];
 }

@@ -1,9 +1,9 @@
 import 'package:dimexa_vendors/data/enums/env/env.dart';
 import 'package:dimexa_vendors/data/provider/http/http_method.dart';
 import 'package:dimexa_vendors/data/provider/http/http_result.dart';
-import 'package:dimexa_vendors/data/provider/http/parse_response_body.dart';
 import 'package:dimexa_vendors/data/provider/http/send_request.dart';
 import 'package:flutter/foundation.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
 typedef Parser<T> = T Function(dynamic data);
 
@@ -19,8 +19,10 @@ class Http {
       Map<String, String> queryParameters = const {},
       dynamic body,
       Parser<T>? parser,
-      Duration timeOut = const Duration(seconds: 10),
-      String? token
+      Duration timeOut = const Duration(minutes: 1),
+      String? token,
+      RxInt? received,
+      RxInt? total
   }) async {
 
     int? statusCode;
@@ -49,14 +51,20 @@ class Http {
         headers: headers,
         body: body,
         timeOut: timeOut,
-        token: token
+        token: token,
+        onReceiveProgress: (int _received, int _total) {
+          if (received != null && total != null) {
+            received.value = _received;
+            total.value = _total;
+          }
+        }
       );
 
-      data = parseResponseBody(response.body);
+      data = response.data;
       statusCode = response.statusCode;
 
       //throw errors from backend, meaning the request was sent
-      if (statusCode >= 400) {
+      if (statusCode! >= 400) {
         throw HttpError(
           exception: null,
           stackTrace: StackTrace.current,

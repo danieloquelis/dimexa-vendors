@@ -11,6 +11,7 @@ class Indicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(title != null ? title! : "--"),
         Text(value != null ? value! : "--", style: TextStyle(color: AppColors.blue, fontWeight: FontWeight.w700),)

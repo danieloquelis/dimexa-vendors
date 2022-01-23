@@ -1,8 +1,6 @@
 import 'dart:convert';
 
-import 'package:objectbox/objectbox.dart';
 
-@Entity()
 class RoleMenu {
   RoleMenu({
     this.rolmenuid,
@@ -11,7 +9,6 @@ class RoleMenu {
     this.registrado,
   });
 
-  @Id()
   int? rolmenuid;
   int? rolid;
   String? menuid;

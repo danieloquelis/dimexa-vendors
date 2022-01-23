@@ -15,19 +15,6 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  final Completer<GoogleMapController> _controller = Completer();
-
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
-
-  static final CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<MapController>(
@@ -80,13 +67,13 @@ class _MapPageState extends State<MapPage> {
               children: [
                 GoogleMap(
                   onTap: (position) => _.dismissKeyboard(),
-                  initialCameraPosition: _kGooglePlex,
+                  initialCameraPosition: _.initCameraPosition,
                   onMapCreated: _.onMapCreated,
                   zoomControlsEnabled: false,
                   zoomGesturesEnabled: true,
-                  onCameraMove: _.onCameraMove,
-                  onCameraIdle: _.onCameraIdle,
-                  onCameraMoveStarted: _.onCameraMoveStarted,
+                  onCameraMove: (pos) {},//_.onCameraMove,
+                  onCameraIdle: (){},//_.onCameraIdle,
+                  onCameraMoveStarted: (){}//_.onCameraMoveStarted,
                 ),
                 const Center(
                   child: Icon(

@@ -12,14 +12,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/state_manager.dart';
 
-class ClientsPage extends StatefulWidget {
-  const ClientsPage({Key? key}) : super(key: key);
+class ClientPage extends StatefulWidget {
 
   @override
-  _ClientsPageState createState() => _ClientsPageState();
+  _ClientPageState createState() => _ClientPageState();
 }
 
-class _ClientsPageState extends State<ClientsPage> {
+class _ClientPageState extends State<ClientPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +28,8 @@ class _ClientsPageState extends State<ClientsPage> {
         appBar: BaseAppBar(
           title: AppTranslations.of(context)!.text('clients'),
           lastUpdate: DateTimeUtil.dateTimeToText(_.lastSyncDate),
-          syncOnDemand: _.syncOnDemand
+          syncOnDemand: _.syncOnDemand,
+          openDrawer: _.globalController.openDrawer
         ).widget(),
         body: Container(
           decoration: const BoxDecoration(
@@ -53,15 +53,19 @@ class _ClientsPageState extends State<ClientsPage> {
                   },
                 ),
                 const SizedBox(height: 24,),
-                _.loading ? const SpinKitChasingDots(
-                  color: AppColors.green,
+                _.loading ? const Expanded(
+                  child: Center(
+                    child: SpinKitChasingDots(
+                      color: AppColors.green,
+                    ),
+                  ),
                 ):
                 _.clients.isEmpty?
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                    children: const [
                       Icon(Icons.search, size: 128, color: AppColors.gray,),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 32),

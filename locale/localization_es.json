@@ -64,5 +64,17 @@
   "see_more": "Ver más",
   "address": "Dirección",
   "ubigeo": "Ubigeo",
-  "credit": "Crédito"
+  "credit": "Crédito",
+  "document": "Documento",
+  "order_authorization": "O. Comp.",
+  "term": "Plazo",
+  "product_detail": "Detalle de producto",
+  "product_info": "Información de producto",
+  "quantity": "Cantidad",
+  "select_a_zone": "Seleccione una zone",
+  "quota": "Cuota",
+  "sale": "Venta",
+  "deliquency": "Morosidad",
+  "coverage": "Cobertura",
+  "progress": "Avance"
 }

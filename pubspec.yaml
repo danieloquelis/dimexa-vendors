@@ -37,13 +37,11 @@ dependencies:
 
   # Do not specify version if you want to fetch the last one
   get:
-  http:
   objectbox:
   objectbox_flutter_libs: any
   path_provider:
   expandable:
   google_fonts:
-  shared_preferences:
   infinite_scroll_pagination:
   package_info:
   provider:
@@ -57,6 +55,7 @@ dependencies:
   password_dart:
   percent_indicator:
   intl:
+  dio:
 
 dev_dependencies:
   flutter_test:
@@ -88,7 +87,6 @@ flutter:
   assets:
     - locale/
     - assets/images/
-    - mockdata/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

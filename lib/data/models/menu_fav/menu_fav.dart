@@ -1,8 +1,5 @@
 import 'dart:convert';
 
-import 'package:objectbox/objectbox.dart';
-
-@Entity()
 class MenuFav {
   MenuFav({
     this.id,

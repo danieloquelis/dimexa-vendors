@@ -23,7 +23,7 @@ class ActionDialog {
       context: context!,
       builder: (context) => CupertinoAlertDialog(
         title: Padding(
-          padding: EdgeInsets.only(bottom: 8.0),
+          padding: const EdgeInsets.only(bottom: 8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -31,7 +31,7 @@ class ActionDialog {
                 icon,
                 color: AppColors.blue,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 8.0,
               ),
               Text(
@@ -45,13 +45,13 @@ class ActionDialog {
         ),
         actions: [
           CupertinoDialogAction(
-              child: Text('Ahora No'),
+              child: const Text('Ahora No'),
               onPressed: () {
                 onCancel();
               }
           ),
           CupertinoDialogAction(
-              child: Text('Ir a Ajustes'),
+              child: const Text('Ir a Ajustes'),
               onPressed: () {
                 onContinue();
               }
