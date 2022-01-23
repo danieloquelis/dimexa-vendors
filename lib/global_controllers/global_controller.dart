@@ -7,6 +7,7 @@ import 'package:dimexa_vendors/data/enums/sync_type/sync_type.dart';
 import 'package:dimexa_vendors/data/interceptors/auth_interceptor/auth_interceptor.dart';
 import 'package:dimexa_vendors/data/interceptors/client_interceptor/client_interceptor.dart';
 import 'package:dimexa_vendors/data/interceptors/dashboard_interceptor/dashboard_interceptor.dart';
+import 'package:dimexa_vendors/data/interceptors/order_interceptor/order_interceptor.dart';
 import 'package:dimexa_vendors/data/interceptors/product_interceptor/product_interceptor.dart';
 import 'package:dimexa_vendors/data/interceptors/zone_interceptor/zone_interceptor.dart';
 import 'package:dimexa_vendors/data/models/address/address.dart';
@@ -17,6 +18,7 @@ import 'package:dimexa_vendors/data/models/contact/contact.dart';
 import 'package:dimexa_vendors/data/models/contact_media/contact_media.dart';
 import 'package:dimexa_vendors/data/models/contact_role/contact_role.dart';
 import 'package:dimexa_vendors/data/models/dashboard/dashboard.dart';
+import 'package:dimexa_vendors/data/models/document_type/document_type.dart';
 import 'package:dimexa_vendors/data/models/product/product.dart';
 import 'package:dimexa_vendors/data/models/session/session.dart';
 import 'package:dimexa_vendors/data/models/sync_manager/sync_manager.dart';
@@ -26,6 +28,7 @@ import 'package:dimexa_vendors/data/repositories/client_repository/client_reposi
 import 'package:dimexa_vendors/data/repositories/client_wallet_repository/client_wallet_repository.dart';
 import 'package:dimexa_vendors/data/repositories/contact_repository/contact_repository.dart';
 import 'package:dimexa_vendors/data/repositories/dashboard_repository/dashboard_repository.dart';
+import 'package:dimexa_vendors/data/repositories/document_type_repository/document_type_repository.dart';
 import 'package:dimexa_vendors/data/repositories/product_repository/product_repository.dart';
 import 'package:dimexa_vendors/data/repositories/session_repository/session_repository.dart';
 import 'package:dimexa_vendors/data/repositories/sync_manager_repository/sync_manager_repository.dart';
@@ -52,6 +55,8 @@ class GlobalController extends GetxController {
   final productRepository = Get.find<ProductRepository>();
   final sessionRepository = Get.find<SessionRepository>();
   final authInterceptor = Get.find<AuthInterceptor>();
+  final orderInterceptor = Get.find<OrderInterceptor>();
+  final documentTypeRepository = Get.find<DocumentTypeRepository>();
 
   ///Private variables
   final List<AppPermission> _filteredPermissions = [];
@@ -424,7 +429,7 @@ class GlobalController extends GetxController {
       //save zones
       zoneRepository.saveMany(zones);
       //save new sync manager for this type
-      syncManagerRepository.updateByType(SyncType.clientWallet, syncDown: true);
+      syncManagerRepository.updateByType(SyncType.zone, syncDown: true);
     }
 
     resetSyncProgress();
@@ -530,6 +535,41 @@ class GlobalController extends GetxController {
     resetSyncProgress();
   }
 
+  Future syncDocumentTypes({bool onDemand = false}) async {
+
+    //check when was the last update only if its not on demand
+    SyncManager? sync = syncManagerRepository.getByType(SyncType.documentType);
+    if (!onDemand &&
+        sync != null &&
+        sync.lastSyncDownDate != null &&
+        sync.lastSyncDownDate!.difference(DateTime.now()).inHours <= Numbers.maxSyncDiffHoursAllowed) {
+      return;
+    }
+
+    showSyncDialog(
+        received: _received,
+        total: _total,
+        prefixMessage: "Sincronizando tipos de documento"
+    );
+
+    BackendResponse<DocumentType>? response = await orderInterceptor.syncDocumentTypes(await getToken(), _received, _total);
+
+    if (response == null) {
+      return;
+    }
+
+    List<DocumentType> documents = response.data;
+
+    if (CollectionUtils.isNotNullNorEmpty(documents)) {
+      //save documents
+      documentTypeRepository.saveMany(documents);
+      //save new sync manager for this type
+      syncManagerRepository.updateByType(SyncType.documentType, syncDown: true);
+    }
+
+    resetSyncProgress();
+  }
+
   Future firstSyncProcess() async {
     await syncZones();
     List<String> clientIds = await syncDownClients();
@@ -538,6 +578,7 @@ class GlobalController extends GetxController {
     await syncDownContactMedias(clientIds);
     await syncDownAddresses(clientIds);
     await syncDownClientWallet(clientIds: clientIds);
+    await syncDocumentTypes();
     await syncDashboard();
     await syncProducts();
     hideLoadingDialog();

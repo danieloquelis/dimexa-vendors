@@ -16,6 +16,7 @@ import '../../models/contact/contact.dart';
 import '../../models/contact_media/contact_media.dart';
 import '../../models/contact_role/contact_role.dart';
 import '../../models/dashboard/dashboard.dart';
+import '../../models/document_type/document_type.dart';
 import '../../models/product/product.dart';
 import '../../models/session/session.dart';
 import '../../models/sync_manager/sync_manager.dart';
@@ -25,79 +26,79 @@ export 'package:objectbox/objectbox.dart'; // so that callers only have to impor
 
 final _entities = <ModelEntity>[
   ModelEntity(
-      id: const IdUid(1, 3961273361334559951),
+      id: const IdUid(1, 5684226374190420772),
       name: 'Address',
-      lastPropertyId: const IdUid(14, 4401072120656063985),
+      lastPropertyId: const IdUid(14, 3100142004323366905),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 3975806348025727531),
+            id: const IdUid(1, 4580009460824771133),
             name: 'clientedireccionid',
             type: 6,
             flags: 129),
         ModelProperty(
-            id: const IdUid(2, 4448461770563916643),
+            id: const IdUid(2, 6741604495987459442),
             name: 'clienteid',
             type: 9,
             flags: 2048,
-            indexId: const IdUid(1, 6967343937674182105)),
+            indexId: const IdUid(1, 5491003690487310910)),
         ModelProperty(
-            id: const IdUid(3, 1732853327471129109),
+            id: const IdUid(3, 8063641043097213493),
             name: 'direccion',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 3580449259410332405),
+            id: const IdUid(4, 2118609125405924025),
             name: 'ubigeoid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 7884175204582817924),
+            id: const IdUid(5, 4046302060622546759),
             name: 'distrito',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 2774969715567245660),
+            id: const IdUid(6, 1883429371579722813),
             name: 'provincia',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(7, 8487791454043237614),
+            id: const IdUid(7, 588475146945388375),
             name: 'departamento',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(8, 4517466358287082782),
+            id: const IdUid(8, 1730043161712221256),
             name: 'referencia',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(9, 5191922358005442093),
+            id: const IdUid(9, 3975972947248388436),
             name: 'latitud',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(10, 8551733679301368610),
+            id: const IdUid(10, 1791459080415340391),
             name: 'longitud',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(11, 3922484420835173058),
+            id: const IdUid(11, 6822859489407317133),
             name: 'tipoprioridadid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(12, 7777532766139055082),
+            id: const IdUid(12, 6232298975505181132),
             name: 'tipoprioridad',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(13, 3141270956270718269),
+            id: const IdUid(13, 7136607828055045123),
             name: 'tipoestablecimientoid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(14, 4401072120656063985),
+            id: const IdUid(14, 3100142004323366905),
             name: 'tipoestablecimiento',
             type: 9,
             flags: 0)
@@ -105,199 +106,199 @@ final _entities = <ModelEntity>[
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(2, 5722475246730308399),
+      id: const IdUid(2, 632793841235783085),
       name: 'Client',
-      lastPropertyId: const IdUid(38, 1242938591453697834),
+      lastPropertyId: const IdUid(38, 652937598230444571),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 1306164695210176346),
+            id: const IdUid(1, 2140795779657933353),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 7709053699202807860),
+            id: const IdUid(2, 5415564957242378985),
             name: 'clienteid',
             type: 9,
             flags: 2048,
-            indexId: const IdUid(2, 4345383165182157390)),
+            indexId: const IdUid(2, 3161682638670332360)),
         ModelProperty(
-            id: const IdUid(3, 6948910445228201385),
+            id: const IdUid(3, 3073194584212636825),
             name: 'ruc',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 4174542989319386453),
+            id: const IdUid(4, 558689042167733345),
             name: 'razonsocial',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 8660859522031720781),
+            id: const IdUid(5, 3255161503643209766),
             name: 'nombrecomercial',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 6224522457667142425),
+            id: const IdUid(6, 8476201320267338596),
             name: 'direccion',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(7, 3494236900983729033),
+            id: const IdUid(7, 925723949509316863),
             name: 'ubigeoid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(8, 5149448946013693660),
+            id: const IdUid(8, 6259666095064096408),
             name: 'distrito',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(9, 5392301943890217360),
+            id: const IdUid(9, 7636805115586233777),
             name: 'provincia',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(10, 402946513819800295),
+            id: const IdUid(10, 8115591390265685710),
             name: 'departamento',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(11, 1581005075815730801),
+            id: const IdUid(11, 7876200498191731338),
             name: 'estadoclienteid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(12, 7474234251308922548),
+            id: const IdUid(12, 935107191642460935),
             name: 'estadocliente',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(13, 4301063397024667973),
+            id: const IdUid(13, 5391796386502949286),
             name: 'estadodiremidid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(14, 7909992777190359252),
+            id: const IdUid(14, 5131881425469721679),
             name: 'estadodiremid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(15, 4516777438027891955),
+            id: const IdUid(15, 4350946859221128660),
             name: 'sedeid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(16, 4055102310386150898),
+            id: const IdUid(16, 5143027402099771196),
             name: 'sede',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(17, 8143522777693450927),
+            id: const IdUid(17, 7003317602577672452),
             name: 'zonaid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(18, 8554801300000644563),
+            id: const IdUid(18, 5994461472857422981),
             name: 'zonaid2',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(19, 403056608519500043),
+            id: const IdUid(19, 1268929174154405774),
             name: 'zonaid3',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(20, 6432388789140497549),
+            id: const IdUid(20, 2428065003959907260),
             name: 'zonaid4',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(21, 6548753306855671436),
+            id: const IdUid(21, 5640831083590995706),
             name: 'vendedorid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(22, 5920368145434076971),
+            id: const IdUid(22, 2727567147360811025),
             name: 'vendedor',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(23, 6499615731522782524),
+            id: const IdUid(23, 3702412672507007971),
             name: 'subcanalid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(24, 4807715001613183464),
+            id: const IdUid(24, 1085239296964317737),
             name: 'subcanal',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(25, 7268659442682528110),
+            id: const IdUid(25, 6531558706632673157),
             name: 'canalid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(26, 2844586034499727808),
+            id: const IdUid(26, 9164685721331055409),
             name: 'canal',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(27, 9131703528924245336),
+            id: const IdUid(27, 2821045322392761450),
             name: 'condicionventaid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(28, 3006020902942982210),
+            id: const IdUid(28, 4242566404681912021),
             name: 'condicionventa',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(29, 6089720750995538854),
+            id: const IdUid(29, 1238251219846107611),
             name: 'tipodescuentoid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(30, 168901777636544535),
+            id: const IdUid(30, 2295164900756827569),
             name: 'tipodescuento',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(31, 8280451805550253325),
+            id: const IdUid(31, 4831782297557450002),
             name: 'dia1',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(32, 3413895887673776189),
+            id: const IdUid(32, 660555521496286740),
             name: 'dia2',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(33, 4971565973360380846),
+            id: const IdUid(33, 1298590195456212435),
             name: 'representantelegal',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(34, 5327420201943619789),
+            id: const IdUid(34, 435448009785113221),
             name: 'dni',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(35, 6263175804826968577),
+            id: const IdUid(35, 1909291412506448609),
             name: 'aniversario',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(36, 4055210982000166147),
+            id: const IdUid(36, 6140761588425186251),
             name: 'telefono',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(37, 3997705751293224757),
+            id: const IdUid(37, 622569392780944965),
             name: 'movil',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(38, 1242938591453697834),
+            id: const IdUid(38, 652937598230444571),
             name: 'lastSync',
             type: 10,
             flags: 0)
@@ -305,50 +306,50 @@ final _entities = <ModelEntity>[
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(3, 6879977876781932143),
+      id: const IdUid(3, 5155918927194155546),
       name: 'ClientWallet',
-      lastPropertyId: const IdUid(8, 5742565887503929847),
+      lastPropertyId: const IdUid(8, 7712645110558442539),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 4890654566305961370),
+            id: const IdUid(1, 8854110767070766041),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 7517904197006002423),
+            id: const IdUid(2, 8050975348188130855),
             name: 'clienteid',
             type: 9,
             flags: 2048,
-            indexId: const IdUid(3, 7608595057666110381)),
+            indexId: const IdUid(3, 7221762817508835053)),
         ModelProperty(
-            id: const IdUid(3, 7354494640942414635),
+            id: const IdUid(3, 7770060018710609138),
             name: 'zonaid',
             type: 9,
             flags: 2048,
-            indexId: const IdUid(4, 7556848487192287475)),
+            indexId: const IdUid(4, 5900715651636496287)),
         ModelProperty(
-            id: const IdUid(4, 6785678399010390734),
+            id: const IdUid(4, 5824811615296239646),
             name: 'lineanormal',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 7987620399428801440),
+            id: const IdUid(5, 5196354079788899971),
             name: 'lineaespecial',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 9070892540418270982),
+            id: const IdUid(6, 2825025133929610815),
             name: 'lineatotal',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(7, 53923241143011072),
+            id: const IdUid(7, 1038196977994324520),
             name: 'lineadisponible',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(8, 5742565887503929847),
+            id: const IdUid(8, 7712645110558442539),
             name: 'deuda',
             type: 9,
             flags: 0)
@@ -356,114 +357,114 @@ final _entities = <ModelEntity>[
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(4, 6644199557318905511),
+      id: const IdUid(4, 7273545287009591206),
       name: 'Contact',
-      lastPropertyId: const IdUid(21, 7260447202776627095),
+      lastPropertyId: const IdUid(21, 8311376679872266805),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 6976084704677798983),
+            id: const IdUid(1, 3769514681113706123),
             name: 'contactoid',
             type: 6,
             flags: 129),
         ModelProperty(
-            id: const IdUid(2, 6409593310531322709),
+            id: const IdUid(2, 1747397278201244789),
             name: 'clienteid',
             type: 9,
             flags: 2048,
-            indexId: const IdUid(5, 1801110002279858099)),
+            indexId: const IdUid(5, 5727892780139612055)),
         ModelProperty(
-            id: const IdUid(3, 3955132693336774084),
+            id: const IdUid(3, 4773846767490736909),
             name: 'ruc',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 554481130337877565),
+            id: const IdUid(4, 5675568287124054505),
             name: 'dni',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 2993979391507740155),
+            id: const IdUid(5, 1754448136972523940),
             name: 'compaiaid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 6677855039865925746),
+            id: const IdUid(6, 5947235047013610952),
             name: 'personaid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(7, 4556052454159863177),
+            id: const IdUid(7, 5011891688658390102),
             name: 'apellidopaterno',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(8, 6221542450835466547),
+            id: const IdUid(8, 8157683413715366500),
             name: 'apellidomaterno',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(9, 1484811676485273428),
+            id: const IdUid(9, 4556027659204286889),
             name: 'nombres',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(10, 5284087400732341841),
+            id: const IdUid(10, 5663704766313815203),
             name: 'fechanacimiento',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(11, 6311459566024167398),
+            id: const IdUid(11, 1681387351215824901),
             name: 'documentoidentidad',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(12, 1217027215899613058),
+            id: const IdUid(12, 8006563944980001603),
             name: 'tipodocumentoidentidadid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(13, 1155532863304369756),
+            id: const IdUid(13, 8524753588599030757),
             name: 'tipodocumentoidentidad',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(14, 1754481820201726631),
+            id: const IdUid(14, 3142626591382315285),
             name: 'estadocivilid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(15, 5222520795796224334),
+            id: const IdUid(15, 7133358116468232382),
             name: 'estadocivil',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(16, 8278300647500619186),
+            id: const IdUid(16, 4027633023773027247),
             name: 'nacionalidadid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(17, 8145964952974315231),
+            id: const IdUid(17, 8143236541144808083),
             name: 'nacionalidad',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(18, 7988173502830333559),
+            id: const IdUid(18, 4695545615767227489),
             name: 'generoid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(19, 3886733149385030555),
+            id: const IdUid(19, 4687299307323699955),
             name: 'genero',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(20, 1181702376447161620),
+            id: const IdUid(20, 752768629368594115),
             name: 'origenid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(21, 7260447202776627095),
+            id: const IdUid(21, 8311376679872266805),
             name: 'origen',
             type: 9,
             flags: 0)
@@ -471,89 +472,89 @@ final _entities = <ModelEntity>[
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(5, 5016369936691882498),
+      id: const IdUid(5, 3690603522349462416),
       name: 'ContactMedia',
-      lastPropertyId: const IdUid(16, 5863737632772643884),
+      lastPropertyId: const IdUid(16, 9088751308220169343),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 7862817935759365878),
+            id: const IdUid(1, 562054787331649783),
             name: 'mediocomunicacionid',
             type: 6,
             flags: 129),
         ModelProperty(
-            id: const IdUid(2, 304424493536078767),
+            id: const IdUid(2, 5433483240968355294),
             name: 'clienteid',
             type: 9,
             flags: 2048,
-            indexId: const IdUid(6, 5923736518323282468)),
+            indexId: const IdUid(6, 4867903126629759955)),
         ModelProperty(
-            id: const IdUid(3, 1559388159497535902),
+            id: const IdUid(3, 4259491999346178322),
             name: 'personaid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 3728454690221861495),
+            id: const IdUid(4, 5526824949804103323),
             name: 'contactoid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 9074901614238254434),
+            id: const IdUid(5, 470353782003849852),
             name: 'tipomediocomunicacionid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 2110105178841616337),
+            id: const IdUid(6, 5873845906859007627),
             name: 'tipomediocomunicacion',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(7, 6188408247769387785),
+            id: const IdUid(7, 2105522236069088540),
             name: 'valor',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(8, 3042297469866676358),
+            id: const IdUid(8, 8783363431177191564),
             name: 'origenid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(9, 399115827151763041),
+            id: const IdUid(9, 279877306958440029),
             name: 'origen',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(10, 5346131378410449571),
+            id: const IdUid(10, 2642328600119441272),
             name: 'tipoprioridadid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(11, 3264209393375746125),
+            id: const IdUid(11, 4914625642537246341),
             name: 'tipoprioridad',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(12, 5075862917968967126),
+            id: const IdUid(12, 5388202759027591405),
             name: 'ciudadid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(13, 3530740464719983831),
+            id: const IdUid(13, 719004335765684244),
             name: 'ciudad',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(14, 7045987494042941377),
+            id: const IdUid(14, 4208604219296371670),
             name: 'codigodiscado',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(15, 7837765014068892691),
+            id: const IdUid(15, 326127202572565810),
             name: 'estadoid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(16, 5863737632772643884),
+            id: const IdUid(16, 9088751308220169343),
             name: 'estado',
             type: 9,
             flags: 0)
@@ -561,50 +562,50 @@ final _entities = <ModelEntity>[
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(6, 2830578521724062836),
+      id: const IdUid(6, 7893302029849421139),
       name: 'ContactRole',
-      lastPropertyId: const IdUid(8, 58873858917936000),
+      lastPropertyId: const IdUid(8, 4754781991301667339),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 7547960048494049452),
+            id: const IdUid(1, 2461834819129913730),
             name: 'rolid',
             type: 6,
             flags: 129),
         ModelProperty(
-            id: const IdUid(2, 7334531383965538750),
+            id: const IdUid(2, 204308572073721797),
             name: 'clienteid',
             type: 9,
             flags: 2048,
-            indexId: const IdUid(7, 344297369220156306)),
+            indexId: const IdUid(7, 4549516688364640248)),
         ModelProperty(
-            id: const IdUid(3, 3650647920277818536),
+            id: const IdUid(3, 2379010863792906769),
             name: 'personaid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 8324956058393550897),
+            id: const IdUid(4, 1965129310213892875),
             name: 'contactoid',
             type: 6,
             flags: 8,
-            indexId: const IdUid(8, 3676200119745914349)),
+            indexId: const IdUid(8, 2479880230445490013)),
         ModelProperty(
-            id: const IdUid(5, 3670764000269626090),
+            id: const IdUid(5, 7758282994946342401),
             name: 'tiporolid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 2933494053755425280),
+            id: const IdUid(6, 6772492357893152454),
             name: 'tiporol',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(7, 8408004915329066121),
+            id: const IdUid(7, 1053534526183510941),
             name: 'estadoid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(8, 58873858917936000),
+            id: const IdUid(8, 4754781991301667339),
             name: 'estado',
             type: 9,
             flags: 0)
@@ -612,109 +613,109 @@ final _entities = <ModelEntity>[
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(7, 4768978252555915533),
+      id: const IdUid(7, 9123772494831089927),
       name: 'Dashboard',
-      lastPropertyId: const IdUid(20, 6773642577490669694),
+      lastPropertyId: const IdUid(20, 1621253468158498639),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 7009904809973135123),
+            id: const IdUid(1, 671193087211888741),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 5568417175271967722),
+            id: const IdUid(2, 4986659734722039672),
             name: 'zonaid',
             type: 9,
             flags: 2048,
-            indexId: const IdUid(9, 1308715615008751249)),
+            indexId: const IdUid(9, 5237196586180032398)),
         ModelProperty(
-            id: const IdUid(3, 6321786586504152450),
+            id: const IdUid(3, 3836689197224224285),
             name: 'clientes',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 6917869174306418440),
+            id: const IdUid(4, 138328495123634549),
             name: 'clientesCobertura',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 6649363022424000848),
+            id: const IdUid(5, 6453702717294390896),
             name: 'morosidad',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 6340492513956817297),
+            id: const IdUid(6, 9132258773757540244),
             name: 'cuotaMes',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(7, 5823176631734104709),
+            id: const IdUid(7, 7911578240703099120),
             name: 'ventaMes',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(8, 3211544177888727777),
+            id: const IdUid(8, 936764351139463633),
             name: 'avanceMes',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(9, 8136697077679798070),
+            id: const IdUid(9, 4029189581830395423),
             name: 'ventaMesAnt01',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(10, 2619287360303617708),
+            id: const IdUid(10, 5262242232449326134),
             name: 'ventaMesAnt02',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(11, 3701925923253526719),
+            id: const IdUid(11, 1256175979511976804),
             name: 'ventaMesAnt03',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(12, 3379628753300394777),
+            id: const IdUid(12, 2971236139599286635),
             name: 'ventaMesAnt04',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(13, 8431299447102228976),
+            id: const IdUid(13, 9155902105157162774),
             name: 'ventaMesAnt05',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(14, 6720846266348879739),
+            id: const IdUid(14, 324334186237061459),
             name: 'ventaMesAnt06',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(15, 1125673191540734772),
+            id: const IdUid(15, 8619269400988328731),
             name: 'ventaMesAnt01Tit',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(16, 3912941815944251918),
+            id: const IdUid(16, 5315294831697932914),
             name: 'ventaMesAnt02Tit',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(17, 1062528558908879410),
+            id: const IdUid(17, 894466603948833929),
             name: 'ventaMesAnt03Tit',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(18, 645519377790249347),
+            id: const IdUid(18, 238482473965774487),
             name: 'ventaMesAnt04Tit',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(19, 6786950184859230508),
+            id: const IdUid(19, 3695878193351229890),
             name: 'ventaMesAnt05Tit',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(20, 6773642577490669694),
+            id: const IdUid(20, 1621253468158498639),
             name: 'ventaMesAnt06Tit',
             type: 9,
             flags: 0)
@@ -722,115 +723,34 @@ final _entities = <ModelEntity>[
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(8, 6103973596358904106),
-      name: 'Product',
-      lastPropertyId: const IdUid(21, 3151223019615949974),
+      id: const IdUid(8, 8829794054910745989),
+      name: 'DocumentType',
+      lastPropertyId: const IdUid(5, 7464130765130242764),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 2356710567134820612),
+            id: const IdUid(1, 4999694282939402553),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 8385467143191958840),
-            name: 'zonaid',
-            type: 9,
-            flags: 2048,
-            indexId: const IdUid(10, 2489986481221197991)),
-        ModelProperty(
-            id: const IdUid(3, 8622456375940080865),
-            name: 'productoid',
-            type: 9,
-            flags: 2048,
-            indexId: const IdUid(11, 4014511003489416785)),
-        ModelProperty(
-            id: const IdUid(4, 317661598574572852),
-            name: 'producto',
+            id: const IdUid(2, 4283628324792731521),
+            name: 'tipodocumentoid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 6828205870161174710),
-            name: 'productoidProv',
+            id: const IdUid(3, 4023174124353581304),
+            name: 'nombre',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 5996732120489588219),
-            name: 'unidadmedidaid',
-            type: 6,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(7, 7169468970716493974),
-            name: 'unidadmedida',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(8, 3544968826073304558),
-            name: 'sublineaid',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(9, 3866798394273777268),
-            name: 'sublinea',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(10, 1371310502417695051),
-            name: 'lineaid',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(11, 1218377322518441553),
-            name: 'linea',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(12, 4964593115706899015),
-            name: 'bpercepcion',
+            id: const IdUid(4, 2631239162194233123),
+            name: 'requiereruc',
             type: 1,
-            flags: 0),
+            flags: 8,
+            indexId: const IdUid(10, 7037905652166916113)),
         ModelProperty(
-            id: const IdUid(13, 8231528886928882227),
-            name: 'blote',
-            type: 1,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(14, 71921105980499854),
-            name: 'bpsicotropico',
-            type: 1,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(15, 8171179314592237185),
-            name: 'brefrigerado',
-            type: 1,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(16, 9093363365165168164),
-            name: 'stock',
-            type: 6,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(17, 896698693939634648),
-            name: 'lotes',
-            type: 6,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(18, 3186442747727405613),
-            name: 'vencimientocorto',
-            type: 1,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(19, 2135865027187773928),
-            name: 'escalas',
-            type: 6,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(20, 7077252010149580618),
-            name: 'bonificaciones',
-            type: 6,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(21, 3151223019615949974),
+            id: const IdUid(5, 7464130765130242764),
             name: 'lastSync',
             type: 10,
             flags: 0)
@@ -838,113 +758,229 @@ final _entities = <ModelEntity>[
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(9, 1384688585112657193),
-      name: 'Session',
-      lastPropertyId: const IdUid(21, 2987841342026270193),
+      id: const IdUid(9, 4640674643592668061),
+      name: 'Product',
+      lastPropertyId: const IdUid(21, 3099508568233170357),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 2368606181385024176),
+            id: const IdUid(1, 587350638100443638),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 8763961513604342077),
+            id: const IdUid(2, 3145846152020360725),
+            name: 'zonaid',
+            type: 9,
+            flags: 2048,
+            indexId: const IdUid(11, 432329141792573176)),
+        ModelProperty(
+            id: const IdUid(3, 7203589699778859153),
+            name: 'productoid',
+            type: 9,
+            flags: 2048,
+            indexId: const IdUid(12, 6534215471323290882)),
+        ModelProperty(
+            id: const IdUid(4, 887453365670951401),
+            name: 'producto',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(5, 8708033359801633078),
+            name: 'productoidProv',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(6, 4050787069595943416),
+            name: 'unidadmedidaid',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(7, 1471847892118079211),
+            name: 'unidadmedida',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(8, 8810153390766692877),
+            name: 'sublineaid',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(9, 6268029223663894491),
+            name: 'sublinea',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(10, 1438365795368685395),
+            name: 'lineaid',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(11, 3189113390991693080),
+            name: 'linea',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(12, 2341718959030111746),
+            name: 'bpercepcion',
+            type: 1,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(13, 7611711488095010343),
+            name: 'blote',
+            type: 1,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(14, 7524335510270980192),
+            name: 'bpsicotropico',
+            type: 1,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(15, 4073240023440658933),
+            name: 'brefrigerado',
+            type: 1,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(16, 2913134254546184834),
+            name: 'stock',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(17, 500635860150786993),
+            name: 'lotes',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(18, 4172013998044862481),
+            name: 'vencimientocorto',
+            type: 1,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(19, 5429451752672507830),
+            name: 'escalas',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(20, 7620410260552327311),
+            name: 'bonificaciones',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(21, 3099508568233170357),
+            name: 'lastSync',
+            type: 10,
+            flags: 0)
+      ],
+      relations: <ModelRelation>[],
+      backlinks: <ModelBacklink>[]),
+  ModelEntity(
+      id: const IdUid(10, 2259579460326130741),
+      name: 'Session',
+      lastPropertyId: const IdUid(21, 4728205312509858347),
+      flags: 0,
+      properties: <ModelProperty>[
+        ModelProperty(
+            id: const IdUid(1, 6258022407532380793),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        ModelProperty(
+            id: const IdUid(2, 5292620892742265801),
             name: 'deviceToken',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(3, 8333020221278173327),
+            id: const IdUid(3, 8150491906352948853),
             name: 'usuarioid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 3903411475140099633),
+            id: const IdUid(4, 412582483119615702),
             name: 'usuario',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 9029042701575401338),
+            id: const IdUid(5, 5191798785845608717),
             name: 'descripcion',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 1022548771294595916),
+            id: const IdUid(6, 4642550004170111624),
             name: 'correo',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(7, 8044218391458587755),
+            id: const IdUid(7, 7396081367618774564),
             name: 'activo',
             type: 1,
             flags: 0),
         ModelProperty(
-            id: const IdUid(8, 689128840563902579),
+            id: const IdUid(8, 4409956990242509672),
             name: 'bloqueado',
             type: 1,
             flags: 0),
         ModelProperty(
-            id: const IdUid(9, 9019889942612188610),
+            id: const IdUid(9, 2900355230243119299),
             name: 'motivobloqueoid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(10, 4261769823696011196),
+            id: const IdUid(10, 1468357371351779222),
             name: 'rolid',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(11, 6291881862660434965),
+            id: const IdUid(11, 7773076490555470402),
             name: 'token',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(12, 296663912535348056),
+            id: const IdUid(12, 383002026081428285),
             name: 'telefono',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(13, 1507256570569340659),
+            id: const IdUid(13, 4878476413311678737),
             name: 'creado',
             type: 10,
             flags: 0),
         ModelProperty(
-            id: const IdUid(14, 2733952466113128637),
+            id: const IdUid(14, 3721045676499019757),
             name: 'actualizado',
             type: 10,
             flags: 0),
         ModelProperty(
-            id: const IdUid(15, 1799600920595784704),
+            id: const IdUid(15, 7143124382064799883),
             name: 'menuidFav1',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(16, 8503794600512455747),
+            id: const IdUid(16, 1975482638293022978),
             name: 'menuidFav2',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(17, 300094347528480724),
+            id: const IdUid(17, 3667306299450478730),
             name: 'menuidFav3',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(18, 2171300219278508558),
+            id: const IdUid(18, 8758920352116590619),
             name: 'motivobloqueo',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(19, 300468055774765773),
+            id: const IdUid(19, 8277226014896764394),
             name: 'fechaExpiracion',
             type: 10,
             flags: 0),
         ModelProperty(
-            id: const IdUid(20, 8043684864708034129),
+            id: const IdUid(20, 6360285754887684762),
             name: 'zoneIds',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(21, 2987841342026270193),
+            id: const IdUid(21, 4728205312509858347),
             name: 'tokenExpiracion',
             type: 6,
             flags: 0)
@@ -952,34 +988,34 @@ final _entities = <ModelEntity>[
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(10, 8473707462287420020),
+      id: const IdUid(11, 7881969354207395743),
       name: 'SyncManager',
-      lastPropertyId: const IdUid(5, 10462515033714718),
+      lastPropertyId: const IdUid(5, 7971561157020212125),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 1783665511504598903),
+            id: const IdUid(1, 4059350185120879365),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 6270141074276806276),
+            id: const IdUid(2, 5110256561509790531),
             name: 'zoneId',
             type: 9,
             flags: 2048,
-            indexId: const IdUid(12, 6504767875341458653)),
+            indexId: const IdUid(13, 2315661533672328240)),
         ModelProperty(
-            id: const IdUid(3, 3676630100169024527),
+            id: const IdUid(3, 5063055510779529848),
             name: 'syncType',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 8372849269203540689),
+            id: const IdUid(4, 4458430152000010338),
             name: 'lastSyncDownDate',
             type: 10,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 10462515033714718),
+            id: const IdUid(5, 7971561157020212125),
             name: 'lastSyncUpDate',
             type: 10,
             flags: 0)
@@ -987,74 +1023,74 @@ final _entities = <ModelEntity>[
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(11, 1930161687257139606),
+      id: const IdUid(12, 8552130988552549454),
       name: 'Zone',
-      lastPropertyId: const IdUid(13, 1922037939548712395),
+      lastPropertyId: const IdUid(13, 1055818233527844303),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 4586490794556114308),
+            id: const IdUid(1, 2259424571553532914),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 3069551880824140665),
+            id: const IdUid(2, 2911879204336888374),
             name: 'zonaid',
             type: 9,
             flags: 2048,
-            indexId: const IdUid(13, 2932693245424782150)),
+            indexId: const IdUid(14, 5259370055694936572)),
         ModelProperty(
-            id: const IdUid(3, 5692668946863334118),
+            id: const IdUid(3, 445122560212650676),
             name: 'nombre',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 6326137097494826291),
+            id: const IdUid(4, 6488862491323226016),
             name: 'vendedorid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 6076254033189082964),
+            id: const IdUid(5, 529674491398277729),
             name: 'vendedor',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 3546079874322437388),
+            id: const IdUid(6, 1699038903791969218),
             name: 'canalid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(7, 3411764463206216634),
+            id: const IdUid(7, 1956456136375308501),
             name: 'canal',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(8, 4160708008939508073),
+            id: const IdUid(8, 737899606212838639),
             name: 'subcanalid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(9, 8809211883699055277),
+            id: const IdUid(9, 5455533380975147198),
             name: 'subcanal',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(10, 509337576021807607),
+            id: const IdUid(10, 960012683385754197),
             name: 'unidadnegocioid',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(11, 4915363531078799191),
+            id: const IdUid(11, 1691214844453337873),
             name: 'unidadnegocio',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(12, 8982174564741396241),
+            id: const IdUid(12, 4968490439180986326),
             name: 'activo',
             type: 1,
             flags: 0),
         ModelProperty(
-            id: const IdUid(13, 1922037939548712395),
+            id: const IdUid(13, 1055818233527844303),
             name: 'especial',
             type: 1,
             flags: 0)
@@ -1083,8 +1119,8 @@ Future<Store> openStore(
 ModelDefinition getObjectBoxModel() {
   final model = ModelInfo(
       entities: _entities,
-      lastEntityId: const IdUid(11, 1930161687257139606),
-      lastIndexId: const IdUid(13, 2932693245424782150),
+      lastEntityId: const IdUid(12, 8552130988552549454),
+      lastIndexId: const IdUid(14, 5259370055694936572),
       lastRelationId: const IdUid(0, 0),
       lastSequenceId: const IdUid(0, 0),
       retiredEntityUids: const [],
@@ -1824,8 +1860,51 @@ ModelDefinition getObjectBoxModel() {
 
           return object;
         }),
-    Product: EntityDefinition<Product>(
+    DocumentType: EntityDefinition<DocumentType>(
         model: _entities[7],
+        toOneRelations: (DocumentType object) => [],
+        toManyRelations: (DocumentType object) => {},
+        getId: (DocumentType object) => object.id,
+        setId: (DocumentType object, int id) {
+          object.id = id;
+        },
+        objectToFB: (DocumentType object, fb.Builder fbb) {
+          final tipodocumentoidOffset = object.tipodocumentoid == null
+              ? null
+              : fbb.writeString(object.tipodocumentoid!);
+          final nombreOffset =
+              object.nombre == null ? null : fbb.writeString(object.nombre!);
+          fbb.startTable(6);
+          fbb.addInt64(0, object.id ?? 0);
+          fbb.addOffset(1, tipodocumentoidOffset);
+          fbb.addOffset(2, nombreOffset);
+          fbb.addBool(3, object.requiereruc);
+          fbb.addInt64(4, object.lastSync?.millisecondsSinceEpoch);
+          fbb.finish(fbb.endTable());
+          return object.id ?? 0;
+        },
+        objectFromFB: (Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+          final lastSyncValue =
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 12);
+          final object = DocumentType(
+              id: const fb.Int64Reader()
+                  .vTableGetNullable(buffer, rootOffset, 4),
+              tipodocumentoid: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 6),
+              nombre: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 8),
+              requiereruc: const fb.BoolReader()
+                  .vTableGetNullable(buffer, rootOffset, 10),
+              lastSync: lastSyncValue == null
+                  ? null
+                  : DateTime.fromMillisecondsSinceEpoch(lastSyncValue));
+
+          return object;
+        }),
+    Product: EntityDefinition<Product>(
+        model: _entities[8],
         toOneRelations: (Product object) => [],
         toManyRelations: (Product object) => {},
         getId: (Product object) => object.id,
@@ -1924,7 +2003,7 @@ ModelDefinition getObjectBoxModel() {
           return object;
         }),
     Session: EntityDefinition<Session>(
-        model: _entities[8],
+        model: _entities[9],
         toOneRelations: (Session object) => [],
         toManyRelations: (Session object) => {},
         getId: (Session object) => object.id,
@@ -2032,7 +2111,7 @@ ModelDefinition getObjectBoxModel() {
           return object;
         }),
     SyncManager: EntityDefinition<SyncManager>(
-        model: _entities[9],
+        model: _entities[10],
         toOneRelations: (SyncManager object) => [],
         toManyRelations: (SyncManager object) => {},
         getId: (SyncManager object) => object.id,
@@ -2077,7 +2156,7 @@ ModelDefinition getObjectBoxModel() {
           return object;
         }),
     Zone: EntityDefinition<Zone>(
-        model: _entities[10],
+        model: _entities[11],
         toOneRelations: (Zone object) => [],
         toManyRelations: (Zone object) => {},
         getId: (Zone object) => object.id,
@@ -2676,247 +2755,270 @@ class Dashboard_ {
       QueryStringProperty<Dashboard>(_entities[6].properties[19]);
 }
 
+/// [DocumentType] entity fields to define ObjectBox queries.
+class DocumentType_ {
+  /// see [DocumentType.id]
+  static final id =
+      QueryIntegerProperty<DocumentType>(_entities[7].properties[0]);
+
+  /// see [DocumentType.tipodocumentoid]
+  static final tipodocumentoid =
+      QueryStringProperty<DocumentType>(_entities[7].properties[1]);
+
+  /// see [DocumentType.nombre]
+  static final nombre =
+      QueryStringProperty<DocumentType>(_entities[7].properties[2]);
+
+  /// see [DocumentType.requiereruc]
+  static final requiereruc =
+      QueryBooleanProperty<DocumentType>(_entities[7].properties[3]);
+
+  /// see [DocumentType.lastSync]
+  static final lastSync =
+      QueryIntegerProperty<DocumentType>(_entities[7].properties[4]);
+}
+
 /// [Product] entity fields to define ObjectBox queries.
 class Product_ {
   /// see [Product.id]
-  static final id = QueryIntegerProperty<Product>(_entities[7].properties[0]);
+  static final id = QueryIntegerProperty<Product>(_entities[8].properties[0]);
 
   /// see [Product.zonaid]
   static final zonaid =
-      QueryStringProperty<Product>(_entities[7].properties[1]);
+      QueryStringProperty<Product>(_entities[8].properties[1]);
 
   /// see [Product.productoid]
   static final productoid =
-      QueryStringProperty<Product>(_entities[7].properties[2]);
+      QueryStringProperty<Product>(_entities[8].properties[2]);
 
   /// see [Product.producto]
   static final producto =
-      QueryStringProperty<Product>(_entities[7].properties[3]);
+      QueryStringProperty<Product>(_entities[8].properties[3]);
 
   /// see [Product.productoidProv]
   static final productoidProv =
-      QueryStringProperty<Product>(_entities[7].properties[4]);
+      QueryStringProperty<Product>(_entities[8].properties[4]);
 
   /// see [Product.unidadmedidaid]
   static final unidadmedidaid =
-      QueryIntegerProperty<Product>(_entities[7].properties[5]);
+      QueryIntegerProperty<Product>(_entities[8].properties[5]);
 
   /// see [Product.unidadmedida]
   static final unidadmedida =
-      QueryStringProperty<Product>(_entities[7].properties[6]);
+      QueryStringProperty<Product>(_entities[8].properties[6]);
 
   /// see [Product.sublineaid]
   static final sublineaid =
-      QueryStringProperty<Product>(_entities[7].properties[7]);
+      QueryStringProperty<Product>(_entities[8].properties[7]);
 
   /// see [Product.sublinea]
   static final sublinea =
-      QueryStringProperty<Product>(_entities[7].properties[8]);
+      QueryStringProperty<Product>(_entities[8].properties[8]);
 
   /// see [Product.lineaid]
   static final lineaid =
-      QueryStringProperty<Product>(_entities[7].properties[9]);
+      QueryStringProperty<Product>(_entities[8].properties[9]);
 
   /// see [Product.linea]
   static final linea =
-      QueryStringProperty<Product>(_entities[7].properties[10]);
+      QueryStringProperty<Product>(_entities[8].properties[10]);
 
   /// see [Product.bpercepcion]
   static final bpercepcion =
-      QueryBooleanProperty<Product>(_entities[7].properties[11]);
+      QueryBooleanProperty<Product>(_entities[8].properties[11]);
 
   /// see [Product.blote]
   static final blote =
-      QueryBooleanProperty<Product>(_entities[7].properties[12]);
+      QueryBooleanProperty<Product>(_entities[8].properties[12]);
 
   /// see [Product.bpsicotropico]
   static final bpsicotropico =
-      QueryBooleanProperty<Product>(_entities[7].properties[13]);
+      QueryBooleanProperty<Product>(_entities[8].properties[13]);
 
   /// see [Product.brefrigerado]
   static final brefrigerado =
-      QueryBooleanProperty<Product>(_entities[7].properties[14]);
+      QueryBooleanProperty<Product>(_entities[8].properties[14]);
 
   /// see [Product.stock]
   static final stock =
-      QueryIntegerProperty<Product>(_entities[7].properties[15]);
+      QueryIntegerProperty<Product>(_entities[8].properties[15]);
 
   /// see [Product.lotes]
   static final lotes =
-      QueryIntegerProperty<Product>(_entities[7].properties[16]);
+      QueryIntegerProperty<Product>(_entities[8].properties[16]);
 
   /// see [Product.vencimientocorto]
   static final vencimientocorto =
-      QueryBooleanProperty<Product>(_entities[7].properties[17]);
+      QueryBooleanProperty<Product>(_entities[8].properties[17]);
 
   /// see [Product.escalas]
   static final escalas =
-      QueryIntegerProperty<Product>(_entities[7].properties[18]);
+      QueryIntegerProperty<Product>(_entities[8].properties[18]);
 
   /// see [Product.bonificaciones]
   static final bonificaciones =
-      QueryIntegerProperty<Product>(_entities[7].properties[19]);
+      QueryIntegerProperty<Product>(_entities[8].properties[19]);
 
   /// see [Product.lastSync]
   static final lastSync =
-      QueryIntegerProperty<Product>(_entities[7].properties[20]);
+      QueryIntegerProperty<Product>(_entities[8].properties[20]);
 }
 
 /// [Session] entity fields to define ObjectBox queries.
 class Session_ {
   /// see [Session.id]
-  static final id = QueryIntegerProperty<Session>(_entities[8].properties[0]);
+  static final id = QueryIntegerProperty<Session>(_entities[9].properties[0]);
 
   /// see [Session.deviceToken]
   static final deviceToken =
-      QueryStringProperty<Session>(_entities[8].properties[1]);
+      QueryStringProperty<Session>(_entities[9].properties[1]);
 
   /// see [Session.usuarioid]
   static final usuarioid =
-      QueryIntegerProperty<Session>(_entities[8].properties[2]);
+      QueryIntegerProperty<Session>(_entities[9].properties[2]);
 
   /// see [Session.usuario]
   static final usuario =
-      QueryStringProperty<Session>(_entities[8].properties[3]);
+      QueryStringProperty<Session>(_entities[9].properties[3]);
 
   /// see [Session.descripcion]
   static final descripcion =
-      QueryStringProperty<Session>(_entities[8].properties[4]);
+      QueryStringProperty<Session>(_entities[9].properties[4]);
 
   /// see [Session.correo]
   static final correo =
-      QueryStringProperty<Session>(_entities[8].properties[5]);
+      QueryStringProperty<Session>(_entities[9].properties[5]);
 
   /// see [Session.activo]
   static final activo =
-      QueryBooleanProperty<Session>(_entities[8].properties[6]);
+      QueryBooleanProperty<Session>(_entities[9].properties[6]);
 
   /// see [Session.bloqueado]
   static final bloqueado =
-      QueryBooleanProperty<Session>(_entities[8].properties[7]);
+      QueryBooleanProperty<Session>(_entities[9].properties[7]);
 
   /// see [Session.motivobloqueoid]
   static final motivobloqueoid =
-      QueryIntegerProperty<Session>(_entities[8].properties[8]);
+      QueryIntegerProperty<Session>(_entities[9].properties[8]);
 
   /// see [Session.rolid]
   static final rolid =
-      QueryIntegerProperty<Session>(_entities[8].properties[9]);
+      QueryIntegerProperty<Session>(_entities[9].properties[9]);
 
   /// see [Session.token]
   static final token =
-      QueryStringProperty<Session>(_entities[8].properties[10]);
+      QueryStringProperty<Session>(_entities[9].properties[10]);
 
   /// see [Session.telefono]
   static final telefono =
-      QueryStringProperty<Session>(_entities[8].properties[11]);
+      QueryStringProperty<Session>(_entities[9].properties[11]);
 
   /// see [Session.creado]
   static final creado =
-      QueryIntegerProperty<Session>(_entities[8].properties[12]);
+      QueryIntegerProperty<Session>(_entities[9].properties[12]);
 
   /// see [Session.actualizado]
   static final actualizado =
-      QueryIntegerProperty<Session>(_entities[8].properties[13]);
+      QueryIntegerProperty<Session>(_entities[9].properties[13]);
 
   /// see [Session.menuidFav1]
   static final menuidFav1 =
-      QueryStringProperty<Session>(_entities[8].properties[14]);
+      QueryStringProperty<Session>(_entities[9].properties[14]);
 
   /// see [Session.menuidFav2]
   static final menuidFav2 =
-      QueryStringProperty<Session>(_entities[8].properties[15]);
+      QueryStringProperty<Session>(_entities[9].properties[15]);
 
   /// see [Session.menuidFav3]
   static final menuidFav3 =
-      QueryStringProperty<Session>(_entities[8].properties[16]);
+      QueryStringProperty<Session>(_entities[9].properties[16]);
 
   /// see [Session.motivobloqueo]
   static final motivobloqueo =
-      QueryStringProperty<Session>(_entities[8].properties[17]);
+      QueryStringProperty<Session>(_entities[9].properties[17]);
 
   /// see [Session.fechaExpiracion]
   static final fechaExpiracion =
-      QueryIntegerProperty<Session>(_entities[8].properties[18]);
+      QueryIntegerProperty<Session>(_entities[9].properties[18]);
 
   /// see [Session.zoneIds]
   static final zoneIds =
-      QueryStringProperty<Session>(_entities[8].properties[19]);
+      QueryStringProperty<Session>(_entities[9].properties[19]);
 
   /// see [Session.tokenExpiracion]
   static final tokenExpiracion =
-      QueryIntegerProperty<Session>(_entities[8].properties[20]);
+      QueryIntegerProperty<Session>(_entities[9].properties[20]);
 }
 
 /// [SyncManager] entity fields to define ObjectBox queries.
 class SyncManager_ {
   /// see [SyncManager.id]
   static final id =
-      QueryIntegerProperty<SyncManager>(_entities[9].properties[0]);
+      QueryIntegerProperty<SyncManager>(_entities[10].properties[0]);
 
   /// see [SyncManager.zoneId]
   static final zoneId =
-      QueryStringProperty<SyncManager>(_entities[9].properties[1]);
+      QueryStringProperty<SyncManager>(_entities[10].properties[1]);
 
   /// see [SyncManager.syncType]
   static final syncType =
-      QueryStringProperty<SyncManager>(_entities[9].properties[2]);
+      QueryStringProperty<SyncManager>(_entities[10].properties[2]);
 
   /// see [SyncManager.lastSyncDownDate]
   static final lastSyncDownDate =
-      QueryIntegerProperty<SyncManager>(_entities[9].properties[3]);
+      QueryIntegerProperty<SyncManager>(_entities[10].properties[3]);
 
   /// see [SyncManager.lastSyncUpDate]
   static final lastSyncUpDate =
-      QueryIntegerProperty<SyncManager>(_entities[9].properties[4]);
+      QueryIntegerProperty<SyncManager>(_entities[10].properties[4]);
 }
 
 /// [Zone] entity fields to define ObjectBox queries.
 class Zone_ {
   /// see [Zone.id]
-  static final id = QueryIntegerProperty<Zone>(_entities[10].properties[0]);
+  static final id = QueryIntegerProperty<Zone>(_entities[11].properties[0]);
 
   /// see [Zone.zonaid]
-  static final zonaid = QueryStringProperty<Zone>(_entities[10].properties[1]);
+  static final zonaid = QueryStringProperty<Zone>(_entities[11].properties[1]);
 
   /// see [Zone.nombre]
-  static final nombre = QueryStringProperty<Zone>(_entities[10].properties[2]);
+  static final nombre = QueryStringProperty<Zone>(_entities[11].properties[2]);
 
   /// see [Zone.vendedorid]
   static final vendedorid =
-      QueryStringProperty<Zone>(_entities[10].properties[3]);
+      QueryStringProperty<Zone>(_entities[11].properties[3]);
 
   /// see [Zone.vendedor]
   static final vendedor =
-      QueryStringProperty<Zone>(_entities[10].properties[4]);
+      QueryStringProperty<Zone>(_entities[11].properties[4]);
 
   /// see [Zone.canalid]
-  static final canalid = QueryStringProperty<Zone>(_entities[10].properties[5]);
+  static final canalid = QueryStringProperty<Zone>(_entities[11].properties[5]);
 
   /// see [Zone.canal]
-  static final canal = QueryStringProperty<Zone>(_entities[10].properties[6]);
+  static final canal = QueryStringProperty<Zone>(_entities[11].properties[6]);
 
   /// see [Zone.subcanalid]
   static final subcanalid =
-      QueryStringProperty<Zone>(_entities[10].properties[7]);
+      QueryStringProperty<Zone>(_entities[11].properties[7]);
 
   /// see [Zone.subcanal]
   static final subcanal =
-      QueryStringProperty<Zone>(_entities[10].properties[8]);
+      QueryStringProperty<Zone>(_entities[11].properties[8]);
 
   /// see [Zone.unidadnegocioid]
   static final unidadnegocioid =
-      QueryStringProperty<Zone>(_entities[10].properties[9]);
+      QueryStringProperty<Zone>(_entities[11].properties[9]);
 
   /// see [Zone.unidadnegocio]
   static final unidadnegocio =
-      QueryStringProperty<Zone>(_entities[10].properties[10]);
+      QueryStringProperty<Zone>(_entities[11].properties[10]);
 
   /// see [Zone.activo]
   static final activo =
-      QueryBooleanProperty<Zone>(_entities[10].properties[11]);
+      QueryBooleanProperty<Zone>(_entities[11].properties[11]);
 
   /// see [Zone.especial]
   static final especial =
-      QueryBooleanProperty<Zone>(_entities[10].properties[12]);
+      QueryBooleanProperty<Zone>(_entities[11].properties[12]);
 }
